@@ -6,7 +6,7 @@ Installs and configures ntp, optionally set up a local NTP server.
 Requirements
 ============
 
-Should work on any Red Hat-family or Debian-family Linux distribution.
+Should work on any Red Hat-family or Debian-family Linux distribution or on FreeBSD.
 
 Attributes
 ==========
@@ -33,12 +33,21 @@ Attributes
   - Array, should be a list of restrict lines to restrict access to NTP
     clients on your LAN.
 
-USAGE
+* ntp[:driftfile]
+
+  - String, the path to the frequency file.
+
+* ntp[:statsdir]
+
+  - String, the directory path for files created by the statistics facility.
+
+Usage
 =====
 
 Set up the ntp attributes in a role. For example in a base.rb role applied to all nodes:
 
     name "base"
+    description "Role applied to all systems"
     default_attributes(
       "ntp" => {
         "servers" => ["time0.int.example.org", "time1.int.example.org"]
@@ -47,19 +56,20 @@ Set up the ntp attributes in a role. For example in a base.rb role applied to al
 
 Then in an ntpserver.rb role that is applied to NTP servers (e.g., time.int.example.org):
 
-    name "base"
+    name "ntp_server"
+    description "Role applied to the system that should be an NTP server."
     default_attributes(
       "ntp" => {
         "is_server" => "true",
-        "servers" => ["0.pool.ntp.org", "1.pool.ntp.org"]
-        "peers" => ["time0.int.example.org", "time1.int.example.org"]
+        "servers" => ["0.pool.ntp.org", "1.pool.ntp.org"],
+        "peers" => ["time0.int.example.org", "time1.int.example.org"],
         "restrictions" => ["10.0.0.0 mask 255.0.0.0 nomodify notrap"]
       }
     )
 
 The timeX.int.example.org used in these roles should be the names or IP addresses of internal NTP servers.
 
-LICENSE AND AUTHOR
+License and Author
 ==================
 
 Author:: Joshua Timberman (<joshua@opscode.com>)
