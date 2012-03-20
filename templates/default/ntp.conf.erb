@@ -4,8 +4,8 @@
 <% if node[:virtualization][:role] == "guest" -%>
 tinker panic 0
 <% end -%>
-driftfile /var/lib/ntp/ntp.drift
-statsdir /var/log/ntpstats/
+driftfile <%= node[:ntp][:driftfile] %>
+statsdir <%= node[:ntp][:statsdir] %>
 
 statistics loopstats peerstats clockstats
 filegen loopstats file loopstats type day enable
@@ -41,7 +41,7 @@ restrict <%= restriction %>
   <% end -%>
 <% end -%>
 
-<%# It is best practice to use an high stratum undisciplined clock, if you have a real CMOS clock -%>
+<%# It is best practice to use a high stratum undisciplined clock, if you have a real CMOS clock -%>
 <%# Except cases where you have a low stratum server, or a virtualized system without a real CMOS clock -%>
 <% if ! node[:ntp][:is_server] and node[:virtualization][:role] != "guest" -%>
 server  127.127.1.0 # local clock
