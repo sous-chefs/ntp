@@ -35,12 +35,12 @@ when "redhat","centos","fedora","scientific"
   default[:ntp][:root_group] = "root"
 when "freebsd"
   default[:ntp][:service] = "ntpd"
+  default[:ntp][:root_group] = "wheel"
   default[:ntp][:driftfile] = "/var/db/ntpd.drift"
   default[:ntp][:statsdir] = "/var/db/ntpstats/"
-  default[:ntp][:root_group] = "root"
 else
   default[:ntp][:service] = "ntpd"
-  default[:ntp][:root_group] = "wheel"
+  default[:ntp][:root_group] = "root"
 end
 
 default[:ntp][:peers] = []
