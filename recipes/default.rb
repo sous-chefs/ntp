@@ -17,42 +17,53 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-case node[:platform] 
+root_group = value_for_platform(
+  "freebsd" => {
+   "default" => "wheel"
+  },
+  "default" => "root"
+)
+
+case node[:platform]
 when "ubuntu","debian"
   package "ntpdate" do
     action :install
   end
-end
-
-unless platform?("freebsd")
   package "ntp" do
     action :install
   end
+when "redhat","centos","fedora","scientific"
+  package "ntp" do
+    action :install
+  end
+end
 
+case node[:platform]
+when "freebsd"
+  directory node[:ntp][:statsdir] do
+    owner "root"
+    group root_group
+    mode "0755"
+  end
+when "redhat","centos","fedora","scientific"
   # ntpstats dir doesn't exist on RHEL/CentOS
-  # It'd be better to not make assumptions about the target platform
-  %w{ /var/lib/ntp /var/log/ntpstats }.each do |ntpdir|
-    directory ntpdir do
-      owner "ntp"
-      group "ntp"
-      mode 0755
-    end
+else
+  directory node[:ntp][:statsdir] do
+    owner "ntp"
+    group "ntp"
+    mode "0755"
   end
 end
 
 service node[:ntp][:service] do
-  action :start
+  supports :status => true, :restart => true
+  action [ :enable, :start ]
 end
 
 template "/etc/ntp.conf" do
   source "ntp.conf.erb"
   owner "root"
-  group node[:ntp][:root_group]
-  mode 0644
-  notifies :restart, "service[ntp]"
-end
-
-service "ntp" do
-  service_name node[:ntp][:service]
-  action [:enable, :start]
+  group root_group
+  mode "0644"
+  notifies :restart, resources(:service => node[:ntp][:service])
 end
