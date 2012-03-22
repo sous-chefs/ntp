@@ -29,13 +29,19 @@ default[:ntp][:statsdir] = "/var/log/ntpstats/"
 case platform
 when "ubuntu","debian"
   default[:ntp][:service] = "ntp"
+  default[:ntp][:root_group] = "root"
 when "redhat","centos","fedora","scientific"
   default[:ntp][:service] = "ntpd"
+  default[:ntp][:root_group] = "root"
 when "freebsd"
   default[:ntp][:service] = "ntpd"
   default[:ntp][:driftfile] = "/var/db/ntpd.drift"
   default[:ntp][:statsdir] = "/var/db/ntpstats/"
+  default[:ntp][:root_group] = "root"
 else
   default[:ntp][:service] = "ntpd"
+  default[:ntp][:root_group] = "wheel"
 end
 
+default[:ntp][:peers] = []
+default[:ntp][:restrictions] = []

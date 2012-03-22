@@ -17,12 +17,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-root_group = value_for_platform(
-  "freebsd" => {
-   "default" => "wheel"
-  },
-  "default" => "root"
-)
+root_group = node['ntp']['root_group']
 
 case node[:platform]
 when "ubuntu","debian"
