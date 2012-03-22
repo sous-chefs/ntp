@@ -1,3 +1,8 @@
+## v1.1.4:
+
+* [COOK-1124] - parameterised driftfile and statsdir to be
+  configurable by platform
+
 ## v1.1.2:
 
 * [COOK-952] - freebsd support
