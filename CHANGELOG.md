@@ -1,3 +1,7 @@
+## v1.1.6:
+
+* Related to changes in COOK-1124, fix group for freebsd and else
+
 ## v1.1.4:
 
 * [COOK-1124] - parameterised driftfile and statsdir to be
