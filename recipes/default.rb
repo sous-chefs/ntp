@@ -31,6 +31,9 @@ when "redhat","centos","fedora","scientific"
   package "ntp" do
     action :install
   end
+  package "ntpdate" do
+    action :install
+  end unless node[:platform_version].to_i < 6
 end
 
 case node[:platform]
