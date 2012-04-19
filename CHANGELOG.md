@@ -1,3 +1,7 @@
+## v1.1.8:
+
+* [COOK-1158] - RHEL family >= 6 has ntpdate package
+
 ## v1.1.6:
 
 * Related to changes in COOK-1124, fix group for freebsd and else
