@@ -24,6 +24,14 @@ when "ubuntu","debian"
   package "ntpdate" do
     action :install
   end
+
+  template "/etc/default/ntpdate" do
+	source "default.ntpdate.erb"
+	owner "root"
+	group root_group
+	mode "0644"
+  end
+
   package "ntp" do
     action :install
   end

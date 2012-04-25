@@ -21,7 +21,6 @@
 
 # default attributes for all platforms
 default[:ntp][:is_server] = false
-default[:ntp][:servers]   = ["0.pool.ntp.org", "1.pool.ntp.org"]
 default[:ntp][:driftfile] = "/var/lib/ntp/ntp.drift"
 default[:ntp][:statsdir] = "/var/log/ntpstats/"
 
@@ -41,6 +40,17 @@ when "freebsd"
 else
   default[:ntp][:service] = "ntpd"
   default[:ntp][:root_group] = "root"
+end
+
+case platform
+when "ubuntu"
+  default[:ntp][:servers]   = [ "ntp.ubuntu.com" ]
+when "debian"
+  default[:ntp][:servers] = [ "0.debian.pool.ntp.org", "1.debian.pool.ntp.org", "2.debian.pool.ntp.org", "3.debian.pool.ntp.org" ]
+when "redhat"
+  default[:ntp][:servers] = [ "0.rhel.pool.ntp.org", "1.rhel.pool.ntp.org", "2.rhel.pool.ntp.org" ]
+else
+  default[:ntp][:servers] = [ "0.pool.ntp.org", "1.pool.ntp.org", "2.pool.ntp.org", "3.pool.ntp.org" ]
 end
 
 default[:ntp][:peers] = []
