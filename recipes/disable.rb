@@ -16,7 +16,7 @@ when "ubuntu","debian"
 		group root_group
 		mode "0644"
 		variables(
-			:disable => TRUE,
+			:disable => TRUE
 		)
 	end
 end
