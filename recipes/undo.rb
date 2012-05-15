@@ -1,8 +1,9 @@
 #
 # Cookbook Name:: ntp
-# Recipe:: default
-# Author:: Joshua Timberman (<joshua@opscode.com>)
+# Recipe:: undo 
+# Author:: Eric G. Wolfe 
 #
+# Copyright 2012, Eric G. Wolfe
 # Copyright 2009, Opscode, Inc
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -17,27 +18,19 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-node['ntp']['packages'].each do |ntppkg|
-  package ntppkg
+service node['ntp']['service'] do
+  supports :status => true, :restart => true
+  action [ :stop, :disable ]
 end
 
-%w{ varlibdir statsdir }.each do |ntpdir|
-  directory "node['ntp']['#{ntpdir}']" do
-    owner node['ntp']['var_owner']
-    group node['ntp']['var_group']
-    mode 0755
+node['ntp']['packages'].each do |ntppkg|
+  package ntppkg do
+    action :remove
   end
 end
 
-service node['ntp']['service'] do
-  supports :status => true, :restart => true
-  action [ :enable, :start ]
-end
-
-template "/etc/ntp.conf" do
-  source "ntp.conf.erb"
-  owner node['ntp']['conf_owner'] 
-  group node['ntp']['conf_group']
-  mode "0644"
-  notifies :restart, resources(:service => node['ntp']['service'])
+ruby_block "remove ntp::undo from run list" do
+  block do
+    node.run_list.remove("recipe[ntp::undo]")
+  end
 end
