@@ -1,3 +1,14 @@
+## [COOK-1298]
+
+* Refactor cookbook for simplified data-driven recipe code
+* Add test scaffolding
+* Add rake tasks for attribute testing and foodcritic
+* Deprecate ntp::disable in favor of separate ntp::undo and ntp::ntpdate
+* ntp::ntpdate now operates based on boolean "disable" attribute
+* Add Travis CI integration
+* Update documentation and metadata
+* Add reference documentation for cookbook testing
+
 ## v1.1.8:
 
 * [COOK-1158] - RHEL family >= 6 has ntpdate package
