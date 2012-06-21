@@ -21,8 +21,9 @@ node['ntp']['packages'].each do |ntppkg|
   package ntppkg
 end
 
-%w{ varlibdir statsdir }.each do |ntpdir|
-  directory "node['ntp']['#{ntpdir}']" do
+[ node['ntp']['varlibdir'],
+  node['ntp']['statsdir'] ].each do |ntpdir|
+  directory ntpdir do
     owner node['ntp']['var_owner']
     group node['ntp']['var_group']
     mode 0755
