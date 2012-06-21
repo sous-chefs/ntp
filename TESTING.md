@@ -69,7 +69,7 @@ Populate your Gemfile for the rake task, and optionally Travis.
 source "https://rubygems.org"
 gem "rake"
 gem "minitest"
-gem "chef", ">= 0.10.8"
+gem "chef", ">= 10.12.0"
 gem "foodcritic"
 ```
 
