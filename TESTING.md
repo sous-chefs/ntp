@@ -14,17 +14,17 @@ A major problem with developing cross-platform cookbooks is this ugly
 stair-step pattern of case switches on platform and platform_version
 attributes.  This leads to hard to read recipe code, and additional
 maintenance overhead in correcting platform cases on a constant basis.
-As more platform *bikesheds* are introduced to a recipe, the recipe
-tends to take on quirks for edge cases, as conditionals are stacked
-in an unpredictable way.
+Recipe tend to take on quirks for edge cases, as conditionals are stacked
+in inconsistest and unpredictable ways.
 
 Fletcher had done some previous lint checking on some of his cookbooks
 with foodcritic and [Travis CI](http://travis-ci.org).  We wished to
 incorporate attribute sanity checking. Both our testing cases are added
 as a `rake` task which can be run from a development workstation
 or CI platform such as Travis or Jenkins.  The biggest advantage we found
-in our testing was being able to run quick attribute tests in **one-hundredth
-of a second**.
+of this testing method was being able to run quick attribute tests in
+**one-hundredth of a second**.  The biggest drawback in spec tests are
+having to write tests which are very explicit.
 
 The attribute tests uses minitest to mock a node and then check the attributes
 for any platform edge cases as shipped with the cookbook.  Since there is
@@ -36,8 +36,8 @@ We stopped before testing the Resource Collection, or integrating
 `minitest-handler` post-convergence testing.  A good `minitest-handler`
 case for this cookbook would be to ensure a node does not set itself
 as an upstream ntp `server` or `peer` of itself.  As different testing
-methods for Chef emerge and mature, this proof-of-concept could be
-revisited.
+methods for Chef emerge and mature, this proof-of-concept should be
+revisited to serve as a reference case.
 
 ## Minitest Spec Testing HOWTO
 

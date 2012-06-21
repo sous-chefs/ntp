@@ -46,12 +46,12 @@ describe 'Ntp::Attributes::Default' do
       @node[attr_ns]['driftfile'].must_equal "/var/lib/ntp/ntp.drift"
     end
 
-    it "sets the stats directory to /var/log/ntpstats" do
-      @node[attr_ns]['statsdir'].must_equal "/var/log/ntpstats"
+    it "sets the stats directory to /var/log/ntpstats/" do
+      @node[attr_ns]['statsdir'].must_equal "/var/log/ntpstats/"
     end
 
     it "sets a packages list" do
-      @node[attr_ns]['packages'].must_equal %w{ ntp ntpdate }
+      @node[attr_ns]['packages'].sort.must_equal %w{ ntp ntpdate }.sort
     end
 
     it "sets the service name to ntp" do
@@ -73,6 +73,10 @@ describe 'Ntp::Attributes::Default' do
     it "sets the var_group to root" do
       @node[attr_ns]['var_group'].must_equal "ntp"
     end
+
+    it "sets the upstream server list" do
+      @node[attr_ns]['servers'].must_include "0.pool.ntp.org"
+    end
   end
 
   describe "for centos 5 platform" do
@@ -85,7 +89,7 @@ describe 'Ntp::Attributes::Default' do
     end
 
     it "sets a packages list" do
-      @node[attr_ns]['packages'].must_equal %w{ ntp }
+      @node[attr_ns]['packages'].must_include "ntp"
     end
   end
 
@@ -99,8 +103,8 @@ describe 'Ntp::Attributes::Default' do
     end
 
     it "sets a packages list" do
-      @node[attr_ns]['packages'].must_equal %w{ ntp ntpdate }
-      end
+      @node[attr_ns]['packages'].sort.must_equal %w{ ntp ntpdate }.sort
+    end
   end
 
   describe "for freebsd platform" do
@@ -125,7 +129,7 @@ describe 'Ntp::Attributes::Default' do
     end
 
     it "sets the ntp packages to ntp" do
-      @node[attr_ns]['packages'].must_equal %w{ ntp }
+      @node[attr_ns]['packages'].must_include "ntp"
     end
 
     it "sets the conf_group to wheel" do
