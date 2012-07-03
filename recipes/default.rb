@@ -66,6 +66,11 @@ service node[:ntp][:service] do
   action [ :enable, :start ]
 end
 
+cookbook_file node[:ntp][:leapfile] do
+  source "ntp.leapseconds"
+  mode 0755
+end
+
 template "/etc/ntp.conf" do
   source "ntp.conf.erb"
   owner "root"
