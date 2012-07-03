@@ -6,6 +6,7 @@ tinker panic 0
 <% end -%>
 driftfile <%= node[:ntp][:driftfile] %>
 statsdir <%= node[:ntp][:statsdir] %>
+leapfile <%= node[:ntp][:leapfile] %>
 
 statistics loopstats peerstats clockstats
 filegen loopstats file loopstats type day enable

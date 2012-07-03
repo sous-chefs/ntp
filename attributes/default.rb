@@ -23,6 +23,7 @@
 default[:ntp][:is_server] = false
 default[:ntp][:driftfile] = "/var/lib/ntp/ntp.drift"
 default[:ntp][:statsdir] = "/var/log/ntpstats/"
+default[:ntp][:leapfile] = "/etc/ntp.leapseconds"
 
 # overrides on a platform-by-platform basis
 case platform

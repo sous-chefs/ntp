@@ -3,7 +3,7 @@ maintainer_email  "cookbooks@opscode.com"
 license           "Apache 2.0"
 description       "Installs and configures ntp as a client or server"
 long_description  IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version           "1.1.9"
+version           "1.1.10"
 
 recipe "ntp", "Installs and configures ntp either as a server or client"
 
@@ -53,3 +53,8 @@ attribute "ntp/statsdir",
   :display_name => "NTP Statsdir",
   :description => "Location of the NTP statsdir",
   :default => "/var/log/ntpstats/"
+
+attribute "ntp/leapfile",
+  :display_name => "NIST leap seconds",
+  :description => "File describing upcoming leap seconds",
+  :default => "/etc/ntp.leapseconds"
