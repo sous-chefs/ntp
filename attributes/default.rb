@@ -20,38 +20,34 @@
 #
 
 # default attributes for all platforms
-default[:ntp][:is_server] = false
-default[:ntp][:driftfile] = "/var/lib/ntp/ntp.drift"
-default[:ntp][:statsdir] = "/var/log/ntpstats/"
+default['ntp']['servers']   = %w{ 0.pool.ntp.org 1.pool.ntp.org 2.pool.ntp.org 3.pool.ntp.org }
+default['ntp']['peers'] = Array.new
+default['ntp']['restrictions'] = Array.new
+
+default['ntp']['packages'] = %w{ ntp ntpdate }
+default['ntp']['service'] = "ntp"
+default['ntp']['varlibdir'] = "/var/lib/ntp"
+default['ntp']['driftfile'] = "#{node['ntp']['varlibdir']}/ntp.drift"
+default['ntp']['statsdir'] = "/var/log/ntpstats/"
+default['ntp']['conf_owner'] = "root"
+default['ntp']['conf_group'] = "root"
+default['ntp']['var_owner'] = "ntp"
+default['ntp']['var_group'] = "ntp"
 
 # overrides on a platform-by-platform basis
 case platform
-when "ubuntu","debian"
-  default[:ntp][:service] = "ntp"
-  default[:ntp][:root_group] = "root"
-when "redhat","centos","fedora","scientific"
-  default[:ntp][:service] = "ntpd"
-  default[:ntp][:root_group] = "root"
+when "redhat","centos","fedora","scientific","amazon","oracle"
+  default['ntp']['service'] = "ntpd"
+  default['ntp']['packages'] = %w{ ntp }
+  if node['platform_version'].to_i >= 6
+    default['ntp']['packages'] = %w{ ntp ntpdate } 
+  end
 when "freebsd"
-  default[:ntp][:service] = "ntpd"
-  default[:ntp][:root_group] = "wheel"
-  default[:ntp][:driftfile] = "/var/db/ntpd.drift"
-  default[:ntp][:statsdir] = "/var/db/ntpstats/"
-else
-  default[:ntp][:service] = "ntpd"
-  default[:ntp][:root_group] = "root"
+  default['ntp']['service'] = "ntpd"
+  default['ntp']['varlibdir'] = "/var/db"
+  default['ntp']['driftfile'] = "#{node['ntp']['varlibdir']}/ntpd.drift"
+  default['ntp']['statsdir'] = "#{node['ntp']['varlibdir']}/ntpstats"
+  default['ntp']['packages'] = %w{ ntp }
+  default['ntp']['conf_group'] = "wheel"
+  default['ntp']['var_group'] = "wheel" 
 end
-
-case platform
-when "ubuntu"
-  default[:ntp][:servers]   = [ "ntp.ubuntu.com" ]
-when "debian"
-  default[:ntp][:servers] = [ "0.debian.pool.ntp.org", "1.debian.pool.ntp.org", "2.debian.pool.ntp.org", "3.debian.pool.ntp.org" ]
-when "redhat"
-  default[:ntp][:servers] = [ "0.rhel.pool.ntp.org", "1.rhel.pool.ntp.org", "2.rhel.pool.ntp.org" ]
-else
-  default[:ntp][:servers] = [ "0.pool.ntp.org", "1.pool.ntp.org", "2.pool.ntp.org", "3.pool.ntp.org" ]
-end
-
-default[:ntp][:peers] = []
-default[:ntp][:restrictions] = []

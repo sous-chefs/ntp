@@ -8,7 +8,7 @@ NTPDATE_USE_NTP_CONF=yes
 
 # List of NTP servers to use  (Separate multiple servers with spaces.)
 # Not used if NTPDATE_USE_NTP_CONF is yes.
-NTPSERVERS="<% node[:ntp][:servers].each do |ntpserver| -%><%= ntpserver %> <% end %>"
+NTPSERVERS="<% node['ntp']['servers'].each do |ntpserver| -%><%= ntpserver %> <% end %>"
 
 # Additional options to pass to ntpdate
 NTPOPTIONS=""
