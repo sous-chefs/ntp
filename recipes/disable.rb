@@ -4,11 +4,11 @@
 # Recipe:: disable
 #
 
-service node[:ntp][:service] do
+service node['ntp']['service'] do
 	action [ :disable, :stop ]
 end
 
-case node[:platform]
+case node['platform']
 when "ubuntu","debian"
 	template "/etc/default/ntpdate" do
 		source "default.ntpdate.erb"
