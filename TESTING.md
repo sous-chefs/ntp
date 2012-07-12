@@ -1,4 +1,4 @@
-## Cookbook testing 
+## Cookbook testing
 
 Reference documentation for testing cookbooks for correctness
 in a lightweight manner.
@@ -55,7 +55,7 @@ Foodcritic may identify testing directories as cookbooks if attributes, or recip
 Otherwise the testing directory structure does not matter much.  Following Ruby conventions, you should probably use `test` or `spec`.
 
 Create a test directory structure.
-   
+
 ```sh
 cd chef-repo/cookbooks/<cookbook dir>
 mkdir -p test/support
@@ -88,7 +88,7 @@ Create a <name of test>_spec.rb test file.  Following is a partial NTP attribute
 require File.join(File.dirname(__FILE__), %w{.. support spec_helper})
 require 'chef/node'
 require 'chef/platform'
- 
+
 describe 'Ntp::Attributes::Default' do
   let(:attr_ns) { 'ntp' }
 
@@ -97,7 +97,7 @@ describe 'Ntp::Attributes::Default' do
     @node.consume_external_attrs(Mash.new(ohai_data), {})
     @node.from_file(File.join(File.dirname(__FILE__), %w{.. .. attributes default.rb}))
   end
-    
+
   # Test unknown edge case
   describe "for unknown platform" do
     let(:ohai_data) do

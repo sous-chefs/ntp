@@ -1,4 +1,4 @@
-# NTP [![Build Status](https://secure.travis-ci.org/atomic-penguin/ntp.png?branch=COOK-1298)](http://travis-ci.org/atomic-penguin/ntp)
+# NTP [![Build Status](https://secure.travis-ci.org/opscode-cookbooks/ntp.png?branch=master)](http://travis-ci.org/opscode-cookbooks/ntp)
 
 ## Description
 
@@ -53,8 +53,8 @@ Should work on Red Hat-family and Debian-family Linux distributions, or FreeBSD.
 
 * ntp['ntpdate']['disable']
 
-  - Boolean, disables the use of ntpdate-debian if set to true. 
-  - Defaults to false, and will not disable ntpdate.  There is usually no 
+  - Boolean, disables the use of ntpdate-debian if set to true.
+  - Defaults to false, and will not disable ntpdate.  There is usually no
     init service to manage with ntpdate.  Therefore it should not conflict
     with ntpd in most cases.
 
@@ -133,7 +133,7 @@ You may blank out the ntpdate configuration file by overriding ntp['ntpdate']['d
 Then include the ntp::ntpdate recipe in your run\_list.
 
 You may re-enable the ntpdate configuration by ensuring ntp['ntpdate']['disable'] is `false`.
-Then include the ntp::ntpdate recipe in your run\_list. 
+Then include the ntp::ntpdate recipe in your run\_list.
 
 ### undo recipe
 
