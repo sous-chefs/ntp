@@ -2,7 +2,8 @@
 
 ## Description
 
-Installs and configures ntp, optionally configure ntpdate on debian family platforms.
+Installs and configures ntp and optionally configures ntpdate on Red Hat-family
+and Debian-family Linux distributions, or FreeBSD family platforms.
 
 ### About the refactor
 
