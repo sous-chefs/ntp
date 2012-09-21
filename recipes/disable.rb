@@ -4,6 +4,8 @@
 # Recipe:: disable
 #
 
+root_group = node['ntp']['root_group']
+
 service node['ntp']['service'] do
 	action [ :disable, :stop ]
 end
