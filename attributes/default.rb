@@ -33,6 +33,7 @@ default['ntp']['conf_owner'] = "root"
 default['ntp']['conf_group'] = "root"
 default['ntp']['var_owner'] = "ntp"
 default['ntp']['var_group'] = "ntp"
+default['ntp']['leapfile'] = "/etc/ntp.leapseconds"
 
 # overrides on a platform-by-platform basis
 case platform
