@@ -11,7 +11,7 @@ end
 case node['platform']
 when "ubuntu","debian"
 	template "/etc/default/ntpdate" do
-		source "default.ntpdate.erb"
+		source "ntpdate.erb"
 		owner "root"
 		group root_group
 		mode "0644"
