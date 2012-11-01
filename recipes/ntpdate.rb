@@ -26,6 +26,7 @@ end
 
 # Template is only meaningful on Debian family platforms
 template "/etc/default/ntpdate" do
+  source "ntpdate.erb"
   owner node['ntp']['conf_owner']
   group node['ntp']['conf_group']
   mode "0644"
