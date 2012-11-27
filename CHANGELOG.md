@@ -1,3 +1,7 @@
+## v1.3.0:
+
+* [COOK-1404] - add leapfile for handling leap seconds
+
 ## v1.2.0:
 
 * [COOK-1184] - Add recipe to disable NTP completely
