@@ -199,11 +199,12 @@
 3345062400	33	# 1 Jan 2006
 3439756800	34	# 1 Jan 2009
 3550089600	35	# 1 Jul 2012
-3565987200	36	# 1 Jan 2013
-3581625600	37	# 1 Jul 2013
-3597523200 	38	# 1 Jan 2014
-3613161600 	39	# 1 Jul 2014
-3629059200 	40	# 1 Jan 2015
+#	 For future reference, if needed:
+#3565987200	36	# 1 Jan 2013
+#3581625600	37	# 1 Jul 2013
+#3597523200 	38	# 1 Jan 2014
+#3613161600 	39	# 1 Jul 2014
+#3629059200 	40	# 1 Jan 2015
 #
 #	the following special comment contains the
 #	hash value of the data in this file computed
