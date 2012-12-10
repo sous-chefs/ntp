@@ -122,13 +122,13 @@
 #	during the leap second does not arise.
 #
 #	Questions or comments to:
-#		Rich Schmidt
-#		Time Service Department
-#		US Naval Observatory
-#		Washington, DC
-#		rich.schmidt@usno.navy.mil
+#		Judah Levine
+#		Time and Frequency Division
+#		NIST
+#		Boulder, Colorado
+#		jlevine@boulder.nist.gov
 #
-#	Last Update of leap second values:   10 Jan 2012
+#	Last Update of leap second values:   11 January 2012
 #
 #	The following line shows this last update date in NTP timestamp 
 #	format. This is the date on which the most recent change to
@@ -136,7 +136,21 @@
 #	be identified by the unique pair of characters in the first two 
 #	columns as shown below.
 #
-#$	 3535142400
+#$	 3535228800
+#
+#	The NTP timestamps are in units of seconds since the NTP epoch,
+#	which is 1900.0. The Modified Julian Day number corresponding
+#	to the NTP time stamp, X, can be computed as 
+#
+#	X/86400 + 15020
+#
+#	where the first term converts seconds to days and the second 
+#	term adds the MJD corresponding to 1900.0. The integer portion
+#	of the result is the integer MJD for that day, and any remainder
+#	is the time of day, expressed as the fraction of the day since 0 
+#	hours UTC. The conversion from day fraction to seconds or to
+#	hours, minutes, and seconds may involve rounding or truncation,
+#	depending on the method used in the computation.
 #
 #	The data in this file will be updated periodically as new leap 
 #	seconds are announced. In addition to being entered on the line
@@ -168,10 +182,10 @@
 #	current -- the update time stamp, the data and the name of the file 
 #	will not change.
 #
-#	Updated through IERS Bulletin C43
-#	File expires on:  28 Dec 2012
+#	Updated through IERS Bulletin C44
+#	File expires on:  28 Jun 2013
 #
-#@	3565641600
+#@	3581366400
 #
 2272060800	10	# 1 Jan 1972
 2287785600	11	# 1 Jul 1972
@@ -199,17 +213,11 @@
 3345062400	33	# 1 Jan 2006
 3439756800	34	# 1 Jan 2009
 3550089600	35	# 1 Jul 2012
-#	 For future reference, if needed:
-#3565987200	36	# 1 Jan 2013
-#3581625600	37	# 1 Jul 2013
-#3597523200 	38	# 1 Jan 2014
-#3613161600 	39	# 1 Jul 2014
-#3629059200 	40	# 1 Jan 2015
 #
 #	the following special comment contains the
 #	hash value of the data in this file computed
 #	use the secure hash algorithm as specified
-#	by FIPS 180-1. See the files in ~/sha for
+#	by FIPS 180-1. See the files in ~/pub/sha for
 #	the details of how this hash value is
 #	computed. Note that the hash computation
 #	ignores comments and whitespace characters
@@ -220,4 +228,4 @@
 #	the hash line is also ignored in the
 #	computation.
 #
-#h      b2a5e90a 313a6ce afe814f3 46bff6d8 875672e2
+#h	39c3454a c8b6daf6 9ea04143 16949581 3f55636a
