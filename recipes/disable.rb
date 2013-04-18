@@ -5,7 +5,7 @@
 #
 
 service node['ntp']['service'] do
-	action [ :disable, :stop ]
+  action [ :disable, :stop ]
 end
 
 node.default['ntp']['ntpdate']['disable'] = true
