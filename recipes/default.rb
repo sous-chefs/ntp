@@ -18,18 +18,23 @@
 # limitations under the License.
 
 if platform?("windows")
+  service "start W32tm" do
+    service_name node['ntp']['service']
+    supports :status => true
+    action :start
+  end
   peers = []
-  peers = node['ntp']['servers'].join(' ') unless node['ntp']['servers'].nil?
-  peers = node['ntp']['peers'].join(' ') unless node['ntp']['peers'].nil?
+  peers += node['ntp']['servers'] unless node['ntp']['servers'].nil?
+  peers += node['ntp']['peers'] unless node['ntp']['peers'].nil?
   check = peers.map do |p|
     "(w32tm /query /peers | findstr #{p})"
   end.join '&&'
 
   execute "set ntp peers" do
-    command "w32tm /config /update /manualpeerlist:\"#{peers}\"   /syncfromflags:MANUAL"
+    command "w32tm /config /update /manualpeerlist:\"#{peers.join(" ")}\" /syncfromflags:MANUAL"
     not_if peers.empty?
     not_if check
-    notifies :restart, resources(:service => node['ntp']['service'])
+    notifies :restart, "service[#{node['ntp']['service']}]"
   end
 else
   node['ntp']['packages'].each do |ntppkg|
