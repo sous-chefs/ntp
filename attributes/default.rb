@@ -51,4 +51,6 @@ when "freebsd"
   default['ntp']['packages'] = %w{ ntp }
   default['ntp']['conf_group'] = "wheel"
   default['ntp']['var_group'] = "wheel" 
+when "windows"
+  default['ntp']['service'] = "w32time"
 end
