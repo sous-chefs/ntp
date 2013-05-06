@@ -31,7 +31,7 @@ if platform?("windows")
   end.join '&&'
 
   execute "set ntp peers" do
-    command "w32tm /config /update /manualpeerlist:\"#{peers.join(" ")}\" /syncfromflags:MANUAL"
+    command "w32tm /config /update /manualpeerlist:\"\"\"#{peers.join(" ")}\"\"\" /syncfromflags:MANUAL"
     not_if peers.empty?
     not_if check
     notifies :restart, "service[#{node['ntp']['service']}]"
