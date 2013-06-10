@@ -12,7 +12,7 @@ recipe "ntp", "Installs and configures ntp either as a server or client"
   supports os
 end
 
-depends "windows"
+suggests "windows"
 
 attribute "ntp",
   :display_name => "NTP",
