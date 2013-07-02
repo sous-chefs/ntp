@@ -18,8 +18,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Package declaration a bit redundant,
-# but not if this runs as a standalone recipe
+# # Package declaration a bit redundant,
+# # but not if this runs as a standalone recipe
 package "ntpdate" do
   only_if { node['platform'] == "debian" or node['platform'] == "ubuntu" }
 end
