@@ -41,6 +41,11 @@ cookbook_file node['ntp']['leapfile'] do
   mode 0644
 end
 
+if node['ntp']['servers'].size == 0
+  node.default['ntp']['servers'] = node['ntp']['default_servers']
+  log "No NTP servers configured, using default server list"
+end
+
 template "/etc/ntp.conf" do
   source "ntp.conf.erb"
   owner node['ntp']['conf_owner']
