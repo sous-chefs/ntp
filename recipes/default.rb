@@ -35,10 +35,21 @@ service node['ntp']['service'] do
   action [ :enable, :start ]
 end
 
+service "apparmor" do
+  action :nothing
+  supports [ :restart, :reload, :status ]
+end
+
 cookbook_file node['ntp']['leapfile'] do
   owner node['ntp']['conf_owner']
   group node['ntp']['conf_group']
   mode 0644
+end
+
+cookbook_file "/etc/apparmor.d/usr.sbin.ntpd" do
+  source "usr.sbin.ntpd"
+  mode "0644"
+  notifies :restart, resources(:service => "apparmor")
 end
 
 template "/etc/ntp.conf" do
