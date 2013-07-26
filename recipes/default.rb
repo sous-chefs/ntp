@@ -41,9 +41,10 @@ cookbook_file node['ntp']['leapfile'] do
   mode 0644
 end
 
-if node['ntp']['servers'].size == 0
-  node.default['ntp']['servers'] = node['ntp']['default_servers']
-  log "No NTP servers configured, using default server list"
+unless node['ntp']['servers'].size > 0
+  node.default['ntp']['servers'] =
+    ["0.pool.ntp.org", "1.pool.ntp.org", "2.pool.ntp.org", "3.pool.ntp.org"]
+  log "No NTP servers specified, using default ntp.org server pools"
 end
 
 template "/etc/ntp.conf" do
