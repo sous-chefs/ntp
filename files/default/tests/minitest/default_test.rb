@@ -4,10 +4,6 @@ describe 'ntp::default' do
 
   include Helpers::Ntp
 
-  # Example spec tests can be found at http://git.io/Fahwsw
-  # it 'runs no tests by default' do
-  # end
-
   it 'Starts the NTP daemon' do
     service(node['ntp']['service']).must_be_running
     service(node['ntp']['service']).must_be_enabled

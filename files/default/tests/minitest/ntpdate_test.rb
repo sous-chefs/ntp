@@ -4,10 +4,6 @@ describe 'ntp::ntpdate' do
 
   include Helpers::Ntp
 
-  # Example spec tests can be found at http://git.io/Fahwsw
-  # it 'runs no tests by default' do
-  # end
-
   it 'Installs the ntpdate package' do
     skip unless ["debian"].include? node['platform_family']
     package("less").must_be_installed

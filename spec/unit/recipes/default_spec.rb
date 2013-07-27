@@ -1,12 +1,9 @@
-## Comments make me happy, I guess
-
 require 'spec_helper'
 
 describe "ntp::default" do
   let(:chef_run) do
     runner = ChefSpec::ChefRunner.new(
       log_level: :error,
-      cookbook_path: COOKBOOK_PATH
     )
     Chef::Config.force_logger true
     runner.converge('recipe[ntp::default]')
@@ -49,10 +46,8 @@ describe "ntp::default" do
     let(:chef_run) do
       runner = ChefSpec::ChefRunner.new(
         platform: 'centos',
-        # platform: 'debian', 
         version: '5.8',
         log_level: :error,
-        cookbook_path: COOKBOOK_PATH
       )
       Chef::Config.force_logger true
       runner.converge('recipe[ntp::default]')
@@ -74,10 +69,8 @@ describe "ntp::default" do
     let(:chef_run) do
       runner = ChefSpec::ChefRunner.new(
         platform: 'centos',
-        # platform: 'debian', 
         version: '6.3',
         log_level: :error,
-        cookbook_path: COOKBOOK_PATH
       )
       Chef::Config.force_logger true
       runner.converge('recipe[ntp::default]')
@@ -94,10 +87,8 @@ describe "ntp::default" do
     let(:chef_run) do
       runner = ChefSpec::ChefRunner.new(
         platform: 'freebsd',
-        # platform: 'debian', 
         version: '9.1',
         log_level: :error,
-        cookbook_path: COOKBOOK_PATH
       )
       Chef::Config.force_logger true
       runner.converge('recipe[ntp::default]')

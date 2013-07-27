@@ -1,12 +1,9 @@
-## Comments make me happy, I guess
-
 require 'spec_helper'
 
 describe "ntp::undo" do
   let(:chef_run) do
     runner = ChefSpec::ChefRunner.new(
       log_level: :error,
-      cookbook_path: COOKBOOK_PATH
     )
     Chef::Config.force_logger true
     runner.converge('recipe[ntp::undo]')

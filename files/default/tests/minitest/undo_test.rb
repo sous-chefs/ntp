@@ -4,10 +4,6 @@ describe 'ntp::undo' do
 
   include Helpers::Ntp
 
-  # Example spec tests can be found at http://git.io/Fahwsw
-  # it 'runs no tests by default' do
-  # end
-
   it 'Disables the NTP daemon' do
     service(node['ntp']['service']).wont_be_running
     service(node['ntp']['service']).wont_be_enabled
