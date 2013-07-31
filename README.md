@@ -145,10 +145,13 @@ ntp::undo to your run\_list.
 Author:: Joshua Timberman (<joshua@opscode.com>)
 Contributor:: Eric G. Wolfe (<wolfe21@marshall.edu>)
 Contributor:: Fletcher Nichol (<fletcher@nichol.ca>)
+Contributor:: Tim Smith (<tsmith@limelight.com>)
 
 Copyright 2009-2011, Opscode, Inc.
 Copyright 2012, Eric G. Wolfe
 Copyright 2012, Fletcher Nichol
+Copyright 2012, Webtrends, Inc.
+Copyright 2013, Limelight Networks, Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
