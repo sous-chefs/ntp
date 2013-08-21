@@ -28,8 +28,21 @@ platforms:
     box_url: https://opscode-vm-bento.s3.amazonaws.com/vagrant/opscode_centos-5.9_provisionerless.box
 
 suites:
-- name: default
+- name: centos
   run_list:
   - recipe[ntp]
   - recipe[ntp::ntpdate]
+  - recipe[ntp_test]
   attributes: {}
+  excludes:
+  - ubuntu-10.04
+  - ubuntu-12.04
+- name: ubuntu
+  run_list:
+  - recipe[ntp]
+  - recipe[ntp::ntpdate]
+  - recipe[ntp_test]
+  attributes: {}
+  excludes:
+  - centos-5.9
+  - centos-6.4
