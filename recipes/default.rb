@@ -2,6 +2,7 @@
 # Cookbook Name:: ntp
 # Recipe:: default
 # Author:: Joshua Timberman (<joshua@opscode.com>)
+# Author:: Tim Smith (<tsmith@limelight.com>)
 #
 # Copyright 2009, Opscode, Inc
 #
@@ -17,17 +18,28 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-node['ntp']['packages'].each do |ntppkg|
-  package ntppkg
-end
-
-[ node['ntp']['varlibdir'],
-  node['ntp']['statsdir'] ].each do |ntpdir|
-  directory ntpdir do
-    owner node['ntp']['var_owner']
-    group node['ntp']['var_group']
-    mode 0755
+if node['platform'] == "windows"
+  include_recipe "ntp::windows_client"
+else
+  node['ntp']['packages'].each do |ntppkg|
+    package ntppkg
   end
+
+  [ node['ntp']['varlibdir'],
+    node['ntp']['statsdir'] ].each do |ntpdir|
+    directory ntpdir do
+      owner node['ntp']['var_owner']
+      group node['ntp']['var_group']
+      mode 00755
+    end
+  end
+
+  cookbook_file node['ntp']['leapfile'] do
+    owner node['ntp']['conf_owner']
+    group node['ntp']['conf_group']
+    mode 00644
+  end
+
 end
 
 service node['ntp']['service'] do
@@ -55,6 +67,6 @@ template "/etc/ntp.conf" do
   source "ntp.conf.erb"
   owner node['ntp']['conf_owner']
   group node['ntp']['conf_group']
-  mode "0644"
+  mode 00644
   notifies :restart, "service[#{node['ntp']['service']}]"
 end
