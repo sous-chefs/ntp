@@ -1,9 +1,8 @@
+NTP Cookbook
+============
 # NTP [![Build Status](https://secure.travis-ci.org/opscode-cookbooks/ntp.png?branch=master)](http://travis-ci.org/opscode-cookbooks/ntp)
 
-## Description
-
-Installs and configures ntp, optionally configure ntpdate on debian family platforms.  On
-Windows systems it uses the Meinberg port of the standard NTPd client to Windows.
+Installs and configures ntp, optionally configure ntpdate on debian family platforms.  On Windows systems it uses the Meinberg port of the standard NTPd client to Windows.
 
 ### About the refactor
 
@@ -26,24 +25,24 @@ The ntp::undo recipe stops and removes ntp components.  The ntp::ntpdate
 recipe configures the ntpdate component.  The ntp['ntpdate']['disable'] boolean
 will disable the ntpdate-debian command on Debian family distributions.
 
-## Requirements
 
+Requirements
+------------
 ### Operating Systems
-
-* Debian-family Linux Distributions
-* RedHat-family Linux Distributions
-* FreeBSD
-* Windows
+- Debian-family Linux Distributions
+- RedHat-family Linux Distributions
+- FreeBSD
+- Windows
 
 ### Cookbooks
-
-* When running on Windows based systems the node must include the Windows cookbook.  This
+- When running on Windows based systems the node must include the Windows cookbook.  This
   cookbook suggests the Windows cookbook in the metadata so as to not force including the
   Windows cookbook on *nix systems.  You can change the suggests to depends if you require
   Windows platform support
 
-## Attributes
 
+Attributes
+----------
 ### Recommended tunables
 
 * ntp['servers'] (applies to NTP Servers and Clients)
@@ -134,8 +133,8 @@ will disable the ntpdate-debian command on Debian family distributions.
   - Windows platform only
 
 
-## Usage
-
+Usage
+-----
 ### default recipe
 
 Set up the ntp attributes in a role. For example in a base.rb role applied to all nodes:
@@ -179,13 +178,15 @@ Then include the ntp::ntpdate recipe in your run\_list.
 If for some reason you need to stop and remove the ntp daemon, you can apply this recipe by adding
 ntp::undo to your run\_list.  The undo recipe is not supported on Windows at the moment.
 
-## License and Author
 
-Author:: Joshua Timberman (<joshua@opscode.com>)
-Contributor:: Eric G. Wolfe (<wolfe21@marshall.edu>)
-Contributor:: Fletcher Nichol (<fletcher@nichol.ca>)
-Contributor:: Tim Smith (<tsmith@limelight.com>)
+License & Authors
+-----------------
+- Author:: Joshua Timberman (<joshua@opscode.com>)
+- Contributor:: Eric G. Wolfe (<wolfe21@marshall.edu>)
+- Contributor:: Fletcher Nichol (<fletcher@nichol.ca>)
+- Contributor:: Tim Smith (<tsmith@limelight.com>)
 
+```text
 Copyright 2009-2011, Opscode, Inc.
 Copyright 2012, Eric G. Wolfe
 Copyright 2012, Fletcher Nichol
@@ -203,3 +204,4 @@ distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
+```
