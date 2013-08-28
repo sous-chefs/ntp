@@ -3,6 +3,12 @@ ntp Cookbook CHANGELOG
 This file is used to list changes made in each version of the ntp cookbook.
 
 
+v1.4.0
+------
+### Improvement
+- **[COOK-3365](https://tickets.opscode.com/browse/COOK-3365)** - Update ntp leapseconds file to version 3597177600
+- **[COOK-1674](https://tickets.opscode.com/browse/COOK-1674)** - Add Windows support
+
 v1.3.2
 ------
 - [COOK-2024] - update leapfile for IERS Bulletin C
