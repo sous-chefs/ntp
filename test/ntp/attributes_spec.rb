@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: ntp
-# Test:: attributes_spec 
+# Test:: attributes_spec
 #
 # Author:: Fletcher Nichol
 # Author:: Eric G. Wolfe

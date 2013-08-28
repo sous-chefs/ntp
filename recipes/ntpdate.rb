@@ -1,7 +1,7 @@
 #
 # Cookbook Name:: ntp
-# Recipe:: ntpdate 
-# Author:: Eric G. Wolfe 
+# Recipe:: ntpdate
+# Author:: Eric G. Wolfe
 #
 # Copyright 2012, Eric G. Wolfe
 # Copyright 2009, Opscode, Inc

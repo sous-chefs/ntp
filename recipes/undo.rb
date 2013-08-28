@@ -1,7 +1,7 @@
 #
 # Cookbook Name:: ntp
-# Recipe:: undo 
-# Author:: Eric G. Wolfe 
+# Recipe:: undo
+# Author:: Eric G. Wolfe
 #
 # Copyright 2012, Eric G. Wolfe
 # Copyright 2009, Opscode, Inc

@@ -18,4 +18,4 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-default['ntp']['ntpdate']['disable'] = false 
+default['ntp']['ntpdate']['disable'] = false
