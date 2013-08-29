@@ -15,5 +15,6 @@ group :test do
   gem "rb-fsevent"
   gem "rb-fchange"
 end
-gem "test-kitchen", git: 'git://github.com/opscode/test-kitchen.git', :group => :integration
-gem 'kitchen-vagrant', git: 'git://github.com/opscode/kitchen-vagrant.git', branch: 'master', :group => :integration
+gem "test-kitchen", "~> 1.0.0.beta.3",:group => :integration
+
+gem "kitchen-vagrant", "~> 0.11", :group => :integration
