@@ -2,10 +2,7 @@ require 'spec_helper'
 
 describe "ntp::undo" do
   let(:chef_run) do
-    runner = ChefSpec::ChefRunner.new(
-      log_level: :error,
-    )
-    Chef::Config.force_logger true
+    runner = ChefSpec::ChefRunner.new()
     runner.converge('recipe[ntp::undo]')
   end
 
