@@ -2,10 +2,7 @@ require 'spec_helper'
 
 describe "ntp::default" do
   let(:chef_run) do
-    runner = ChefSpec::ChefRunner.new(
-      log_level: :error,
-    )
-    Chef::Config.force_logger true
+    runner = ChefSpec::ChefRunner.new()
     runner.converge('recipe[ntp::default]')
   end
 
@@ -24,11 +21,6 @@ describe "ntp::default" do
     expect(directory).to be_owned_by('ntp', 'ntp')
   end
 
-  it "starts and enables the ntp service" do
-    expect(chef_run).to start_service 'ntp'
-    expect(chef_run).to set_service_to_start_on_boot 'ntp'
-  end
-
   it "creates the leapfile" do
     expect(chef_run).to create_cookbook_file '/etc/ntp.leapseconds'
     file = chef_run.cookbook_file('/etc/ntp.leapseconds')
@@ -39,6 +31,11 @@ describe "ntp::default" do
     expect(chef_run).to create_file '/etc/ntp.conf'
     file = chef_run.template('/etc/ntp.conf')
     expect(file).to be_owned_by('root', 'root')
+  end
+
+  it "starts and enables the ntp service" do
+    expect(chef_run).to start_service 'ntp'
+    expect(chef_run).to set_service_to_start_on_boot 'ntp'
   end
 
 #CentOS & friends 5 get different default attributes
@@ -67,12 +64,7 @@ describe "ntp::default" do
 #CentOS & friends 6 get different default attributes
   context "CentOS 6" do
     let(:chef_run) do
-      runner = ChefSpec::ChefRunner.new(
-        platform: 'centos',
-        version: '6.3',
-        log_level: :error,
-      )
-      Chef::Config.force_logger true
+      runner = ChefSpec::ChefRunner.new(platform:'centos', version:'6.3')
       runner.converge('recipe[ntp::default]')
     end
 
@@ -85,12 +77,7 @@ describe "ntp::default" do
 #FreeBSD gets different default attributes
   context "freebsd" do
     let(:chef_run) do
-      runner = ChefSpec::ChefRunner.new(
-        platform: 'freebsd',
-        version: '9.1',
-        log_level: :error,
-      )
-      Chef::Config.force_logger true
+      runner = ChefSpec::ChefRunner.new(platform: 'freebsd',version: '9.1')
       runner.converge('recipe[ntp::default]')
     end
 
