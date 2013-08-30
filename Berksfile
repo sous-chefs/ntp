@@ -1,9 +1,9 @@
 site :opscode
 
 group :integration do
-  cookbook "apt"
-  cookbook "yum"
-  cookbook "minitest-handler"
+  cookbook "apt", '~> 2.0'
+  cookbook "yum", '~> 2.3'
+  cookbook "minitest-handler", '~> 0.2'
 end
 
 metadata
