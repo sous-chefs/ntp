@@ -76,7 +76,7 @@ describe "ntp::default" do
 #FreeBSD gets different default attributes
   context "freebsd" do
     let(:chef_run) do
-      runner = ChefSpec::ChefRunner.new(platform: 'freebsd',version: '9.1')
+      runner = ChefSpec::ChefRunner.new(platform: 'freebsd', version: '9.1')
       runner.converge('recipe[ntp::default]')
     end
 

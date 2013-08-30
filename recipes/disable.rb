@@ -22,9 +22,9 @@
 node.override['ntp']['ntpdate']['disable'] = true
 
 if platform_family?("debian")
-	include_recipe "ntp::ntpdate"
+  include_recipe "ntp::ntpdate"
 end
 
 service node['ntp']['service'] do
-	action [ :disable, :stop ]
+  action [:disable, :stop]
 end

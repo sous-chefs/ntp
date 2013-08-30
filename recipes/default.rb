@@ -25,8 +25,7 @@ else
     package ntppkg
   end
 
-  [ node['ntp']['varlibdir'],
-    node['ntp']['statsdir'] ].each do |ntpdir|
+  [node['ntp']['varlibdir'], node['ntp']['statsdir']].each do |ntpdir|
     directory ntpdir do
       owner node['ntp']['var_owner']
       group node['ntp']['var_group']
@@ -52,5 +51,5 @@ end
 
 service node['ntp']['service'] do
   supports :status => true, :restart => true
-  action [ :enable, :start ]
+  action [:enable, :start]
 end

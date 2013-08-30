@@ -24,13 +24,15 @@ describe "ntp::windows_client" do
   it "Fetches the ntpd.exe via remote_file" do
     pending("ChefSpec does not yet understand the inherits attribute 
       in cookbook_file resources")
-    expect(chef_run).to create_remote_file "#{Chef::Config[:file_cache_path]}/ntpd.exe"
+    expect(chef_run).to create_remote_file(
+      "#{Chef::Config[:file_cache_path]}/ntpd.exe")
   end
 
   it "Executes the ntpd installer" do
     pending("ChefSpec does not yet understand the inherits attribute 
       in cookbook_file resources")
-    expect(chef_run).to execute_command("#{Chef::Config[:file_cache_path]}\\ntpd.exe /USEFILE=C:\\NTP\\ntp.ini")
+    expect(chef_run).to execute_command(
+      "#{Chef::Config[:file_cache_path]}\\ntpd.exe /USEFILE=C:\\NTP\\ntp.ini")
   end
 
 end

@@ -32,7 +32,8 @@ describe 'Ntp::Attributes::Default' do
   before do
     @node = Chef::Node.new
     @node.consume_external_attrs(Mash.new(ohai_data), {})
-    @node.from_file(File.join(File.dirname(__FILE__), %w{.. .. attributes default.rb}))
+    @node.from_file(File.join(
+      File.dirname(__FILE__), %w{.. .. attributes default.rb}))
   end
 
   describe "for unknown platform" do

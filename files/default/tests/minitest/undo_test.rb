@@ -12,6 +12,7 @@ describe 'ntp::undo' do
   it 'Removes the NTP packages' do
     node['ntp']['packages'].each do |p|
       package(p).wont_be_installed
+    end
   end
 
 end

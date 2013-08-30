@@ -23,7 +23,7 @@ attribute "ntp/servers",
   :display_name => "NTP Servers",
   :description => "Array of servers we should talk to",
   :type => "array",
-  :default => ["0.pool.ntp.org", "1.pool.ntp.org", "2.pool.ntp.org", "3.pool.ntp.org" ],
+  :default => ["0.pool.ntp.org", "1.pool.ntp.org", "2.pool.ntp.org", "3.pool.ntp.org"],
   :required => "recommended"
 
 attribute "ntp/peers",

@@ -20,7 +20,7 @@
 
 service node['ntp']['service'] do
   supports :status => true, :restart => true
-  action [ :stop, :disable ]
+  action [:stop, :disable]
 end
 
 node['ntp']['packages'].each do |ntppkg|

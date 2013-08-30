@@ -18,9 +18,9 @@ describe 'ntp::disable' do
       file('/etc/default/ntpdate').wont_include "exit 0"
     end
 
-    file('/etc/default/ntpdate').must_exist
-    .with(:owner, node['ntp']['conf_owner'])
-    .and(:group, node['ntp']['conf_group'])
+    file('/etc/default/ntpdate').must_exist.with(
+      :owner, node['ntp']['conf_owner']).and(
+        :group, node['ntp']['conf_group'])
   end
 
 end

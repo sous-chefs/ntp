@@ -8,7 +8,7 @@ describe 'ntp::ntpdate' do
     skip unless ["debian"].include? node['platform_family']
     package("less").must_be_installed
   end
-  
+
   it 'Creates the ntpdate conf file' do
     skip unless ["debian"].include? node['platform_family']
 
@@ -18,9 +18,9 @@ describe 'ntp::ntpdate' do
       file('/etc/default/ntpdate').wont_include "exit 0"
     end
 
-    file('/etc/default/ntpdate').must_exist
-    .with(:owner, node['ntp']['conf_owner'])
-    .and(:group, node['ntp']['conf_group'])
+    file('/etc/default/ntpdate').must_exist.with(
+      :owner, node['ntp']['conf_owner']).and(
+        :group, node['ntp']['conf_group'])
   end
 
 end

@@ -10,15 +10,15 @@ describe 'ntp::default' do
   end
 
   it 'Creates the leapfile' do
-    file(node['ntp']['leapfile']).must_exist
-    .with(:owner, node['ntp']['conf_owner'])
-    .and(:group, node['ntp']['conf_group'])
+    file(node['ntp']['leapfile']).must_exist.with(
+      :owner, node['ntp']['conf_owner']).and(
+        :group, node['ntp']['conf_group'])
   end
 
   it 'Creates the ntp.conf' do
-    file('/etc/ntp.conf').must_exist
-    .with(:owner, node['ntp']['conf_owner'])
-    .and(:group, node['ntp']['conf_group'])
+    file('/etc/ntp.conf').must_exist.with(
+      :owner, node['ntp']['conf_owner']).and(
+        :group, node['ntp']['conf_group'])
 
     node['ntp']['servers'].each do |s|
       file('/etc/ntp.conf').must_include s
