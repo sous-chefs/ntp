@@ -6,12 +6,6 @@ describe "ntp::ntpdate" do
     runner.converge('recipe[ntp::ntpdate]')
   end
 
-# Ideally this suite would default to not_to install_package
-# in the mainline tests, and then in a debian context it would
-# verify that things installed. However, Chefspec doesn't respect
-# only_if.
-
-# Standard test set
   it "Does not install the ntpdate package" do
     expect(chef_run).not_to install_package "ntpdate"
   end

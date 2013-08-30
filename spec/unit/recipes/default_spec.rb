@@ -6,7 +6,6 @@ describe "ntp::default" do
     runner.converge('recipe[ntp::default]')
   end
 
-# Standard test set
   it "installs both ntp and ntpdate" do
     expect(chef_run).to install_package "ntp"
     expect(chef_run).to install_package "ntpdate"

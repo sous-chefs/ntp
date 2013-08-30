@@ -6,7 +6,6 @@ describe "ntp::undo" do
     runner.converge('recipe[ntp::undo]')
   end
 
-# Standard test set
   it "halts the ntp service" do
     expect(chef_run).to stop_service "ntp"
     expect(chef_run).to set_service_to_not_start_on_boot 'ntp'
