@@ -1,6 +1,7 @@
 language: ruby
+bundler_args: --without development
 gemfile:
-  - test/support/Gemfile
+  - Gemfile
 rvm:
   - 1.9.3
-script: BUNDLE_GEMFILE=test/support/Gemfile bundle exec rake test foodcritic
+script: BUNDLE_GEMFILE=test/support/Gemfile bundle exec rake test foodcritic tailor

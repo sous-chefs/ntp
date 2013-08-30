@@ -1,4 +1,5 @@
 #!/usr/bin/env rake
+require 'tailor/rake_task'
 require 'rspec/core/rake_task'
 require 'foodcritic'
 
@@ -17,4 +18,9 @@ task :foodcritic do
   end
 end
 
-task :default => ['test', 'foodcritic']
+desc "Runs tailor against the cookbook."
+task :tailor do
+  Tailor::RakeTask.new
+end
+
+task :default => ['test', 'foodcritic', 'tailor']
