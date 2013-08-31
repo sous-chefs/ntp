@@ -24,6 +24,16 @@ package "ntpdate" do
   only_if { node['platform'] == "debian" or node['platform'] == "ubuntu" }
 end
 
+unless node['ntp']['servers'].size > 0
+  node.default['ntp']['servers'] = [
+    "0.pool.ntp.org",
+    "1.pool.ntp.org",
+    "2.pool.ntp.org",
+    "3.pool.ntp.org"
+  ]
+  log "No NTP servers specified, using default ntp.org server pools"
+end
+
 # Template is only meaningful on Debian family platforms
 template "/etc/default/ntpdate" do
   owner node['ntp']['conf_owner']

@@ -42,9 +42,14 @@ else
 
 end
 
-service node['ntp']['service'] do
-  supports :status => true, :restart => true
-  action [ :enable, :start ]
+unless node['ntp']['servers'].size > 0
+  node.default['ntp']['servers'] = [
+    "0.pool.ntp.org",
+    "1.pool.ntp.org",
+    "2.pool.ntp.org",
+    "3.pool.ntp.org"
+  ]
+  log "No NTP servers specified, using default ntp.org server pools"
 end
 
 template node['ntp']['conffile'] do
@@ -53,4 +58,9 @@ template node['ntp']['conffile'] do
   group node['ntp']['conf_group']
   mode 00644
   notifies :restart, "service[#{node['ntp']['service']}]"
+end
+
+service node['ntp']['service'] do
+  supports :status => true, :restart => true
+  action [ :enable, :start ]
 end
