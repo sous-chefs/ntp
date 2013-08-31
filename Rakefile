@@ -23,4 +23,5 @@ task :tailor do
   Tailor::RakeTask.new
 end
 
-task :default => ['test', 'foodcritic', 'tailor']
+# Tailor before rspec so we don't tailor vendored cookbooks
+task :default => ['tailor', 'test', 'foodcritic']

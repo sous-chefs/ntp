@@ -20,10 +20,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-#require File.join(File.dirname(__FILE__), %w{.. support spec_helper})
-gem 'minitest'
-
-require 'minitest/autorun'
+require File.join(File.dirname(__FILE__), %w{.. support spec_helper})
 require 'chef/platform'
 
 describe 'Ntp::Attributes::Default' do
@@ -32,8 +29,7 @@ describe 'Ntp::Attributes::Default' do
   before do
     @node = Chef::Node.new
     @node.consume_external_attrs(Mash.new(ohai_data), {})
-    @node.from_file(File.join(
-      File.dirname(__FILE__), %w{.. .. attributes default.rb}))
+    @node.from_file(File.join(File.dirname(__FILE__), %w{.. .. attributes default.rb}))
   end
 
   describe "for unknown platform" do
