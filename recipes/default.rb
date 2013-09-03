@@ -55,7 +55,6 @@ if node["ntp"].has_key?("listen_network")
   elsif node["ntp"]["listen_network"] == "primary"
     node.set["ntp"]["listen"] = node["ipaddress"]
   else
-    log "ntp: Checking local interfaces for an appropriate address."
     require 'ipaddr'
     net = IPAddr.new(node["ntp"]["listen_network"])
     node["network"]["interfaces"].each do |interface|
@@ -63,7 +62,6 @@ if node["ntp"].has_key?("listen_network")
         interface[1]["addresses"].each do |k, v|
           if v["family"] == "inet6" or v["family"] == "inet" then
             addr=IPAddr.new(k)
-            log "ntp: Checking #{addr}"
             if net.include?(addr) then
               node.set["ntp"]["listen"] = addr
             end
