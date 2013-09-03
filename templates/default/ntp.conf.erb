@@ -16,6 +16,15 @@ filegen loopstats file loopstats type day enable
 filegen peerstats file peerstats type day enable
 filegen clockstats file clockstats type day enable
 
+<%# If the listen attribute is set on the node, then apply it %>
+<% unless node['ntp']['listen'].nil? -%>
+interface listen <%= node['ntp']['listen'] %>
+  <%# The service must always listen on localhost %>
+  <% if node['ntp']['listen'] != "127.0.0.1" -%>
+interface listen 127.0.0.1
+  <% end -%>
+<% end -%>
+
 <%# If ntp.peers is not empty %>
 <% unless node['ntp']['peers'].empty? -%>
   <%# Loop through defined peers, but don't peer with ourself %>

@@ -47,6 +47,33 @@ service node['ntp']['service'] do
   action [ :enable, :start ]
 end
 
+if node["ntp"].has_key?("listen_network")
+  if node["ntp"]["listen_network"] == "all"
+    node.set["ntp"]["listen"] = "0.0.0.0"
+  elsif node["ntp"]["listen_network"] == "localhost"
+    node.set["ntp"]["listen"] = "127.0.0.1"
+  elsif node["ntp"]["listen_network"] == "primary"
+    node.set["ntp"]["listen"] = node["ipaddress"]
+  else
+    log "ntp: Checking local interfaces for an appropriate address."
+    require 'ipaddr'
+    net = IPAddr.new(node["ntp"]["listen_network"])
+    node["network"]["interfaces"].each do |interface|
+      unless interface[1]['addresses'].nil?
+        interface[1]["addresses"].each do |k, v|
+          if v["family"] == "inet6" or v["family"] == "inet" then
+            addr=IPAddr.new(k)
+            log "ntp: Checking #{addr}"
+            if net.include?(addr) then
+              node.set["ntp"]["listen"] = addr
+            end
+          end
+        end
+      end
+    end
+  end
+end
+
 template node['ntp']['conffile'] do
   source "ntp.conf.erb"
   owner node['ntp']['conf_owner']
