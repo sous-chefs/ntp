@@ -33,4 +33,5 @@ ruby_block "remove ntp::undo from run list" do
   block do
     node.run_list.remove("recipe[ntp::undo]")
   end
+  only_if { node.run_list.include?("recipe[ntp::default]") }
 end

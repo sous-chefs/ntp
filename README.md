@@ -17,14 +17,8 @@ testing in your own cookbooks.
 
 #### IMPORTANT NOTES
 
-Breaking changes are the absence of an ntp::disable recipe.  This was factored
-out into an ntp::undo corresponding to the default recipe and a separate
-ntp::ntpdate recipe.
-
-The ntp::undo recipe stops and removes ntp components.  The ntp::ntpdate
-recipe configures the ntpdate component.  The ntp['ntpdate']['disable'] boolean
-will disable the ntpdate-debian command on Debian family distributions.
-
+Breaking changes are the absence of an ntp::disable/ntp::ntpdate recipe.  This was factored
+out into an ntp::undo corresponding to the default recipe.
 
 Requirements
 ------------
@@ -62,13 +56,6 @@ Attributes
 
   - Array, should be a list of restrict lines to restrict access to NTP
     clients on your LAN.
-
-* ntp['ntpdate']['disable']
-
-  - Boolean, disables the use of ntpdate-debian if set to true.
-  - Defaults to false, and will not disable ntpdate.  There is usually no
-    init service to manage with ntpdate.  Therefore it should not conflict
-    with ntpd in most cases.
 
 ### Platform specific
 
@@ -163,21 +150,10 @@ Then in an ntpserver.rb role that is applied to NTP servers (e.g., time.int.exam
 The timeX.int.example.org used in these roles should be the names or IP addresses of internal NTP servers.
 Then simply add ntp, or ntp::default to your run\_list to apply the ntp daemon's configuration.
 
-### ntpdate recipe
-
-On Debian-family platforms, and newer versions of RedHat, there is a separate ntpdate package.
-
-You may blank out the ntpdate configuration file by overriding ntp['ntpdate']['disable'] to `true`.
-Then include the ntp::ntpdate recipe in your run\_list.
-
-You may re-enable the ntpdate configuration by ensuring ntp['ntpdate']['disable'] is `false`.
-Then include the ntp::ntpdate recipe in your run\_list.
-
 ### undo recipe
 
 If for some reason you need to stop and remove the ntp daemon, you can apply this recipe by adding
 ntp::undo to your run\_list.  The undo recipe is not supported on Windows at the moment.
-
 
 License & Authors
 -----------------
