@@ -1,3 +1,4 @@
+.DS_Store
 .vagrant
 Berksfile.lock
 Gemfile.lock
@@ -12,3 +13,5 @@ Gemfile.lock
 .kitchen
 bin
 .kitchen.local.yml
+/tmp
+/vendor

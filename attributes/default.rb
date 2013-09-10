@@ -39,7 +39,7 @@ default['ntp']['leapfile'] = "/etc/ntp.leapseconds"
 
 # overrides on a platform-by-platform basis
 case platform
-when "redhat","centos","fedora","scientific","amazon","oracle"
+when "redhat", "centos", "fedora", "scientific", "amazon", "oracle"
   default['ntp']['service'] = "ntpd"
   default['ntp']['packages'] = %w{ ntp }
   if node['platform_version'].to_i >= 6
