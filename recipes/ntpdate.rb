@@ -22,8 +22,17 @@
 # Other distributions should use the default recipe.
 
 if platform_family?("debian")
-
   package "ntpdate"
+
+  unless node['ntp']['servers'].size > 0
+    node.default['ntp']['servers'] = [
+      "0.pool.ntp.org",
+      "1.pool.ntp.org",
+      "2.pool.ntp.org",
+      "3.pool.ntp.org"
+    ]
+    log "No NTP servers specified, using default ntp.org server pools"
+  end
 
   template "/etc/default/ntpdate" do
     owner node['ntp']['conf_owner']
