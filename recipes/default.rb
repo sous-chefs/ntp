@@ -38,6 +38,11 @@ else
     group node['ntp']['conf_group']
     mode  '0644'
   end
+
+  # Platforms that use apparmor
+  if node['ntp']['apparmor_enabled'] || node['platform'] == "ubuntu"
+    include_recipe "ntp::apparmor"
+  end
 end
 
 unless node['ntp']['servers'].size > 0

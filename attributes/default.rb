@@ -40,6 +40,7 @@ default['ntp']['var_group'] = 'ntp'
 default['ntp']['leapfile'] = '/etc/ntp.leapseconds'
 default['ntp']['sync_clock'] = false
 default['ntp']['sync_hw_clock'] = false
+default['ntp']['apparmor_enabled'] = false
 
 # overrides on a platform-by-platform basis
 case node['platform_family']
