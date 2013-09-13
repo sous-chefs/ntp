@@ -13,7 +13,9 @@ describe "ntp::apparmor" do
   end
 
   it "restarts the apparmor service" do
-    expect(chef_run).to restart_service 'apparmor'
+    runner = ChefSpec::ChefRunner.new()
+    runner.converge('recipe[ntp::apparmor]')
+    runner.cookbook_file('/etc/apparmor.d/usr.sbin.ntpd').should notify('service[apparmor]',:restart)
   end
 
 end
