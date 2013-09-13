@@ -17,14 +17,14 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+service "apparmor" do
+  action :nothing
+end
 
 cookbook_file "/etc/apparmor.d/usr.sbin.ntpd" do
   source "usr.sbin.ntpd.apparmor"
   owner "root"
   group "root"
   mode 00644
-end
-
-service "apparmor" do
-  action :restart
+  notifies :restart,"service[apparmor]"
 end
