@@ -8,6 +8,7 @@ group :test do
   gem "foodcritic", "~> 2.0"
   gem "rake", "~> 10.1"
   gem "tailor", "~> 1.2"
+ gem "rubocop", "~> 0.12"
 end
 
 group :development do

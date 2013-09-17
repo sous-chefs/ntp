@@ -29,9 +29,9 @@ node['ntp']['packages'].each do |ntppkg|
   end
 end
 
-ruby_block "remove ntp::undo from run list" do
+ruby_block 'remove ntp::undo from run list' do
   block do
-    node.run_list.remove("recipe[ntp::undo]")
+    node.run_list.remove('recipe[ntp::undo]')
   end
-  only_if { node.run_list.include?("recipe[ntp::default]") }
+  only_if { node.run_list.include?('recipe[ntp::default]') }
 end
