@@ -44,6 +44,8 @@ default['ntp']['apparmor_enabled'] = false
 
 # overrides on a platform-by-platform basis
 case node['platform_family']
+when "ubuntu"
+  default['ntp']['apparmor_enabled'] = true
 when 'debian'
   default['ntp']['service'] = 'ntp'
 when 'rhel'

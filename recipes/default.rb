@@ -39,8 +39,7 @@ else
     mode  '0644'
   end
 
-  # Platforms that use apparmor
-  if node['ntp']['apparmor_enabled'] || node['platform'] == "ubuntu"
+  if node['ntp']['apparmor_enabled']
     include_recipe "ntp::apparmor"
   end
 end
