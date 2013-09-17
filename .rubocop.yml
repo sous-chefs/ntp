@@ -1,6 +1,8 @@
 Encoding:
   Enabled: false
+
 LineLength:
   Enabled: false
+
 HashSyntax:
   Enabled: false
