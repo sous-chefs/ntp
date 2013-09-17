@@ -48,7 +48,7 @@ Attributes
   - Boolean, enables configuration of apparmor if set to true
   - Defaults to false and will make no provisions for apparmor.  If a
     platform is apparmor enabled by default, (currently ubuntu)
-    apparmor configuration will happen regardless of this setting.
+    default will be true.
 
 ### Platform specific
 
