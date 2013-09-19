@@ -58,6 +58,27 @@ template node['ntp']['conffile'] do
   notifies :restart, "service[#{node['ntp']['service']}]"
 end
 
+execute "Stop #{node['ntp']['service']} in preparation for ntpdate" do
+  command "/bin/true"
+  action :run
+  only_if { node['ntp']['sync_clock'] }
+  notifies :stop, "service[#{node['ntp']['service']}]", :immediately
+end
+
+execute "Sync system clock with ntp server" do
+  command "ntpd -q"
+  action :run
+  only_if { node['ntp']['sync_clock'] }
+end
+
+unless node['platform'] == "windows"
+  execute "Sync hardware clock with system clock" do
+    command "hwclock --systohc"
+    action :run
+    only_if { node['ntp']['sync_hw_clock'] }
+  end
+end
+
 service node['ntp']['service'] do
   supports :status => true, :restart => true
   action   [:enable, :start]
