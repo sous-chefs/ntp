@@ -71,7 +71,7 @@ execute "Sync system clock with ntp server" do
   only_if { node['ntp']['sync_clock'] }
 end
 
-unless node['platform'] == "windows"
+unless platform_family?('windows')
   execute "Sync hardware clock with system clock" do
     command "hwclock --systohc"
     action :run
