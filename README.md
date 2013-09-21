@@ -5,7 +5,6 @@ NTP Cookbook
 Installs and configures ntp, optionally configure ntpdate on debian family platforms.  On Windows systems it uses the Meinberg port of the standard NTPd client to Windows.
 
 ### About the refactor
-
 This recipe was heavily re-factored as a Hackday exercise at Chefconf 2012.
 The purpose of refactoring was to have a simple community cookbook which
 serves as a testing documentation reference.  We chose a lightweight testing method
@@ -17,8 +16,8 @@ testing in your own cookbooks.
 
 #### IMPORTANT NOTES
 
-Breaking changes are the absence of an ntp::disable/ntp::ntpdate recipe.  This was factored
-out into an ntp::undo corresponding to the default recipe.
+Breaking changes are the absence of an ntp::disable/ntp::ntpdate recipe.  This was factored out into an ntp::undo corresponding to the default recipe.
+
 
 Requirements
 ------------
@@ -154,6 +153,40 @@ Then simply add ntp, or ntp::default to your run\_list to apply the ntp daemon's
 
 If for some reason you need to stop and remove the ntp daemon, you can apply this recipe by adding
 ntp::undo to your run\_list.  The undo recipe is not supported on Windows at the moment.
+
+
+Development
+-----------
+This section details "quick development" steps. For a detailed explanation, see [[Contributing.md]].
+
+1. Clone this repository from GitHub:
+
+        $ git clone git@github.com:opscode-cookbooks/ntp.git
+
+2. Create a git branch
+
+        $ git checkout -b my_bug_fix
+
+3. Install dependencies:
+
+        $ bundle install
+
+4. Make your changes/patches/fixes, committing appropiately
+5. **Write tests**
+6. Run the tests:
+
+    - `bundle exec foodcritic -f any .`
+    - `bundle exec rspec`
+    - `bundle exec rubocop`
+    - `bundle exec kitchen test`
+
+    In detail:
+
+    - Foodcritic will catch any Chef-specific style errors
+    - RSpec will run the unit tests
+    - Rubocop will check for Ruby-specific style errors
+    - Test Kitchen will run and converge the recipes
+
 
 License & Authors
 -----------------
