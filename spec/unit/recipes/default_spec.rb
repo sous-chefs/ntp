@@ -1,109 +1,129 @@
 require 'spec_helper'
 
 describe 'ntp::default' do
-  let(:chef_run) do
-    runner = ChefSpec::ChefRunner.new
-    runner.converge('recipe[ntp::default]')
+  let(:chef_run) { ChefSpec::ChefRunner.new.converge('ntp::default') }
+
+  it 'installs the ntp package' do
+    expect(chef_run).to install_package('ntp')
   end
 
-  it 'installs both ntp and ntpdate' do
-    expect(chef_run).to install_package 'ntp'
-    expect(chef_run).to install_package 'ntpdate'
+  it 'installs the ntpdate package' do
+    expect(chef_run).to install_package('ntpdate')
   end
 
-  it 'creates the varlibdir and statsdir directories' do
-    expect(chef_run).to create_directory '/var/lib/ntp'
-    directory = chef_run.directory('/var/lib/ntp')
-    expect(directory).to be_owned_by('ntp', 'ntp')
-    expect(chef_run).to create_directory '/var/log/ntpstats/'
-    directory = chef_run.directory('/var/log/ntpstats/')
-    expect(directory).to be_owned_by('ntp', 'ntp')
-  end
+  context 'the varlibdir directory' do
+    let(:directory) { chef_run.directory('/var/lib/ntp') }
 
-  it 'creates the leapfile' do
-    expect(chef_run).to create_cookbook_file '/etc/ntp.leapseconds'
-    file = chef_run.cookbook_file('/etc/ntp.leapseconds')
-    expect(file).to be_owned_by('root', 'root')
-  end
-
-  it 'Creates the ntp.conf file' do
-    expect(chef_run).to create_file '/etc/ntp.conf'
-    file = chef_run.template('/etc/ntp.conf')
-    expect(file).to be_owned_by('root', 'root')
-  end
-
-  it 'starts and enables the ntp service' do
-    expect(chef_run).to start_service 'ntp'
-    expect(chef_run).to set_service_to_start_on_boot 'ntp'
-  end
-
-# CentOS & friends 5 get different default attributes
-  context 'CentOS 5' do
-    let(:chef_run) do
-      runner = ChefSpec::ChefRunner.new(
-        platform: 'centos',
-        version: '5.8',
-        log_level: :error,
-      )
-      Chef::Config.force_logger true
-      runner.converge('recipe[ntp::default]')
+    it 'creates the directory' do
+      expect(chef_run).to create_directory('/var/lib/ntp')
     end
 
-    it 'installs only ntp, not ntpdate' do
-      expect(chef_run).to install_package 'ntp'
-      expect(chef_run).not_to install_package 'ntpdate'
+    it 'is owned by ntp:ntp' do
+      expect(directory.owner).to eq('ntp')
+      expect(directory.group).to eq('ntp')
     end
 
-    it 'starts and enables the ntpd service' do
-      expect(chef_run).to start_service 'ntpd'
-      expect(chef_run).to set_service_to_start_on_boot 'ntpd'
+    it 'has 0755 permissions' do
+      expect(directory.mode).to eq('0755')
     end
   end
 
-# CentOS & friends 6 get different default attributes
-  context 'CentOS 6' do
-    let(:chef_run) do
-      runner = ChefSpec::ChefRunner.new(platform: 'centos', version: '6.3')
-      runner.converge('recipe[ntp::default]')
+  context 'the statsdir directory' do
+    let(:directory) { chef_run.directory('/var/log/ntpstats/') }
+
+    it 'creates the directory' do
+      expect(chef_run).to create_directory('/var/log/ntpstats/')
     end
 
-    it 'starts and enables the ntpd service' do
-      expect(chef_run).to start_service 'ntpd'
-      expect(chef_run).to set_service_to_start_on_boot 'ntpd'
+    it 'is owned by ntp:ntp' do
+      expect(directory.owner).to eq('ntp')
+      expect(directory.group).to eq('ntp')
+    end
+
+    it 'has 0755 permissions' do
+      expect(directory.mode).to eq('0755')
     end
   end
 
-# FreeBSD gets different default attributes
+  context 'the leapfile' do
+    let(:cookbook_file) { chef_run.cookbook_file('/etc/ntp.leapseconds') }
+
+    it 'creates the cookbook_file' do
+      expect(chef_run).to create_cookbook_file('/etc/ntp.leapseconds')
+    end
+
+    it 'is owned by ntp:ntp' do
+      expect(cookbook_file.owner).to eq('root')
+      expect(cookbook_file.group).to eq('root')
+    end
+
+    it 'has 0755 permissions' do
+      expect(cookbook_file.mode).to eq('0644')
+    end
+  end
+
+  context 'the ntp.conf' do
+    let(:template) { chef_run.template('/etc/ntp.conf') }
+
+    it 'creates the template' do
+      expect(chef_run).to create_file('/etc/ntp.conf')
+    end
+
+    it 'is owned by ntp:ntp' do
+      expect(template.owner).to eq('root')
+      expect(template.group).to eq('root')
+    end
+
+    it 'has 0755 permissions' do
+      expect(template.mode).to eq('0644')
+    end
+  end
+
+  it 'starts the ntp service' do
+    expect(chef_run).to start_service('ntp')
+  end
+
+  it 'sets ntp to start on boot' do
+    expect(chef_run).to set_service_to_start_on_boot('ntp')
+  end
+
+  context 'on CentOS 5' do
+    let(:chef_run) { ChefSpec::ChefRunner.new(platform: 'centos', version: '5.8').converge('ntp::default') }
+
+    it 'installs the ntp package' do
+      expect(chef_run).to install_package('ntp')
+    end
+
+    it 'does not install the ntpdate package' do
+      expect(chef_run).to_not install_package('ntpdate')
+    end
+
+    it 'starts the ntpd service' do
+      expect(chef_run).to start_service('ntpd')
+    end
+
+    it 'sets ntpd to start on boot' do
+      expect(chef_run).to set_service_to_start_on_boot('ntpd')
+    end
+  end
+
   context 'freebsd' do
-    let(:chef_run) do
-      runner = ChefSpec::ChefRunner.new(platform: 'freebsd', version: '9.1')
-      runner.converge('recipe[ntp::default]')
+    let(:chef_run) { ChefSpec::ChefRunner.new(platform: 'freebsd', version: '9.1').converge('ntp::default') }
+
+    it 'installs the ntp package' do
+      expect(chef_run).to install_package('ntp')
     end
 
-    it 'installs only ntp, not ntpdate' do
-      expect(chef_run).to install_package 'ntp'
-      expect(chef_run).not_to install_package 'ntpdate'
+    it 'does not install the ntpdate package' do
+      expect(chef_run).to_not install_package('ntpdate')
     end
 
-    it 'creates the varlibdir and statsdir directories' do
-      expect(chef_run).to create_directory '/var/db'
-      directory = chef_run.directory('/var/db')
-      expect(directory).to be_owned_by('ntp', 'wheel')
-      expect(chef_run).to create_directory '/var/db/ntpstats'
-      directory = chef_run.directory('/var/db/ntpstats')
-      expect(directory).to be_owned_by('ntp', 'wheel')
+    it 'starts the ntpd service' do
+      expect(chef_run).to start_service('ntpd')
     end
 
-    it 'starts and enables the ntpd service' do
-      expect(chef_run).to start_service 'ntpd'
-      expect(chef_run).to set_service_to_start_on_boot 'ntpd'
-    end
-
-    it 'Creates the ntp.conf file' do
-      expect(chef_run).to create_file '/etc/ntp.conf'
-      file = chef_run.template('/etc/ntp.conf')
-      expect(file).to be_owned_by('root', 'wheel')
+    it 'sets ntpd to start on boot' do
+      expect(chef_run).to set_service_to_start_on_boot('ntpd')
     end
   end
-
 end

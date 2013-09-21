@@ -1,13 +1,14 @@
 require 'chefspec'
 require 'berkshelf'
 
-Berkshelf::Berksfile.from_file('Berksfile').install(path: 'vendor/cookbooks/')
+Berkshelf.ui.mute do
+  Berkshelf::Berksfile.from_file('Berksfile').install(path: 'vendor/cookbooks/')
+end
 
-# Without this line, berks will infinitely nest vendor/cookbooks/ntp on each rspec run
-# https://github.com/RiotGames/berkshelf/issues/828
-require 'fileutils'
 RSpec.configure do |c|
   c.after(:suite) do
+    # Berks will infinitely nest vendor/cookbooks/ntp on each rspec run
+    # https://github.com/RiotGames/berkshelf/issues/828
     FileUtils.rm_rf('vendor/')
   end
 end

@@ -8,7 +8,7 @@ version           '1.4.1'
 
 recipe 'ntp', 'Installs and configures ntp either as a server or client'
 
-%w{ ubuntu debian redhat centos fedora scientific amazon oracle freebsd windows }.each do |os|
+%w(ubuntu debian redhat centos fedora scientific amazon oracle freebsd windows).each do |os|
   supports os
 end
 
@@ -38,11 +38,4 @@ attribute 'ntp/restrictions',
           :description => 'Array of restriction lines to apply to NTP servers',
           :type => 'array',
           :default => [],
-          :required => 'recommended'
-
-attribute 'ntp/ntpdate/disable',
-          :display_name => 'ntpdate-debian script disable',
-          :description => 'Defaults to false. Set to true to disable ntpdate-debian script',
-          :type => 'string',
-          :default => 'false',
           :required => 'recommended'

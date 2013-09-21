@@ -25,7 +25,7 @@ default['ntp']['servers']   = []
 default['ntp']['peers'] = []
 default['ntp']['restrictions'] = []
 
-default['ntp']['packages'] = %w{ ntp ntpdate }
+default['ntp']['packages'] = %w(ntp ntpdate)
 default['ntp']['service'] = 'ntp'
 default['ntp']['varlibdir'] = '/var/lib/ntp'
 default['ntp']['driftfile'] = "#{node['ntp']['varlibdir']}/ntp.drift"
@@ -41,7 +41,7 @@ default['ntp']['leapfile'] = '/etc/ntp.leapseconds'
 case platform
 when 'redhat', 'centos', 'fedora', 'scientific', 'amazon', 'oracle'
   default['ntp']['service'] = 'ntpd'
-  default['ntp']['packages'] = %w{ ntp }
+  default['ntp']['packages'] = %w(ntp)
   if node['platform_version'].to_i >= 6
     default['ntp']['packages'] = %w{ ntp ntpdate }
   end
