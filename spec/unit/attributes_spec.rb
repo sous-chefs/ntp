@@ -26,37 +26,35 @@ require 'spec_helper'
 describe 'ntp attributes' do
   let(:chef_run) { ChefSpec::ChefRunner.new.converge('ntp::default') }
   let(:ntp) { chef_run.node['ntp'] }
-  # let(:attr_ns) { 'ntp' }
 
-  # before do
-  #   @node = Chef::Node.new
-  #   @node.consume_external_attrs(Mash.new(ohai_data), {})
-  #   @node.from_file(File.join(File.dirname(__FILE__), %w{.. .. attributes default.rb}))
-  # end
+  describe 'on an unknown platform' do
 
-  describe 'an unknown platform' do
+    it 'sets the package list to ntp & ntpdate' do
+      expect(ntp['packages']).to include('ntp')
+      expect(ntp['packages']).to include('ntpdate')
+    end
+
+    it 'sets the service name to ntpd' do
+      expect(ntp['service']).to eq('ntpd')
+    end
+
     it 'sets the /var/lib directory' do
       expect(ntp['varlibdir']).to eq('/var/lib/ntp')
     end
 
-    it 'sets the driftfile to ntp.drift' do
+    it 'sets the driftfile to /var/lib/ntp.drift' do
       expect(ntp['driftfile']).to eq('/var/lib/ntp/ntp.drift')
+    end
+
+    it 'sets the conf file to /etc/ntp.conf' do
+      expect(ntp['conffile']).to eq('/etc/ntp.conf')
     end
 
     it 'sets the stats directory to /var/log/ntpstats/' do
       expect(ntp['statsdir']).to eq('/var/log/ntpstats/')
     end
 
-    it 'sets a packages list' do
-      expect(ntp['packages']).to include('ntp')
-      expect(ntp['packages']).to include('ntpdate')
-    end
-
-    it 'sets the service name to ntp' do
-      expect(ntp['service']).to eq('ntp')
-    end
-
-    it 'sets the conf_group to root' do
+    it 'sets the conf_owner to root' do
       expect(ntp['conf_owner']).to eq('root')
     end
 
@@ -64,7 +62,7 @@ describe 'ntp attributes' do
       expect(ntp['conf_group']).to eq('root')
     end
 
-    it 'sets the var_user to root' do
+    it 'sets the var_owner to root' do
       expect(ntp['var_owner']).to eq('ntp')
     end
 
@@ -72,45 +70,94 @@ describe 'ntp attributes' do
       expect(ntp['var_group']).to eq('ntp')
     end
 
-    it 'sets the upstream server list' do
+    it 'sets the leapfile to /etc/ntp.leapseconds' do
+      expect(ntp['leapfile']).to eq('/etc/ntp.leapseconds')
+    end
+
+    it 'sets the upstream server list in the recipe' do
       expect(ntp['servers']).to include('0.pool.ntp.org')
     end
   end
 
-  describe 'on CentOS' do
-    let(:chef_run) { ChefSpec::ChefRunner.new(platform: 'centos', version: '6.4').converge('ntp::default') }
+  describe 'on Debian-family platforms' do
+    let(:chef_run) { ChefSpec::ChefRunner.new(platform: 'ubuntu', version: '12.04').converge('ntp::default') }
 
-    it 'sets the service name to ntpd' do
-      expect(ntp['service']).to eq('ntpd')
-    end
-
-    it 'sets a packages list' do
-      expect(ntp['packages']).to include('ntp')
-      expect(ntp['packages']).to include('ntpdate')
+    it 'sets the service name to ntp' do
+      expect(ntp['service']).to eq('ntp')
     end
   end
 
-  describe 'on FreeBSD' do
-    let(:chef_run) { ChefSpec::ChefRunner.new(platform: 'freebsd', version: '9.1').converge('ntp::default') }
+  describe 'on the CentOS 5 platform' do
+    let(:chef_run) { ChefSpec::ChefRunner.new(platform: 'centos', version: '5.8').converge('ntp::default') }
 
-    it 'sets the service name to ntpd' do
-      expect(ntp['service']).to eq('ntpd')
+    it 'sets the package list to only ntp' do
+      expect(ntp['packages']).to include('ntp')
+      expect(ntp['packages']).not_to include('ntpdate')
+    end
+  end
+
+  describe 'on the Windows platform' do
+    let(:chef_run) { ChefSpec::ChefRunner.new(platform: 'windows', version: '2008R2').converge('ntp::default') }
+
+    it 'sets the service name to NTP' do
+      pending('ChefSpec does not yet understand the inherits attribute in cookbook_file resources')
+      expect(ntp['service']).to eq('NTP')
     end
 
-    it 'sets the drift file to ntpd.drift' do
-      expect(ntp['driftfile']).to eq('/var/db/ntpd.drift')
+    it 'sets the drift file to /var/db/ntpd.drift' do
+      pending('ChefSpec does not yet understand the inherits attribute in cookbook_file resources')
+      expect(ntp['driftfile']).to eq('C:\\NTP\\ntp.drift')
+    end
+
+    it 'sets the conf file to /etc/ntp.conf' do
+      pending('ChefSpec does not yet understand the inherits attribute in cookbook_file resources')
+      expect(ntp['conffile']).to eq('C:\\NTP\\etc\\ntp.conf')
+    end
+
+    it 'sets the conf_owner to root' do
+      pending('ChefSpec does not yet understand the inherits attribute in cookbook_file resources')
+      expect(ntp['conf_owner']).to eq('Administrators')
+    end
+
+    it 'sets the conf_group to root' do
+      pending('ChefSpec does not yet understand the inherits attribute in cookbook_file resources')
+      expect(ntp['conf_group']).to eq('Administrators')
+    end
+
+    it 'sets the package_url correctly' do
+      pending('ChefSpec does not yet understand the inherits attribute in cookbook_file resources')
+      expect(ntp['package_url']).to eq('http://www.meinbergglobal.com/download/ntp/windows/ntp-4.2.6p5@london-o-lpv-win32-setup.exe')
+    end
+
+    it 'sets the vs_runtime_url correctly' do
+      pending('ChefSpec does not yet understand the inherits attribute in cookbook_file resources')
+      expect(ntp['vs_runtime_url']).to eq('http://download.microsoft.com/download/1/1/1/1116b75a-9ec3-481a-a3c8-1777b5381140/vcredist_x86.exe')
+    end
+
+    it 'sets the vs_runtime_productname correctly' do
+      pending('ChefSpec does not yet understand the inherits attribute in cookbook_file resources')
+      expect(ntp['vs_runtime_productname']).to eq('Microsoft Visual C++ 2008 Redistributable - x86 9.0.21022')
+    end
+  end
+
+  describe 'on the FreeBSD platform' do
+    let(:chef_run) { ChefSpec::ChefRunner.new(platform: 'freebsd', version: '9.1').converge('ntp::default') }
+
+    it 'sets the package list to only ntp' do
+      expect(ntp['packages']).to include('ntp')
+      expect(ntp['packages']).not_to include('ntpdate')
     end
 
     it 'sets the var directories to /var/db' do
       expect(ntp['varlibdir']).to eq('/var/db')
     end
 
-    it 'sets the stats directory to /var/db/ntpstats' do
-      expect(ntp['statsdir']).to eq('/var/db/ntpstats')
+    it 'sets the drift file to /var/db/ntpd.drift' do
+      expect(ntp['driftfile']).to eq('/var/db/ntpd.drift')
     end
 
-    it 'sets the ntp packages to ntp' do
-      expect(ntp['packages']).to include('ntp')
+    it 'sets the stats directory to /var/db/ntpstats' do
+      expect(ntp['statsdir']).to eq('/var/db/ntpstats')
     end
 
     it 'sets the conf_group to wheel' do
