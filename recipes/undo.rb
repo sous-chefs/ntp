@@ -19,7 +19,7 @@
 # limitations under the License.
 
 # Do not continue if trying to run this recipe on Windows
-return 'The ntp::undo recipe does not support Windows' if node['platform_family'] == 'windows'
+return 'The ntp::undo recipe does not support Windows' if platform_family?('windows')
 
 service node['ntp']['service'] do
   supports :status => true, :restart => true

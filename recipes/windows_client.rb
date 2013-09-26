@@ -19,7 +19,7 @@
 # limitations under the License.
 
 # Do not continue if trying to run the Windows recipe on non-Windows platform
-return 'The ntp::windows_client recipe only supports Windows' unless node['platform_family'] == 'windows'
+return 'The ntp::windows_client recipe only supports Windows' unless platform_family?('windows')
 
 directory 'C:/NTP/etc' do
   inherits  true
