@@ -18,6 +18,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+# Do not continue if trying to run the Windows recipe on non-Windows platform
+return 'The ntp::windows_client recipe only supports Windows' unless platform_family?('windows')
+
 directory 'C:/NTP/etc' do
   inherits  true
   action    :create

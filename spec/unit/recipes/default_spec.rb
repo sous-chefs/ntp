@@ -57,7 +57,7 @@ describe 'ntp::default' do
       expect(cookbook_file.group).to eq('root')
     end
 
-    it 'has 0755 permissions' do
+    it 'has 0644 permissions' do
       expect(cookbook_file.mode).to eq('0644')
     end
   end
@@ -74,17 +74,17 @@ describe 'ntp::default' do
       expect(template.group).to eq('root')
     end
 
-    it 'has 0755 permissions' do
+    it 'has 0644 permissions' do
       expect(template.mode).to eq('0644')
     end
   end
 
-  it 'starts the ntp service' do
-    expect(chef_run).to start_service('ntp')
+  it 'starts the ntpd service' do
+    expect(chef_run).to start_service('ntpd')
   end
 
-  it 'sets ntp to start on boot' do
-    expect(chef_run).to set_service_to_start_on_boot('ntp')
+  it 'sets ntpd to start on boot' do
+    expect(chef_run).to set_service_to_start_on_boot('ntpd')
   end
 
   context 'on CentOS 5' do
@@ -98,12 +98,20 @@ describe 'ntp::default' do
       expect(chef_run).to_not install_package('ntpdate')
     end
 
-    it 'starts the ntpd service' do
-      expect(chef_run).to start_service('ntpd')
-    end
-
     it 'sets ntpd to start on boot' do
       expect(chef_run).to set_service_to_start_on_boot('ntpd')
+    end
+  end
+
+  context 'ubuntu' do
+    let(:chef_run) { ChefSpec::ChefRunner.new(platform: 'ubuntu', version: '12.04').converge('ntp::default') }
+
+    it 'starts the ntp service' do
+      expect(chef_run).to start_service('ntp')
+    end
+
+    it 'sets ntp to start on boot' do
+      expect(chef_run).to set_service_to_start_on_boot('ntp')
     end
   end
 
@@ -116,10 +124,6 @@ describe 'ntp::default' do
 
     it 'does not install the ntpdate package' do
       expect(chef_run).to_not install_package('ntpdate')
-    end
-
-    it 'starts the ntpd service' do
-      expect(chef_run).to start_service('ntpd')
     end
 
     it 'sets ntpd to start on boot' do
