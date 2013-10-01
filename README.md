@@ -37,6 +37,10 @@ Attributes
 * `ntp['restrictions']` - (applies to NTP Servers only)
 - Array, should be a list of restrict lines to define access to NTP clients on your LAN.
 
+* ntp['sync_clock'] (applies to NTP Servers and Clients)
+
+  - Boolean, determines if the ntpdate command is issued to sync the system clock
+
 ### Platform specific
 
 * `ntp['packages']`
@@ -102,6 +106,11 @@ Attributes
   - String, the installation name of the Visual Studio C++ Runtimes file.
   - Default, "Microsoft Visual C++ 2008 Redistributable - x86 9.0.21022"
   - Windows platform only
+
+* ntp['sync_hw_clock']
+  - Boolean, determines if the ntpdate command is issued to sync the hardware clock
+  - Default, false
+  - Not applicable for Windows nodes
 
 
 Usage

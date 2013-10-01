@@ -38,6 +38,8 @@ default['ntp']['conf_group'] = 'root'
 default['ntp']['var_owner'] = 'ntp'
 default['ntp']['var_group'] = 'ntp'
 default['ntp']['leapfile'] = '/etc/ntp.leapseconds'
+default['ntp']['sync_clock'] = false
+default['ntp']['sync_hw_clock'] = false
 
 # overrides on a platform-by-platform basis
 case node['platform_family']
