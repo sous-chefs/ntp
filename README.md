@@ -41,6 +41,10 @@ Attributes
 
   - Boolean, determines if the ntpdate command is issued to sync the system clock
 
+* ntp['sync_clock'] (applies to NTP Servers and Clients)
+
+  - Boolean, determines if the ntpdate command is issued to sync the system clock
+
 ### Platform specific
 
 * `ntp['packages']`
