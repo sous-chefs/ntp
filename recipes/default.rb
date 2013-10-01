@@ -39,9 +39,7 @@ else
     mode  '0644'
   end
 
-  if node['ntp']['apparmor_enabled']
-    include_recipe "ntp::apparmor"
-  end
+  include_recipe 'ntp::apparmor' if node['ntp']['apparmor_enabled']
 end
 
 unless node['ntp']['servers'].size > 0
