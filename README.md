@@ -37,9 +37,12 @@ Attributes
 * `ntp['restrictions']` - (applies to NTP Servers only)
 - Array, should be a list of restrict lines to define access to NTP clients on your LAN.
 
-* ntp['sync_clock'] (applies to NTP Servers and Clients)
+* `ntp['sync_clock']` (applies to NTP Servers and Clients)
+  - Boolean. Defaults to false. Forces the ntp daemon to be halted, an ntp -q command to be issued, and the ntp daemon to be restarted again on every Chef-client run. Will have no effect if drift is over 1000 seconds.
 
-  - Boolean, determines if the ntpdate command is issued to sync the system clock
+* `ntp['sync_hw_clock']` (applies to NTP Servers and Clients)
+  - Boolean. Defaults to false. On *nix-based systems, forces the 'hwclock --systohc' command to be issued on every Chef-client run. This will sync the hardware clock to the system clock.
+  - Not available on Windows.
 
 ### Platform specific
 
@@ -202,6 +205,7 @@ Copyright 2012, Fletcher Nichol
 Copyright 2012, Webtrends, Inc.
 Copyright 2013, Limelight Networks, Inc.
 Copyright 2013, Brad Knowles
+Copyright 2013, Brad Beam
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.

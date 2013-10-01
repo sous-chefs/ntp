@@ -79,12 +79,57 @@ describe 'ntp::default' do
     end
   end
 
+  it 'does not execute the "Force sync system clock with ntp server" command' do
+    expect(chef_run).not_to execute_command('ntpd -q')
+  end
+
+  it 'does not execute the "Force sync hardware clock with system clock" command' do
+    expect(chef_run).not_to execute_command('hwclock --systohc')
+  end
+
   it 'starts the ntpd service' do
     expect(chef_run).to start_service('ntpd')
   end
 
   it 'sets ntpd to start on boot' do
     expect(chef_run).to set_service_to_start_on_boot('ntpd')
+  end
+
+  context 'the sync_clock attribute is set' do
+    let(:chef_run) do
+      runner = ChefSpec::ChefRunner.new
+      runner.node.set['ntp']['sync_clock'] = true
+      runner.converge('ntp::default')
+    end
+
+    it 'executes the "Force sync system clock with ntp server" command' do
+      expect(chef_run).to execute_command('ntpd -q')
+    end
+  end
+
+  context 'the sync_hw_clock attribute is set on a non-Windows OS' do
+    let(:chef_run) do
+      runner = ChefSpec::ChefRunner.new
+      runner.node.set['ntp']['sync_hw_clock'] = true
+      runner.converge('ntp::default')
+    end
+
+    it 'executes the "Force sync hardware clock with system clock" command' do
+      expect(chef_run).to execute_command('hwclock --systohc')
+    end
+  end
+
+  context 'the sync_hw_clock attribute is set on a Windows OS' do
+    let(:chef_run) do
+      runner = ChefSpec::ChefRunner.new(platform: 'windows', version: '2008R2')
+      runner.node.set['ntp']['sync_hw_clock'] = true
+      runner.converge('ntp::default')
+    end
+
+    it 'does not executes the "Force sync hardware clock with system clock" command' do
+      pending('ChefSpec does not yet understand the inherits attribute in cookbook_file resources')
+      expect(chef_run).not_to execute_command('hwclock --systohc')
+    end
   end
 
   context 'on CentOS 5' do

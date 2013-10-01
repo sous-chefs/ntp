@@ -65,14 +65,15 @@ if node['ntp']['sync_clock']
     notifies :stop, "service[#{node['ntp']['service']}]", :immediately
   end
 
-  execute 'Sync system clock with ntp server' do
+  execute 'Force sync system clock with ntp server' do
     command 'ntpd -q'
     action :run
+    notifies :start, "service[#{node['ntp']['service']}]"
   end
 end
 
 if node['ntp']['sync_hw_clock'] && ! platform_family?('windows')
-  execute 'Sync hardware clock with system clock' do
+  execute 'Force sync hardware clock with system clock' do
     command 'hwclock --systohc'
     action :run
   end
