@@ -158,6 +158,10 @@ describe 'ntp::default' do
     it 'sets ntp to start on boot' do
       expect(chef_run).to set_service_to_start_on_boot('ntp')
     end
+
+    it 'includes the apparmor recipe' do
+      expect(chef_run).to include_recipe('ntp::apparmor')
+    end
   end
 
   context 'freebsd' do

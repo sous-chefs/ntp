@@ -44,12 +44,6 @@ Attributes
   - Boolean. Defaults to false. On *nix-based systems, forces the 'hwclock --systohc' command to be issued on every Chef-client run. This will sync the hardware clock to the system clock.
   - Not available on Windows.
 
-* ntp['ntp']['apparmor_enabled']
-  - Boolean, enables configuration of apparmor if set to true
-  - Defaults to false and will make no provisions for apparmor.  If a
-    platform is apparmor enabled by default, (currently ubuntu)
-    default will be true.
-
 ### Platform specific
 
 * `ntp['packages']`
@@ -120,6 +114,13 @@ Attributes
   - Boolean, determines if the ntpdate command is issued to sync the hardware clock
   - Default, false
   - Not applicable for Windows nodes
+
+* `ntp['apparmor_enabled']`
+
+  - Boolean, enables configuration of apparmor if set to true
+  - Defaults to false and will make no provisions for apparmor.  If a
+    platform is apparmor enabled by default, (currently ubuntu)
+    default will be true.
 
 
 Usage
