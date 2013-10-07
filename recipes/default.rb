@@ -50,22 +50,17 @@ unless node['ntp']['servers'].size > 0
   log 'No NTP servers specified, using default ntp.org server pools'
 end
 
-if node["ntp"].has_key?("listen_network")
-  if node["ntp"]["listen_network"] == "primary"
-    node.set["ntp"]["listen"] = node["ipaddress"]
+if node['ntp'].key?('listen_network')
+  if node['ntp']['listen_network'] == 'primary'
+    node.set['ntp']['listen'] = node['ipaddress']
   else
     require 'ipaddr'
-    net = IPAddr.new(node["ntp"]["listen_network"])
-    node["network"]["interfaces"].each do |interface|
-      unless interface[1]['addresses'].nil?
-        interface[1]["addresses"].each do |k, v|
-          if v["family"] == "inet6" or v["family"] == "inet" then
-            addr=IPAddr.new(k)
-            if net.include?(addr) then
-              node.set["ntp"]["listen"] = addr
-            end
-          end
-        end
+    net = IPAddr.new(node['ntp']['listen_network'])
+
+    node['network']['interfaces'].each do |iface, addrs|
+      addrs['addresses'].each do |ip, params|
+        addr = IPAddr.new(ip) if params['family'].eql?('inet') || params['family'].eql?('inet6')
+        node.set['ntp']['listen'] = addr if net.include?(addr)
       end
     end
   end
