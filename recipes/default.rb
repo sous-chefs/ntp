@@ -48,11 +48,7 @@ service node['ntp']['service'] do
 end
 
 if node["ntp"].has_key?("listen_network")
-  if node["ntp"]["listen_network"] == "all"
-    node.set["ntp"]["listen"] = "0.0.0.0"
-  elsif node["ntp"]["listen_network"] == "localhost"
-    node.set["ntp"]["listen"] = "127.0.0.1"
-  elsif node["ntp"]["listen_network"] == "primary"
+  if node["ntp"]["listen_network"] == "primary"
     node.set["ntp"]["listen"] = node["ipaddress"]
   else
     require 'ipaddr'
