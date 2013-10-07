@@ -3,6 +3,21 @@ ntp Cookbook CHANGELOG
 This file is used to list changes made in each version of the ntp cookbook.
 
 
+v1.5.0
+------
+### Improvement
+- **[COOK-3651](https://tickets.opscode.com/browse/COOK-3651)** - Refactor and clean up
+- **[COOK-3630](https://tickets.opscode.com/browse/COOK-3630)** - Switch NTP cookbook linting from Tailor to Rubocop
+- **[COOK-3273](https://tickets.opscode.com/browse/COOK-3273)** - Add tests
+
+### New Feature
+- **[COOK-3636](https://tickets.opscode.com/browse/COOK-3636)** - Allow ntp cookbook to update clock to ntp servers
+
+### Bug
+- **[COOK-3410](https://tickets.opscode.com/browse/COOK-3410)** - Remove redundant ntpdate/disable recipes
+- **[COOK-1170](https://tickets.opscode.com/browse/COOK-1170)** - Allow redefining NTP servers in a role
+
+
 v1.4.0
 ------
 ### Improvement

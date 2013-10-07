@@ -1,145 +1,128 @@
 NTP Cookbook
 ============
-# NTP [![Build Status](https://secure.travis-ci.org/opscode-cookbooks/ntp.png?branch=master)](http://travis-ci.org/opscode-cookbooks/ntp)
+[![Build Status](https://secure.travis-ci.org/opscode-cookbooks/ntp.png?branch=master)](http://travis-ci.org/opscode-cookbooks/ntp)
 
-Installs and configures ntp, optionally configure ntpdate on debian family platforms.  On Windows systems it uses the Meinberg port of the standard NTPd client to Windows.
+Installs and configures ntp. On Windows systems it uses the Meinberg port of the standard NTPd client to Windows.
 
-### About the refactor
+### About Testing
 
-This recipe was heavily re-factored as a Hackday exercise at Chefconf 2012.
-The purpose of refactoring was to have a simple community cookbook which
-serves as a testing documentation reference.  We chose a lightweight testing method
-using minitest to validate the sanity of our default attributes.
+In addition to providing interfaces to the ntp time service, this recipe is also designed to provide a simple community cookbook with broad cross-platform support to serve as a testing documentation reference. This cookbook utilizes [Foodcritic](http://acrmp.github.io/foodcritic/), [Test-Kitchen](https://github.com/opscode/test-kitchen), [Vagrant](http://www.vagrantup.com), [Chefspec](http://acrmp.github.io/chefspec/), [bats](https://github.com/sstephenson/bats), [Rubocop](https://github.com/bbatsov/rubocop), and [Travis-CI](https://travis-ci.org) to provide a comprehensive suite of automated test coverage.
 
-More information on our testing strategy used in this cookbook is available
-in the TESTING.  Along with information on how to use this type of lightweight
-testing in your own cookbooks.
-
-#### IMPORTANT NOTES
-
-Breaking changes are the absence of an ntp::disable recipe.  This was factored
-out into an ntp::undo corresponding to the default recipe and a separate
-ntp::ntpdate recipe.
-
-The ntp::undo recipe stops and removes ntp components.  The ntp::ntpdate
-recipe configures the ntpdate component.  The ntp['ntpdate']['disable'] boolean
-will disable the ntpdate-debian command on Debian family distributions.
+More information on the testing strategy used in this cookbook is available in the TESTING.md file, along with information on how to use this type of testing in your own cookbooks.
 
 
 Requirements
 ------------
-### Operating Systems
+### Supported Operating Systems
 - Debian-family Linux Distributions
 - RedHat-family Linux Distributions
 - FreeBSD
 - Windows
 
 ### Cookbooks
-- When running on Windows based systems the node must include the Windows cookbook.  This
-  cookbook suggests the Windows cookbook in the metadata so as to not force including the
-  Windows cookbook on *nix systems.  You can change the suggests to depends if you require
-  Windows platform support
-
+- When running on Windows based systems, the node must include the Windows cookbook. This cookbook suggests the Windows cookbook in the metadata so as to not force inclusion of the Windows cookbook on *nix systems. Change 'suggests' to 'depends' if you require Windows platform support.
 
 Attributes
 ----------
 ### Recommended tunables
 
-* ntp['servers'] (applies to NTP Servers and Clients)
+* `ntp['servers']` - (applies to NTP Servers and Clients)
+- Array, should be a list of upstream NTP servers that will be considered authoritative by the local NTP daemon. The local NTP daemon will act as a client, adjusting local time to match time data retrieved from the upstream NTP servers.
 
-  - Array, should be a list of upstream NTP public servers.  The NTP protocol
-    works best with at least 3 servers.  The NTPD maximum is 7 upstream
-    servers, any more than that and some of them will be ignored by the daemon.
+  The NTP protocol works best with at least 4 servers. The ntp daemon will disregard any server after the 10th listed, but will continue monitoring all listed servers. For more information, see [Upstream Server Time Quantity](http://support.ntp.org/bin/view/Support/SelectingOffsiteNTPServers#Section_5.3.3.) at [support.ntp.org](http://support.ntp.org).
 
-* ntp['peers'] (applies to NTP Servers ONLY)
+* `ntp['peers']` - (applies to NTP Servers ONLY)
+- Array, should be a list of local NTP peers. For more information, see [Designing Your NTP Network](http://support.ntp.org/bin/view/Support/DesigningYourNTPNetwork) at [support.ntp.org](http://support.ntp.org).
 
-  - Array, should be a list of local NTP private servers.  Configuring peer
-    servers on your LAN will reduce traffic to upstream time sources, and
-    provide higher availability of NTP on your LAN.  Again the maximum is 7
-    peers
+* `ntp['restrictions']` - (applies to NTP Servers only)
+- Array, should be a list of restrict lines to define access to NTP clients on your LAN.
 
-* ntp['restrictions'] (applies to NTP Servers only)
+* `ntp['sync_clock']` (applies to NTP Servers and Clients)
+  - Boolean. Defaults to false. Forces the ntp daemon to be halted, an ntp -q command to be issued, and the ntp daemon to be restarted again on every Chef-client run. Will have no effect if drift is over 1000 seconds.
 
-  - Array, should be a list of restrict lines to restrict access to NTP
-    clients on your LAN.
+* `ntp['sync_hw_clock']` (applies to NTP Servers and Clients)
+  - Boolean. Defaults to false. On *nix-based systems, forces the 'hwclock --systohc' command to be issued on every Chef-client run. This will sync the hardware clock to the system clock.
+  - Not available on Windows.
 
 * ntp["listen_network"] / ntp["listen"]
 
   - String, optional attribute. Default is for NTP to listen on all addresses.
   - ntp["listen_network"] should be set to 'primary' to listen on the node's
     primary IP address as determined by ohai, or set to a CIDR
-   (eg: '192.168.4.0/24') to listen on the first node address on that CIDR.
+    (eg: '192.168.4.0/24') to listen on the first node address on that CIDR.
   - ntp["listen"] can be set to a specific address (eg: '192.168.4.10') instead
     of ntp["listen_network"] to force listening on a specific address.
 
-* ntp['ntpdate']['disable']
-
-  - Boolean, disables the use of ntpdate-debian if set to true.
-  - Defaults to false, and will not disable ntpdate.  There is usually no
-    init service to manage with ntpdate.  Therefore it should not conflict
-    with ntpd in most cases.
-
 ### Platform specific
 
-* ntp['packages']
+* `ntp['packages']`
 
   - Array, the packages to install
   - Default, ntp for everything, ntpdate depending on platform. Not applicable for
     Windows nodes
 
-* ntp['service']
+* `ntp['service']`
 
   - String, the service to act on
   - Default, ntp, NTP, or ntpd, depending on platform
 
-* ntp['conffile']
-
-  - String, the path to the ntp configuration file.
-  - Default, platform-specific location.
-
-* ntp['driftfile']
-
-  - String, the path to the frequency file.
-  - Default, platform-specific location.
-
-* ntp['varlibdir']
+* `ntp['varlibdir']`
 
   - String, the path to /var/lib files such as the driftfile.
   - Default, platform-specific location. Not applicable for Windows nodes
 
-* ntp['statsdir']
+* `ntp['driftfile']`
+
+  - String, the path to the frequency file.
+  - Default, platform-specific location.
+
+* `ntp['conffile']`
+
+  - String, the path to the ntp configuration file.
+  - Default, platform-specific location.
+
+* `ntp['statsdir']`
 
   - String, the directory path for files created by the statistics facility.
   - Default, platform-specific location. Not applicable for Windows nodes
 
-* ntp['conf\_owner'] and ntp['conf\_group']
+* `ntp['conf_owner'] and ntp['conf_group']`
 
   - String, the owner and group of the sysconf directory files, such as /etc/ntp.conf.
   - Default, platform-specific root:root or root:wheel.
 
-* ntp['var\_owner'] and ntp['var\_group']
+* `ntp['var_owner'] and ntp['var_group']`
 
   - String, the owner and group of the /var/lib directory files, such as /var/lib/ntp.
-  - Default, platform-specific ntp:ntp or root:wheel.  Not applicable for Windows nodes
+  - Default, platform-specific ntp:ntp or root:wheel. Not applicable for Windows nodes
 
-* ntp['package_url']
+* `ntp['leapfile']`
+  - String, the path to the ntp leapfile.
+  - Default, /etc/ntp.leapseconds.
+
+* `ntp['package_url']`
 
   - String, the URL to the the Meinberg NTPd client installation package.
   - Default, Meinberg site download URL
   - Windows platform only
 
-* ntp['vs_runtime_url']
+* `ntp['vs_runtime_url']`
 
   - String, the URL to the the Visual Studio C++ 2008 runtime libraries that are required
     for the Meinberg NTP client.
   - Default, Microsoft site download URL
   - Windows platform only
 
-* ntp['vs_runtime_productname']
+* `ntp['vs_runtime_productname']`
 
   - String, the installation name of the Visual Studio C++ Runtimes file.
   - Default, "Microsoft Visual C++ 2008 Redistributable - x86 9.0.21022"
   - Windows platform only
+
+* ntp['sync_hw_clock']
+  - Boolean, determines if the ntpdate command is issued to sync the hardware clock
+  - Default, false
+  - Not applicable for Windows nodes
 
 
 Usage
@@ -148,44 +131,71 @@ Usage
 
 Set up the ntp attributes in a role. For example in a base.rb role applied to all nodes:
 
-    name "base"
-    description "Role applied to all systems"
-    default_attributes(
-      "ntp" => {
-        "servers" => ["time0.int.example.org", "time1.int.example.org"]
-      }
-    )
+```ruby
+name 'base'
+description 'Role applied to all systems'
+default_attributes(
+  'ntp' => {
+    'servers' => ['time0.int.example.org', 'time1.int.example.org']
+  }
+)
+```
 
 Then in an ntpserver.rb role that is applied to NTP servers (e.g., time.int.example.org):
 
-    name "ntp_server"
-    description "Role applied to the system that should be an NTP server."
-    default_attributes(
-      "ntp" => {
-        "is_server" => "true",
-        "servers" => ["0.pool.ntp.org", "1.pool.ntp.org"],
-        "peers" => ["time0.int.example.org", "time1.int.example.org"],
-        "restrictions" => ["10.0.0.0 mask 255.0.0.0 nomodify notrap"]
-      }
-    )
+```ruby
+name 'ntp_server'
+description 'Role applied to the system that should be an NTP server.'
+default_attributes(
+  'ntp' => {
+    'is_server'    => 'true',
+    'servers'      => ['0.pool.ntp.org', '1.pool.ntp.org'],
+    'peers'        => ['time0.int.example.org', 'time1.int.example.org'],
+    'restrictions' => ['10.0.0.0 mask 255.0.0.0 nomodify notrap']
+  }
+)
+```
 
-The timeX.int.example.org used in these roles should be the names or IP addresses of internal NTP servers.
-Then simply add ntp, or ntp::default to your run\_list to apply the ntp daemon's configuration.
-
-### ntpdate recipe
-
-On Debian-family platforms, and newer versions of RedHat, there is a separate ntpdate package.
-
-You may blank out the ntpdate configuration file by overriding ntp['ntpdate']['disable'] to `true`.
-Then include the ntp::ntpdate recipe in your run\_list.
-
-You may re-enable the ntpdate configuration by ensuring ntp['ntpdate']['disable'] is `false`.
-Then include the ntp::ntpdate recipe in your run\_list.
+The timeX.int.example.org used in these roles should be the names or IP addresses of internal NTP servers. Then simply add ntp, or `ntp::default` to your run_list to apply the ntp daemon's configuration.
 
 ### undo recipe
 
-If for some reason you need to stop and remove the ntp daemon, you can apply this recipe by adding
-ntp::undo to your run\_list.  The undo recipe is not supported on Windows at the moment.
+If for some reason you need to stop and remove the ntp daemon, you can apply this recipe by adding `ntp::undo` to your run_list. The undo recipe is not supported on Windows at the moment.
+
+### windows_client recipe
+
+Windows only. Apply on a Windows host to install the Meinberg NTPd client. 
+
+
+Development
+-----------
+This section details "quick development" steps. For a detailed explanation, see [[Contributing.md]].
+
+1. Clone this repository from GitHub:
+
+        $ git clone git@github.com:opscode-cookbooks/ntp.git
+
+2. Create a git branch
+
+        $ git checkout -b my_bug_fix
+
+3. Install dependencies:
+
+        $ bundle install
+
+4. **Write tests**
+5. Make your changes/patches/fixes, committing appropriately
+6. Run the tests:
+    - `bundle exec foodcritic -f any .`
+    - `bundle exec rspec`
+    - `bundle exec rubocop`
+    - `bundle exec kitchen test`
+
+  In detail:
+    - Foodcritic will catch any Chef-specific style errors
+    - RSpec will run the unit tests
+    - Rubocop will check for Ruby-specific style errors
+    - Test Kitchen will run and converge the recipes
 
 
 License & Authors
@@ -194,13 +204,17 @@ License & Authors
 - Contributor:: Eric G. Wolfe (<wolfe21@marshall.edu>)
 - Contributor:: Fletcher Nichol (<fletcher@nichol.ca>)
 - Contributor:: Tim Smith (<tsmith@limelight.com>)
+- Contributor:: Charles Johnson (<charles@opscode.com>)
+- Contributor:: Brad Knowles (<bknowles@momentumsi.com>)
 
 ```text
-Copyright 2009-2011, Opscode, Inc.
+Copyright 2009-2013, Opscode, Inc.
 Copyright 2012, Eric G. Wolfe
 Copyright 2012, Fletcher Nichol
 Copyright 2012, Webtrends, Inc.
 Copyright 2013, Limelight Networks, Inc.
+Copyright 2013, Brad Knowles
+Copyright 2013, Brad Beam
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
