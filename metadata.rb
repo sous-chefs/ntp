@@ -8,34 +8,42 @@ version           '1.4.1'
 
 recipe 'ntp', 'Installs and configures ntp either as a server or client'
 
-%w(ubuntu debian redhat centos fedora scientific amazon oracle freebsd windows xcp).each do |os|
-  supports os
-end
+supports 'amazon'
+supports 'centos'
+supports 'debian'
+supports 'fedora'
+supports 'freebsd'
+supports 'redhat'
+supports 'scientific'
+supports 'oracle'
+supports 'ubuntu'
+supports 'windows'
+supports 'xcp'
 
 suggests 'windows'
 
 attribute 'ntp',
           :display_name => 'NTP',
-          :description => 'Hash of NTP attributes',
-          :type => 'hash'
+          :description  => 'Hash of NTP attributes',
+          :type         => 'hash'
 
 attribute 'ntp/servers',
           :display_name => 'NTP Servers',
-          :description => 'Array of servers we should talk to',
-          :type => 'array',
-          :default => ['0.pool.ntp.org', '1.pool.ntp.org', '2.pool.ntp.org', '3.pool.ntp.org'],
-          :required => 'recommended'
+          :description  => 'Array of servers we should talk to',
+          :type         => 'array',
+          :default      => ['0.pool.ntp.org', '1.pool.ntp.org', '2.pool.ntp.org', '3.pool.ntp.org'],
+          :required     => 'recommended'
 
 attribute 'ntp/peers',
           :display_name => 'NTP Peers',
-          :description => 'Array of local NTP servers, we should peer with',
-          :type => 'array',
-          :default => [],
-          :required => 'recommended'
+          :description  => 'Array of local NTP servers, we should peer with',
+          :type         => 'array',
+          :default      => [],
+          :required     => 'recommended'
 
 attribute 'ntp/restrictions',
           :display_name => 'Restriction lines',
-          :description => 'Array of restriction lines to apply to NTP servers',
-          :type => 'array',
-          :default => [],
-          :required => 'recommended'
+          :description  => 'Array of restriction lines to apply to NTP servers',
+          :type         => 'array',
+          :default      => [],
+          :required     => 'recommended'
