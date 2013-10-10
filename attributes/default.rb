@@ -22,7 +22,7 @@
 #
 
 # default attributes for all platforms
-default['ntp']['servers']   = []
+default['ntp']['servers']   = [] # The default recipe sets a list of common NTP servers (COOK-1170)
 default['ntp']['peers'] = []
 default['ntp']['restrictions'] = []
 
