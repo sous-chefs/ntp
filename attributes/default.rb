@@ -22,7 +22,7 @@
 #
 
 # default attributes for all platforms
-default['ntp']['servers']   = []
+default['ntp']['servers']   = [] # See footnote 1 at end of file!
 default['ntp']['peers'] = []
 default['ntp']['restrictions'] = []
 
@@ -64,3 +64,13 @@ when 'freebsd'
   default['ntp']['conf_group'] = 'wheel'
   default['ntp']['var_group'] = 'wheel'
 end
+
+# FOOTNOTES:
+#
+# 1. While the servers attribute shows here as defaulting to an
+#    empty array, you should note that the default recipe has a
+#    list of hardcoded default servers to use if none are provided
+#    by the cookbook user. This is done in this way intentionally.
+#    Please see COOK-1170 for more info:
+#
+#      https://tickets.opscode.com/browse/COOK-1170
