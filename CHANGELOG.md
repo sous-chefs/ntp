@@ -2,6 +2,10 @@ ntp Cookbook CHANGELOG
 ======================
 This file is used to list changes made in each version of the ntp cookbook.
 
+v1.5.2
+------
+### Bug
+- **[COOK-3797](https://tickets.opscode.com/browse/COOK-3797)** - Add /spec to Chefignore
 
 v1.5.0
 ------
