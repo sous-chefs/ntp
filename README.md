@@ -115,6 +115,13 @@ Attributes
   - Default, false
   - Not applicable for Windows nodes
 
+* `ntp['apparmor_enabled']`
+
+  - Boolean, enables configuration of apparmor if set to true
+  - Defaults to false and will make no provisions for apparmor.  If a
+    platform is apparmor enabled by default, (currently ubuntu)
+    default will be true.
+
 
 Usage
 -----

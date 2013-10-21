@@ -38,6 +38,8 @@ else
     group node['ntp']['conf_group']
     mode  '0644'
   end
+
+  include_recipe 'ntp::apparmor' if node['ntp']['apparmor_enabled']
 end
 
 unless node['ntp']['servers'].size > 0

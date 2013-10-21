@@ -40,11 +40,13 @@ default['ntp']['var_group'] = 'ntp'
 default['ntp']['leapfile'] = '/etc/ntp.leapseconds'
 default['ntp']['sync_clock'] = false
 default['ntp']['sync_hw_clock'] = false
+default['ntp']['apparmor_enabled'] = false
 
 # overrides on a platform-by-platform basis
 case node['platform_family']
 when 'debian'
   default['ntp']['service'] = 'ntp'
+  default['ntp']['apparmor_enabled'] = true if node['platform'] == 'ubuntu' && node['platform_version'].to_f >= 8.04
 when 'rhel'
   default['ntp']['packages'] = %w(ntp) if node['platform_version'].to_i < 6
 when 'windows'

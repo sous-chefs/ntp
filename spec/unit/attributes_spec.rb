@@ -77,6 +77,10 @@ describe 'ntp attributes' do
     it 'sets the upstream server list in the recipe' do
       expect(ntp['servers']).to include('0.pool.ntp.org')
     end
+
+    it 'sets apparmor_enabled to false' do
+      expect(ntp['apparmor_enabled']).to eq(false)
+    end
   end
 
   describe 'on Debian-family platforms' do
@@ -84,6 +88,14 @@ describe 'ntp attributes' do
 
     it 'sets the service name to ntp' do
       expect(ntp['service']).to eq('ntp')
+    end
+  end
+
+  describe 'on Ubuntu' do
+    let(:chef_run) { ChefSpec::ChefRunner.new(platform: 'ubuntu', version: '12.04').converge('ntp::default') }
+
+    it 'sets the apparmor_enabled attribute to true' do
+      expect(ntp['apparmor_enabled']).to eq(true)
     end
   end
 
