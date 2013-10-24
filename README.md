@@ -48,6 +48,7 @@ Attributes
   - String, optional attribute. Default is for NTP to listen on all addresses.
   - `ntp["listen_network"]` should be set to 'primary' to listen on the node's primary IP address as determined by ohai, or set to a CIDR (eg: '192.168.4.0/24') to listen on the last node address on that CIDR.
   - `ntp["listen"]` can be set to a specific address (eg: '192.168.4.10') instead of `ntp["listen_network"]` to force listening on a specific address.
+  - If both `ntp["listen"]` and `ntp["listen_network"]` are set then `ntp["listen"]` will always win.
 
 ### Platform specific
 
