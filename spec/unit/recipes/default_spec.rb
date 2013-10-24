@@ -119,6 +119,94 @@ describe 'ntp::default' do
     end
   end
 
+  context 'ntp["listen_network"] is set to "primary"' do
+    let(:chef_run) do
+      runner = ChefSpec::ChefRunner.new
+      runner.node.set['ntp']['listen_network'] = 'primary'
+      runner.converge('ntp::default')
+    end
+
+    it 'expect ntp["listen"] to be equal node["ipaddress"]' do
+      expect(chef_run.node['ntp']['listen']).to eq(chef_run.node['ipaddress'])
+    end
+  end
+
+  context 'ntp["listen_network"] is set to a CIDR' do
+    let(:chef_run) do
+      runner = ChefSpec::ChefRunner.new
+      runner.node.set['network']['interfaces']['eth0']['addresses']['192.168.253.254'] = {
+        'netmask' => '255.255.255.0',
+        'broadcast' => '192.168.253.255',
+        'family' => 'inet'
+      }
+      runner.node.set['ntp']['listen_network'] = '192.168.253.0/24'
+      runner.converge('ntp::default')
+    end
+
+    it 'expect ntp["listen"] to be the CIDR interface address' do
+      expect(chef_run.node['ntp']['listen']).to eq('192.168.253.254')
+    end
+  end
+
+  context 'ntp["listen"] is set to a specific address' do
+    let(:chef_run) do
+      runner = ChefSpec::ChefRunner.new
+      runner.node.set['ntp']['listen'] = '192.168.254.254'
+      runner.converge('ntp::default')
+    end
+
+    it 'expect ntp["listen"] to be the specified address' do
+      expect(chef_run.node['ntp']['listen']).to eq('192.168.254.254')
+    end
+  end
+
+  context 'ntp["listen"] and ntp["listen_network"] are both set (primary test)' do
+    let(:chef_run) do
+      runner = ChefSpec::ChefRunner.new
+      runner.node.set['network']['interfaces']['eth0']['addresses']['192.168.253.254'] = {
+        'netmask' => '255.255.255.0',
+        'broadcast' => '192.168.253.255',
+        'family' => 'inet'
+      }
+      runner.node.set['network']['interfaces']['eth1']['addresses']['192.168.254.254'] = {
+        'netmask' => '255.255.255.0',
+        'broadcast' => '192.168.254.255',
+        'family' => 'inet'
+      }
+      runner.node.set['network']['default_gateway'] = '192.168.253.1'
+      runner.node.set['ntp']['listen_network'] = 'primary'
+      runner.node.set['ntp']['listen'] = '192.168.254.254'
+      runner.converge('ntp::default')
+    end
+
+    it 'expect ntp["listen"] to be the specified address from ntp["listen"]' do
+      expect(chef_run.node['ntp']['listen']).to eq('192.168.254.254')
+    end
+  end
+
+  context 'ntp["listen"] and ntp["listen_network"] are both set (CIDR test)' do
+    let(:chef_run) do
+      runner = ChefSpec::ChefRunner.new
+      runner.node.set['network']['interfaces']['eth0']['addresses']['192.168.253.254'] = {
+        'netmask' => '255.255.255.0',
+        'broadcast' => '192.168.253.255',
+        'family' => 'inet'
+      }
+      runner.node.set['network']['interfaces']['eth1']['addresses']['192.168.254.254'] = {
+        'netmask' => '255.255.255.0',
+        'broadcast' => '192.168.254.255',
+        'family' => 'inet'
+      }
+      runner.node.set['ntp']['listen_network'] = '192.168.253.0/24'
+      runner.node.set['ntp']['listen'] = '192.168.254.254'
+      runner.converge('ntp::default')
+    end
+
+    it 'expect ntp["listen"] to be the specified address from ntp["listen"]' do
+      expect(chef_run.node['ntp']['listen']).to eq('192.168.254.254')
+    end
+  end
+
   context 'the sync_hw_clock attribute is set on a Windows OS' do
     let(:chef_run) do
       runner = ChefSpec::ChefRunner.new(platform: 'windows', version: '2008R2')
