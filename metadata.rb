@@ -19,6 +19,7 @@ supports 'oracle'
 supports 'ubuntu'
 supports 'windows'
 supports 'xcp'
+supports 'gentoo'
 
 suggests 'windows'
 
