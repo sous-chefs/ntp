@@ -105,7 +105,7 @@ Attributes
   - Default, "Microsoft Visual C++ 2008 Redistributable - x86 9.0.21022"
   - Windows platform only
 
-* ntp['sync_hw_clock']
+* `ntp['sync_hw_clock']`
   - Boolean, determines if the ntpdate command is issued to sync the hardware clock
   - Default, false
   - Not applicable for Windows nodes
