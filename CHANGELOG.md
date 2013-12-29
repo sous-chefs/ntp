@@ -2,6 +2,11 @@ ntp Cookbook CHANGELOG
 ======================
 This file is used to list changes made in each version of the ntp cookbook.
 
+v1.5.4 (2013-12-29)
+-------------------
+[COOK-4007]- update to 3612902400
+
+
 v1.5.2
 ------
 ### Bug
