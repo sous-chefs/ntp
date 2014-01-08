@@ -21,6 +21,9 @@
 if platform_family?('windows')
   include_recipe 'ntp::windows_client'
 else
+
+  ::Chef::Recipe.send(:include, Opscode::Ntp::Helper)
+
   node['ntp']['packages'].each do |ntppkg|
     package ntppkg
   end
@@ -68,12 +71,17 @@ if node['ntp']['listen'].nil? && !node['ntp']['listen_network'].nil?
   end
 end
 
+leapfile_enabled = ntpd_supports_native_leapfiles
+
 template node['ntp']['conffile'] do
   source   'ntp.conf.erb'
   owner    node['ntp']['conf_owner']
   group    node['ntp']['conf_group']
   mode     '0644'
   notifies :restart, "service[#{node['ntp']['service']}]"
+  variables(
+      :ntpd_supports_native_leapfiles => leapfile_enabled
+  )
 end
 
 if node['ntp']['sync_clock']
