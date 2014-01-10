@@ -11,10 +11,13 @@
 <% end -%>
 driftfile <%= node['ntp']['driftfile'] %>
 
-statistics loopstats peerstats clockstats
-filegen loopstats file loopstats type day enable
-filegen peerstats file peerstats type day enable
-filegen clockstats file clockstats type day enable
+<%# Enable logs only if statistics option is defined %>
+<% if node['ntp']['statistics'] == true -%>
+<%-%>statistics loopstats peerstats clockstats
+<%-%>filegen loopstats file loopstats type day enable
+<%-%>filegen peerstats file peerstats type day enable
+<%-%>filegen clockstats file clockstats type day enable
+<% end -%>
 
 <%# If the listen attribute is set on the node, then apply it %>
 <% unless node['ntp']['listen'].nil? -%>
