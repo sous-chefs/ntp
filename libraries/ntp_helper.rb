@@ -26,7 +26,7 @@ module Opscode
       include Chef::Mixin::ShellOut
 
       def ntpd_supports_native_leapfiles
-        ntpd_version = get_ntpd_version
+        ntpd_version = determine_ntpd_version
         if ntpd_version
           ntpd_version =~ /ntpd.*(\d+\.\d+\.\d+)/
           # Abuse of Gem::Requirement, but it works
@@ -38,13 +38,11 @@ module Opscode
 
       private
 
-      def get_ntpd_version
-        begin
-          cmd = shell_out!('ntpd --version')
-          cmd.stdout.strip
-        rescue Errno::ENOENT
-          nil
-        end
+      def determine_ntpd_version
+        cmd = shell_out!('ntpd --version')
+        cmd.stdout.strip
+      rescue Errno::ENOENT
+        nil
       end
     end
   end
