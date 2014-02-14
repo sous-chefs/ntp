@@ -13,10 +13,10 @@ describe 'ntp::default' do
   end
 
   it 'creates the ntp.conf' do
-    file('/etc/ntp.conf').must_exist.with(:owner, node['ntp']['conf_owner']).and(:group, node['ntp']['conf_group'])
+    file(node['ntp']['conffile']).must_exist.with(:owner, node['ntp']['conf_owner']).and(:group, node['ntp']['conf_group'])
 
     node['ntp']['servers'].each do |s|
-      file('/etc/ntp.conf').must_include s
+      file(node['ntp']['conffile']).must_include s
     end
   end
 end
