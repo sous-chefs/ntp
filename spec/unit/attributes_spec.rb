@@ -81,6 +81,10 @@ describe 'ntp attributes' do
     it 'sets apparmor_enabled to false' do
       expect(ntp['apparmor_enabled']).to eq(false)
     end
+
+    it 'sets monitor to false' do
+      expect(ntp['monitor']).to eq(false)
+    end
   end
 
   describe 'on Debian-family platforms' do
