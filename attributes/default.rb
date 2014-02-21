@@ -43,6 +43,7 @@ default['ntp']['sync_hw_clock'] = false
 default['ntp']['listen'] = nil
 default['ntp']['listen_network'] = nil
 default['ntp']['apparmor_enabled'] = false
+default['ntp']['monitor'] = false
 
 # overrides on a platform-by-platform basis
 case node['platform_family']

@@ -25,6 +25,12 @@ interface listen 127.0.0.1
   <% end -%>
 <% end -%>
 
+<% if node['ntp']['monitor'] -%>
+enable monitor
+<% else -%>
+disable monitor
+<% end -%>
+
 <%# If ntp.peers is not empty %>
 <% unless node['ntp']['peers'].empty? -%>
 <%   node['ntp']['peers'].each do |ntppeer| -%>
