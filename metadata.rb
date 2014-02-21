@@ -8,17 +8,9 @@ version           '1.5.5'
 
 recipe 'ntp', 'Installs and configures ntp either as a server or client'
 
-supports 'amazon'
-supports 'centos'
-supports 'debian'
-supports 'fedora'
-supports 'freebsd'
-supports 'redhat'
-supports 'scientific'
-supports 'oracle'
-supports 'ubuntu'
-supports 'windows'
-supports 'xcp'
+%w{ amazon centos debian fedora freebsd redhat scientific solaris2 oracle ubuntu windows xcp }.each do |os|
+  supports os
+end
 
 suggests 'windows'
 

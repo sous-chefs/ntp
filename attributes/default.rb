@@ -68,4 +68,15 @@ when 'freebsd'
   default['ntp']['statsdir'] = "#{node['ntp']['varlibdir']}/ntpstats"
   default['ntp']['conf_group'] = 'wheel'
   default['ntp']['var_group'] = 'wheel'
+when 'solaris2'
+  default['ntp']['packages'] = %w(ntp)
+  default['ntp']['service'] = 'ntp'
+  default['ntp']['varlibdir'] = '/var/ntp'
+  default['ntp']['conffile'] = '/etc/inet/ntp.conf'
+  default['ntp']['statsdir'] = "#{node['ntp']['varlibdir']}/ntpstats/"
+  default['ntp']['conf_owner'] = 'root'
+  default['ntp']['conf_group'] = 'root'
+  default['ntp']['var_owner'] = 'root'
+  default['ntp']['var_group'] = 'sys'
+  default['ntp']['leapfile'] = '/etc/inet/ntp.leap'
 end

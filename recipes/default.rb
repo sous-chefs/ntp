@@ -37,6 +37,7 @@ else
     owner node['ntp']['conf_owner']
     group node['ntp']['conf_group']
     mode  '0644'
+    source 'ntp.leapseconds'
   end
 
   include_recipe 'ntp::apparmor' if node['ntp']['apparmor_enabled']
