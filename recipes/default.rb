@@ -50,7 +50,7 @@ unless node['ntp']['servers'].size > 0
     '2.pool.ntp.org',
     '3.pool.ntp.org'
   ]
-  log 'No NTP servers specified, using default ntp.org server pools'
+  Chef::Log.debug 'No NTP servers specified, using default ntp.org server pools'
 end
 
 if node['ntp']['listen'].nil? && !node['ntp']['listen_network'].nil?
