@@ -2,6 +2,11 @@ ntp Cookbook CHANGELOG
 ======================
 This file is used to list changes made in each version of the ntp cookbook.
 
+v1.6.2 (2014-03-19)
+-------------------
+- [COOK-4162] - change "No NTP servers specified" message to :debug
+
+
 v1.6.0 (2014-02-21)
 -------------------
 ### Improvement
