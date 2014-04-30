@@ -69,11 +69,30 @@ if node['ntp']['listen'].nil? && !node['ntp']['listen_network'].nil?
   end
 end
 
+
+'require resolv'
+records4=[]
+records6=[]
+dns_node = search(:node, 'role:dns').first
+resolver = Resolv::DNS.new(:nameserver => ["#{dns_node['cloud']['local_hostname']}"])
+(node['ntp']['servers'] - node['ntp']['peers']).each do |fqdn| 
+  resolver.getaddresses("#{fqdn}").each do |ip|
+    case  ip.to_s 
+    when Resolv::IPv4::Regex
+      ipv4_address=ip.to_s
+      records4 << {:ip => ipv4_address,:fqdn=>fqdn}
+    when Resolv::IPv6::Regex
+      ipv6_address=ip.to_s
+      records6 << {:ip => ipv6_address,:fqdn=>fqdn}
+    end
+  end
+end
 template node['ntp']['conffile'] do
   source   'ntp.conf.erb'
   owner    node['ntp']['conf_owner']
   group    node['ntp']['conf_group']
   mode     '0644'
+  variables(:records4 =>records4, :records6 => records6)
   notifies :restart, "service[#{node['ntp']['service']}]"
 end
 
