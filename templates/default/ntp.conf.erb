@@ -30,7 +30,9 @@ enable monitor
 <% else -%>
 disable monitor
 <% end -%>
-
+<% if !node['ntp']['restrict_default'].empty? -%>
+<%= node['ntp']['restrict_default'] %>
+<% end -%>
 <%# If ntp.peers is not empty %>
 <% unless node['ntp']['peers'].empty? -%>
 <%   node['ntp']['peers'].each do |ntppeer| -%>
@@ -45,12 +47,19 @@ disable monitor
 <%# Whether this is a client or server, we want upstream servers. %>
 <%# We should guard the servers array against deep merge. %>
 <%# This should keep authoritative local servers from being included twice. %>
-<% ( node['ntp']['servers'] - node['ntp']['peers'] ).each do |ntpserver| -%>
+<% @records4.each do |record| %>
 <%#   Loop through defined servers, but don't try to upstream ourself %>
-<%   if node['ipaddress'] != ntpserver and node['fqdn'] != ntpserver -%>
-<%  -%>server <%= ntpserver %> iburst
-<%  -%>restrict <%= ntpserver %> nomodify notrap noquery
-<%   end -%>
+<%    if node['ipaddress'] != record[:ip] and node['fqdn'] != record[:fqdn] -%>
+<%   -%>server <%= record[:fqdn] %> iburst
+<%   -%>restrict <%= record[:ip] %> nomodify notrap noquery
+<%    end -%>
+<% end -%>
+<% @records6.each do |record| %>
+<%#   Loop through defined servers, but don't try to upstream ourself %>
+<%    if node['ipaddress'] != record[:ip] and node['fqdn'] != record[:fqdn] -%>
+<%   -%>server <%= record[:fqdn] %> iburst
+<%   -%>restrict <%= record[:ip] %> nomodify notrap noquery
+<%    end -%>
 <% end -%>
 
 restrict default kod notrap nomodify nopeer noquery
