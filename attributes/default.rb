@@ -6,6 +6,8 @@
 # Author:: Tim Smith (<tsmith@limelight.com>)
 # Author:: Charles Johnson (<charles@opscode.com>)
 #
+# Contributor: Kévin Maziere (<kevin@kbrwadventure.com>)
+#
 # Copyright 2009-2013, Opscode, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -22,7 +24,7 @@
 #
 
 # default attributes for all platforms
-default['ntp']['servers']   = [] # The default recipe sets a list of common NTP servers (COOK-1170)
+default['ntp']['servers']   = [""] # The default recipe sets a list of common NTP servers (COOK-1170)
 default['ntp']['peers'] = []
 default['ntp']['restrictions'] = []
 
@@ -44,6 +46,8 @@ default['ntp']['listen'] = nil
 default['ntp']['listen_network'] = nil
 default['ntp']['apparmor_enabled'] = false
 default['ntp']['monitor'] = false
+default['ntp']['restrict_default'] = ""
+#default['ntp']['restrict_default'] = "restrict default ignore" #Warning if set you must set all Ip of peers/servers with their own restrict line into ntp.conf file
 
 # overrides on a platform-by-platform basis
 case node['platform_family']
