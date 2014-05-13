@@ -1,6 +1,6 @@
 NTP Cookbook
 ============
-[![Build Status](https://secure.travis-ci.org/opscode-cookbooks/ntp.png?branch=master)](http://travis-ci.org/opscode-cookbooks/ntp)
+[![Build Status](https://secure.travis-ci.org/gmiranda23/ntp.png?branch=master)](http://travis-ci.org/gmiranda23/ntp)
 
 Installs and configures ntp. On Windows systems it uses the Meinberg port of the standard NTPd client to Windows.
 
@@ -192,15 +192,15 @@ This section details "quick development" steps. For a detailed explanation, see 
 
 License & Authors
 -----------------
-- Author:: Joshua Timberman (<joshua@opscode.com>)
+- Author:: Joshua Timberman (<joshua@getchef.com>)
 - Contributor:: Eric G. Wolfe (<wolfe21@marshall.edu>)
 - Contributor:: Fletcher Nichol (<fletcher@nichol.ca>)
 - Contributor:: Tim Smith (<tsmith@limelight.com>)
-- Contributor:: Charles Johnson (<charles@opscode.com>)
+- Contributor:: Charles Johnson (<charles@getchef.com>)
 - Contributor:: Brad Knowles (<bknowles@momentumsi.com>)
 
 ```text
-Copyright 2009-2013, Opscode, Inc.
+Copyright 2009-2013, Chef Software, Inc.
 Copyright 2012, Eric G. Wolfe
 Copyright 2012, Fletcher Nichol
 Copyright 2012, Webtrends, Inc.
