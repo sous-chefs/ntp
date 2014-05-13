@@ -8,7 +8,7 @@ version           '1.6.3'
 
 recipe 'ntp', 'Installs and configures ntp either as a server or client'
 
-%w{ amazon centos debian fedora freebsd redhat scientific solaris2 oracle ubuntu windows xcp }.each do |os|
+%w(amazon centos debian fedora freebsd redhat scientific solaris2 oracle ubuntu windows xcp).each do |os|
   supports os
 end
 
