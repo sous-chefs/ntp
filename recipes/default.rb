@@ -60,7 +60,7 @@ if node['ntp']['listen'].nil? && node['ntp']['listen_network']
     require 'ipaddr'
     net = IPAddr.new(node['ntp']['listen_network'])
 
-    node['network']['interfaces'].each do |iface, addrs|
+    node['network']['interfaces'].each do |_iface, addrs|
       addrs['addresses'].each do |ip, params|
         addr = IPAddr.new(ip) if params['family'].eql?('inet') || params['family'].eql?('inet6')
         node.set['ntp']['listen'] = addr if net.include?(addr)
