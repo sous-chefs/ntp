@@ -21,7 +21,7 @@
 if platform_family?('windows')
   include_recipe 'ntp::windows_client'
 else
-  node['ntp']['packages'].each do |ntppkg|
+  Array(node['ntp']['packages']).each do |ntppkg|
     package ntppkg
   end
 
