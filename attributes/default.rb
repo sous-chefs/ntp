@@ -27,7 +27,7 @@ default['ntp']['peers'] = []
 default['ntp']['restrictions'] = []
 
 # internal attributes
-default['ntp']['packages'] = %w(ntp ntpdate)
+default['ntp']['packages'] = 'ntp'
 default['ntp']['service'] = 'ntpd'
 default['ntp']['varlibdir'] = '/var/lib/ntp'
 default['ntp']['driftfile'] = "#{node['ntp']['varlibdir']}/ntp.drift"
