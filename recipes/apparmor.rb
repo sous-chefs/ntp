@@ -21,6 +21,22 @@ service 'apparmor' do
   action :nothing
 end
 
+directory '/etc/apparmor.d/local/' do
+  owner 'root'
+  group 'root'
+  mode '0755'
+  not_if { ::File.directory?('/etc/apparmor.d/local/') }
+end
+
+cookbook_file '/etc/apparmor.d/local/usr.sbin.ntpd' do
+  source 'local/usr.sbin.ntpd'
+  owner 'root'
+  group 'root'
+  mode '0644'
+  not_if { ::File.exists?('/etc/apparmor.d/local/usr.sbin.ntpd') }
+  notifies :restart, 'service[apparmor]'
+end
+
 cookbook_file '/etc/apparmor.d/usr.sbin.ntpd' do
   source 'usr.sbin.ntpd.apparmor'
   owner 'root'
