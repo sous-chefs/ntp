@@ -7,7 +7,9 @@
 <%  -%>tinker panic 0
 <%   end -%>
 <%-%>statsdir <%= node['ntp']['statsdir'] %>
+<%   if @ntpd_supports_native_leapfiles -%>
 <%-%>leapfile <%= node['ntp']['leapfile'] %>
+<%   end -%>
 <% end -%>
 driftfile <%= node['ntp']['driftfile'] %>
 
