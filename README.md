@@ -16,6 +16,7 @@ Requirements
 ### Supported Operating Systems
 - Debian-family Linux Distributions
 - RedHat-family Linux Distributions
+- Gentoo Linux
 - FreeBSD
 - Windows
 

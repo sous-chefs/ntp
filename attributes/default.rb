@@ -68,6 +68,9 @@ when 'freebsd'
   default['ntp']['statsdir'] = "#{node['ntp']['varlibdir']}/ntpstats"
   default['ntp']['conf_group'] = 'wheel'
   default['ntp']['var_group'] = 'wheel'
+when 'gentoo'
+  default['ntp']['packages'] = %w(ntp)
+  default['ntp']['leapfile'] = "#{node['ntp']['varlibdir']}/ntp.leapseconds"
 when 'solaris2'
   default['ntp']['packages'] = %w(ntp)
   default['ntp']['service'] = 'ntp'
