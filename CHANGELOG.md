@@ -2,10 +2,15 @@ ntp Cookbook CHANGELOG
 ======================
 This file is used to list changes made in each version of the ntp cookbook.
 
+v1.6.4 (2014-07-02)
+-------------------
+- Leapseconds File Expired, update to 3626380800
+- **[COOK-3887](https://tickets.opscode.com/browse/COOK-3887)** - Trivial changes to achieve Gentoo support
+- **[COOK-1876](https://tickets.opscode.com/browse/COOK-1876)** - ntp leapfile assumes ntpd >= 4.2.6 syntax
+
 v1.6.2 (2014-03-19)
 -------------------
 - [COOK-4162] - change "No NTP servers specified" message to :debug
-
 
 v1.6.0 (2014-02-21)
 -------------------
