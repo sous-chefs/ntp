@@ -4,6 +4,10 @@ This file is used to list changes made in each version of the ntp cookbook.
 
 v1.6.4 (2014-07-02)
 -------------------
+
+
+v1.6.4 (2014-07-02)
+-------------------
 - Leapseconds File Expired, update to 3626380800
 - **[COOK-3887](https://tickets.opscode.com/browse/COOK-3887)** - Trivial changes to achieve Gentoo support
 - **[COOK-1876](https://tickets.opscode.com/browse/COOK-1876)** - ntp leapfile assumes ntpd >= 4.2.6 syntax
