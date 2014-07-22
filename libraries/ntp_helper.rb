@@ -39,7 +39,7 @@ module Opscode
       private
 
       def determine_ntpd_version
-        cmd = shell_out!('ntpd --version')
+        cmd = shell_out!('ntpd --version 2>&1')
         cmd.stdout.strip
       rescue Errno::ENOENT
         nil
