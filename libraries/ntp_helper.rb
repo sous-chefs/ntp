@@ -41,7 +41,7 @@ module Opscode
       def determine_ntpd_version
         cmd = shell_out!('ntpd --version 2>&1')
         cmd.stdout.strip
-      rescue Errno::ENOENT
+      rescue Errno::ENOENT, Mixlib::ShellOut::ShellCommandFailed
         nil
       end
     end
