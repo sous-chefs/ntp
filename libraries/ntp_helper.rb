@@ -30,7 +30,7 @@ module Opscode
         if ntpd_version
           ntpd_version =~ /ntpd.*(\d+\.\d+\.\d+)/
           # Abuse of Gem::Requirement, but it works
-          Gem::Requirement.new('>= 4.2.6').satisfied_by?(Gem::Version.new(Regexp.last_match[1]))
+          Gem::Requirement.new('>= 4.2.6').satisfied_by?(Gem::Version.new(Regexp.last_match(1)))
         else
           false
         end
@@ -41,7 +41,7 @@ module Opscode
       def determine_ntpd_version
         cmd = shell_out!('ntpd --version 2>&1')
         cmd.stdout.strip
-      rescue Errno::ENOENT
+      rescue Errno::ENOENT, Mixlib::ShellOut::ShellCommandFailed
         nil
       end
     end
