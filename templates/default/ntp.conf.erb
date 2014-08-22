@@ -6,17 +6,21 @@
 <%   if node['virtualization'] and node['virtualization']['role'] == 'guest' -%>
 <%  -%>tinker panic 0
 <%   end -%>
+<%   if node['ntp']['stats'] -%>
 <%-%>statsdir <%= node['ntp']['statsdir'] %>
+<%   end -%>
 <%   if @ntpd_supports_native_leapfiles -%>
 <%-%>leapfile <%= node['ntp']['leapfile'] %>
 <%   end -%>
 <% end -%>
 driftfile <%= node['ntp']['driftfile'] %>
 
+<% if node['ntp']['stats'] -%>
 statistics loopstats peerstats clockstats
 filegen loopstats file loopstats type day enable
 filegen peerstats file peerstats type day enable
 filegen clockstats file clockstats type day enable
+<% end -%>
 
 <%# If the listen attribute is set on the node, then apply it %>
 <% unless node['ntp']['listen'].nil? -%>

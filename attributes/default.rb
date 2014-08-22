@@ -44,6 +44,7 @@ default['ntp']['listen'] = nil
 default['ntp']['listen_network'] = nil
 default['ntp']['apparmor_enabled'] = false
 default['ntp']['monitor'] = false
+default['ntp']['stats'] = true
 
 # overrides on a platform-by-platform basis
 case node['platform_family']
