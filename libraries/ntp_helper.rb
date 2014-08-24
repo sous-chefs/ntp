@@ -40,7 +40,7 @@ module Opscode
 
       def determine_ntpd_version
         cmd = shell_out!('ntpd --version')
-        cmd.stdout.strip
+        node['platform_version'].to_i == 7 && node['platform'] == 'centos' ? cmd.stderr.strip : cmd.stdout.strip
       rescue Errno::ENOENT
         nil
       end
