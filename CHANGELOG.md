@@ -2,6 +2,10 @@ ntp Cookbook CHANGELOG
 ======================
 This file is used to list changes made in each version of the ntp cookbook.
 
+v1.6.5 (2014-07-02)
+-------------------
+- Add minpoll and maxpoll attributes
+
 v1.6.4 (2014-07-02)
 -------------------
 

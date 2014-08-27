@@ -44,6 +44,10 @@ default['ntp']['listen'] = nil
 default['ntp']['listen_network'] = nil
 default['ntp']['apparmor_enabled'] = false
 default['ntp']['monitor'] = false
+# Default 2^minpoll or 64 seconds: leave commented to use system default
+#default['ntp']['minpoll'] = '6'
+# Default 2^maxpoll or 1024 seconds: leave commented to use system default
+#default['ntp']['maxpoll'] = '10'
 
 # overrides on a platform-by-platform basis
 case node['platform_family']
