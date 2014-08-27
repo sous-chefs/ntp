@@ -51,6 +51,13 @@ Attributes
   - `ntp["listen"]` can be set to a specific address (eg: '192.168.4.10') instead of `ntp["listen_network"]` to force listening on a specific address.
   - If both `ntp["listen"]` and `ntp["listen_network"]` are set then `ntp["listen"]` will always win.
 
+* `ntp["minpoll"]`
+  - Number, optional attribute. Default is '6', meaning minimum
+    polling time is 2^6 seconds
+* `ntp["maxpoll"]`
+  - Number, optional attribute. Default is '8', meaning maximum
+    polling time is 2^8 seconds
+
 ### Platform specific
 
 * `ntp['packages']`

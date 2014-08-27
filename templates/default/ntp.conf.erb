@@ -18,6 +18,14 @@ filegen loopstats file loopstats type day enable
 filegen peerstats file peerstats type day enable
 filegen clockstats file clockstats type day enable
 
+<%# If the maxpoll or minpoll attributes are set, apply them %>
+<% unless node['ntp']['maxpoll'].nil? -%>
+maxpoll <%= node['ntp']['maxpoll'] %>
+<% end -%>
+<% unless node['ntp']['minpoll'].nil? -%>
+maxpoll <%= node['ntp']['minpoll'] %>
+<% end -%>
+
 <%# If the listen attribute is set on the node, then apply it %>
 <% unless node['ntp']['listen'].nil? -%>
 interface listen <%= node['ntp']['listen'] %>
