@@ -12,3 +12,5 @@ LineLength:
   Enabled: false
 MethodLength:
   Max: 30
+SingleSpaceBeforeFirstArg:
+  Enabled: false
