@@ -2,9 +2,9 @@ ntp Cookbook CHANGELOG
 ======================
 This file is used to list changes made in each version of the ntp cookbook.
 
-v1.6.4 (2014-07-02)
+v1.6.5 (2014-09-25)
 -------------------
-
+- Ensure that ntp version is captured
 
 v1.6.4 (2014-07-02)
 -------------------
