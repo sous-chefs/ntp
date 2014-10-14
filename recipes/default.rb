@@ -22,8 +22,6 @@ if platform_family?('windows')
   include_recipe 'ntp::windows_client'
 else
 
-  ::Chef::Recipe.send(:include, Opscode::Ntp::Helper)
-
   node['ntp']['packages'].each do |ntppkg|
     package ntppkg
   end
@@ -71,6 +69,8 @@ if node['ntp']['listen'].nil? && !node['ntp']['listen_network'].nil?
     end
   end
 end
+
+::Chef::Recipe.send(:include, Opscode::Ntp::Helper)
 
 leapfile_enabled = ntpd_supports_native_leapfiles
 
