@@ -99,10 +99,11 @@ if node['ntp']['sync_clock']
   end
 end
 
-if node['ntp']['sync_hw_clock'] && !platform_family?('windows')
+if node['ntp']['sync_hw_clock']
   execute 'Force sync hardware clock with system clock' do
     command 'hwclock --systohc'
     action :run
+    not_if { platform_family?('windows') }
   end
 end
 
