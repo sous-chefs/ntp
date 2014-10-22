@@ -28,11 +28,13 @@ interface ignore <%= ignore %>
 
 <%# If the listen attribute is set on the node, then apply it %>
 <% unless node['ntp']['listen'].nil? -%>
-interface listen <%= node['ntp']['listen'] %>
-  <%# The service must always listen on localhost %>
-  <% if node['ntp']['listen'] != "127.0.0.1" -%>
+<%   Array(node['ntp']['listen']).each do |listen| -%>
+interface listen <%= listen %>
+<%   end -%>
+<%#  The service must always listen on localhost %>
+<%   unless Array(node['ntp']['listen']).include? '127.0.0.1' -%>
 interface listen 127.0.0.1
-  <% end -%>
+<%   end -%>
 <% end -%>
 
 <% if node['ntp']['monitor'] -%>
