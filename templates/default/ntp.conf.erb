@@ -4,7 +4,9 @@
 <% unless node['platform'] == 'windows' -%>
 <%# See http://www.vmware.com/vmtn/resources/238 p. 23 for explanation %>
 <%   if node['virtualization'] and node['virtualization']['role'] == 'guest' -%>
-<%  -%>tinker panic 0
+<%     if node['ntp'].has_key?('tinker') && ! node['ntp']['tinker'].empty? -%>
+<%    -%>tinker <%= node['ntp']['tinker'].flatten.join(' ') %>
+<%     end -%>
 <%   end -%>
 <%-%>statsdir <%= node['ntp']['statsdir'] %>
 <%   if @ntpd_supports_native_leapfiles -%>
