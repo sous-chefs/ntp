@@ -117,6 +117,10 @@ Attributes
     platform is apparmor enabled by default, (currently Ubuntu)
     default will be true.
 
+* `ntp['use_cmos']`
+  - Boolean, uses a high stratum undisciplined clock for machines with real CMOS clock.
+  - Defaults to true unless a platform appears to be virtualized according to Ohai.
+
 
 Usage
 -----

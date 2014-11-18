@@ -83,3 +83,11 @@ when 'solaris2'
   default['ntp']['var_group'] = 'sys'
   default['ntp']['leapfile'] = '/etc/inet/ntp.leap'
 end
+
+unless node['platform'] == 'windows'
+  if not node['virtualization'] or node['virtualization']['role'] != 'guest'
+    default['ntp']['use_cmos'] = true
+  else
+    default['ntp']['use_cmos'] = false
+  end
+end
