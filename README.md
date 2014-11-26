@@ -141,7 +141,6 @@ name 'ntp_server'
 description 'Role applied to the system that should be an NTP server.'
 default_attributes(
   'ntp' => {
-    'is_server'    => 'true',
     'servers'      => ['0.pool.ntp.org', '1.pool.ntp.org'],
     'peers'        => ['time0.int.example.org', 'time1.int.example.org'],
     'restrictions' => ['10.0.0.0 mask 255.0.0.0 nomodify notrap']
@@ -157,7 +156,7 @@ If for some reason you need to stop and remove the ntp daemon, you can apply thi
 
 ### windows_client recipe
 
-Windows only. Apply on a Windows host to install the Meinberg NTPd client. 
+Windows only. Apply on a Windows host to install the Meinberg NTPd client.
 
 
 Development
