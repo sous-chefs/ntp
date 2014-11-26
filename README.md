@@ -51,6 +51,30 @@ Attributes
   - `ntp["listen"]` can be set to a specific address (eg: '192.168.4.10') instead of `ntp["listen_network"]` to force listening on a specific address.
   - If both `ntp["listen"]` and `ntp["listen_network"]` are set then `ntp["listen"]` will always win.
 
+* `ntp['peer']['use_iburst']` (applies to NTP Servers ONLY)
+  - Boolean. Defaults to true. Enables iburst in peer declaration.
+
+* `ntp['peer']['use_burst']` (applies to NTP Servers ONLY)
+  - Boolean. Defaults to false. Enables burst in peer declaration.
+
+* `ntp['peer']['minpoll']` (applies to NTP Servers ONLY)
+  - Boolean. Defaults to 6 (ntp default). Specify the minimum poll intervals for NTP messages, in seconds to the power of two.
+
+* `ntp['peer']['maxpoll']` (applies to NTP Servers ONLY)
+  - Boolean. Defaults to 10 (ntp default). Specify the maximum poll intervals for NTP messages, in seconds to the power of two.
+
+* `ntp['server']['use_iburst']` (applies to NTP Servers and Clients)
+  - Boolean. Defaults to true. Enables iburst in server declaration.
+
+* `ntp['server']['use_burst']` (applies to NTP Servers and Clients)
+  - Boolean. Defaults to false. Enables burst in server declaration.
+
+* `ntp['server']['minpoll']` (applies to NTP Servers and Clients)
+  - Boolean. Defaults to 6 (ntp default). Specify the minimum poll intervals for NTP messages, in seconds to the power of two.
+
+* `ntp['server']['maxpoll']` (applies to NTP Servers and Clients)
+  - Boolean. Defaults to 10 (ntp default). Specify the maximum poll intervals for NTP messages, in seconds to the power of two.
+
 ### Platform specific
 
 * `ntp['packages']`
@@ -157,7 +181,7 @@ If for some reason you need to stop and remove the ntp daemon, you can apply thi
 
 ### windows_client recipe
 
-Windows only. Apply on a Windows host to install the Meinberg NTPd client. 
+Windows only. Apply on a Windows host to install the Meinberg NTPd client.
 
 
 Development
