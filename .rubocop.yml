@@ -1,14 +1,21 @@
 AllCops:
-  Excludes:
+  Exclude:
     - vendor/**
 
-AlignParameters:
+Style/SingleSpaceBeforeFirstArg:
   Enabled: false
-Encoding:
-  Enabled: false
+
 HashSyntax:
   Enabled: false
+
 LineLength:
   Enabled: false
+
 MethodLength:
   Max: 30
+
+Lint/UnusedBlockArgument:
+  Enabled: false
+
+Style/BlockComments:
+  Enabled: false
