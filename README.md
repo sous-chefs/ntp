@@ -1,6 +1,6 @@
 NTP Cookbook
 ============
-[![Build Status](https://secure.travis-ci.org/opscode-cookbooks/ntp.png?branch=master)](http://travis-ci.org/opscode-cookbooks/ntp)
+[![Build Status](https://secure.travis-ci.org/gmiranda23/ntp.png?branch=master)](http://travis-ci.org/gmiranda23/ntp)
 
 Installs and configures ntp. On Windows systems it uses the Meinberg port of the standard NTPd client to Windows.
 
@@ -157,7 +157,7 @@ If for some reason you need to stop and remove the ntp daemon, you can apply thi
 
 ### windows_client recipe
 
-Windows only. Apply on a Windows host to install the Meinberg NTPd client. 
+Windows only. Apply on a Windows host to install the Meinberg NTPd client.
 
 
 Development
@@ -179,10 +179,8 @@ This section details "quick development" steps. For a detailed explanation, see 
 4. **Write tests**
 5. Make your changes/patches/fixes, committing appropriately
 6. Run the tests:
-    - `bundle exec foodcritic -f any .`
-    - `bundle exec rspec`
-    - `bundle exec rubocop`
-    - `bundle exec kitchen test`
+    - `bundle exec rake`
+    - `bundle exec rake kitchen`
 
   In detail:
     - Foodcritic will catch any Chef-specific style errors
