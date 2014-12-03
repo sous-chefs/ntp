@@ -2,6 +2,13 @@ ntp Cookbook CHANGELOG
 ======================
 This file is used to list changes made in each version of the ntp cookbook.
 
+v1.6.6 (2014-12-02)
+-------------------
+- Ensure that ntp version is captured
+- **[PR #76](https://github.com/gmiranda23/ntp/pull/76)** - Overhauled Testing
+- **[PR #68](https://github.com/gmiranda23/ntp/pull/68)** - Updated Leapseconds
+- **[PR #51](https://github.com/gmiranda23/ntp/pull/51)** - Berksfile source deprecation
+
 v1.6.5 (2014-09-25)
 -------------------
 - Ensure that ntp version is captured
