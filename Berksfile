@@ -1,4 +1,4 @@
-source "https://api.berkshelf.com"
+site :opscode
 metadata
 
 group :integration do
