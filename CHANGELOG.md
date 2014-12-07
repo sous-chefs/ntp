@@ -9,6 +9,7 @@ v1.6.9 (2014-12-06)
 - **[PR #57](https://github.com/gmiranda23/ntp/pull/57)** - Move include statement on helper outside windows? check
 - **[PR #71](https://github.com/gmiranda23/ntp/pull/71)** - Ability to listen more than one interface
 - **[PR #73](https://github.com/gmiranda23/ntp/pull/73)** - Fix appamor configuration for Ubuntu
+- **[PR #74](https://github.com/gmiranda23/ntp/pull/74)** - Remove is_server from example
 
 v1.6.8 (2014-12-04)
 -------------------
