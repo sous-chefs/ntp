@@ -5,6 +5,7 @@ This file is used to list changes made in each version of the ntp cookbook.
 v1.6.9 (2014-12-06)
 -------------------
 - **[PR #37](https://github.com/gmiranda23/ntp/pull/37)** - Check that apparmor exists before enabling service
+- **[PR #45](https://github.com/gmiranda23/ntp/pull/45)** - Statistics logging switch (not available for Windows)
 
 v1.6.8 (2014-12-04)
 -------------------
