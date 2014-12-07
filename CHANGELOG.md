@@ -6,6 +6,9 @@ v1.6.9 (2014-12-06)
 -------------------
 - **[PR #37](https://github.com/gmiranda23/ntp/pull/37)** - Check that apparmor exists before enabling service
 - **[PR #45](https://github.com/gmiranda23/ntp/pull/45)** - Statistics logging switch (not available for Windows)
+- **[PR #57](https://github.com/gmiranda23/ntp/pull/57)** - Move include statement on helper outside windows? check
+- **[PR #71](https://github.com/gmiranda23/ntp/pull/71)** - Ability to listen more than one interface
+- **[PR #73](https://github.com/gmiranda23/ntp/pull/73)** - Fix appamor configuration for Ubuntu
 
 v1.6.8 (2014-12-04)
 -------------------
