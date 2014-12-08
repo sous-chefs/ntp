@@ -1,6 +1,6 @@
 NTP Cookbook
 ============
-[![Build Status](https://secure.travis-ci.org/opscode-cookbooks/ntp.png?branch=master)](http://travis-ci.org/opscode-cookbooks/ntp)
+[![Build Status](https://secure.travis-ci.org/gmiranda23/ntp.png?branch=master)](http://travis-ci.org/gmiranda23/ntp)
 
 Installs and configures ntp. On Windows systems it uses the Meinberg port of the standard NTPd client to Windows.
 
@@ -51,6 +51,7 @@ Attributes
   - `ntp["listen"]` can be set to a specific address (eg: '192.168.4.10') instead of `ntp["listen_network"]` to force listening on a specific address.
   - If both `ntp["listen"]` and `ntp["listen_network"]` are set then `ntp["listen"]` will always win.
 
+<<<<<<< HEAD
 * `ntp['peer']['use_iburst']` (applies to NTP Servers ONLY)
   - Boolean. Defaults to true. Enables iburst in peer declaration.
 
@@ -74,6 +75,12 @@ Attributes
 
 * `ntp['server']['maxpoll']` (applies to NTP Servers and Clients)
   - Boolean. Defaults to 10 (ntp default). Specify the maximum poll intervals for NTP messages, in seconds to the power of two.
+=======
+* `ntp["statistics"]`
+ - Boolean. Default to true. Enable/disable statistics data logging into
+   `ntp['statsdir']`.
+ - Not available on Windows.
+>>>>>>> a778d693a5e3664d232e93468b6293597fc94dc7
 
 ### Platform specific
 
@@ -165,7 +172,6 @@ name 'ntp_server'
 description 'Role applied to the system that should be an NTP server.'
 default_attributes(
   'ntp' => {
-    'is_server'    => 'true',
     'servers'      => ['0.pool.ntp.org', '1.pool.ntp.org'],
     'peers'        => ['time0.int.example.org', 'time1.int.example.org'],
     'restrictions' => ['10.0.0.0 mask 255.0.0.0 nomodify notrap']
@@ -203,10 +209,8 @@ This section details "quick development" steps. For a detailed explanation, see 
 4. **Write tests**
 5. Make your changes/patches/fixes, committing appropriately
 6. Run the tests:
-    - `bundle exec foodcritic -f any .`
-    - `bundle exec rspec`
-    - `bundle exec rubocop`
-    - `bundle exec kitchen test`
+    - `bundle exec rake`
+    - `bundle exec rake kitchen`
 
   In detail:
     - Foodcritic will catch any Chef-specific style errors

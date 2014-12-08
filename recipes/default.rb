@@ -18,11 +18,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+::Chef::Recipe.send(:include, Opscode::Ntp::Helper)
+
 if platform_family?('windows')
   include_recipe 'ntp::windows_client'
 else
-
-  ::Chef::Recipe.send(:include, Opscode::Ntp::Helper)
 
   node['ntp']['packages'].each do |ntppkg|
     package ntppkg
@@ -99,11 +99,10 @@ if node['ntp']['sync_clock']
   end
 end
 
-if node['ntp']['sync_hw_clock'] && !platform_family?('windows')
-  execute 'Force sync hardware clock with system clock' do
-    command 'hwclock --systohc'
-    action :run
-  end
+execute 'Force sync hardware clock with system clock' do
+  command 'hwclock --systohc'
+  action :run
+  only_if { node['ntp']['sync_hw_clock'] && !platform_family?('windows') }
 end
 
 service node['ntp']['service'] do

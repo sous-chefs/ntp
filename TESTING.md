@@ -42,10 +42,8 @@ Development
 5. Write tests to support those changes. It is highly recommended you write both unit and integration tests.
 6. Run the tests:
 
-    - `bundle exec rspec`
-    - `bundle exec foodcritic .`
-    - `bundle exec rubocop`
-    - `bundle exec kitchen test`
+    - `bundle exec rake`
+    - `bundle exec rake kitchen`
 
 7. Assuming the tests pass, open a Pull Request on GitHub
 8. Open a JIRA ticket for this component, linking the JIRA ticket to the Pull Request and visa versa.

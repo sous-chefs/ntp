@@ -41,7 +41,7 @@ windows_package node['ntp']['vs_runtime_productname'] do
   only_if        { node['kernel']['release'].to_f < 6 }
 end
 
-unless File.exists?('C:/NTP/bin/ntpd.exe')
+unless File.exist?('C:/NTP/bin/ntpd.exe')
   remote_file "#{Chef::Config[:file_cache_path]}/ntpd.exe" do
     source node['ntp']['package_url']
   end
