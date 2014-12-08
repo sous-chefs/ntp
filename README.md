@@ -51,7 +51,11 @@ Attributes
   - `ntp["listen"]` can be set to a specific address (eg: '192.168.4.10') instead of `ntp["listen_network"]` to force listening on a specific address.
   - If both `ntp["listen"]` and `ntp["listen_network"]` are set then `ntp["listen"]` will always win.
 
-<<<<<<< HEAD
+* `ntp["statistics"]`
+ - Boolean. Default to true. Enable/disable statistics data logging into
+   `ntp['statsdir']`.
+ - Not available on Windows.
+
 * `ntp['peer']['use_iburst']` (applies to NTP Servers ONLY)
   - Boolean. Defaults to true. Enables iburst in peer declaration.
 
@@ -75,12 +79,6 @@ Attributes
 
 * `ntp['server']['maxpoll']` (applies to NTP Servers and Clients)
   - Boolean. Defaults to 10 (ntp default). Specify the maximum poll intervals for NTP messages, in seconds to the power of two.
-=======
-* `ntp["statistics"]`
- - Boolean. Default to true. Enable/disable statistics data logging into
-   `ntp['statsdir']`.
- - Not available on Windows.
->>>>>>> a778d693a5e3664d232e93468b6293597fc94dc7
 
 ### Platform specific
 
