@@ -72,6 +72,8 @@ if node['ntp']['listen'].nil? && !node['ntp']['listen_network'].nil?
   end
 end
 
+::Chef::Recipe.send(:include, Opscode::Ntp::Helper)
+
 leapfile_enabled = ntpd_supports_native_leapfiles
 
 template node['ntp']['conffile'] do
