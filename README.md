@@ -56,6 +56,30 @@ Attributes
    `ntp['statsdir']`.
  - Not available on Windows.
 
+* `ntp['peer']['use_iburst']` (applies to NTP Servers ONLY)
+  - Boolean. Defaults to true. Enables iburst in peer declaration.
+
+* `ntp['peer']['use_burst']` (applies to NTP Servers ONLY)
+  - Boolean. Defaults to false. Enables burst in peer declaration.
+
+* `ntp['peer']['minpoll']` (applies to NTP Servers ONLY)
+  - Boolean. Defaults to 6 (ntp default). Specify the minimum poll intervals for NTP messages, in seconds to the power of two.
+
+* `ntp['peer']['maxpoll']` (applies to NTP Servers ONLY)
+  - Boolean. Defaults to 10 (ntp default). Specify the maximum poll intervals for NTP messages, in seconds to the power of two.
+
+* `ntp['server']['use_iburst']` (applies to NTP Servers and Clients)
+  - Boolean. Defaults to true. Enables iburst in server declaration.
+
+* `ntp['server']['use_burst']` (applies to NTP Servers and Clients)
+  - Boolean. Defaults to false. Enables burst in server declaration.
+
+* `ntp['server']['minpoll']` (applies to NTP Servers and Clients)
+  - Boolean. Defaults to 6 (ntp default). Specify the minimum poll intervals for NTP messages, in seconds to the power of two.
+
+* `ntp['server']['maxpoll']` (applies to NTP Servers and Clients)
+  - Boolean. Defaults to 10 (ntp default). Specify the maximum poll intervals for NTP messages, in seconds to the power of two.
+
 ### Platform specific
 
 * `ntp['packages']`

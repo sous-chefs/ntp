@@ -85,6 +85,38 @@ describe 'ntp attributes' do
     it 'sets monitor to false' do
       expect(ntp['monitor']).to eq(false)
     end
+
+    it 'sets peer use_iburst to true' do
+      expect(ntp['peer']['use_iburst']).to eq(true)
+    end
+
+    it 'sets peer use_burst to false' do
+      expect(ntp['peer']['use_burst']).to eq(false)
+    end
+
+    it 'sets peer minpoll to 6' do
+      expect(ntp['peer']['minpoll']).to eq(6)
+    end
+
+    it 'sets peer maxpoll to 10' do
+      expect(ntp['peer']['maxpoll']).to eq(10)
+    end
+
+    it 'sets server use_iburst to true' do
+      expect(ntp['server']['use_iburst']).to eq(true)
+    end
+
+    it 'sets server use_burst to false' do
+      expect(ntp['server']['use_burst']).to eq(false)
+    end
+
+    it 'sets server minpoll to 6' do
+      expect(ntp['server']['minpoll']).to eq(6)
+    end
+
+    it 'sets server maxpoll to 10' do
+      expect(ntp['server']['maxpoll']).to eq(10)
+    end
   end
 
   describe 'on Debian-family platforms' do

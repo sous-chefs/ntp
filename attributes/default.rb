@@ -46,6 +46,16 @@ default['ntp']['apparmor_enabled'] = false
 default['ntp']['monitor'] = false
 default['ntp']['statistics'] = true
 
+default['ntp']['peer']['use_iburst'] = true
+default['ntp']['peer']['use_burst'] = false
+default['ntp']['peer']['minpoll'] = 6
+default['ntp']['peer']['maxpoll'] = 10
+
+default['ntp']['server']['use_iburst'] = true
+default['ntp']['server']['use_burst'] = false
+default['ntp']['server']['minpoll'] = 6
+default['ntp']['server']['maxpoll'] = 10
+
 # overrides on a platform-by-platform basis
 case node['platform_family']
 when 'debian'
