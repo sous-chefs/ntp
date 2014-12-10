@@ -250,6 +250,7 @@ restrict 0.pool.ntp.org nomodify notrap noquery'
   end
 
   context 'ubuntu' do
+
     let(:chef_run) { ChefSpec::SoloRunner.new(platform: 'ubuntu', version: '12.04').converge('ntp::default') }
 
     it 'starts the ntp service' do
@@ -260,8 +261,24 @@ restrict 0.pool.ntp.org nomodify notrap noquery'
       expect(chef_run).to enable_service('ntp')
     end
 
-    it 'includes the apparmor recipe' do
-      expect(chef_run).to include_recipe('ntp::apparmor')
+    context 'with apparmor enabled' do
+      let(:chef_run) do
+        runner = ChefSpec::SoloRunner.new(platform: 'ubuntu', version: '12.04')
+        runner.node.set['ntp']['apparmor_enabled'] = true
+        runner.converge('ntp::default')
+      end
+
+      it 'includes the apparmor recipe' do
+        expect(chef_run).to include_recipe('ntp::apparmor')
+      end
+    end
+
+    context 'with apparmor disabled' do
+      let(:chef_run) { ChefSpec::SoloRunner.new(platform: 'ubuntu', version: '12.04').converge('ntp::default') }
+
+      it 'does not include the apparmor recipe' do
+        expect(chef_run).to_not include_recipe('ntp::apparmor')
+      end
     end
   end
 

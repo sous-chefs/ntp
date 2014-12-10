@@ -98,8 +98,14 @@ describe 'ntp attributes' do
   describe 'on Ubuntu' do
     let(:chef_run) { ChefSpec::SoloRunner.new(platform: 'ubuntu', version: '12.04').converge('ntp::default') }
 
-    it 'sets the apparmor_enabled attribute to true' do
+    it 'sets the apparmor_enabled attribute to true when /etc/init.d/apparmor exists' do
+      allow(File).to receive(:exist?).and_call_original
+      allow(File).to receive(:exist?).with('/etc/init.d/apparmor').and_return(true)
       expect(ntp['apparmor_enabled']).to eq(true)
+    end
+
+    it 'sets the apparmor_enabled attribute to false when /etc/init.d/apparmor does not exist' do
+      expect(ntp['apparmor_enabled']).to eq(false)
     end
   end
 
