@@ -117,6 +117,28 @@ describe 'ntp attributes' do
     it 'sets server maxpoll to 10' do
       expect(ntp['server']['maxpoll']).to eq(10)
     end
+
+    context 'tinker options' do
+      it 'sets allan to 1500' do
+        expect(ntp['tinker']['allan']).to eq(1500)
+      end
+
+      it 'sets dispersion to 15' do
+        expect(ntp['tinker']['dispersion']).to eq(15)
+      end
+
+      it 'sets panic to 1000' do
+        expect(ntp['tinker']['panic']).to eq(1000)
+      end
+
+      it 'sets step to 0.128' do
+        expect(ntp['tinker']['step']).to eq(0.128)
+      end
+
+      it 'sets stepout to 900' do
+        expect(ntp['tinker']['stepout']).to eq(900)
+      end
+    end
   end
 
   describe 'on Debian-family platforms' do

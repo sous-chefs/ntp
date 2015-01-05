@@ -73,6 +73,9 @@ if node['ntp']['listen'].nil? && !node['ntp']['listen_network'].nil?
 end
 
 leapfile_enabled = ntpd_supports_native_leapfiles
+node.default['ntp']['tinker']['panic'] = 0 if node['virtualization'] &&
+                                              node['virtualization']['role'] == 'guest' &&
+                                              node['ntp']['disable_tinker_panic_on_virtualization_guest']
 
 template node['ntp']['conffile'] do
   source   'ntp.conf.erb'
