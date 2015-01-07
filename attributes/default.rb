@@ -56,6 +56,9 @@ default['ntp']['server']['use_burst'] = false
 default['ntp']['server']['minpoll'] = 6
 default['ntp']['server']['maxpoll'] = 10
 
+# Set to true if using ntp < 4.2.8 or any unpatched ntp version
+default['ntp']['localhost']['noquery'] = false
+
 # overrides on a platform-by-platform basis
 case node['platform_family']
 when 'debian'
