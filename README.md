@@ -80,6 +80,9 @@ Attributes
 * `ntp['server']['maxpoll']` (applies to NTP Servers and Clients)
   - Boolean. Defaults to 10 (ntp default). Specify the maximum poll intervals for NTP messages, in seconds to the power of two.
 
+* `ntp['localhost']['noquery']` (applies to NTP Servers and Clients)
+  - Boolean. Defaults to false. Set to true if using ntp < 4.2.8 or any unpatched ntp version to mitigate CVE-2014-9293 / CVE-2014-9294 / CVE-2014-9295
+
 ### Platform specific
 
 * `ntp['packages']`
