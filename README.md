@@ -56,6 +56,9 @@ Attributes
    `ntp['statsdir']`.
  - Not available on Windows.
 
+* `ntp['conf_restart_immediate']`
+  - Boolean. Defaults to false. Restarts NTP service immediately after a config update if true.  Otherwise it is a delayed restart.
+
 * `ntp['peer']['use_iburst']` (applies to NTP Servers ONLY)
   - Boolean. Defaults to true. Enables iburst in peer declaration.
 

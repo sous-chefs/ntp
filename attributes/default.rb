@@ -45,6 +45,7 @@ default['ntp']['listen_network'] = nil
 default['ntp']['apparmor_enabled'] = false
 default['ntp']['monitor'] = false
 default['ntp']['statistics'] = true
+default['ntp']['conf_restart_immediate'] = false
 
 default['ntp']['peer']['use_iburst'] = true
 default['ntp']['peer']['use_burst'] = false
