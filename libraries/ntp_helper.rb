@@ -1,5 +1,5 @@
 #
-# Author:: Julian C. Dunn (<jdunn@getchef.com>)
+# Author:: Julian C. Dunn (<jdunn@chef.io>)
 # Cookbook Name:: ntp
 # Library:: helper
 #
@@ -19,7 +19,7 @@
 
 require 'chef/mixin/shell_out'
 
-module Opscode
+module Chef
   module Ntp
     # Helper methods for ntp
     module Helper

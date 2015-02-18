@@ -2,11 +2,11 @@
 # Cookbook Name:: ntp
 # Attributes:: default
 #
-# Author:: Joshua Timberman (<joshua@opscode.com>)
+# Author:: Joshua Timberman (<joshua@chef.io>)
 # Author:: Tim Smith (<tsmith@limelight.com>)
-# Author:: Charles Johnson (<charles@opscode.com>)
+# Author:: Charles Johnson (<charles@chef.io>)
 #
-# Copyright 2009-2013, Opscode, Inc.
+# Copyright 2009-2013, Chef Software, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
