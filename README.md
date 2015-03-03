@@ -6,7 +6,7 @@ Installs and configures ntp. On Windows systems it uses the Meinberg port of the
 
 ### About Testing
 
-In addition to providing interfaces to the ntp time service, this recipe is also designed to provide a simple community cookbook with broad cross-platform support to serve as a testing documentation reference. This cookbook utilizes [Foodcritic](http://acrmp.github.io/foodcritic/), [Test-Kitchen](https://github.com/chef/test-kitchen), [Vagrant](http://www.vagrantup.com), [Chefspec](http://acrmp.github.io/chefspec/), [bats](https://github.com/sstephenson/bats), [Rubocop](https://github.com/bbatsov/rubocop), and [Travis-CI](https://travis-ci.org) to provide a comprehensive suite of automated test coverage.
+In addition to providing interfaces to the ntp time service, this recipe is also designed to provide a simple community cookbook with broad cross-platform support to serve as a testing documentation reference. This cookbook utilizes [Foodcritic](http://acrmp.github.io/foodcritic/), [Test-Kitchen](https://github.com/opscode/test-kitchen), [Vagrant](http://www.vagrantup.com), [Chefspec](http://acrmp.github.io/chefspec/), [bats](https://github.com/sstephenson/bats), [Rubocop](https://github.com/bbatsov/rubocop), and [Travis-CI](https://travis-ci.org) to provide a comprehensive suite of automated test coverage.
 
 More information on the testing strategy used in this cookbook is available in the TESTING.md file, along with information on how to use this type of testing in your own cookbooks.
 
@@ -194,7 +194,7 @@ This section details "quick development" steps. For a detailed explanation, see 
 
 1. Clone this repository from GitHub:
 
-        $ git clone git@github.com:chef-cookbooks/ntp.git
+        $ git clone git@github.com:opscode-cookbooks/ntp.git
 
 2. Create a git branch
 
@@ -219,15 +219,15 @@ This section details "quick development" steps. For a detailed explanation, see 
 
 License & Authors
 -----------------
-- Author:: Joshua Timberman (<joshua@chef.io>)
+- Author:: Joshua Timberman (<joshua@opscode.com>)
 - Contributor:: Eric G. Wolfe (<wolfe21@marshall.edu>)
 - Contributor:: Fletcher Nichol (<fletcher@nichol.ca>)
 - Contributor:: Tim Smith (<tsmith@limelight.com>)
-- Contributor:: Charles Johnson (<charles@chef.io>)
+- Contributor:: Charles Johnson (<charles@opscode.com>)
 - Contributor:: Brad Knowles (<bknowles@momentumsi.com>)
 
 ```text
-Copyright 2009-2013, Chef Software, Inc.
+Copyright 2009-2013, Opscode, Inc.
 Copyright 2012, Eric G. Wolfe
 Copyright 2012, Fletcher Nichol
 Copyright 2012, Webtrends, Inc.
