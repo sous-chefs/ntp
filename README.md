@@ -68,6 +68,9 @@ Attributes
 * `ntp['peer']['maxpoll']` (applies to NTP Servers ONLY)
   - Boolean. Defaults to 10 (ntp default). Specify the maximum poll intervals for NTP messages, in seconds to the power of two.
 
+* `ntp['server']['prefer']` (applies to NTP Servers and Clients)
+  - String. No Default. The server from `ntp['servers']` to prefer getting the time from.
+
 * `ntp['server']['use_iburst']` (applies to NTP Servers and Clients)
   - Boolean. Defaults to true. Enables iburst in server declaration.
 
