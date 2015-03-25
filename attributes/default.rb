@@ -51,6 +51,7 @@ default['ntp']['peer']['use_burst'] = false
 default['ntp']['peer']['minpoll'] = 6
 default['ntp']['peer']['maxpoll'] = 10
 
+default['ntp']['server']['prefer'] = ''
 default['ntp']['server']['use_iburst'] = true
 default['ntp']['server']['use_burst'] = false
 default['ntp']['server']['minpoll'] = 6

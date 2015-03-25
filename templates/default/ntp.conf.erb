@@ -62,7 +62,7 @@ disable monitor
 <% ( node['ntp']['servers'] - node['ntp']['peers'] ).each do |ntpserver| -%>
 <%#   Loop through defined servers, but don't try to upstream ourself %>
 <%   if node['ipaddress'] != ntpserver and node['fqdn'] != ntpserver -%>
-<%  -%>server <%= ntpserver %><% if node['ntp']['server']['use_iburst'] -%> iburst<% end -%><% if node['ntp']['server']['use_burst'] -%> burst<% end -%> minpoll <%= node['ntp']['server']['minpoll'] %> maxpoll <%= node['ntp']['server']['maxpoll'] %>
+<%  -%>server <%= ntpserver %><% if node['ntp']['server']['use_iburst'] -%> iburst<% end -%><% if node['ntp']['server']['use_burst'] -%> burst<% end -%> minpoll <%= node['ntp']['server']['minpoll'] %> maxpoll <%= node['ntp']['server']['maxpoll'] %><% if node['ntp']['server']['prefer'] == ntpserver -%> prefer<% end -%>
 <%  -%>restrict <%= ntpserver %> nomodify notrap noquery
 <%   end -%>
 <% end -%>
