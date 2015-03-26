@@ -26,6 +26,9 @@ default['ntp']['servers']   = [] # The default recipe sets a list of common NTP 
 default['ntp']['peers'] = []
 default['ntp']['restrictions'] = []
 
+# set `default restrict` for IPv4 and IPv6
+default['ntp']['default_restrict'] = 'kod notrap nomodify nopeer noquery'
+
 # internal attributes
 default['ntp']['packages'] = %w(ntp ntpdate)
 default['ntp']['service'] = 'ntpd'
