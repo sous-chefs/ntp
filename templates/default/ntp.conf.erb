@@ -71,9 +71,9 @@ disable monitor
 <%   end -%>
 <% end -%>
 
-restrict default node['ntp']['restrict_default']
+restrict default <%= node['ntp']['restrict_default'] %>
 restrict 127.0.0.1 nomodify
-restrict -6 default node['ntp']['restrict_default']
+restrict -6 default <%= node['ntp']['restrict_default'] %>
 restrict -6 ::1 nomodify
 
 <%# If this is a server with additional LAN restriction lines, put them here %>
