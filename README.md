@@ -45,6 +45,9 @@ Attributes
   - Boolean. Defaults to false. On *nix-based systems, forces the 'hwclock --systohc' command to be issued on every Chef-client run. This will sync the hardware clock to the system clock.
   - Not available on Windows.
 
+* `ntp['restrict_default']`
+  - String. Defaults to 'kod notrap nomodify nopeer noquery'. Set to 'ignore' to [further lock down access](http://support.ntp.org/bin/view/Support/AccessRestrictions#Section_6.5.1.1.2.).
+
 * `ntp["listen_network"]` / `ntp["listen"]`
   - String, optional attribute. Default is for NTP to listen on all addresses.
   - `ntp["listen_network"]` should be set to 'primary' to listen on the node's primary IP address as determined by ohai, or set to a CIDR (eg: '192.168.4.0/24') to listen on the last node address on that CIDR.

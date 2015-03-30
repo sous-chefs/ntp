@@ -54,6 +54,10 @@ describe 'ntp attributes' do
       expect(ntp['statsdir']).to eq('/var/log/ntpstats/')
     end
 
+    it 'sets restrict default to kod notrap nomodify nopeer noquery' do
+      expect(ntp['restrict_default'].to eq('kod notrap nomodify nopeer noquery')
+    end
+
     it 'sets the conf_owner to root' do
       expect(ntp['conf_owner']).to eq('root')
     end
