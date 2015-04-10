@@ -27,6 +27,9 @@ default['ntp']['peers'] = []
 default['ntp']['restrictions'] = []
 default['ntp']['tinker'] = { 'panic' => 0 }
 
+# set `restrict default` for IPv4 and IPv6
+default['ntp']['restrict_default'] = 'kod notrap nomodify nopeer noquery'
+
 # internal attributes
 default['ntp']['packages'] = %w(ntp ntpdate)
 default['ntp']['service'] = 'ntpd'

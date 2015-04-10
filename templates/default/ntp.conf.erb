@@ -64,9 +64,9 @@ disable monitor
 <%   end -%>
 <% end -%>
 
-restrict default kod notrap nomodify nopeer noquery
+restrict default <%= node['ntp']['restrict_default'] %>
 restrict 127.0.0.1 nomodify<%if node['ntp']['localhost']['noquery'] -%> noquery<% end -%>
-restrict -6 default kod notrap nomodify nopeer noquery
+restrict -6 default <%= node['ntp']['restrict_default'] %>
 restrict -6 ::1 nomodify<%if node['ntp']['localhost']['noquery'] -%> noquery<% end -%>
 
 <%# If this is a server with additional LAN restriction lines, put them here %>
