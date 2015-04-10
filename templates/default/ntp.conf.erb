@@ -78,9 +78,7 @@ restrict -6 ::1 nomodify<%if node['ntp']['localhost']['noquery'] -%> noquery<% e
 
 <%# It is best practice to use a high stratum undisciplined clock, if you have a real CMOS clock %>
 <%# Except cases where you have a low stratum server, or a virtualized system without a real CMOS clock %>
-<% unless node['platform'] == 'windows' -%>
-<%   if not node['virtualization'] or node['virtualization']['role'] != 'guest' -%>
+<% if node['ntp']['use_cmos'] -%>
 <%  -%>server  127.127.1.0 # local clock
 <%  -%>fudge   127.127.1.0 stratum 10
-<%   end -%>
 <% end -%>
