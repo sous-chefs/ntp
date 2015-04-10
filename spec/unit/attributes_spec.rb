@@ -109,6 +109,10 @@ describe 'ntp attributes' do
       expect(ntp['peer']['maxpoll']).to eq(10)
     end
 
+    it 'sets server prefer to empty string' do
+      expect(ntp['server']['prefer']).to eq('')
+    end
+
     it 'sets server use_iburst to true' do
       expect(ntp['server']['use_iburst']).to eq(true)
     end
