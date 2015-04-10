@@ -250,7 +250,6 @@ restrict 0.pool.ntp.org nomodify notrap noquery'
   end
 
   context 'ubuntu' do
-
     let(:chef_run) { ChefSpec::SoloRunner.new(platform: 'ubuntu', version: '12.04').converge('ntp::default') }
 
     it 'starts the ntp service' do

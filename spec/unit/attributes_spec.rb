@@ -28,7 +28,6 @@ describe 'ntp attributes' do
   let(:ntp) { chef_run.node['ntp'] }
 
   describe 'on an unknown platform' do
-
     it 'sets the package list to ntp & ntpdate' do
       expect(ntp['packages']).to include('ntp')
       expect(ntp['packages']).to include('ntpdate')
@@ -211,7 +210,6 @@ describe 'ntp attributes' do
       expect(ntp['vs_runtime_productname']).to eq('Microsoft Visual C++ 2008 Redistributable - x86 9.0.21022')
     end
 =end
-
   end
 
   describe 'on the FreeBSD platform' do

@@ -13,5 +13,4 @@ describe 'ntp::apparmor' do
   it 'restarts the apparmor service' do
     expect(chef_run.cookbook_file('/etc/apparmor.d/usr.sbin.ntpd')).to notify('service[apparmor]').to(:restart)
   end
-
 end
