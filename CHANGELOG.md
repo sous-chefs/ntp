@@ -10,6 +10,7 @@ v1.7.2 (2014-12-10)
 - **[PR #70](https://github.com/gmiranda23/ntp/pull/70)** - Allow setting tinker options in attributes
 - **[PR #84](https://github.com/gmiranda23/ntp/pull/84)** - Add attributes for tinker option customization
 - **[PR #88](https://github.com/gmiranda23/ntp/pull/84)** - Attribute sets noquery for localhost lines
+- **[PR #89](https://github.com/gmiranda23/ntp/pull/84)** - ntp.leapseconds notifies ntp service with delayed restart
 
 v1.7.0 (2014-12-10)
 -------------------

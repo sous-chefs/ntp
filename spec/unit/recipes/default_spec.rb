@@ -72,6 +72,12 @@ describe 'ntp::default' do
     it 'has 0644 permissions' do
       expect(cookbook_file.mode).to eq('0644')
     end
+
+    it 'notifies ntp service to restart' do
+      resource = chef_run.cookbook_file(chef_run.node['ntp']['leapfile'])
+      service = "service[#{chef_run.node['ntp']['service']}]"
+      expect(resource).to notify(service).to(:restart).delayed
+    end
   end
 
   context 'the ntp.conf' do

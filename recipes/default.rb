@@ -41,6 +41,7 @@ else
     group node['ntp']['conf_group']
     mode  '0644'
     source 'ntp.leapseconds'
+    notifies :restart, "service[#{node['ntp']['service']}]"
   end
 
   include_recipe 'ntp::apparmor' if node['ntp']['apparmor_enabled']
