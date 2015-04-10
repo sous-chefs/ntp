@@ -2,6 +2,13 @@ ntp Cookbook CHANGELOG
 ======================
 This file is used to list changes made in each version of the ntp cookbook.
 
+v1.7.2 (2014-12-10)
+-------------------
+- Chefspec 4.0 updates
+- Rubocop updates
+- **[PR #85](https://github.com/gmiranda23/ntp/pull/85)** - Update leapseconds for June 2015 leapsecond
+
+
 v1.7.0 (2014-12-10)
 -------------------
 - Added CentOS 7 support for test-kitchen
