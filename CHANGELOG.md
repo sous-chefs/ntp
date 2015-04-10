@@ -12,7 +12,9 @@ v1.7.2 (2014-12-10)
 - **[PR #88](https://github.com/gmiranda23/ntp/pull/84)** - Attribute sets noquery for localhost lines
 - **[PR #89](https://github.com/gmiranda23/ntp/pull/84)** - ntp.leapseconds notifies ntp service with delayed restart
 - **[PR #91](https://github.com/gmiranda23/ntp/pull/91)** - Allow ntp.conf update to restart immediate
+- **[PR #95](https://github.com/gmiranda23/ntp/pull/95)** - Add preferred ntp server support
 - **[PR #96](https://github.com/gmiranda23/ntp/pull/96)** - Add restrict default attribute
+- **[PR #72](https://github.com/gmiranda23/ntp/pull/72)** - Move high stratum real CMOs to an attribute
 
 v1.7.0 (2014-12-10)
 -------------------
