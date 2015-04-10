@@ -21,7 +21,7 @@ Requirements
 - Windows
 
 ### Cookbooks
-- When running on Windows based systems, the node must include the Windows cookbook. This cookbook suggests the Windows cookbook in the metadata so as to not force inclusion of the Windows cookbook on *nix systems. Change 'suggests' to 'depends' if you require Windows platform support.
+- When running on Windows based systems, the node must include the Windows cookbook. This cookbook suggests the Windows cookbook in the metadata so as to not force inclusion of the Windows cookbook on \*nix systems. Change 'suggests' to 'depends' if you require Windows platform support.
 
 Attributes
 ----------
@@ -42,7 +42,7 @@ Attributes
   - Boolean. Defaults to false. Forces the ntp daemon to be halted, an ntp -q command to be issued, and the ntp daemon to be restarted again on every Chef-client run. Will have no effect if drift is over 1000 seconds.
 
 * `ntp['sync_hw_clock']` (applies to NTP Servers and Clients)
-  - Boolean. Defaults to false. On *nix-based systems, forces the 'hwclock --systohc' command to be issued on every Chef-client run. This will sync the hardware clock to the system clock.
+  - Boolean. Defaults to false. On \*nix-based systems, forces the 'hwclock --systohc' command to be issued on every Chef-client run. This will sync the hardware clock to the system clock.
   - Not available on Windows.
 
 * `ntp["listen_network"]` / `ntp["listen"]`
@@ -97,6 +97,9 @@ Attributes
 
 * `ntp['tinker']['stepout']`
   - Number. Defaults to 900 (ntp default). Specifies the stepout threshold in seconds. If set to zero, popcorn spikes will not be suppressed.
+
+* `ntp['localhost']['noquery']` (applies to NTP Servers and Clients)
+  - Boolean. Defaults to false. Set to true if using ntp < 4.2.8 or any unpatched ntp version to mitigate CVE-2014-9293 / CVE-2014-9294 / CVE-2014-9295
 
 ### Platform specific
 
