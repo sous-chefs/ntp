@@ -85,6 +85,10 @@ describe 'ntp attributes' do
       expect(ntp['monitor']).to eq(false)
     end
 
+    it 'sets conf_restart_immediate to false' do
+      expect(ntp['conf_restart_immediate']).to eq(false)
+    end
+
     it 'sets peer use_iburst to true' do
       expect(ntp['peer']['use_iburst']).to eq(true)
     end

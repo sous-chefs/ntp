@@ -83,7 +83,8 @@ template node['ntp']['conffile'] do
   owner    node['ntp']['conf_owner']
   group    node['ntp']['conf_group']
   mode     '0644'
-  notifies :restart, "service[#{node['ntp']['service']}]"
+  notifies :restart, "service[#{node['ntp']['service']}]" unless node['ntp']['conf_restart_immediate']
+  notifies :restart, "service[#{node['ntp']['service']}]", :immediately if node['ntp']['conf_restart_immediate']
   variables(
       :ntpd_supports_native_leapfiles => leapfile_enabled
   )

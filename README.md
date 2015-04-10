@@ -56,6 +56,9 @@ Attributes
    `ntp['statsdir']`.
  - Not available on Windows.
 
+* `ntp['conf_restart_immediate']`
+  - Boolean. Defaults to false. Restarts NTP service immediately after a config update if true.  Otherwise it is a delayed restart.
+
 * `ntp['peer']['disable_tinker_panic_on_virtualization_guest']` (applies to virtualized hosts only)
   - Boolean. Defaults to true. Sets tinker panic to 0.  NTP default it 1000.  (See http://www.vmware.com/vmtn/resources/238 p. 23 for explanation on disabling panic) (Note: this overrides `ntp['tinker']['panic']` attribute)
 
