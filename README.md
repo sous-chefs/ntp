@@ -56,6 +56,9 @@ Attributes
    `ntp['statsdir']`.
  - Not available on Windows.
 
+* `ntp['peer']['disable_tinker_panic_on_virtualization_guest']` (applies to virtualized hosts only)
+  - Boolean. Defaults to true. Sets tinker panic to 0.  NTP default it 1000.  (See http://www.vmware.com/vmtn/resources/238 p. 23 for explanation on disabling panic) (Note: this overrides `ntp['tinker']['panic']` attribute)
+
 * `ntp['peer']['use_iburst']` (applies to NTP Servers ONLY)
   - Boolean. Defaults to true. Enables iburst in peer declaration.
 
@@ -79,6 +82,21 @@ Attributes
 
 * `ntp['server']['maxpoll']` (applies to NTP Servers and Clients)
   - Boolean. Defaults to 10 (ntp default). Specify the maximum poll intervals for NTP messages, in seconds to the power of two.
+
+* `ntp['tinker']['allan']`
+  - Number. Defaults to 1500 (ntp default). Spedifies the Allan intercept, which is a parameter of the PLL/FLL clock discipline algorithm, in seconds.
+
+* `ntp['tinker']['dispersion']`
+  - Number. Defaults to 15 (ntp default). Specifies the dispersion increase rate in parts-per-million (PPM).
+
+* `ntp['tinker']['panic']`
+  - Number. Defaults to 1000 (ntp default). Spedifies the panic threshold in seconds. If set to zero, the panic sanity check is disabled and a clock offset of any value will be accepted.
+
+* `ntp['tinker']['step']`
+  - Number. Defaults to 0.128 (ntp default). Spedifies the step threshold in seconds. If set to zero, step adjustments will never occur. Note: The kernel time discipline is disabled if the step threshold is set to zero or greater than 0.5 s.
+
+* `ntp['tinker']['stepout']`
+  - Number. Defaults to 900 (ntp default). Specifies the stepout threshold in seconds. If set to zero, popcorn spikes will not be suppressed.
 
 ### Platform specific
 

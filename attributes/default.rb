@@ -46,6 +46,8 @@ default['ntp']['listen_network'] = nil
 default['ntp']['apparmor_enabled'] = false
 default['ntp']['monitor'] = false
 default['ntp']['statistics'] = true
+# See http://www.vmware.com/vmtn/resources/238 p. 23 for explanation
+default['ntp']['disable_tinker_panic_on_virtualization_guest'] = true
 
 default['ntp']['peer']['use_iburst'] = true
 default['ntp']['peer']['use_burst'] = false
@@ -56,6 +58,12 @@ default['ntp']['server']['use_iburst'] = true
 default['ntp']['server']['use_burst'] = false
 default['ntp']['server']['minpoll'] = 6
 default['ntp']['server']['maxpoll'] = 10
+
+default['ntp']['tinker']['allan'] = 1500
+default['ntp']['tinker']['dispersion'] = 15
+default['ntp']['tinker']['panic'] = 1000
+default['ntp']['tinker']['step'] = 0.128
+default['ntp']['tinker']['stepout'] = 900
 
 # overrides on a platform-by-platform basis
 case node['platform_family']
