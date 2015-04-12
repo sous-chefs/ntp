@@ -18,7 +18,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-::Chef::Recipe.send(:include, Opscode::Ntp::Helper)
+::Chef::Resource.send(:include, Opscode::Ntp::Helper)
 
 if platform_family?('windows')
   include_recipe 'ntp::windows_client'
@@ -73,7 +73,6 @@ if node['ntp']['listen'].nil? && !node['ntp']['listen_network'].nil?
   end
 end
 
-leapfile_enabled = ntpd_supports_native_leapfiles
 node.default['ntp']['tinker']['panic'] = 0 if node['virtualization'] &&
                                               node['virtualization']['role'] == 'guest' &&
                                               node['ntp']['disable_tinker_panic_on_virtualization_guest']
@@ -86,7 +85,9 @@ template node['ntp']['conffile'] do
   notifies :restart, "service[#{node['ntp']['service']}]" unless node['ntp']['conf_restart_immediate']
   notifies :restart, "service[#{node['ntp']['service']}]", :immediately if node['ntp']['conf_restart_immediate']
   variables(
-      :ntpd_supports_native_leapfiles => leapfile_enabled
+    lazy {
+      {:ntpd_supports_native_leapfiles => ntpd_supports_native_leapfiles}
+    }
   )
 end
 
