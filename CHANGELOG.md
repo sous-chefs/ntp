@@ -2,7 +2,7 @@ ntp Cookbook CHANGELOG
 ======================
 This file is used to list changes made in each version of the ntp cookbook.
 
-v1.7.2 (2014-12-10)
+v1.8.0 (2015-04-13)
 -------------------
 - Chefspec 4.0 updates
 - Rubocop updates
@@ -16,6 +16,7 @@ v1.7.2 (2014-12-10)
 - **[PR #96](https://github.com/gmiranda23/ntp/pull/96)** - Add restrict default attribute
 - **[PR #72](https://github.com/gmiranda23/ntp/pull/72)** - Move high stratum real CMOs to an attribute
 - **[PR #98](https://github.com/gmiranda23/ntp/pull/98)** - Bump test-kitchen gem version
+- **[PR #99](https://github.com/gmiranda23/ntp/pull/99)** - Lazy attribute for leapfile_enabled
 
 v1.7.0 (2014-12-10)
 -------------------
