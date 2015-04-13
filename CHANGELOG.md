@@ -15,6 +15,7 @@ v1.7.2 (2014-12-10)
 - **[PR #95](https://github.com/gmiranda23/ntp/pull/95)** - Add preferred ntp server support
 - **[PR #96](https://github.com/gmiranda23/ntp/pull/96)** - Add restrict default attribute
 - **[PR #72](https://github.com/gmiranda23/ntp/pull/72)** - Move high stratum real CMOs to an attribute
+- **[PR #98](https://github.com/gmiranda23/ntp/pull/98)** - Bump test-kitchen gem version
 
 v1.7.0 (2014-12-10)
 -------------------
