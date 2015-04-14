@@ -2,6 +2,10 @@ ntp Cookbook CHANGELOG
 ======================
 This file is used to list changes made in each version of the ntp cookbook.
 
+v1.8.2 (2015-04-15)
+-------------------
+- **[PR #100](https://github.com/gmiranda23/ntp/pull/100)** - Sort peers & servers for consistency
+
 v1.8.0 (2015-04-13)
 -------------------
 - Chefspec 4.0 updates
