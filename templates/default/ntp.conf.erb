@@ -44,7 +44,7 @@ disable monitor
 
 <%# If ntp.peers is not empty %>
 <% unless node['ntp']['peers'].empty? -%>
-<%   node['ntp']['peers'].each do |ntppeer| -%>
+<%   node['ntp']['peers'].sort.each do |ntppeer| -%>
 <%#    Don't peer with ourself %>
 <%     if node['ipaddress'] != ntppeer && node['fqdn'] != ntppeer -%>
 <%    -%>peer <%= ntppeer %><% if node['ntp']['peer']['use_iburst'] -%> iburst<% end -%><% if node['ntp']['peer']['use_burst'] -%> burst<% end -%> minpoll <%= node['ntp']['peer']['minpoll'] %> maxpoll <%= node['ntp']['peer']['maxpoll'] %>
@@ -56,7 +56,7 @@ disable monitor
 <%# Whether this is a client or server, we want upstream servers. %>
 <%# We should guard the servers array against deep merge. %>
 <%# This should keep authoritative local servers from being included twice. %>
-<% ( node['ntp']['servers'] - node['ntp']['peers'] ).each do |ntpserver| -%>
+<% ( node['ntp']['servers'] - node['ntp']['peers'] ).sort.each do |ntpserver| -%>
 <%#   Loop through defined servers, but don't try to upstream ourself %>
 <%   if node['ipaddress'] != ntpserver and node['fqdn'] != ntpserver -%>
 <%  -%>server <%= ntpserver %><% if node['ntp']['server']['use_iburst'] -%> iburst<% end -%><% if node['ntp']['server']['use_burst'] -%> burst<% end -%> minpoll <%= node['ntp']['server']['minpoll'] %> maxpoll <%= node['ntp']['server']['maxpoll'] %><% if node['ntp']['server']['prefer'] == ntpserver -%> prefer<% end -%>
