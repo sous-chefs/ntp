@@ -9,6 +9,9 @@
 <%   end -%>
 <% end -%>
 driftfile <%= node['ntp']['driftfile'] %>
+<% if node['ntp']['logfile'] -%>
+<%-%>logfile <%= node['ntp']['logfile'] %>
+<% end -%>
 
 <%# Enable logs only if statistics option is defined %>
 <% if node['ntp']['statistics'] -%>
