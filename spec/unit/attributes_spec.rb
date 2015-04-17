@@ -45,6 +45,10 @@ describe 'ntp attributes' do
       expect(ntp['driftfile']).to eq('/var/lib/ntp/ntp.drift')
     end
 
+    it 'sets the logfile to nil' do
+      expect(ntp['logfile']).to be nil
+    end
+
     it 'sets the conf file to /etc/ntp.conf' do
       expect(ntp['conffile']).to eq('/etc/ntp.conf')
     end
