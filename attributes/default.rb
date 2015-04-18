@@ -35,6 +35,7 @@ default['ntp']['packages'] = %w(ntp ntpdate)
 default['ntp']['service'] = 'ntpd'
 default['ntp']['varlibdir'] = '/var/lib/ntp'
 default['ntp']['driftfile'] = "#{node['ntp']['varlibdir']}/ntp.drift"
+default['ntp']['logfile'] = nil
 default['ntp']['conffile'] = '/etc/ntp.conf'
 default['ntp']['statsdir'] = '/var/log/ntpstats/'
 default['ntp']['conf_owner'] = 'root'
