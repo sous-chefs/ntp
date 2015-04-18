@@ -4,7 +4,7 @@ This file is used to list changes made in each version of the ntp cookbook.
 
 v1.8.4 (2015-04-17)
 -------------------
-- **[PR #100](https://github.com/gmiranda23/ntp/pull/101)** - add logfile attribute
+- **[PR #101](https://github.com/gmiranda23/ntp/pull/101)** - add logfile attribute
 
 v1.8.2 (2015-04-15)
 -------------------
