@@ -41,6 +41,7 @@
 
   /{,s}bin/      r,
   /usr/{,s}bin/  r,
+  /usr/local/{,s}bin/  r,
   /usr/sbin/ntpd rmix,
 
   /etc/ntp.conf r,
