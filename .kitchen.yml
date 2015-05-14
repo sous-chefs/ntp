@@ -14,9 +14,9 @@ platforms:
   - name: ubuntu-10.04
     run_list:
     - recipe[apt]
-  - name: centos-6.5
-  - name: centos-5.10
-  - name: centos-7.0
+  - name: centos-6.6
+  - name: centos-5.11
+  - name: opscode-centos-7.1
 
 suites:
   - name: default
