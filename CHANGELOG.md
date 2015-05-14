@@ -4,6 +4,12 @@ This file is used to list changes made in each version of the ntp cookbook.
 
 v1.8.4 (2015-04-17)
 -------------------
+- **[PR #102](https://github.com/gmiranda23/ntp/pull/102)** - Update leapseconds file to 3660249600 (through C49)
+- Gemfile parity with ChefDK 0.5.1
+- .kitchen.yml platform updates to current bento boxes
+
+v1.8.4 (2015-04-17)
+-------------------
 - **[PR #101](https://github.com/gmiranda23/ntp/pull/101)** - add logfile attribute
 
 v1.8.2 (2015-04-15)
