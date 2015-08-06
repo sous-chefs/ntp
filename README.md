@@ -54,6 +54,9 @@ Attributes
   - `ntp["listen"]` can be set to a specific address (eg: '192.168.4.10') instead of `ntp["listen_network"]` to force listening on a specific address.
   - If both `ntp["listen"]` and `ntp["listen_network"]` are set then `ntp["listen"]` will always win.
 
+* `ntp["ignore"]`
+  - Array, interface names to ignore from listening. Can be used to disable listening wildcard interfaces (eg: ['wildcard', '::1']), can be combined with `ntp["listen"]`
+
 * `ntp["statistics"]`
  - Boolean. Default to true. Enable/disable statistics data logging into
    `ntp['statsdir']`.
