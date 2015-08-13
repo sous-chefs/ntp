@@ -28,6 +28,11 @@ else
     package ntppkg
   end
 
+  service node['ntp']['service'] do
+    supports :status => true, :restart => true
+    action  :nothing
+  end
+
   [node['ntp']['varlibdir'], node['ntp']['statsdir']].each do |ntpdir|
     directory ntpdir do
       owner node['ntp']['var_owner']
@@ -109,7 +114,9 @@ execute 'Force sync hardware clock with system clock' do
   only_if { node['ntp']['sync_hw_clock'] && !platform_family?('windows') }
 end
 
-service node['ntp']['service'] do
-  supports :status => true, :restart => true
-  action   [:enable, :start]
+execute "placeholder" do
+    command '/bin/true'
+    action :run
+  notifies :enable, "service[#{node['ntp']['service']}]"
+  notifies :start, "service[#{node['ntp']['service']}]"
 end
