@@ -41,7 +41,10 @@
 
   /{,s}bin/      r,
   /usr/{,s}bin/  r,
+  /usr/local/{,s}bin/  r,
   /usr/sbin/ntpd rmix,
+
+  /opt/chef/embedded/bin/ r,
 
   /etc/ntp.conf r,
   /etc/ntp.conf.dhcp r,
