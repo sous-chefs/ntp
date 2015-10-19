@@ -274,6 +274,10 @@ describe 'ntp attributes' do
       expect(ntp['conf_group']).to eq('wheel')
     end
 
+    it 'sets the var_owner to root' do
+      expect(ntp['var_owner']).to eq('root')
+    end
+
     it 'sets the var_group to wheel' do
       expect(ntp['var_group']).to eq('wheel')
     end
