@@ -14,3 +14,5 @@ end
 
 suggests 'windows'
 
+source_url 'https://github.com/gmiranda23/ntp' if respond_to?(:source_url)
+issues_url 'https://github.com/gmiranda23/ntp/issues' if respond_to?(:issues_url)
