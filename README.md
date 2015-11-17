@@ -1,7 +1,6 @@
 NTP Cookbook
 ============
 [![Build Status](https://secure.travis-ci.org/gmiranda23/ntp.svg?branch=master)](http://travis-ci.org/gmiranda23/ntp)
-
 [![Cookbook Version](https://img.shields.io/cookbook/v/ntp.svg)](https://supermarket.chef.io/cookbooks/ntp)
 
 Installs and configures ntp. On Windows systems it uses the Meinberg port of the standard NTPd client to Windows.
@@ -15,15 +14,19 @@ More information on the testing strategy used in this cookbook is available in t
 
 Requirements
 ------------
-### Supported Operating Systems
+#### Platforms
 - Debian-family Linux Distributions
 - RedHat-family Linux Distributions
 - Gentoo Linux
 - FreeBSD
 - Windows
 
-### Cookbooks
-- When running on Windows based systems, the node must include the Windows cookbook. This cookbook suggests the Windows cookbook in the metadata so as to not force inclusion of the Windows cookbook on \*nix systems. Change 'suggests' to 'depends' if you require Windows platform support.
+#### Chef
+- Chef 11+
+
+#### Cookbooks
+ - windows
+
 
 Attributes
 ----------
