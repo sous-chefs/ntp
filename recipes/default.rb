@@ -1,7 +1,7 @@
 #
 # Cookbook Name:: ntp
 # Recipe:: default
-# Author:: Joshua Timberman (<joshua@opscode.com>)
+# Author:: Joshua Timberman (<joshua@chef.io>)
 # Author:: Tim Smith (<tsmith@limelight.com>)
 #
 # Copyright 2009-2013, Opscode, Inc

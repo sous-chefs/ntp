@@ -1,6 +1,6 @@
 name              'ntp'
-maintainer        'Opscode, Inc.'
-maintainer_email  'cookbooks@opscode.com'
+maintainer        'George Miranda'
+maintainer_email  'gmiranda@chef.io'
 license           'Apache 2.0'
 description       'Installs and configures ntp as a client or server'
 long_description  IO.read(File.join(File.dirname(__FILE__), 'README.md'))
