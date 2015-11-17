@@ -14,14 +14,9 @@ You must also have `bundler` installed:
 
     $ gem install bundler
 
-You must also have Vagrant and VirtualBox installed:
+You must also have VirtualBox installed:
 
-- [Vagrant](https://vagrantup.com)
 - [VirtualBox](https://virtualbox.org)
-
-Once installed, you must install the `vagrant-berkshelf` plugin:
-
-    $ vagrant plugin install vagrant-berkshelf
 
 
 Development
