@@ -22,7 +22,7 @@
 return 'The ntp::undo recipe does not support Windows' if platform_family?('windows')
 
 service node['ntp']['service'] do
-  supports :status => true, :restart => true
+  supports status: true, restart: true
   action   [:stop, :disable]
 end
 
