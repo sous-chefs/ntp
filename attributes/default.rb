@@ -101,6 +101,7 @@ when 'freebsd'
   default['ntp']['driftfile'] = "#{node['ntp']['varlibdir']}/ntpd.drift"
   default['ntp']['statsdir'] = "#{node['ntp']['varlibdir']}/ntpstats"
   default['ntp']['conf_group'] = 'wheel'
+  default['ntp']['var_owner'] = 'root'
   default['ntp']['var_group'] = 'wheel'
 when 'gentoo'
   default['ntp']['packages'] = %w(ntp)
