@@ -1,7 +1,7 @@
 This cookbook uses a variety of testing components:
 
 - Unit tests: [ChefSpec](https://github.com/acrmp/chefspec)
-- Integration tests: [Test Kitchen](https://github.com/opscode/test-kitchen)
+- Integration tests: [Test Kitchen](https://github.com/chef/test-kitchen)
 - Chef Style lints: [Foodcritic](https://github.com/acrmp/foodcritic)
 - Ruby Style lints: [Rubocop](https://github.com/bbatsov/rubocop)
 
@@ -14,21 +14,16 @@ You must also have `bundler` installed:
 
     $ gem install bundler
 
-You must also have Vagrant and VirtualBox installed:
+You must also have VirtualBox installed:
 
-- [Vagrant](https://vagrantup.com)
 - [VirtualBox](https://virtualbox.org)
-
-Once installed, you must install the `vagrant-berkshelf` plugin:
-
-    $ vagrant plugin install vagrant-berkshelf
 
 
 Development
 -----------
 1. Clone the git repository from GitHub:
 
-    $ git clone git@github.com:opscode-cookbooks/COOKBOOK.git
+    $ git clone git@github.com:gmiranda23/ntp.git
 
 2. Install the dependencies using bundler:
 
@@ -46,7 +41,3 @@ Development
     - `bundle exec rake kitchen`
 
 7. Assuming the tests pass, open a Pull Request on GitHub
-8. Open a JIRA ticket for this component, linking the JIRA ticket to the Pull Request and visa versa.
-9. Mark the JIRA ticket as "Fix Provided"
-
-For more information, see [Opscode's Contribution Guidelines](https://wiki.opscode.com/display/chef/How+to+Contribute).

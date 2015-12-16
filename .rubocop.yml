@@ -1,21 +1,31 @@
 AllCops:
   Exclude:
-    - vendor/**
+    - vendor/**/*
+    - Guardfile
 
-Style/SingleSpaceBeforeFirstArg:
+AlignParameters:
   Enabled: false
-
-HashSyntax:
+ClassLength:
   Enabled: false
-
+CyclomaticComplexity:
+  Enabled: false
+Documentation:
+  Enabled: false
+Encoding:
+  Enabled: false
+Style/FileName:
+  Enabled: false
 LineLength:
   Enabled: false
-
 MethodLength:
-  Max: 30
-
-Lint/UnusedBlockArgument:
   Enabled: false
-
-Style/BlockComments:
+Metrics/AbcSize:
+  Enabled: false
+PerceivedComplexity:
+  Enabled: false
+SingleSpaceBeforeFirstArg:
+  Enabled: false
+Style/ClassAndModuleChildren:
+  Enabled: false
+Style/FileName:
   Enabled: false

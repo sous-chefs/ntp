@@ -1,7 +1,7 @@
 #
 # Cookbook Name:: ntp
 # Recipe:: default
-# Author:: Joshua Timberman (<joshua@opscode.com>)
+# Author:: Joshua Timberman (<joshua@chef.io>)
 # Author:: Tim Smith (<tsmith@limelight.com>)
 #
 # Copyright 2009-2013, Opscode, Inc
@@ -64,7 +64,7 @@ if node['ntp']['listen'].nil? && !node['ntp']['listen_network'].nil?
     require 'ipaddr'
     net = IPAddr.new(node['ntp']['listen_network'])
 
-    node['network']['interfaces'].each do |iface, addrs|
+    node['network']['interfaces'].each do |_iface, addrs|
       addrs['addresses'].each do |ip, params|
         addr = IPAddr.new(ip) if params['family'].eql?('inet') || params['family'].eql?('inet6')
         node.set['ntp']['listen'] = addr if net.include?(addr)
@@ -85,7 +85,7 @@ template node['ntp']['conffile'] do
   notifies :restart, "service[#{node['ntp']['service']}]" unless node['ntp']['conf_restart_immediate']
   notifies :restart, "service[#{node['ntp']['service']}]", :immediately if node['ntp']['conf_restart_immediate']
   variables(
-    lazy { { :ntpd_supports_native_leapfiles => ntpd_supports_native_leapfiles } }
+    lazy { { ntpd_supports_native_leapfiles: ntpd_supports_native_leapfiles } }
   )
 end
 
@@ -110,6 +110,6 @@ execute 'Force sync hardware clock with system clock' do
 end
 
 service node['ntp']['service'] do
-  supports :status => true, :restart => true
+  supports status: true, restart: true
   action   [:enable, :start]
 end

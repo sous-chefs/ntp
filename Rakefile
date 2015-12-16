@@ -1,16 +1,7 @@
-#!/usr/bin/env rake
-
-require 'foodcritic'
 require 'rspec/core/rake_task'
 require 'rubocop/rake_task'
-
-task :default => [
-  :style,
-  :spec
-]
-task :kitchen => [
-  'kitchen:all'
-]
+require 'foodcritic'
+require 'kitchen'
 
 # Style tests. Rubocop and Foodcritic
 namespace :style do
@@ -18,7 +9,12 @@ namespace :style do
   RuboCop::RakeTask.new(:ruby)
 
   desc 'Run Chef style checks'
-  FoodCritic::Rake::LintTask.new(:chef)
+  FoodCritic::Rake::LintTask.new(:chef) do |t|
+    t.options = {
+      fail_tags: ['any'],
+      tags: ['~FC005']
+    }
+  end
 end
 
 desc 'Run all style checks'
@@ -28,9 +24,19 @@ task style: ['style:chef', 'style:ruby']
 desc 'Run ChefSpec examples'
 RSpec::Core::RakeTask.new(:spec)
 
-begin
-  require 'kitchen/rake_tasks'
-  Kitchen::RakeTasks.new
-rescue LoadError
-  puts '>>>>> Kitchen gem not loaded, omitting tasks' unless ENV['CI']
+# Integration tests. Kitchen.ci
+namespace :integration do
+  desc 'Run Test Kitchen with Vagrant'
+  task :vagrant do
+    Kitchen.logger = Kitchen.default_file_logger
+    Kitchen::Config.new.instances.each do |instance|
+      instance.test(:always)
+    end
+  end
 end
+
+desc 'Run all tests on Travis'
+task travis: ['style', 'spec', 'integration:cloud']
+
+# Default
+task default: ['style', 'spec', 'integration:vagrant']
