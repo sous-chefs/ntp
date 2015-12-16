@@ -23,8 +23,8 @@ v1.8.0 (2015-04-13)
 - **[PR #85](https://github.com/gmiranda23/ntp/pull/85)** - Update leapseconds for June 2015 leapsecond
 - **[PR #70](https://github.com/gmiranda23/ntp/pull/70)** - Allow setting tinker options in attributes
 - **[PR #84](https://github.com/gmiranda23/ntp/pull/84)** - Add attributes for tinker option customization
-- **[PR #88](https://github.com/gmiranda23/ntp/pull/84)** - Attribute sets noquery for localhost lines
-- **[PR #89](https://github.com/gmiranda23/ntp/pull/84)** - ntp.leapseconds notifies ntp service with delayed restart
+- **[PR #88](https://github.com/gmiranda23/ntp/pull/88)** - Attribute sets noquery for localhost lines
+- **[PR #89](https://github.com/gmiranda23/ntp/pull/89)** - ntp.leapseconds notifies ntp service with delayed restart
 - **[PR #91](https://github.com/gmiranda23/ntp/pull/91)** - Allow ntp.conf update to restart immediate
 - **[PR #95](https://github.com/gmiranda23/ntp/pull/95)** - Add preferred ntp server support
 - **[PR #96](https://github.com/gmiranda23/ntp/pull/96)** - Add restrict default attribute
@@ -41,7 +41,7 @@ v1.7.0 (2014-12-10)
 - **[PR #71](https://github.com/gmiranda23/ntp/pull/71)** - Ability to listen more than one interface
 - **[PR #73](https://github.com/gmiranda23/ntp/pull/73)** - Fix appamor configuration for Ubuntu
 - **[PR #74](https://github.com/gmiranda23/ntp/pull/74)** - Remove is_server from example
-- **[PR #75](https://github.com/gmiranda23/ntp/pull/74)** - Add more settings for server and peer declarations
+- **[PR #75](https://github.com/gmiranda23/ntp/pull/75)** - Add more settings for server and peer declarations
 - **[PR #83](https://github.com/gmiranda23/ntp/pull/83)** - Fix apparmor spec tests
 
 v1.6.8 (2014-12-04)
