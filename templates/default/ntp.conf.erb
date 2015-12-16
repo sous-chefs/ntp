@@ -35,7 +35,7 @@ interface listen <%= listen %>
 <%   end -%>
 <%#  The service must always listen on localhost %>
 <%   unless Array(node['ntp']['listen']).include? '127.0.0.1' -%>
- interface listen 127.0.0.1    interface listen 127.0.0.1
+interface listen 127.0.0.1
 <%   end -%>
 <% end -%>
 
