@@ -1,50 +1,73 @@
 # ntp Cookbook CHANGELOG
 This file is used to list changes made in each version of the ntp cookbook.
 
-## v1.8.4 (2015-04-17)
-- **[PR #102](https://github.com/gmiranda23/ntp/pull/102)** - Update leapseconds file to 3660249600 (through C49)
+## v1.9.0 (2015-12-16)
+- **PR [#111]** - Fix duplication of localhost listen directive in template
+- **PR [#127]** - Set `var_owner` on FreeBSD to root instead of default ntp
+- **PR [#117]** - Document node['ntp']['ignore']
+- **PR [#118]** - Add attributes to support pld-linux
+- **PR [#120]** - Fix links to Github PRs in the Changelog
+- **PR [#124]** - Additional fix for apparmor issue gmiranda23#103
+- Depend on windows cookbook instead of suggesting.  Suggests doesn't actually do anything
+- Fix / expand apparmor specs to pass and test the auto apparmor config logic
+- Enable Travis CI and update the travis.yml file to run full integration tests with Kitchen Docker so we test all PRs on Ubuntu 12.04/14.04 and CentOS 6.7 / 7.1
+- Reformat all markdown files
+- Update all references to Opscode to be Chef Software.
+- Update copyright dates and contact e-mails
+- Expanded platforms in the Test Kitchen config
+- Added new supermarket issues_url and source_url metadata
+- Update the Berkfile API url and removed version pins on the testing cookbooks
+- Remove yum from the Berksfile as it isn't actually used
+- Use the standard Chef testing Rakefile
+- Remove the attribute documentation from the metadata as it is quickly out of sync
+- Resolve rubocop warnings and include the standard Chef rubocop.yml file
+- Update development deps in the Gemfile to the latest releases
+- Remove the outdated contributing.md doc from the Opscode days
+
+## v1.8.6 (2015-05-14)
+- **PR [#102]( 102)** - Update leapseconds file to 3660249600 (through C49)
 - Gemfile parity with ChefDK 0.5.1
 - .kitchen.yml platform updates to current bento boxes
 
 ## v1.8.4 (2015-04-17)
-- **[PR #101](https://github.com/gmiranda23/ntp/pull/101)** - add logfile attribute
+- **PR [#101]** - add logfile attribute
 
 ## v1.8.2 (2015-04-15)
-- **[PR #100](https://github.com/gmiranda23/ntp/pull/100)** - Sort peers & servers for consistency
+- **PR [#100]** - Sort peers & servers for consistency
 
 ## v1.8.0 (2015-04-13)
 - Chefspec 4.0 updates
 - Rubocop updates
-- **[PR #85](https://github.com/gmiranda23/ntp/pull/85)** - Update leapseconds for June 2015 leapsecond
-- **[PR #70](https://github.com/gmiranda23/ntp/pull/70)** - Allow setting tinker options in attributes
-- **[PR #84](https://github.com/gmiranda23/ntp/pull/84)** - Add attributes for tinker option customization
-- **[PR #88](https://github.com/gmiranda23/ntp/pull/88)** - Attribute sets noquery for localhost lines
-- **[PR #89](https://github.com/gmiranda23/ntp/pull/89)** - ntp.leapseconds notifies ntp service with delayed restart
-- **[PR #91](https://github.com/gmiranda23/ntp/pull/91)** - Allow ntp.conf update to restart immediate
-- **[PR #95](https://github.com/gmiranda23/ntp/pull/95)** - Add preferred ntp server support
-- **[PR #96](https://github.com/gmiranda23/ntp/pull/96)** - Add restrict default attribute
-- **[PR #72](https://github.com/gmiranda23/ntp/pull/72)** - Move high stratum real CMOs to an attribute
-- **[PR #98](https://github.com/gmiranda23/ntp/pull/98)** - Bump test-kitchen gem version
-- **[PR #99](https://github.com/gmiranda23/ntp/pull/99)** - Lazy attribute for leapfile_enabled
+- **PR [#85]** - Update leapseconds for June 2015 leapsecond
+- **PR [#70]** - Allow setting tinker options in attributes
+- **PR [#84]** - Add attributes for tinker option customization
+- **PR [#88]** - Attribute sets noquery for localhost lines
+- **PR [#89]** - ntp.leapseconds notifies ntp service with delayed restart
+- **PR [#91]** - Allow ntp.conf update to restart immediate
+- **PR [#95]** - Add preferred ntp server support
+- **PR [#96]** - Add restrict default attribute
+- **PR [#72]** - Move high stratum real CMOs to an attribute
+- **PR [#98]** - Bump test-kitchen gem version
+- **PR [#99]** - Lazy attribute for leapfile_enabled
 
 ## v1.7.0 (2014-12-10)
 - Added CentOS 7 support for test-kitchen
-- **[PR #37](https://github.com/gmiranda23/ntp/pull/37)** - Check that apparmor exists before enabling service
-- **[PR #45](https://github.com/gmiranda23/ntp/pull/45)** - Statistics logging switch (not available for Windows)
-- **[PR #57](https://github.com/gmiranda23/ntp/pull/57)** - Move include statement on helper outside 'windows?' check
-- **[PR #71](https://github.com/gmiranda23/ntp/pull/71)** - Ability to listen more than one interface
-- **[PR #73](https://github.com/gmiranda23/ntp/pull/73)** - Fix appamor configuration for Ubuntu
-- **[PR #74](https://github.com/gmiranda23/ntp/pull/74)** - Remove is_server from example
-- **[PR #75](https://github.com/gmiranda23/ntp/pull/75)** - Add more settings for server and peer declarations
-- **[PR #83](https://github.com/gmiranda23/ntp/pull/83)** - Fix apparmor spec tests
+- **PR [#37]** - Check that apparmor exists before enabling service
+- **PR [#45]** - Statistics logging switch (not available for Windows)
+- **PR [#57]** - Move include statement on helper outside 'windows?' check
+- **PR [#71]** - Ability to listen more than one interface
+- **PR [#73]** - Fix appamor configuration for Ubuntu
+- **PR [#74]** - Remove is_server from example
+- **PR [#75]** - Add more settings for server and peer declarations
+- **PR [#83]** - Fix apparmor spec tests
 
 ## v1.6.8 (2014-12-04)
-- **[PR #81](https://github.com/gmiranda23/ntp/pull/81)** - Update to berkshelf3
+- **PR [#81]** - Update to berkshelf3
 
 ## v1.6.6 (2014-12-02)
-- **[PR #76](https://github.com/gmiranda23/ntp/pull/76)** - Overhauled Testing
-- **[PR #68](https://github.com/gmiranda23/ntp/pull/68)** - Updated Leapseconds
-- **[PR #51](https://github.com/gmiranda23/ntp/pull/51)** - Berksfile source deprecation
+- **PR [#76]** - Overhauled Testing
+- **PR [#68]** - Updated Leapseconds
+- **PR [#51]** - Berksfile source deprecation
 
 ## v1.6.5 (2014-09-25)
 - Ensure that ntp version is captured
