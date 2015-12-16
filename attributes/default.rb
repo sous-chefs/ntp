@@ -47,6 +47,7 @@ default['ntp']['sync_clock'] = false
 default['ntp']['sync_hw_clock'] = false
 default['ntp']['listen'] = nil
 default['ntp']['listen_network'] = nil
+default['ntp']['ignore'] = nil
 default['ntp']['apparmor_enabled'] = false
 default['ntp']['monitor'] = false
 default['ntp']['statistics'] = true
