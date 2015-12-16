@@ -50,8 +50,7 @@ Installs and configures ntp. On Windows systems it uses the Meinberg port of the
   - Array, interface names to ignore from listening. Can be used to disable listening wildcard interfaces (eg: ['wildcard', '::1']), can be combined with `ntp["listen"]`
 
 - `ntp["statistics"]`
-  - Boolean. Default to true. Enable/disable statistics data logging into
-  - `ntp['statsdir']`.
+  - Boolean. Default to true. Enable/disable statistics data logging into `ntp['statsdir']`.
   - Not available on Windows.
 
 - `ntp['conf_restart_immediate']`
@@ -149,8 +148,7 @@ Installs and configures ntp. On Windows systems it uses the Meinberg port of the
   - Windows platform only
 
 - `ntp['vs_runtime_url']`
-  - String, the URL to the the Visual Studio C++ 2008 runtime libraries that are required
-  - for the Meinberg NTP client.
+  - String, the URL to the the Visual Studio C++ 2008 runtime libraries that are required for the Meinberg NTP client.
   - Default, Microsoft site download URL
   - Windows platform only
 
@@ -166,9 +164,8 @@ Installs and configures ntp. On Windows systems it uses the Meinberg port of the
 
 - `ntp['apparmor_enabled']`
   - Boolean, enables configuration of apparmor if set to true
-  - Defaults to false and will make no provisions for apparmor.  If a
-  - platform is apparmor enabled by default, (currently Ubuntu)
-  - default will be true.
+  - Defaults to false and will make no provisions for apparmor.
+  - If a platform has apparmor enabled (currently Ubuntu) default will become true.
 
 - `ntp['use_cmos']`
   - Boolean, uses a high stratum undisciplined clock for machines with real CMOS clock.
@@ -211,12 +208,12 @@ If for some reason you need to stop and remove the ntp daemon, you can apply thi
 Windows only. Apply on a Windows host to install the Meinberg NTPd client.
 
 ## Testing
-In addition to providing interfaces to the ntp time service, this recipe is also designed to provide a simple community cookbook with broad cross-platform support to serve as a testing documentation reference. This cookbook utilizes [Foodcritic](http://acrmp.github.io/foodcritic/), [Test-Kitchen](https://github.com/chef/test-kitchen), [Vagrant](http://www.vagrantup.com), [Chefspec](http://acrmp.github.io/chefspec/), [bats](https://github.com/sstephenson/bats), [Rubocop](https://github.com/bbatsov/rubocop), and [Travis-CI](https://travis-ci.org) to provide a comprehensive suite of automated test coverage.
+In addition to providing interfaces to the ntp time service, this recipe is also designed to provide a simple community cookbook with broad cross-platform support to serve as a testing documentation reference. This cookbook utilizes [Foodcritic](http://www.foodcritic.io/), [Test-Kitchen](https://github.com/test-kitchen/test-kitchen), [Vagrant](http://www.vagrantup.com), [Chefspec](https://github.com/sethvargo/chefspec), [bats](https://github.com/sstephenson/bats), [Rubocop](https://github.com/bbatsov/rubocop), and [Travis-CI](https://travis-ci.org) to provide a comprehensive suite of automated test coverage.
 
 More information on the testing strategy used in this cookbook is available in the TESTING.md file, along with information on how to use this type of testing in your own cookbooks.
 
 ## Development
-This section details "quick development" steps. For a detailed explanation, see [[Contributing.md]].
+This section details "quick development" steps.
 - Clone this repository from GitHub:
 
   ```
