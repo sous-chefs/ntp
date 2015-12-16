@@ -115,6 +115,12 @@ when 'solaris2'
   default['ntp']['var_owner'] = 'root'
   default['ntp']['var_group'] = 'sys'
   default['ntp']['leapfile'] = '/etc/inet/ntp.leap'
+when 'pld'
+  default['ntp']['packages'] = %w(ntpd)
+  default['ntp']['conffile'] = '/etc/ntp/ntp.conf'
+  default['ntp']['leapfile'] = '/etc/ntp/ntp.leapseconds'
+  default['ntp']['driftfile'] = "#{node['ntp']['varlibdir']}/drift"
+  default['ntp']['var_owner'] = 'root'
 end
 
 unless node['platform'] == 'windows'
