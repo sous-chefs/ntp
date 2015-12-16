@@ -295,8 +295,16 @@ restrict 0.pool.ntp.org nomodify notrap noquery'
     context 'with apparmor disabled' do
       let(:chef_run) { ChefSpec::SoloRunner.new(platform: 'ubuntu', version: '12.04').converge('ntp::default') }
 
-      it 'does not include the apparmor recipe' do
+      it "does not include the apparmor recipe when apparmor doesn't exist" do
+        allow(File).to receive(:exist?).and_call_original
+        allow(File).to receive(:exist?).with('/etc/init.d/apparmor').and_return(false)
         expect(chef_run).to_not include_recipe('ntp::apparmor')
+      end
+
+      it 'does include the apparmor recipe when apparmor exists' do
+        allow(File).to receive(:exist?).and_call_original
+        allow(File).to receive(:exist?).with('/etc/init.d/apparmor').and_return(true)
+        expect(chef_run).to include_recipe('ntp::apparmor')
       end
     end
   end

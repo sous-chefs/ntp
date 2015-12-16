@@ -174,6 +174,8 @@ describe 'ntp attributes' do
     end
 
     it 'sets the apparmor_enabled attribute to false when /etc/init.d/apparmor does not exist' do
+      allow(File).to receive(:exist?).and_call_original
+      allow(File).to receive(:exist?).with('/etc/init.d/apparmor').and_return(false)
       expect(ntp['apparmor_enabled']).to eq(false)
     end
   end
