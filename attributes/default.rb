@@ -91,7 +91,7 @@ when 'windows'
   default['ntp']['conffile'] = 'C:\\NTP\\etc\\ntp.conf'
   default['ntp']['conf_owner'] = 'Administrators'
   default['ntp']['conf_group'] = 'Administrators'
-  default['ntp']['package_url'] = 'http://www.meinbergglobal.com/download/ntp/windows/ntp-4.2.6p5@london-o-lpv-win32-setup.exe'
+  default['ntp']['package_url'] = 'http://www.meinbergglobal.com/download/ntp/windows/ntp-4.2.8p3-win32-setup.exe'
   default['ntp']['vs_runtime_url'] = 'http://download.microsoft.com/download/1/1/1/1116b75a-9ec3-481a-a3c8-1777b5381140/vcredist_x86.exe'
   default['ntp']['vs_runtime_productname'] = 'Microsoft Visual C++ 2008 Redistributable - x86 9.0.21022'
   default['ntp']['statistics'] = false
