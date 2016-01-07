@@ -1,6 +1,9 @@
 # ntp Cookbook CHANGELOG
 This file is used to list changes made in each version of the ntp cookbook.
 
+## v1.9.1 (2016-01-07)
+- **PR [#132]** - Update ntp.leapseconds
+
 ## v1.9.0 (2015-12-16)
 - **PR [#111]** - Fix duplication of localhost listen directive in template
 - **PR [#127]** - Set `var_owner` on FreeBSD to root instead of default ntp
