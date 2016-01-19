@@ -126,9 +126,5 @@ when 'pld'
 end
 
 unless node['platform'] == 'windows'
-  if !node['virtualization'] || node['virtualization']['role'] != 'guest'
-    default['ntp']['use_cmos'] = true
-  else
-    default['ntp']['use_cmos'] = false
-  end
+  default['ntp']['use_cmos'] = !node['virtualization'] || node['virtualization']['role'] != 'guest' ? true : false
 end
