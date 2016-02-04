@@ -4,7 +4,7 @@ maintainer_email 'gmiranda@chef.io'
 license 'Apache 2.0'
 description 'Installs and configures ntp as a client or server'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version '1.10.0'
+version '1.10.1'
 
 recipe 'ntp', 'Installs and configures ntp either as a server or client'
 

@@ -1,6 +1,10 @@
 # ntp Cookbook CHANGELOG
 This file is used to list changes made in each version of the ntp cookbook.
 
+## v1.10.1 (2016-02-04)
+- Update the Readme to include openSUSE and Arch Linux
+- Guard the timeout set in the service to prevent failures on old chef releases
+
 ## v1.10.0 (2016-02-04)
 - Fixed compatibility with FreeBSD hosts by skipping the sync with the hardware clock and using the proper path to the "true" command
 - Fixed compatibility with Windows by extending the service start timeout, introducing retries, and excluding Windows from the hardware sync logic
