@@ -89,7 +89,7 @@ template node['ntp']['conffile'] do
   )
 end
 
-if node['ntp']['sync_clock']
+if node['ntp']['sync_clock'] && !platform_family?('windows')
   execute "Stop #{node['ntp']['service']} in preparation for ntpdate" do
     command node['platform_family'] == 'freebsd' ? '/usr/bin/true' : '/bin/true'
     action :run
@@ -112,4 +112,7 @@ end
 service node['ntp']['service'] do
   supports status: true, restart: true
   action [:enable, :start]
+  timeout 30
+  retries 3
+  retry_delay 5
 end
