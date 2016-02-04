@@ -13,7 +13,9 @@ platforms:
   - name: debian-8.2
     run_list: apt::default
   - name: fedora-22
+    run_list: yum::dnf_yum_compat
   - name: fedora-23
+    run_list: yum::dnf_yum_compat
   - name: freebsd-9.3
     run_list: freebsd::portsnap
   - name: freebsd-10.2
@@ -25,15 +27,22 @@ platforms:
     run_list: apt::default
   - name: ubuntu-15.10
     run_list: apt::default
+  - name: windows-2008r2
+    driver_config:
+      box: chef/windows-server-2008r2-standard
+  - name: windows-2012r2
+    driver_config:
+      box: chef/windows-server-2012r2-standard
 
 suites:
   - name: default
-    run_list:
-      - recipe[ntp::default]
+    run_list: ntp::default
     attributes:
       ntp:
         sync_clock: true
         sync_hw_clock: true
   - name: undo
-    run_list:
-      - recipe[ntp::undo]
+    run_list: ntp::undo
+    excludes:
+      - windows-2008r2
+      - windows-2012r2
