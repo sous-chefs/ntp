@@ -91,7 +91,7 @@ end
 
 if node['ntp']['sync_clock']
   execute "Stop #{node['ntp']['service']} in preparation for ntpdate" do
-    command '/bin/true'
+    command node['platform_family'] == 'freebsd' ? '/usr/bin/true' : '/bin/true'
     action :run
     notifies :stop, "service[#{node['ntp']['service']}]", :immediately
   end
@@ -106,7 +106,7 @@ end
 execute 'Force sync hardware clock with system clock' do
   command 'hwclock --systohc'
   action :run
-  only_if { node['ntp']['sync_hw_clock'] && !platform_family?('windows') }
+  only_if { node['ntp']['sync_hw_clock'] && !(platform_family?('windows') || platform_family?('freebsd')) }
 end
 
 service node['ntp']['service'] do
