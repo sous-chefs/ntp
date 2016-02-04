@@ -5,12 +5,13 @@ Installs and configures ntp. On Windows systems it uses the Meinberg port of the
 
 ## Requirements
 ### Platforms
+- Arch Linux
 - Debian-family Linux Distributions
-- RedHat-family Linux Distributions
 - Fedora
-- Gentoo Linux
 - FreeBSD
-- Windows
+- Gentoo Linux
+- Microsoft Windows
+- RedHat-family Linux Distributions
 
 ### Chef
 - Chef 11+
