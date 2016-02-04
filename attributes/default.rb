@@ -31,7 +31,7 @@ default['ntp']['tinker'] = { 'panic' => 0 }
 default['ntp']['restrict_default'] = 'kod notrap nomodify nopeer noquery'
 
 # internal attributes
-default['ntp']['packages'] = %w(ntp ntpdate)
+default['ntp']['packages'] = %w(ntp)
 default['ntp']['service'] = 'ntpd'
 default['ntp']['varlibdir'] = '/var/lib/ntp'
 default['ntp']['driftfile'] = "#{node['ntp']['varlibdir']}/ntp.drift"
@@ -79,12 +79,11 @@ default['ntp']['localhost']['noquery'] = false
 # overrides on a platform-by-platform basis
 case node['platform_family']
 when 'debian'
+  default['ntp']['packages'] = %w(ntp ntpdate)
   default['ntp']['service'] = 'ntp'
-  if node['platform'] == 'ubuntu' && node['platform_version'].to_f >= 8.04
-    default['ntp']['apparmor_enabled'] = true if File.exist? '/etc/init.d/apparmor'
-  end
-when 'rhel'
-  default['ntp']['packages'] = %w(ntp) if node['platform_version'].to_i < 6
+  default['ntp']['apparmor_enabled'] = true if File.exist? '/etc/init.d/apparmor'
+when 'rhel', 'fedora'
+  default['ntp']['packages'] = %w(ntp ntpdate) if node['platform_version'].to_i >= 7
 when 'windows'
   default['ntp']['service'] = 'NTP'
   default['ntp']['driftfile'] = 'C:\\NTP\\ntp.drift'
@@ -96,7 +95,6 @@ when 'windows'
   default['ntp']['vs_runtime_productname'] = 'Microsoft Visual C++ 2008 Redistributable - x86 9.0.21022'
   default['ntp']['statistics'] = false
 when 'freebsd'
-  default['ntp']['packages'] = %w(ntp)
   default['ntp']['varlibdir'] = '/var/db'
   default['ntp']['driftfile'] = "#{node['ntp']['varlibdir']}/ntpd.drift"
   default['ntp']['statsdir'] = "#{node['ntp']['varlibdir']}/ntpstats"
@@ -104,10 +102,8 @@ when 'freebsd'
   default['ntp']['var_owner'] = 'root'
   default['ntp']['var_group'] = 'wheel'
 when 'gentoo'
-  default['ntp']['packages'] = %w(ntp)
   default['ntp']['leapfile'] = "#{node['ntp']['varlibdir']}/ntp.leapseconds"
 when 'solaris2'
-  default['ntp']['packages'] = %w(ntp)
   default['ntp']['service'] = 'ntp'
   default['ntp']['varlibdir'] = '/var/ntp'
   default['ntp']['conffile'] = '/etc/inet/ntp.conf'
