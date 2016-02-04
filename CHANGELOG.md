@@ -1,6 +1,9 @@
 # ntp Cookbook CHANGELOG
 This file is used to list changes made in each version of the ntp cookbook.
 
+## v1.9.2 (2016-02-04)
+- **PR [#121]** - Remove nomodify config from loopback
+
 ## v1.9.1 (2016-01-07)
 - **PR [#132]** - Update ntp.leapseconds
 
