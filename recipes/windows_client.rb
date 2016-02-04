@@ -22,23 +22,23 @@
 return 'The ntp::windows_client recipe only supports Windows' unless platform_family?('windows')
 
 directory 'C:/NTP/etc' do
-  inherits  true
-  action    :create
+  inherits true
+  action :create
   recursive true
 end
 
 cookbook_file 'C:/NTP/ntp.ini' do
-  source   'ntp.ini'
+  source 'ntp.ini'
   inherits true
-  action   :create
+  action :create
 end
 
 windows_package node['ntp']['vs_runtime_productname'] do
-  source         node['ntp']['vs_runtime_url']
-  options        '/q'
+  source node['ntp']['vs_runtime_url']
+  options '/q'
   installer_type :custom
-  action         :install
-  only_if        { node['kernel']['release'].to_f < 6 }
+  action :install
+  only_if { node['kernel']['release'].to_f < 6 }
 end
 
 unless File.exist?('C:/NTP/bin/ntpd.exe')

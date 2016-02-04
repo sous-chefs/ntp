@@ -32,14 +32,14 @@ else
     directory ntpdir do
       owner node['ntp']['var_owner']
       group node['ntp']['var_group']
-      mode  '0755'
+      mode '0755'
     end
   end
 
   cookbook_file node['ntp']['leapfile'] do
     owner node['ntp']['conf_owner']
     group node['ntp']['conf_group']
-    mode  '0644'
+    mode '0644'
     source 'ntp.leapseconds'
     notifies :restart, "service[#{node['ntp']['service']}]"
   end
@@ -78,10 +78,10 @@ node.default['ntp']['tinker']['panic'] = 0 if node['virtualization'] &&
                                               node['ntp']['disable_tinker_panic_on_virtualization_guest']
 
 template node['ntp']['conffile'] do
-  source   'ntp.conf.erb'
-  owner    node['ntp']['conf_owner']
-  group    node['ntp']['conf_group']
-  mode     '0644'
+  source 'ntp.conf.erb'
+  owner node['ntp']['conf_owner']
+  group node['ntp']['conf_group']
+  mode '0644'
   notifies :restart, "service[#{node['ntp']['service']}]" unless node['ntp']['conf_restart_immediate']
   notifies :restart, "service[#{node['ntp']['service']}]", :immediately if node['ntp']['conf_restart_immediate']
   variables(
@@ -111,5 +111,5 @@ end
 
 service node['ntp']['service'] do
   supports status: true, restart: true
-  action   [:enable, :start]
+  action [:enable, :start]
 end

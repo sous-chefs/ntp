@@ -23,7 +23,7 @@ return 'The ntp::undo recipe does not support Windows' if platform_family?('wind
 
 service node['ntp']['service'] do
   supports status: true, restart: true
-  action   [:stop, :disable]
+  action [:stop, :disable]
 end
 
 node['ntp']['packages'].each do |ntppkg|
