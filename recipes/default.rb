@@ -112,7 +112,7 @@ end
 service node['ntp']['service'] do
   supports status: true, restart: true
   action [:enable, :start]
-  timeout 30
+  timeout 120 if platform_family?('windows')
   retries 3
   retry_delay 5
 end
