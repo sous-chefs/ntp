@@ -1,6 +1,15 @@
 # ntp Cookbook CHANGELOG
 This file is used to list changes made in each version of the ntp cookbook.
 
+## v1.10.0 (2016-02-04)
+- Fixed compatibility with FreeBSD hosts by skipping the sync with the hardware clock and using the proper path to the "true" command
+- Fixed compatibility with Windows by extending the service start timeout, introducing retries, and excluding Windows from the hardware sync logic
+- Changed the default array of packages to install from ntp and ntpdate to just ntp.  ntpdate is used on Debian and modern RHEL/Fedora hosts only. This gives us out of the box support for Arch and Suse
+- Ensure that Fedora systems also install ntpdate
+- Updated test dependencies to the latest
+- Updated test documentation to point to the official Chef testing documentation
+- Expanded the Test Kitchen config with better support for FreeBSD/Fedora and new Windows boxes
+
 ## v1.9.2 (2016-02-04)
 - **PR [#121]** - Remove nomodify config from loopback
 
@@ -31,7 +40,7 @@ This file is used to list changes made in each version of the ntp cookbook.
 - Remove the outdated contributing.md doc from the Opscode days
 
 ## v1.8.6 (2015-05-14)
-- **PR [#102]( 102)** - Update leapseconds file to 3660249600 (through C49)
+- **PR [#102](102)** - Update leapseconds file to 3660249600 (through C49)
 - Gemfile parity with ChefDK 0.5.1
 - .kitchen.yml platform updates to current bento boxes
 
