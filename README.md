@@ -1,5 +1,5 @@
 # NTP Cookbook
-[![Build Status](https://secure.travis-ci.org/gmiranda23/ntp.svg?branch=master)](http://travis-ci.org/gmiranda23/ntp) [![Cookbook Version](https://img.shields.io/cookbook/v/ntp.svg)](https://supermarket.chef.io/cookbooks/ntp)
+[![Build Status](https://travis-ci.org/gmiranda23/ntp.svg?branch=master)](http://travis-ci.org/gmiranda23/ntp) [![Cookbook Version](https://img.shields.io/cookbook/v/ntp.svg)](https://supermarket.chef.io/cookbooks/ntp)
 
 Installs and configures ntp. On Windows systems it uses the Meinberg port of the standard NTPd client to Windows.
 
@@ -7,6 +7,7 @@ Installs and configures ntp. On Windows systems it uses the Meinberg port of the
 ### Platforms
 - Debian-family Linux Distributions
 - RedHat-family Linux Distributions
+- Fedora
 - Gentoo Linux
 - FreeBSD
 - Windows
@@ -253,7 +254,7 @@ This section details "quick development" steps.
 - Contributor:: Brad Knowles ([bknowles@momentumsi.com](mailto:bknowles@momentumsi.com))
 
 ```text
-Copyright 2009-2015, Chef Software, Inc.
+Copyright 2009-2016, Chef Software, Inc.
 Copyright 2012, Eric G. Wolfe
 Copyright 2012, Fletcher Nichol
 Copyright 2012, Webtrends, Inc.
