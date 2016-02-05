@@ -112,7 +112,7 @@ restrict 0.pool.ntp.org nomodify notrap noquery'
   end
 
   it 'does not execute the "Force sync system clock with ntp server" command' do
-    expect(chef_run).not_to run_execute('ntpd -q')
+    expect(chef_run).not_to run_execute('ntpd -q -u ntp')
   end
 
   it 'does not execute the "Force sync hardware clock with system clock" command' do
@@ -135,7 +135,7 @@ restrict 0.pool.ntp.org nomodify notrap noquery'
     end
 
     it 'executes the "Force sync system clock with ntp server" command' do
-      expect(chef_run).to run_execute('ntpd -q')
+      expect(chef_run).to run_execute('ntpd -q -u ntp')
     end
   end
 
