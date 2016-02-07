@@ -7,10 +7,6 @@ describe 'ntp::default' do
     expect(chef_run).to install_package('ntp')
   end
 
-  it 'installs the ntpdate package' do
-    expect(chef_run).to install_package('ntpdate')
-  end
-
   context 'on a virtualized guest' do
     let(:chef_run) do
       runner = ChefSpec::SoloRunner.new

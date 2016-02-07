@@ -14,8 +14,4 @@ describe 'ntp::undo' do
   it 'uninstalls the ntp package' do
     expect(chef_run).to remove_package('ntp')
   end
-
-  it 'uninstalls the ntpdate package' do
-    expect(chef_run).to remove_package('ntpdate')
-  end
 end
