@@ -85,3 +85,7 @@ restrict -6 ::1<%if node['ntp']['localhost']['noquery'] -%> noquery<% end -%>
 <%  -%>server  127.127.1.0 # local clock
 <%  -%>fudge   127.127.1.0 stratum 10
 <% end -%>
+
+<% if node['ntp']['orphan']['enabled'] -%>
+tos orphan <%= node['ntp']['orphan']['stratum'] %>
+<% end -%>
