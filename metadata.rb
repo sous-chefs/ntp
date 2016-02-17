@@ -12,7 +12,7 @@ recipe 'ntp', 'Installs and configures ntp either as a server or client'
   supports os
 end
 
-depends 'windows'
+depends 'windows', '>= 1.38.0'
 
 source_url 'https://github.com/gmiranda23/ntp' if respond_to?(:source_url)
 issues_url 'https://github.com/gmiranda23/ntp/issues' if respond_to?(:issues_url)
