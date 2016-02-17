@@ -113,7 +113,8 @@ Installs and configures ntp. On Windows systems it uses the Meinberg port of the
 - `ntp['orphan']['stratum']`
   - Number. Defaults to 5, recommended value for stratum is 2 more than the worst-case externally-reachable source of time
 
-### Platform specific
+### Automatically Set Attributes
+These attributes are set based on platform / system information provided by Ohai
 - `ntp['packages']`
   - Array, the packages to install
   - Default, ntp for everything, ntpdate depending on platform. Not applicable for
