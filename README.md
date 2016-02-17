@@ -107,7 +107,7 @@ Installs and configures ntp. On Windows systems it uses the Meinberg port of the
 - `ntp['localhost']['noquery']` (applies to NTP Servers and Clients)
   - Boolean. Defaults to false. Set to true if using ntp < 4.2.8 or any unpatched ntp version to mitigate CVE-2014-9293 / CVE-2014-9294 / CVE-2014-9295
 
-- `ntp['orphan']`
+- `ntp['orphan']['enabled']`
   - Boolean, enables orphan mode if set to true
 
 - `ntp['orphan']['stratum']`
