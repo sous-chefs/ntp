@@ -97,7 +97,7 @@ if node['ntp']['sync_clock'] && !platform_family?('windows')
   end
 
   execute 'Force sync system clock with ntp server' do
-    command 'ntpd -q'
+    command "ntpd -q -u #{node['ntp']['var_owner']}"
     action :run
     notifies :start, "service[#{node['ntp']['service']}]"
   end
