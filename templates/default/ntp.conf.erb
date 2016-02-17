@@ -50,7 +50,7 @@ disable monitor
 <%   node['ntp']['peers'].sort.each do |ntppeer| -%>
 <%#    Don't peer with ourself %>
 <%     if node['ipaddress'] != ntppeer && node['fqdn'] != ntppeer -%>
-<%    -%>peer <%= ntppeer %><% if node['ntp']['peer']['use_iburst'] -%> iburst<% end -%><% if node['ntp']['peer']['use_burst'] -%> burst<% end -%> minpoll <%= node['ntp']['peer']['minpoll'] %> maxpoll <%= node['ntp']['peer']['maxpoll'] %>
+<%    -%>peer <%= ntppeer %><% if key = node['ntp']['peer']['key'] -%> key <%= key %><% end -%><% if node['ntp']['peer']['use_iburst'] -%> iburst<% end -%><% if node['ntp']['peer']['use_burst'] -%> burst<% end -%> minpoll <%= node['ntp']['peer']['minpoll'] %> maxpoll <%= node['ntp']['peer']['maxpoll'] %>
 <%    -%>restrict <%= ntppeer %> nomodify
 <%     end -%>
 <%   end -%>
@@ -88,4 +88,11 @@ restrict -6 ::1<%if node['ntp']['localhost']['noquery'] -%> noquery<% end -%>
 
 <% if node['ntp']['orphan']['enabled'] -%>
 tos orphan <%= node['ntp']['orphan']['stratum'] %>
+<% end -%>
+
+<% if node['ntp']['keys'] -%>
+keys <%= node['ntp']['keys'] %>
+<% end -%>
+<% if node['ntp']['trustedkey'] -%>
+trustedkey <%= node['ntp']['trustedkey'] %>
 <% end -%>
