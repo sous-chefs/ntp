@@ -47,7 +47,7 @@ else
   include_recipe 'ntp::apparmor' if node['ntp']['apparmor_enabled']
 end
 
-unless node['ntp']['servers'].size > 0
+if node['ntp']['servers'].empty?
   node.default['ntp']['servers'] = [
     '0.pool.ntp.org',
     '1.pool.ntp.org',

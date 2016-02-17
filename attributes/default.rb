@@ -73,6 +73,9 @@ default['ntp']['tinker']['panic'] = 1000
 default['ntp']['tinker']['step'] = 0.128
 default['ntp']['tinker']['stepout'] = 900
 
+default['ntp']['orphan']['enabled'] = false
+default['ntp']['orphan']['stratum'] = 5 # ntp recommends 2 more than the worst-case externally-reachable source of time
+
 # Set to true if using ntp < 4.2.8 or any unpatched ntp version to mitigate CVE-2014-9293 / CVE-2014-9294 / CVE-2014-9295
 default['ntp']['localhost']['noquery'] = false
 
