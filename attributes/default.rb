@@ -52,10 +52,13 @@ default['ntp']['apparmor_enabled'] = false
 default['ntp']['monitor'] = false
 default['ntp']['statistics'] = true
 default['ntp']['conf_restart_immediate'] = false
+default['ntp']['keys'] = nil
+default['ntp']['trustedkey'] = nil
 
 # See http://www.vmware.com/vmtn/resources/238 p. 23 for explanation
 default['ntp']['disable_tinker_panic_on_virtualization_guest'] = true
 
+default['ntp']['peer']['key'] = nil
 default['ntp']['peer']['use_iburst'] = true
 default['ntp']['peer']['use_burst'] = false
 default['ntp']['peer']['minpoll'] = 6

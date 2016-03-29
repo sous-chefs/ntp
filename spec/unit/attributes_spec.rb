@@ -93,8 +93,20 @@ describe 'ntp attributes' do
       expect(ntp['monitor']).to eq(false)
     end
 
+    it 'sets the keys to nil' do
+      expect(ntp['keys']).to be nil
+    end
+
+    it 'sets the trustedkey to nil' do
+      expect(ntp['trustedkey']).to be nil
+    end
+
     it 'sets conf_restart_immediate to false' do
       expect(ntp['conf_restart_immediate']).to eq(false)
+    end
+
+    it 'sets peer key to nil' do
+      expect(ntp['peer']['key']).to be nil
     end
 
     it 'sets peer use_iburst to true' do
