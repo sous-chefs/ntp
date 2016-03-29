@@ -1,6 +1,12 @@
 # ntp Cookbook CHANGELOG
 This file is used to list changes made in each version of the ntp cookbook.
 
+## v1.11.0 (2016-03-29)
+- When force setting the clock run ntp as the ntp user to ensure we don't set file ownership to root
+- Added optional support for orphan mode
+- Require windows cookbook 1.38.0 to resolve several issues with the older cookbook versions
+- Add support for using keys
+
 ## v1.10.1 (2016-02-04)
 - Update the Readme to include openSUSE and Arch Linux
 - Guard the timeout set in the service to prevent failures on old chef releases
