@@ -3,6 +3,8 @@ require 'rubocop/rake_task'
 require 'foodcritic'
 require 'kitchen'
 
+require_relative 'tasks/maintainers'
+
 # Style tests. Rubocop and Foodcritic
 namespace :style do
   desc 'Run Ruby style checks'
@@ -38,4 +40,4 @@ desc 'Run all tests on Travis'
 task travis: ['style', 'spec', 'integration:cloud']
 
 # Default
-task default: ['style', 'spec', 'integration:vagrant']
+task default: %w(style spec)
