@@ -1,6 +1,6 @@
 name 'ntp'
-maintainer 'George Miranda'
-maintainer_email 'gmiranda@chef.io'
+maintainer 'Chef Software, Inc.'
+maintainer_email 'cookbooks@chef.io'
 license 'Apache 2.0'
 description 'Installs and configures ntp as a client or server'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
@@ -14,5 +14,5 @@ end
 
 depends 'windows', '>= 1.38.0'
 
-source_url 'https://github.com/gmiranda23/ntp' if respond_to?(:source_url)
-issues_url 'https://github.com/gmiranda23/ntp/issues' if respond_to?(:issues_url)
+source_url 'https://github.com/chef-cookbooks/ntp' if respond_to?(:source_url)
+issues_url 'https://github.com/chef-cookbooks/ntp/issues' if respond_to?(:issues_url)
