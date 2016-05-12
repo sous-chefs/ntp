@@ -217,43 +217,6 @@ If for some reason you need to stop and remove the ntp daemon, you can apply thi
 ### windows_client recipe
 Windows only. Apply on a Windows host to install the Meinberg NTPd client.
 
-## Testing
-In addition to providing interfaces to the ntp time service, this recipe is also designed to provide a simple community cookbook with broad cross-platform support to serve as a testing documentation reference. This cookbook utilizes [Foodcritic](http://www.foodcritic.io/), [Test-Kitchen](https://github.com/test-kitchen/test-kitchen), [Vagrant](http://www.vagrantup.com), [Chefspec](https://github.com/sethvargo/chefspec), [bats](https://github.com/sstephenson/bats), [Rubocop](https://github.com/bbatsov/rubocop), and [Travis-CI](https://travis-ci.org) to provide a comprehensive suite of automated test coverage.
-
-More information on the testing strategy used in this cookbook is available in the TESTING.md file, along with information on how to use this type of testing in your own cookbooks.
-
-## Development
-This section details "quick development" steps.
-- Clone this repository from GitHub:
-
-  ```
-   $ git clone git@github.com:gmiranda23/ntp.git
-  ```
-
-- Create a git branch
-
-  ```
-   $ git checkout -b my_bug_fix
-  ```
-
-- Install dependencies:
-
-  ```
-   $ bundle install
-  ```
-
-- **Write tests**
-- Make your changes/patches/fixes, committing appropriately
-- Run the tests:
-  - `bundle exec rake`
-  - `bundle exec rake kitchen`
-
-  In detail:
-  - Foodcritic will catch any Chef-specific style errors
-  - RSpec will run the unit tests
-  - Rubocop will check for Ruby-specific style errors
-  - Test Kitchen will run and converge the recipes
-
 ## License & Authors
 - Author:: Joshua Timberman ([joshua@chef.io](mailto:joshua@chef.io))
 - Contributor:: Eric G. Wolfe ([wolfe21@marshall.edu](mailto:wolfe21@marshall.edu))
