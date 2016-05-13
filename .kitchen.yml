@@ -42,8 +42,3 @@ suites:
       ntp:
         sync_clock: true
         sync_hw_clock: true
-  - name: undo
-    run_list: ntp::undo
-    excludes:
-      - windows-2008r2
-      - windows-2012r2
