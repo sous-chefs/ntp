@@ -214,62 +214,37 @@ describe 'ntp attributes' do
   describe 'on the Windows platform' do
     let(:chef_run) { ChefSpec::SoloRunner.new(platform: 'windows', version: '2012R2').converge('ntp::default') }
 
-    # chefspec can not check windows reliably so skip these tests for now
-    it 'sets the service name to NTP'
+    it 'sets the service name to NTP' do
+      expect(ntp['service']).to eq('NTP')
+    end
 
-    it 'sets the drift file to /var/db/ntpd.drift'
+    it 'sets the drift file to /var/db/ntpd.drift' do
+      expect(ntp['driftfile']).to eq('C:\\NTP\\ntp.drift')
+    end
 
-    it 'sets the conf file to /etc/ntp.conf'
+    it 'sets the conf file to /etc/ntp.conf' do
+      expect(ntp['conffile']).to eq('C:\\NTP\\etc\\ntp.conf')
+    end
 
-    it 'sets the conf_owner to root'
+    it 'sets the conf_owner to root' do
+      expect(ntp['conf_owner']).to eq('Administrators')
+    end
 
-    it 'sets the conf_group to root'
+    it 'sets the conf_group to root' do
+      expect(ntp['conf_group']).to eq('Administrators')
+    end
 
-    it 'sets the package_url correctly'
+    it 'sets the package_url correctly' do
+      expect(ntp['package_url']).to eq('https://www.meinbergglobal.com/download/ntp/windows/ntp-4.2.8p5-win32-setup.exe')
+    end
 
-    it 'sets the vs_runtime_url correctly'
+    it 'sets the vs_runtime_url correctly' do
+      expect(ntp['vs_runtime_url']).to eq('http://download.microsoft.com/download/1/1/1/1116b75a-9ec3-481a-a3c8-1777b5381140/vcredist_x86.exe')
+    end
 
-    it 'sets the vs_runtime_productname correctly'
-
-    #     it 'sets the service name to NTP' do
-    #       pending('ChefSpec does not yet understand the inherits attribute in cookbook_file resources')
-    #       expect(ntp['service']).to eq('NTP')
-    #     end
-    #
-    #     it 'sets the drift file to /var/db/ntpd.drift' do
-    #       pending('ChefSpec does not yet understand the inherits attribute in cookbook_file resources')
-    #       expect(ntp['driftfile']).to eq('C:\\NTP\\ntp.drift')
-    #     end
-    #
-    #     it 'sets the conf file to /etc/ntp.conf' do
-    #       pending('ChefSpec does not yet understand the inherits attribute in cookbook_file resources')
-    #       expect(ntp['conffile']).to eq('C:\\NTP\\etc\\ntp.conf')
-    #     end
-    #
-    #     it 'sets the conf_owner to root' do
-    #       pending('ChefSpec does not yet understand the inherits attribute in cookbook_file resources')
-    #       expect(ntp['conf_owner']).to eq('Administrators')
-    #     end
-    #
-    #     it 'sets the conf_group to root' do
-    #       pending('ChefSpec does not yet understand the inherits attribute in cookbook_file resources')
-    #       expect(ntp['conf_group']).to eq('Administrators')
-    #     end
-    #
-    #     it 'sets the package_url correctly' do
-    #       pending('ChefSpec does not yet understand the inherits attribute in cookbook_file resources')
-    #       expect(ntp['package_url']).to eq('http://www.meinbergglobal.com/download/ntp/windows/ntp-4.2.6p5@london-o-lpv-win32-setup.exe')
-    #     end
-    #
-    #     it 'sets the vs_runtime_url correctly' do
-    #       pending('ChefSpec does not yet understand the inherits attribute in cookbook_file resources')
-    #       expect(ntp['vs_runtime_url']).to eq('http://download.microsoft.com/download/1/1/1/1116b75a-9ec3-481a-a3c8-1777b5381140/vcredist_x86.exe')
-    #     end
-    #
-    #     it 'sets the vs_runtime_productname correctly' do
-    #       pending('ChefSpec does not yet understand the inherits attribute in cookbook_file resources')
-    #       expect(ntp['vs_runtime_productname']).to eq('Microsoft Visual C++ 2008 Redistributable - x86 9.0.21022')
-    #     end
+    it 'sets the vs_runtime_productname correctly' do
+      expect(ntp['vs_runtime_productname']).to eq('Microsoft Visual C++ 2008 Redistributable - x86 9.0.21022')
+    end
   end
 
   describe 'on the FreeBSD platform' do

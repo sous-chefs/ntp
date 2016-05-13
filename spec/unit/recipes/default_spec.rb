@@ -242,11 +242,9 @@ restrict 0.pool.ntp.org nomodify notrap noquery'
       runner.converge('ntp::default')
     end
 
-    it 'does not executes the "Force sync hardware clock with system clock" command'
-    #     it 'does not executes the "Force sync hardware clock with system clock" command' do
-    #       pending('ChefSpec does not yet understand the inherits attribute in cookbook_file resources')
-    #       expect(chef_run).not_to run_execute('hwclock --systohc')
-    #     end
+    it 'does not executes the "Force sync hardware clock with system clock" command' do
+      expect(chef_run).not_to run_execute('hwclock --systohc')
+    end
   end
 
   context 'on CentOS 5' do
