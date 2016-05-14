@@ -33,14 +33,6 @@ cookbook_file 'C:/NTP/ntp.ini' do
   action :create
 end
 
-windows_package node['ntp']['vs_runtime_productname'] do
-  source node['ntp']['vs_runtime_url']
-  options '/q'
-  installer_type :custom
-  action :install
-  only_if { node['kernel']['release'].to_f < 6 }
-end
-
 unless File.exist?('C:/NTP/bin/ntpd.exe')
   remote_file "#{Chef::Config[:file_cache_path]}/ntpd.exe" do
     source node['ntp']['package_url']

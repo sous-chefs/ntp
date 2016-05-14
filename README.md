@@ -15,7 +15,7 @@ Installs and configures ntp. On Windows systems it uses the Meinberg port of the
 - Arch Linux
 - openSUSE
 - FreeBSD
-- Windows
+- Windows 2008 R2+
 
 ### Chef
 

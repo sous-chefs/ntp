@@ -97,8 +97,6 @@ when 'windows'
   default['ntp']['conf_owner'] = 'Administrators'
   default['ntp']['conf_group'] = 'Administrators'
   default['ntp']['package_url'] = 'https://www.meinbergglobal.com/download/ntp/windows/ntp-4.2.8p5-win32-setup.exe'
-  default['ntp']['vs_runtime_url'] = 'http://download.microsoft.com/download/1/1/1/1116b75a-9ec3-481a-a3c8-1777b5381140/vcredist_x86.exe'
-  default['ntp']['vs_runtime_productname'] = 'Microsoft Visual C++ 2008 Redistributable - x86 9.0.21022'
   default['ntp']['statistics'] = false
 when 'freebsd'
   default['ntp']['varlibdir'] = '/var/db'
