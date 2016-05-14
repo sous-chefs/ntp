@@ -2,6 +2,12 @@
 
 This file is used to list changes made in each version of the ntp cookbook.
 
+## v2.0.0 (2016-05-18)
+
+- Remove the undo recipe. This functionality is better suited for a custom cookbook that matches the needs of individual organizations
+- Removed the installation of the visual studio 2008 runtime that was only necessary for Windows 2003.
+- Fixed the forced clock syncing on FreeBSD hosts
+
 ## v1.11.1 (2016-05-12)
 
 - Ownership of this cookbook has been transferred back to Chef Software.
