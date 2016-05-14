@@ -2,7 +2,7 @@
 # Cookbook Name:: ntp
 # Recipe:: default
 # Author:: Joshua Timberman (<joshua@chef.io>)
-# Author:: Tim Smith (<tsmith@limelight.com>)
+# Author:: Tim Smith (<tsmith@chef.io>)
 #
 # Copyright 2009-2015, Chef Software, Inc.
 #
@@ -97,7 +97,7 @@ if node['ntp']['sync_clock'] && !platform_family?('windows')
   end
 
   execute 'Force sync system clock with ntp server' do
-    command "ntpd -q -u #{node['ntp']['var_owner']}"
+    command node['platform_family'] == 'freebsd' ? "ntpd -q" : "ntpd -q -u #{node['ntp']['var_owner']}"
     action :run
     notifies :start, "service[#{node['ntp']['service']}]"
   end
