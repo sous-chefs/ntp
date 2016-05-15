@@ -237,14 +237,6 @@ describe 'ntp attributes' do
     it 'sets the package_url correctly' do
       expect(ntp['package_url']).to eq('https://www.meinbergglobal.com/download/ntp/windows/ntp-4.2.8p5-win32-setup.exe')
     end
-
-    it 'sets the vs_runtime_url correctly' do
-      expect(ntp['vs_runtime_url']).to eq('http://download.microsoft.com/download/1/1/1/1116b75a-9ec3-481a-a3c8-1777b5381140/vcredist_x86.exe')
-    end
-
-    it 'sets the vs_runtime_productname correctly' do
-      expect(ntp['vs_runtime_productname']).to eq('Microsoft Visual C++ 2008 Redistributable - x86 9.0.21022')
-    end
   end
 
   describe 'on the FreeBSD platform' do
