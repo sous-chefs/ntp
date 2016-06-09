@@ -99,6 +99,7 @@ when 'windows'
   default['ntp']['package_url'] = 'https://www.meinbergglobal.com/download/ntp/windows/ntp-4.2.8p5-win32-setup.exe'
   default['ntp']['statistics'] = false
 when 'freebsd'
+  default['ntp']['packages'] = %w()
   default['ntp']['varlibdir'] = '/var/db'
   default['ntp']['driftfile'] = "#{node['ntp']['varlibdir']}/ntpd.drift"
   default['ntp']['statsdir'] = "#{node['ntp']['varlibdir']}/ntpstats"
