@@ -11,6 +11,7 @@ provisioner:
 
 verifier:
   name: inspec
+  format: doc
 
 platforms:
 - name: debian-7
@@ -19,6 +20,7 @@ platforms:
     pid_one_command: /sbin/init
     intermediate_instructions:
       - RUN /usr/bin/apt-get update
+      - RUN /usr/bin/apt-get install lsb-release -y
 
 - name: debian-8
   driver:
@@ -26,34 +28,38 @@ platforms:
     pid_one_command: /bin/systemd
     intermediate_instructions:
       - RUN /usr/bin/apt-get update
+      - RUN /usr/bin/apt-get install lsb-release -y
 
 - name: centos-5
   driver:
     image: centos:5
     platform: rhel
-    run_command: /sbin/init
-    provision_command:
-      - /usr/bin/yum install -y initscripts wget
+    pid_one_command: /sbin/init
+    intermediate_instructions:
+      - RUN yum install -y which initscripts
 
 - name: centos-6
   driver:
     image: centos:6
+    platform: rhel
+    pid_one_command: /sbin/init
     intermediate_instructions:
       - RUN yum -y install which initscripts
 
 - name: centos-7
   driver:
     image: centos:7
+    platform: rhel
     pid_one_command: /usr/lib/systemd/systemd
     intermediate_instructions:
-      - RUN yum -y install lsof
+      - RUN yum -y install lsof which
 
 - name: fedora-23
   driver:
     image: fedora:23
     pid_one_command: /usr/lib/systemd/systemd
     intermediate_instructions:
-      - RUN dnf -y install yum
+      - RUN dnf -y install yum which
 
 - name: ubuntu-12.04
   driver:
@@ -80,8 +86,6 @@ platforms:
   driver:
     image: opensuse:13.2
     pid_one_command: /bin/systemd
-    intermediate_instructions:
-      - RUN zypper refresh
 
 suites:
   - name: default

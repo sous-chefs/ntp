@@ -6,6 +6,7 @@ provisioner:
 
 verifier:
   name: inspec
+  format: doc
 
 platforms:
   - name: centos-5.11
