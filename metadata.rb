@@ -16,3 +16,5 @@ depends 'windows', '>= 1.38.0'
 
 source_url 'https://github.com/chef-cookbooks/ntp' if respond_to?(:source_url)
 issues_url 'https://github.com/chef-cookbooks/ntp/issues' if respond_to?(:issues_url)
+
+chef_version '>= 11' if respond_to?(:chef_version)
