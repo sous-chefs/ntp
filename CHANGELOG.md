@@ -2,6 +2,14 @@
 
 This file is used to list changes made in each version of the ntp cookbook.
 
+## 2.0.1 (2016-08-29)
+
+- Update the leap seconds file
+- Remove node name from configs
+- Switch to cookstyle and use the Rakefile directly for testing in Travis CI
+- Update platforms we test on
+- Fix failing Chefspecs and avoid deprecation warnings during spec runs
+
 ## v2.0.0 (2016-05-18)
 
 - Remove the undo recipe. This functionality is better suited for a custom cookbook that matches the needs of individual organizations
