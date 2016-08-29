@@ -102,4 +102,3 @@ suites:
     attributes:
       ntp:
         sync_clock: true
-        sync_hw_clock: true
