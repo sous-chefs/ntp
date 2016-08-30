@@ -2,6 +2,10 @@
 
 This file is used to list changes made in each version of the ntp cookbook.
 
+## 2.0.2 (2016-08-30)
+
+- Replace node.set with node.normal to avoid deprecation notices
+
 ## 2.0.1 (2016-08-29)
 
 - Update the leap seconds file
