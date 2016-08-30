@@ -10,7 +10,7 @@ describe 'ntp::default' do
   context 'on a virtualized guest' do
     let(:chef_run) do
       runner = ChefSpec::SoloRunner.new
-      runner.node.set['virtualization']['role'] = 'guest'
+      runner.node.normal['virtualization']['role'] = 'guest'
       runner.converge('ntp::default')
     end
 
@@ -126,7 +126,7 @@ restrict 0.pool.ntp.org nomodify notrap noquery'
   context 'the sync_clock attribute is set' do
     let(:chef_run) do
       runner = ChefSpec::SoloRunner.new
-      runner.node.set['ntp']['sync_clock'] = true
+      runner.node.normal['ntp']['sync_clock'] = true
       runner.converge('ntp::default')
     end
 
@@ -138,7 +138,7 @@ restrict 0.pool.ntp.org nomodify notrap noquery'
   context 'the sync_hw_clock attribute is set on a non-Windows OS' do
     let(:chef_run) do
       runner = ChefSpec::SoloRunner.new
-      runner.node.set['ntp']['sync_hw_clock'] = true
+      runner.node.normal['ntp']['sync_hw_clock'] = true
       runner.converge('ntp::default')
     end
 
@@ -150,7 +150,7 @@ restrict 0.pool.ntp.org nomodify notrap noquery'
   context 'ntp["listen_network"] is set to "primary"' do
     let(:chef_run) do
       runner = ChefSpec::SoloRunner.new
-      runner.node.set['ntp']['listen_network'] = 'primary'
+      runner.node.normal['ntp']['listen_network'] = 'primary'
       runner.converge('ntp::default')
     end
 
@@ -162,12 +162,12 @@ restrict 0.pool.ntp.org nomodify notrap noquery'
   context 'ntp["listen_network"] is set to a CIDR' do
     let(:chef_run) do
       runner = ChefSpec::SoloRunner.new
-      runner.node.set['network']['interfaces']['eth0']['addresses']['192.168.253.254'] = {
+      runner.node.normal['network']['interfaces']['eth0']['addresses']['192.168.253.254'] = {
         'netmask' => '255.255.255.0',
         'broadcast' => '192.168.253.255',
         'family' => 'inet'
       }
-      runner.node.set['ntp']['listen_network'] = '192.168.253.0/24'
+      runner.node.normal['ntp']['listen_network'] = '192.168.253.0/24'
       runner.converge('ntp::default')
     end
 
@@ -179,7 +179,7 @@ restrict 0.pool.ntp.org nomodify notrap noquery'
   context 'ntp["listen"] is set to a specific address' do
     let(:chef_run) do
       runner = ChefSpec::SoloRunner.new
-      runner.node.set['ntp']['listen'] = '192.168.254.254'
+      runner.node.normal['ntp']['listen'] = '192.168.254.254'
       runner.converge('ntp::default')
     end
 
@@ -191,19 +191,19 @@ restrict 0.pool.ntp.org nomodify notrap noquery'
   context 'ntp["listen"] and ntp["listen_network"] are both set (primary test)' do
     let(:chef_run) do
       runner = ChefSpec::SoloRunner.new
-      runner.node.set['network']['interfaces']['eth0']['addresses']['192.168.253.254'] = {
+      runner.node.normal['network']['interfaces']['eth0']['addresses']['192.168.253.254'] = {
         'netmask' => '255.255.255.0',
         'broadcast' => '192.168.253.255',
         'family' => 'inet'
       }
-      runner.node.set['network']['interfaces']['eth1']['addresses']['192.168.254.254'] = {
+      runner.node.normal['network']['interfaces']['eth1']['addresses']['192.168.254.254'] = {
         'netmask' => '255.255.255.0',
         'broadcast' => '192.168.254.255',
         'family' => 'inet'
       }
-      runner.node.set['network']['default_gateway'] = '192.168.253.1'
-      runner.node.set['ntp']['listen_network'] = 'primary'
-      runner.node.set['ntp']['listen'] = '192.168.254.254'
+      runner.node.normal['network']['default_gateway'] = '192.168.253.1'
+      runner.node.normal['ntp']['listen_network'] = 'primary'
+      runner.node.normal['ntp']['listen'] = '192.168.254.254'
       runner.converge('ntp::default')
     end
 
@@ -215,18 +215,18 @@ restrict 0.pool.ntp.org nomodify notrap noquery'
   context 'ntp["listen"] and ntp["listen_network"] are both set (CIDR test)' do
     let(:chef_run) do
       runner = ChefSpec::SoloRunner.new
-      runner.node.set['network']['interfaces']['eth0']['addresses']['192.168.253.254'] = {
+      runner.node.normal['network']['interfaces']['eth0']['addresses']['192.168.253.254'] = {
         'netmask' => '255.255.255.0',
         'broadcast' => '192.168.253.255',
         'family' => 'inet'
       }
-      runner.node.set['network']['interfaces']['eth1']['addresses']['192.168.254.254'] = {
+      runner.node.normal['network']['interfaces']['eth1']['addresses']['192.168.254.254'] = {
         'netmask' => '255.255.255.0',
         'broadcast' => '192.168.254.255',
         'family' => 'inet'
       }
-      runner.node.set['ntp']['listen_network'] = '192.168.253.0/24'
-      runner.node.set['ntp']['listen'] = '192.168.254.254'
+      runner.node.normal['ntp']['listen_network'] = '192.168.253.0/24'
+      runner.node.normal['ntp']['listen'] = '192.168.254.254'
       runner.converge('ntp::default')
     end
 
@@ -238,7 +238,7 @@ restrict 0.pool.ntp.org nomodify notrap noquery'
   context 'the sync_hw_clock attribute is set on a Windows OS' do
     let(:chef_run) do
       runner = ChefSpec::SoloRunner.new(platform: 'windows', version: '2008R2')
-      runner.node.set['ntp']['sync_hw_clock'] = true
+      runner.node.normal['ntp']['sync_hw_clock'] = true
       runner.converge('ntp::default')
     end
 
@@ -277,7 +277,7 @@ restrict 0.pool.ntp.org nomodify notrap noquery'
     context 'with apparmor enabled' do
       let(:chef_run) do
         runner = ChefSpec::SoloRunner.new(platform: 'ubuntu', version: '12.04')
-        runner.node.set['ntp']['apparmor_enabled'] = true
+        runner.node.normal['ntp']['apparmor_enabled'] = true
         runner.converge('ntp::default')
       end
 
