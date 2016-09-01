@@ -2,6 +2,10 @@
 
 This file is used to list changes made in each version of the ntp cookbook.
 
+## 2.0.3 (2016-08-31)
+
+- Remove minitest tests from the undo recipe
+
 ## 2.0.2 (2016-08-30)
 
 - Replace node.set with node.normal to avoid deprecation notices
