@@ -19,7 +19,7 @@ Installs and configures ntp. On Windows systems it uses the Meinberg port of the
 
 ### Chef
 
-- Chef 11+
+- Chef 12+
 
 ### Cookbooks
 
