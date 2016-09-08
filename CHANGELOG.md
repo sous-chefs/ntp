@@ -2,6 +2,10 @@
 
 This file is used to list changes made in each version of the ntp cookbook.
 
+## 3.0.0 (2016-09-07)
+
+- Require Chef 12+
+
 ## 2.0.3 (2016-08-31)
 
 - Remove minitest tests from the undo recipe
