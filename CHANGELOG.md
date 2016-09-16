@@ -2,6 +2,11 @@
 
 This file is used to list changes made in each version of the ntp cookbook.
 
+## 3.1.0 (2016-09-16)
+
+- Require Chef 12.1 not 12.0
+- Remove the dependency on the Windows cookbook
+
 ## 3.0.0 (2016-09-07)
 
 - Require Chef 12+
