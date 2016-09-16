@@ -23,7 +23,7 @@ Installs and configures ntp. On Windows systems it uses the Meinberg port of the
 
 ### Cookbooks
 
-- windows
+- none
 
 ## Attributes
 
