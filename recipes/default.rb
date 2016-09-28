@@ -28,6 +28,11 @@ else
     package ntppkg
   end
 
+  package 'ntpdate' do
+    action :remove
+    only_if { node['platform_version'] == 'debian' && node['platform_version'].to_i >= 16 }
+  end
+
   [node['ntp']['varlibdir'], node['ntp']['statsdir']].each do |ntpdir|
     directory ntpdir do
       owner node['ntp']['var_owner']
