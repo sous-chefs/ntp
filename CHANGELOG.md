@@ -2,6 +2,12 @@
 
 This file is used to list changes made in each version of the ntp cookbook.
 
+## 3.2.0 (2016-09-28)
+- Remove support for Arch
+- Remove legacy apparmore config that wasn't used
+- Don't install apparmor (and uninstall it) on Ubuntu 16.04+
+- Expand specs and avoid deprecation warnings
+
 ## 3.1.0 (2016-09-16)
 
 - Require Chef 12.1 not 12.0
