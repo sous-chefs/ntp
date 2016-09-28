@@ -12,7 +12,6 @@ Installs and configures ntp. On Windows systems it uses the Meinberg port of the
 - RedHat-family Linux Distributions
 - Fedora
 - Gentoo Linux
-- Arch Linux
 - openSUSE
 - FreeBSD
 - Windows 2008 R2+
