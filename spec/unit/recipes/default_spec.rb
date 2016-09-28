@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe 'ntp::default' do
-  let(:chef_run) { ChefSpec::SoloRunner.new.converge('ntp::default') }
+  let(:chef_run) { ChefSpec::SoloRunner.new(platform: 'ubuntu', version: '16.04').converge('ntp::default') }
 
   it 'installs the ntp package' do
     expect(chef_run).to install_package('ntp')
@@ -115,17 +115,17 @@ restrict 0.pool.ntp.org nomodify notrap noquery'
     expect(chef_run).not_to run_execute('hwclock --systohc')
   end
 
-  it 'starts the ntpd service' do
-    expect(chef_run).to start_service('ntpd')
+  it 'starts the ntp service' do
+    expect(chef_run).to start_service('ntp')
   end
 
-  it 'sets ntpd to start on boot' do
-    expect(chef_run).to enable_service('ntpd')
+  it 'sets ntp to start on boot' do
+    expect(chef_run).to enable_service('ntp')
   end
 
   context 'the sync_clock attribute is set' do
     let(:chef_run) do
-      runner = ChefSpec::SoloRunner.new
+      runner = ChefSpec::SoloRunner.new(platform: 'ubuntu', version: '16.04')
       runner.node.normal['ntp']['sync_clock'] = true
       runner.converge('ntp::default')
     end
@@ -137,7 +137,7 @@ restrict 0.pool.ntp.org nomodify notrap noquery'
 
   context 'the sync_hw_clock attribute is set on a non-Windows OS' do
     let(:chef_run) do
-      runner = ChefSpec::SoloRunner.new
+      runner = ChefSpec::SoloRunner.new(platform: 'ubuntu', version: '16.04')
       runner.node.normal['ntp']['sync_hw_clock'] = true
       runner.converge('ntp::default')
     end
@@ -149,7 +149,7 @@ restrict 0.pool.ntp.org nomodify notrap noquery'
 
   context 'ntp["listen_network"] is set to "primary"' do
     let(:chef_run) do
-      runner = ChefSpec::SoloRunner.new
+      runner = ChefSpec::SoloRunner.new(platform: 'ubuntu', version: '16.04')
       runner.node.normal['ntp']['listen_network'] = 'primary'
       runner.converge('ntp::default')
     end
@@ -161,7 +161,7 @@ restrict 0.pool.ntp.org nomodify notrap noquery'
 
   context 'ntp["listen_network"] is set to a CIDR' do
     let(:chef_run) do
-      runner = ChefSpec::SoloRunner.new
+      runner = ChefSpec::SoloRunner.new(platform: 'ubuntu', version: '16.04')
       runner.node.normal['network']['interfaces']['eth0']['addresses']['192.168.253.254'] = {
         'netmask' => '255.255.255.0',
         'broadcast' => '192.168.253.255',
@@ -178,7 +178,7 @@ restrict 0.pool.ntp.org nomodify notrap noquery'
 
   context 'ntp["listen"] is set to a specific address' do
     let(:chef_run) do
-      runner = ChefSpec::SoloRunner.new
+      runner = ChefSpec::SoloRunner.new(platform: 'ubuntu', version: '16.04')
       runner.node.normal['ntp']['listen'] = '192.168.254.254'
       runner.converge('ntp::default')
     end
@@ -190,7 +190,7 @@ restrict 0.pool.ntp.org nomodify notrap noquery'
 
   context 'ntp["listen"] and ntp["listen_network"] are both set (primary test)' do
     let(:chef_run) do
-      runner = ChefSpec::SoloRunner.new
+      runner = ChefSpec::SoloRunner.new(platform: 'ubuntu', version: '16.04')
       runner.node.normal['network']['interfaces']['eth0']['addresses']['192.168.253.254'] = {
         'netmask' => '255.255.255.0',
         'broadcast' => '192.168.253.255',
@@ -214,7 +214,7 @@ restrict 0.pool.ntp.org nomodify notrap noquery'
 
   context 'ntp["listen"] and ntp["listen_network"] are both set (CIDR test)' do
     let(:chef_run) do
-      runner = ChefSpec::SoloRunner.new
+      runner = ChefSpec::SoloRunner.new(platform: 'ubuntu', version: '16.04')
       runner.node.normal['network']['interfaces']['eth0']['addresses']['192.168.253.254'] = {
         'netmask' => '255.255.255.0',
         'broadcast' => '192.168.253.255',
@@ -248,7 +248,7 @@ restrict 0.pool.ntp.org nomodify notrap noquery'
   end
 
   context 'on CentOS 5' do
-    let(:chef_run) { ChefSpec::SoloRunner.new(platform: 'centos', version: '5.8').converge('ntp::default') }
+    let(:chef_run) { ChefSpec::SoloRunner.new(platform: 'centos', version: '5.11').converge('ntp::default') }
 
     it 'installs the ntp package' do
       expect(chef_run).to install_package('ntp')
@@ -258,13 +258,17 @@ restrict 0.pool.ntp.org nomodify notrap noquery'
       expect(chef_run).to_not install_package('ntpdate')
     end
 
+    it 'starts the ntpd service' do
+      expect(chef_run).to start_service('ntpd')
+    end
+
     it 'sets ntpd to start on boot' do
       expect(chef_run).to enable_service('ntpd')
     end
   end
 
   context 'ubuntu' do
-    let(:chef_run) { ChefSpec::SoloRunner.new(platform: 'ubuntu', version: '12.04').converge('ntp::default') }
+    let(:chef_run) { ChefSpec::SoloRunner.new(platform: 'ubuntu', version: '16.04').converge('ntp::default') }
 
     it 'starts the ntp service' do
       expect(chef_run).to start_service('ntp')
@@ -274,9 +278,13 @@ restrict 0.pool.ntp.org nomodify notrap noquery'
       expect(chef_run).to enable_service('ntp')
     end
 
+    it 'removes ntpdate to avoid ntp & ntpdate conflicts' do
+      expect(chef_run).to remove_package('ntpdate')
+    end
+
     context 'with apparmor enabled' do
       let(:chef_run) do
-        runner = ChefSpec::SoloRunner.new(platform: 'ubuntu', version: '12.04')
+        runner = ChefSpec::SoloRunner.new(platform: 'ubuntu', version: '16.04')
         runner.node.normal['ntp']['apparmor_enabled'] = true
         runner.converge('ntp::default')
       end
@@ -287,7 +295,7 @@ restrict 0.pool.ntp.org nomodify notrap noquery'
     end
 
     context 'with apparmor disabled' do
-      let(:chef_run) { ChefSpec::SoloRunner.new(platform: 'ubuntu', version: '12.04').converge('ntp::default') }
+      let(:chef_run) { ChefSpec::SoloRunner.new(platform: 'ubuntu', version: '16.04').converge('ntp::default') }
 
       it "does not include the apparmor recipe when apparmor doesn't exist" do
         allow(File).to receive(:exist?).and_call_original
@@ -304,7 +312,7 @@ restrict 0.pool.ntp.org nomodify notrap noquery'
   end
 
   context 'freebsd' do
-    let(:chef_run) { ChefSpec::SoloRunner.new(platform: 'freebsd', version: '9.1').converge('ntp::default') }
+    let(:chef_run) { ChefSpec::SoloRunner.new(platform: 'freebsd', version: '10.3').converge('ntp::default') }
 
     it 'installs the ntp package' do
       expect(chef_run).to install_package('ntp')
@@ -312,6 +320,10 @@ restrict 0.pool.ntp.org nomodify notrap noquery'
 
     it 'does not install the ntpdate package' do
       expect(chef_run).to_not install_package('ntpdate')
+    end
+
+    it 'starts the ntpd service' do
+      expect(chef_run).to start_service('ntpd')
     end
 
     it 'sets ntpd to start on boot' do

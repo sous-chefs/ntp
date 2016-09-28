@@ -85,7 +85,6 @@ default['ntp']['localhost']['noquery'] = false
 # overrides on a platform-by-platform basis
 case node['platform_family']
 when 'debian'
-  default['ntp']['packages'] = %w(ntp)
   default['ntp']['service'] = 'ntp'
   default['ntp']['apparmor_enabled'] = true if File.exist? '/etc/init.d/apparmor'
 when 'rhel', 'fedora'

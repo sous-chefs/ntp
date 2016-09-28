@@ -24,7 +24,7 @@
 require 'spec_helper'
 
 describe 'ntp attributes' do
-  let(:chef_run) { ChefSpec::SoloRunner.new.converge('ntp::default') }
+  let(:chef_run) { ChefSpec::SoloRunner.new(platform: 'aix', version: '6.1').converge('ntp::default') }
   let(:ntp) { chef_run.node['ntp'] }
 
   describe 'on an unknown platform' do
@@ -169,16 +169,16 @@ describe 'ntp attributes' do
   end
 
   describe 'on Debian-family platforms' do
-    let(:chef_run) { ChefSpec::SoloRunner.new(platform: 'ubuntu', version: '12.04').converge('ntp::default') }
+    let(:chef_run) { ChefSpec::SoloRunner.new(platform: 'debian', version: '8.5').converge('ntp::default') }
 
     it 'sets the package list to ntp & ntpdate' do
       expect(ntp['packages']).to include('ntp')
-      expect(ntp['packages']).to include('ntpdate')
+      expect(ntp['packages']).to_not include('ntpdate')
     end
   end
 
   describe 'on Ubuntu' do
-    let(:chef_run) { ChefSpec::SoloRunner.new(platform: 'ubuntu', version: '12.04').converge('ntp::default') }
+    let(:chef_run) { ChefSpec::SoloRunner.new(platform: 'ubuntu', version: '16.04').converge('ntp::default') }
 
     it 'sets the apparmor_enabled attribute to true when /etc/init.d/apparmor exists' do
       allow(File).to receive(:exist?).and_call_original
