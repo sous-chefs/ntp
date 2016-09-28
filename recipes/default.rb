@@ -30,7 +30,7 @@ else
 
   package 'ntpdate' do
     action :remove
-    only_if { node['platform_version'].to_i >= 16 }
+    only_if { node['platform_version'] == 'debian' && node['platform_version'].to_i >= 16 }
   end
 
   [node['ntp']['varlibdir'], node['ntp']['statsdir']].each do |ntpdir|
