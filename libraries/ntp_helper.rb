@@ -1,6 +1,6 @@
 #
 # Author:: Julian C. Dunn (<jdunn@chef.io>)
-# Cookbook Name:: ntp
+# Cookbook:: ntp
 # Library:: helper
 #
 # Copyright:: 2014-2016, Chef Software, Inc.
