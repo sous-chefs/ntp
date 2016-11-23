@@ -2,6 +2,9 @@
 
 This file is used to list changes made in each version of the ntp cookbook.
 
+## 3.2.1 (2016-11-23)
+- Update leap seconds file to version 3676924800
+
 ## 3.2.0 (2016-09-28)
 - Remove support for Arch
 - Remove legacy apparmor config that wasn't used
