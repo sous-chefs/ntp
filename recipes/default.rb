@@ -20,8 +20,13 @@
 
 ::Chef::Resource.send(:include, Opscode::Ntp::Helper)
 
-if platform_family?('windows')
+case node['platform_family']
+when 'windows'
   include_recipe 'ntp::windows_client'
+when 'mac_os_x'
+  include_recipe 'ntp::mac_os_x_client'
+  # On OS X we only support simple client config and nothing more
+  return 0
 else
 
   node['ntp']['packages'].each do |ntppkg|
