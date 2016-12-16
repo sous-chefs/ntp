@@ -2,6 +2,9 @@
 
 This file is used to list changes made in each version of the ntp cookbook.
 
+## 3.3.0 (2016-12-16)
+- Add Mac OS X client config support
+
 ## 3.2.1 (2016-11-23)
 - Update leap seconds file to version 3676924800
 
