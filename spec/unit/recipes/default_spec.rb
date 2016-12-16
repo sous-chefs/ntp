@@ -165,7 +165,7 @@ restrict 0.pool.ntp.org nomodify notrap noquery'
       runner.node.normal['network']['interfaces']['eth0']['addresses']['192.168.253.254'] = {
         'netmask' => '255.255.255.0',
         'broadcast' => '192.168.253.255',
-        'family' => 'inet'
+        'family' => 'inet',
       }
       runner.node.normal['ntp']['listen_network'] = '192.168.253.0/24'
       runner.converge('ntp::default')
@@ -194,12 +194,12 @@ restrict 0.pool.ntp.org nomodify notrap noquery'
       runner.node.normal['network']['interfaces']['eth0']['addresses']['192.168.253.254'] = {
         'netmask' => '255.255.255.0',
         'broadcast' => '192.168.253.255',
-        'family' => 'inet'
+        'family' => 'inet',
       }
       runner.node.normal['network']['interfaces']['eth1']['addresses']['192.168.254.254'] = {
         'netmask' => '255.255.255.0',
         'broadcast' => '192.168.254.255',
-        'family' => 'inet'
+        'family' => 'inet',
       }
       runner.node.normal['network']['default_gateway'] = '192.168.253.1'
       runner.node.normal['ntp']['listen_network'] = 'primary'
@@ -218,12 +218,12 @@ restrict 0.pool.ntp.org nomodify notrap noquery'
       runner.node.normal['network']['interfaces']['eth0']['addresses']['192.168.253.254'] = {
         'netmask' => '255.255.255.0',
         'broadcast' => '192.168.253.255',
-        'family' => 'inet'
+        'family' => 'inet',
       }
       runner.node.normal['network']['interfaces']['eth1']['addresses']['192.168.254.254'] = {
         'netmask' => '255.255.255.0',
         'broadcast' => '192.168.254.255',
-        'family' => 'inet'
+        'family' => 'inet',
       }
       runner.node.normal['ntp']['listen_network'] = '192.168.253.0/24'
       runner.node.normal['ntp']['listen'] = '192.168.254.254'

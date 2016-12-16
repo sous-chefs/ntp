@@ -62,7 +62,7 @@ if node['ntp']['servers'].empty?
     '0.pool.ntp.org',
     '1.pool.ntp.org',
     '2.pool.ntp.org',
-    '3.pool.ntp.org'
+    '3.pool.ntp.org',
   ]
   Chef::Log.debug 'No NTP servers specified, using default ntp.org server pools'
 end
