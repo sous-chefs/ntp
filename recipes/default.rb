@@ -33,7 +33,8 @@ else
     package ntppkg
   end
 
-  package 'ntpdate' do
+  package 'Remove ntpdate' do
+    package_name 'ntpdate'
     action :remove
     only_if { node['platform_family'] == 'debian' && node['platform_version'].to_i >= 16 }
   end
