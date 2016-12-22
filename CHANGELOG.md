@@ -2,6 +2,9 @@
 
 This file is used to list changes made in each version of the ntp cookbook.
 
+## 3.3.1 (2016-12-21)
+- Fix resource cloning warning in recipe[default]
+
 ## 3.3.0 (2016-12-16)
 - Add Mac OS X client config support
 
