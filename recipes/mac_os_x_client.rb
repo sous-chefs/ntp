@@ -1,9 +1,9 @@
 #
-# Cookbook Name:: ntp
+# Cookbook:: ntp
 # Recipe:: mac_os_x_client
 # Author:: Antek S. Baranski (<antek.baranski@gmail.com>)
 #
-# Copyright 2016, Roblox, Inc
+# Copyright:: 2016-2017, Roblox, Inc
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.

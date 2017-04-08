@@ -3,8 +3,8 @@
 # Recipe:: windows_client
 # Author:: Tim Smith (<tsmith@chef.io>)
 #
-# Copyright:: 2012-2016, Webtrends, Inc
-# Copyright:: 2013-2016, Limelight Networks, Inc
+# Copyright:: 2012-2017, Webtrends, Inc
+# Copyright:: 2013-2017, Limelight Networks, Inc
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
