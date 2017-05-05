@@ -97,3 +97,6 @@ keys <%= node['ntp']['keys'] %>
 <% if node['ntp']['trustedkey'] -%>
 trustedkey <%= node['ntp']['trustedkey'] %>
 <% end -%>
+<% if node['ntp']['requestkey'] -%>
+requestkey <%= node['ntp']['requestkey'] %>
+<% end -%>

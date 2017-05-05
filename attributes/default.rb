@@ -54,6 +54,7 @@ default['ntp']['statistics'] = true
 default['ntp']['conf_restart_immediate'] = false
 default['ntp']['keys'] = nil
 default['ntp']['trustedkey'] = nil
+default['ntp']['requestkey'] = nil
 
 # See http://www.vmware.com/vmtn/resources/238 p. 23 for explanation
 default['ntp']['disable_tinker_panic_on_virtualization_guest'] = true
