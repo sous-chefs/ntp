@@ -2,16 +2,29 @@
 
 This file is used to list changes made in each version of the ntp cookbook.
 
+## 3.4.0 (2017-05-06)
+
+- Ensure metadata compatibility with older Chef 12 releases
+- Testing updates for Chef 13
+- Test with Delivery local mode instead of a Rakefile
+- Use a SPDX standard license string
+- Remove xcp as a platform in the metadata
+- Added requestkey attribute
+
 ## 3.3.1 (2016-12-21)
+
 - Fix resource cloning warning in recipe[default]
 
 ## 3.3.0 (2016-12-16)
+
 - Add Mac OS X client config support
 
 ## 3.2.1 (2016-11-23)
+
 - Update leap seconds file to version 3676924800
 
 ## 3.2.0 (2016-09-28)
+
 - Remove support for Arch
 - Remove legacy apparmor config that wasn't used
 - Don't install ntpdate (and uninstall it) on Ubuntu 16.04+
