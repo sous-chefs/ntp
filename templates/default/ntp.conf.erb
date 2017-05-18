@@ -68,6 +68,13 @@ disable monitor
 <%   end -%>
 <% end -%>
 
+<%# Configure upstream pools, if any. %>
+<%# These are akin to servers, but support multiple dns records %>
+<% ( node['ntp']['pools'] ).sort.each do |ntppool| -%>
+<%  -%>pool <%= ntppool %><% if node['ntp']['server']['use_iburst'] -%> iburst<% end -%><% if node['ntp']['server']['use_burst'] -%> burst<% end -%> minpoll <%= node['ntp']['server']['minpoll'] %> maxpoll <%= node['ntp']['server']['maxpoll'] %><% if node['ntp']['server']['prefer'] == ntppool -%> prefer<% end -%>
+<%  -%>restrict <%= ntppool %> nomodify notrap noquery
+<% end -%>
+
 restrict default <%= node['ntp']['restrict_default'] %>
 restrict 127.0.0.1<%if node['ntp']['localhost']['noquery'] -%> noquery<% end -%>
 restrict -6 default <%= node['ntp']['restrict_default'] %>

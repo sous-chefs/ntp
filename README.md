@@ -35,6 +35,12 @@ Installs and configures ntp. On Windows systems it uses the Meinberg port of the
 
   The NTP protocol works best with at least 4 servers. The ntp daemon will disregard any server after the 10th listed, but will continue monitoring all listed servers. For more information, see [Upstream Server Time Quantity](http://support.ntp.org/bin/view/Support/SelectingOffsiteNTPServers#Section_5.3.3.) at [support.ntp.org](http://support.ntp.org).
 
+- `ntp['pools']` - (applies to NTP Servers and Clients)
+
+  - Array, should be a list of upstream NTP pools that will be considered authoritative by the local NTP daemon. The local NTP daemon will act as a client, adjusting local time to match time data retrieved from each of the servers in the upstream pool.
+
+  See this [Release Announcement](http://lists.ntp.org/pipermail/questions/2010-April/026304.html) for discussion about tuning this option.
+
 - `ntp['peers']` - (applies to NTP Servers ONLY)
 
   - Array, should be a list of local NTP peers. For more information, see [Designing Your NTP Network](http://support.ntp.org/bin/view/Support/DesigningYourNTPNetwork) at [support.ntp.org](http://support.ntp.org).
