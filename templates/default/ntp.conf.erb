@@ -29,6 +29,14 @@ interface ignore <%= ignore %>
 <%   end -%>
 <% end -%>
 
+
+<%# If the ignore attribute is set on the node, then apply it %>
+<% unless node['ntp']['ignore'].nil? -%>
+<%   Array(node['ntp']['ignore']).each do |ignore| -%>
+interface ignore <%= ignore %>
+<%   end -%>
+<% end -%>
+
 <%# If the listen attribute is set on the node, then apply it %>
 <% unless node['ntp']['listen'].nil? -%>
 <%   Array(node['ntp']['listen']).each do |listen| -%>
