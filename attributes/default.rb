@@ -88,6 +88,9 @@ case node['platform_family']
 when 'debian'
   default['ntp']['service'] = 'ntp'
   default['ntp']['apparmor_enabled'] = true if File.exist? '/etc/init.d/apparmor'
+when 'ubuntu'
+  default['ntp']['packages'] = %w(ntp ntpdate)
+  default['ntp']['service'] = 'ntp'
 when 'rhel', 'fedora'
   default['ntp']['packages'] = %w(ntp ntpdate) if node['platform_version'].to_i >= 7
 when 'windows'
