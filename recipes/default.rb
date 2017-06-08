@@ -30,7 +30,10 @@ when 'mac_os_x'
 else
 
   node['ntp']['packages'].each do |ntppkg|
-    package ntppkg
+    package ntppkg do
+      source node['ntp']['pkg_source'] if platform_family?('solaris2') && node['platform_version'] < '5.11'
+      action :install
+    end
   end
 
   package 'Remove ntpdate' do
@@ -108,7 +111,14 @@ if node['ntp']['sync_clock'] && !platform_family?('windows')
   end
 
   execute 'Force sync system clock with ntp server' do
-    command node['platform_family'] == 'freebsd' ? 'ntpd -q' : "ntpd -q -u #{node['ntp']['var_owner']}"
+    command case node['platform_family']
+            when 'freebsd'
+              'ntpd -q'
+            when 'solaris2', 'aix'
+              "ntpdate #{node['ntp']['servers'].sample}"
+            else
+              "ntpd -q -u #{node['ntp']['var_owner']}"
+            end
     action :run
     notifies :start, "service[#{node['ntp']['service']}]"
   end
@@ -117,7 +127,7 @@ end
 execute 'Force sync hardware clock with system clock' do
   command 'hwclock --systohc'
   action :run
-  only_if { node['ntp']['sync_hw_clock'] && !(platform_family?('windows') || platform_family?('freebsd')) }
+  only_if { node['ntp']['sync_hw_clock'] && !platform_family?('windows', 'solaris2', 'freebsd') }
 end
 
 service node['ntp']['service'] do
