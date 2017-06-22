@@ -31,6 +31,14 @@ platforms:
   - name: windows-2012r2
     driver_config:
       box: chef/windows-server-2012r2-standard
+# Solaris 10 requires the release directory from the  OS ISO to be in `/var/spool/pkg`
+# in order for the converge to succeed.
+  - name: solaris-10.11
+    driver_config:
+      box: chef/solaris-10.11
+  - name: solaris-11.3
+    driver_config:
+      box: chef/solaris-11.3
 
 suites:
   - name: default

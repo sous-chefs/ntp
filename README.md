@@ -155,8 +155,7 @@ These attributes are set based on platform / system information provided by Ohai
 - `ntp['packages']`
 
   - Array, the packages to install
-  - Default, ntp for everything, ntpdate depending on platform. Not applicable for
-  - Windows nodes
+  - Default, ntp for everything, ntpdate depending on platform. Not applicable for Windows nodes.
 
 - `ntp['service']`
 
@@ -232,6 +231,11 @@ These attributes are set based on platform / system information provided by Ohai
 
   - Boolean, uses a high stratum undisciplined clock for machines with real CMOS clock.
   - Defaults to true unless a platform appears to be virtualized according to Ohai.
+
+- `ntp['pkg_source']`
+  - _Only applicable to Solaris 10_
+  - String, device/path to Solaris packages.
+  - Defaults to `/var/spool/pkg`
 
 ## Usage
 

@@ -108,6 +108,10 @@ when 'freebsd'
 when 'gentoo'
   default['ntp']['leapfile'] = "#{node['ntp']['varlibdir']}/ntp.leapseconds"
 when 'solaris2'
+  if node['platform_version'] < '5.11'
+    default['ntp']['packages'] = %w(SUNWntpu SUNWntpr)
+    default['ntp']['pkg_source'] = '/var/spool/pkg'
+  end
   default['ntp']['service'] = 'ntp'
   default['ntp']['varlibdir'] = '/var/ntp'
   default['ntp']['conffile'] = '/etc/inet/ntp.conf'
