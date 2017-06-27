@@ -21,12 +21,12 @@
 return 'The ntp::mac_os_x_client recipe only supports Mac OS X' unless platform_family?('mac_os_x')
 
 # Mac OS X 10.11+ does not allow for many NTP settings
-execute 'systemsetup -setnetworktimeserver' do
+execute 'set_ntp_server' do
   command "systemsetup -setnetworktimeserver #{node['ntp']['servers'][0]}"
   not_if "systemsetup -getnetworktimeserver | grep -F #{node['ntp']['servers'][0]}"
 end
 
-execute 'systemsetup -setusingnetworktime' do
+execute 'enable_ntp' do
   command 'systemsetup -setusingnetworktime on'
   not_if 'systemsetup -getusingnetworktime | grep On'
 end
