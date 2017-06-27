@@ -20,6 +20,16 @@
 
 ::Chef::Resource.send(:include, Opscode::Ntp::Helper)
 
+if node['ntp']['servers'].empty?
+  node.default['ntp']['servers'] = [
+    '0.pool.ntp.org',
+    '1.pool.ntp.org',
+    '2.pool.ntp.org',
+    '3.pool.ntp.org',
+  ]
+  Chef::Log.debug 'No NTP servers specified, using default ntp.org server pools'
+end
+
 case node['platform_family']
 when 'windows'
   include_recipe 'ntp::windows_client'
@@ -59,16 +69,6 @@ else
   end
 
   include_recipe 'ntp::apparmor' if node['ntp']['apparmor_enabled']
-end
-
-if node['ntp']['servers'].empty?
-  node.default['ntp']['servers'] = [
-    '0.pool.ntp.org',
-    '1.pool.ntp.org',
-    '2.pool.ntp.org',
-    '3.pool.ntp.org',
-  ]
-  Chef::Log.debug 'No NTP servers specified, using default ntp.org server pools'
 end
 
 if node['ntp']['listen'].nil? && !node['ntp']['listen_network'].nil?

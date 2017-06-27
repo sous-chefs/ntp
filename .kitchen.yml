@@ -39,6 +39,15 @@ platforms:
   - name: solaris-11.3
     driver_config:
       box: chef/solaris-11.3
+  - name: macosx-10.10
+    driver_config:
+      box: chef/macosx-10.10
+  - name: macosx-10.11
+    driver_config:
+      box: chef/macosx-10.10
+  - name: macosx-10.12
+    driver_config:
+      box: chef/macosx-10.10
 
 suites:
   - name: default
