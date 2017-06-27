@@ -127,6 +127,8 @@ when 'pld'
   default['ntp']['leapfile'] = '/etc/ntp/ntp.leapseconds'
   default['ntp']['driftfile'] = "#{node['ntp']['varlibdir']}/drift"
   default['ntp']['var_owner'] = 'root'
+when 'suse'
+  default['ntp']['service'] = 'ntp' if node['platform_version'].to_f < 12
 end
 
 unless node['platform'] == 'windows'
