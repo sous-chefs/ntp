@@ -21,6 +21,9 @@ platforms:
   - name: freebsd-11.0
     run_list: freebsd::portsnap
   - name: opensuse-leap-42.2
+  - name: sles-11.2
+    driver_config:
+      box: chef/sles-11-sp2-x86_64
   - name: ubuntu-14.04
     run_list: apt::default
   - name: ubuntu-16.04
