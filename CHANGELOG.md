@@ -2,6 +2,14 @@
 
 This file is used to list changes made in each version of the ntp cookbook.
 
+## 3.5.0 (2017-06-27)
+
+- Change RHEL platforms to use the driftfile location RHEL ships out of the box
+- Add support for ntp `pool` configuration option
+- Fix installation and config on Solaris 10 & 11.
+- Set default service name on SLES 11.x
+- Fix MacOS X default attributes and OSX chefspec.
+
 ## 3.4.0 (2017-05-06)
 
 - Ensure metadata compatibility with older Chef 12 releases
