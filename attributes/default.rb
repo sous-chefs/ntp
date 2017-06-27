@@ -90,6 +90,7 @@ when 'debian'
   default['ntp']['apparmor_enabled'] = true if File.exist? '/etc/init.d/apparmor'
 when 'rhel', 'fedora'
   default['ntp']['packages'] = %w(ntp ntpdate) if node['platform_version'].to_i >= 7
+  default['ntp']['driftfile'] = "#{node['ntp']['varlibdir']}/drift"
 when 'windows'
   default['ntp']['service'] = 'NTP'
   default['ntp']['driftfile'] = 'C:\\NTP\\ntp.drift'
