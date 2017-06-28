@@ -19,7 +19,6 @@ services: docker
 
 env:
   matrix:
-  - INSTANCE=default-amazonlinux
   - INSTANCE=default-centos-6
   - INSTANCE=default-centos-7
   - INSTANCE=default-debian-7
