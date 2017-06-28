@@ -133,6 +133,4 @@ when 'suse'
   default['ntp']['service'] = 'ntp' if node['platform_version'].to_f < 12
 end
 
-unless node['platform'] == 'windows'
-  default['ntp']['use_cmos'] = !node['virtualization'] || node['virtualization']['role'] != 'guest' ? true : false
-end
+default['ntp']['use_cmos'] = !node['virtualization'] || node['virtualization']['role'] != 'guest' ? true : false
