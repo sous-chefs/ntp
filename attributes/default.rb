@@ -89,7 +89,7 @@ case node['platform_family']
 when 'debian'
   default['ntp']['service'] = 'ntp'
   default['ntp']['apparmor_enabled'] = true if File.exist? '/etc/init.d/apparmor'
-when 'rhel', 'fedora'
+when 'rhel', 'fedora', 'amazon'
   default['ntp']['packages'] = %w(ntp ntpdate) if node['platform_version'].to_i >= 7
   default['ntp']['driftfile'] = "#{node['ntp']['varlibdir']}/drift"
 when 'windows'
