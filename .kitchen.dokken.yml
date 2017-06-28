@@ -14,11 +14,11 @@ verifier:
   name: inspec
 
 platforms:
+
 - name: amazonlinux
   driver:
     image: amazonlinux:latest
     pid_one_command: /sbin/init
-    intermediate_instructions:
 
 - name: debian-7
   driver:

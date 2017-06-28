@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe 'ntp::apparmor' do
-  let(:chef_run) { ChefSpec::SoloRunner.new.converge('recipe[ntp::apparmor]') }
+  let(:chef_run) { ChefSpec::SoloRunner.new(platform: 'ubuntu', version: '16.04').converge('recipe[ntp::apparmor]') }
 
   it 'creates the apparmor file' do
     expect(chef_run).to create_cookbook_file '/etc/apparmor.d/usr.sbin.ntpd'

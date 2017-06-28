@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe 'ntp::windows_client' do
-  let(:chef_run) { ChefSpec::SoloRunner.new(platform: 'windows', version: '2012R2').converge('ntp::windows_client') }
+  cached(:chef_run) { ChefSpec::SoloRunner.new(platform: 'windows', version: '2012R2').converge('ntp::windows_client') }
 
   it 'creates the C:/NTP/etc directory' do
     expect(chef_run).to create_directory('C:/NTP/etc')

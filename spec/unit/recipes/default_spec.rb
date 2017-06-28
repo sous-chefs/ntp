@@ -1,15 +1,15 @@
 require 'spec_helper'
 
 describe 'ntp::default' do
-  let(:chef_run) { ChefSpec::SoloRunner.new(platform: 'ubuntu', version: '16.04').converge('ntp::default') }
+  cached(:chef_run) { ChefSpec::SoloRunner.new(platform: 'ubuntu', version: '16.04').converge('ntp::default') }
 
   it 'installs the ntp package' do
     expect(chef_run).to install_package('ntp')
   end
 
   context 'on a virtualized guest' do
-    let(:chef_run) do
-      runner = ChefSpec::SoloRunner.new
+    cached(:chef_run) do
+      runner = ChefSpec::SoloRunner.new(platform: 'ubuntu', version: '16.04')
       runner.node.normal['virtualization']['role'] = 'guest'
       runner.converge('ntp::default')
     end
@@ -20,7 +20,7 @@ describe 'ntp::default' do
   end
 
   context 'the varlibdir directory' do
-    let(:directory) { chef_run.directory('/var/lib/ntp') }
+    cached(:directory) { chef_run.directory('/var/lib/ntp') }
 
     it 'creates the directory' do
       expect(chef_run).to create_directory('/var/lib/ntp')
@@ -37,7 +37,7 @@ describe 'ntp::default' do
   end
 
   context 'the statsdir directory' do
-    let(:directory) { chef_run.directory('/var/log/ntpstats/') }
+    cached(:directory) { chef_run.directory('/var/log/ntpstats/') }
 
     it 'creates the directory' do
       expect(chef_run).to create_directory('/var/log/ntpstats/')
@@ -54,7 +54,7 @@ describe 'ntp::default' do
   end
 
   context 'the leapfile' do
-    let(:cookbook_file) { chef_run.cookbook_file('/etc/ntp.leapseconds') }
+    cached(:cookbook_file) { chef_run.cookbook_file('/etc/ntp.leapseconds') }
 
     it 'creates the cookbook_file' do
       expect(chef_run).to create_cookbook_file('/etc/ntp.leapseconds')
@@ -77,7 +77,7 @@ describe 'ntp::default' do
   end
 
   context 'ntp["pools"] is used' do
-    let(:chef_run) do
+    cached(:chef_run) do
       runner = ChefSpec::SoloRunner.new(platform: 'ubuntu', version: '16.04')
       runner.node.normal['ntp']['pools'] = %w(0.pool.ntp.org 1.pool.ntp.org)
       runner.node.normal['ntp']['servers'] = %w()
@@ -95,7 +95,7 @@ describe 'ntp::default' do
   end
 
   context 'the ntp.conf' do
-    let(:template) { chef_run.template('/etc/ntp.conf') }
+    cached(:template) { chef_run.template('/etc/ntp.conf') }
 
     it 'creates the template' do
       expect(chef_run).to create_template('/etc/ntp.conf')
@@ -166,7 +166,7 @@ restrict 0.pool.ntp.org nomodify notrap noquery'
   end
 
   context 'ntp["listen_network"] is set to "primary"' do
-    let(:chef_run) do
+    cached(:chef_run) do
       runner = ChefSpec::SoloRunner.new(platform: 'ubuntu', version: '16.04')
       runner.node.normal['ntp']['listen_network'] = 'primary'
       runner.converge('ntp::default')
@@ -178,7 +178,7 @@ restrict 0.pool.ntp.org nomodify notrap noquery'
   end
 
   context 'ntp["listen_network"] is set to a CIDR' do
-    let(:chef_run) do
+    cached(:chef_run) do
       runner = ChefSpec::SoloRunner.new(platform: 'ubuntu', version: '16.04')
       runner.node.normal['network']['interfaces']['eth0']['addresses']['192.168.253.254'] = {
         'netmask' => '255.255.255.0',
@@ -255,7 +255,7 @@ restrict 0.pool.ntp.org nomodify notrap noquery'
 
   context 'the sync_hw_clock attribute is set on a Windows OS' do
     let(:chef_run) do
-      runner = ChefSpec::SoloRunner.new(platform: 'windows', version: '2008R2')
+      runner = ChefSpec::SoloRunner.new(platform: 'windows', version: '2012R2')
       runner.node.normal['ntp']['sync_hw_clock'] = true
       runner.converge('ntp::default')
     end
