@@ -30,6 +30,7 @@
   capability sys_time,
   capability sys_nice,
 
+  network dgram,
   network inet dgram,
   network inet6 dgram,
   network inet stream,
