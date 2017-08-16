@@ -2,6 +2,10 @@
 
 This file is used to list changes made in each version of the ntp cookbook.
 
+## 3.5.2 (2017-08-16)
+
+- Fix apprarmor denied for sock_type=dgram in ubuntu dists.
+
 ## 3.5.1 (2017-06-28)
 
 - Use the latest NTP release on windows to resolve several bugs
