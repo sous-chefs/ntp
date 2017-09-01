@@ -9,21 +9,21 @@ verifier:
   name: inspec
 
 platforms:
-  - name: amazon-linux
+  - name: amazonlinux
     driver_config:
       box: mvbcoding/awslinux
-  - name: centos-6.9
-  - name: centos-7.3
-  - name: debian-7.11
+  - name: centos-6
+  - name: centos-7
+  - name: debian-7
     run_list: apt::default
-  - name: debian-8.8
+  - name: debian-8
     run_list: apt::default
-  - name: fedora-25
-  - name: freebsd-10.3
+  - name: fedora-26
+  - name: freebsd-10
     run_list: freebsd::portsnap
-  - name: freebsd-11.0
+  - name: freebsd-11
     run_list: freebsd::portsnap
-  - name: opensuse-leap-42.2
+  - name: opensuse-leap-42
   - name: sles-11.2
     driver_config:
       box: chef/sles-11-sp2-x86_64
