@@ -348,4 +348,32 @@ restrict 0.pool.ntp.org nomodify notrap noquery'
       expect(chef_run).to enable_service('ntpd')
     end
   end
+
+  context 'solaris2' do
+    let(:chef_run) { ChefSpec::SoloRunner.new(platform: 'solaris2', version: '5.11').converge('ntp::default') }
+
+    it 'installs the ntp package' do
+      expect(chef_run).to install_package('ntp')
+    end
+
+    it 'does not install the ntpdate package' do
+      expect(chef_run).to_not install_package('ntpdate')
+    end
+
+    it 'starts the ntp service' do
+      expect(chef_run).to start_service('ntp')
+    end
+
+    it 'enables the ntp service' do
+      expect(chef_run).to enable_service('ntp')
+    end
+  end
+
+  context 'solaris2 version 5.10' do
+    let(:chef_run) { ChefSpec::SoloRunner.new(platform: 'solaris2', version: '5.10').converge('ntp::default') }
+
+    it 'does not install the ntp package' do
+      expect(chef_run).to_not install_package('ntp')
+    end
+  end
 end
