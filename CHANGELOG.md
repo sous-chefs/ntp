@@ -2,6 +2,10 @@
 
 This file is used to list changes made in each version of the ntp cookbook.
 
+## 3.5.3 (2017-11-27)
+
+- Fix failing non-interactive install on Solaris10
+
 ## 3.5.2 (2017-08-16)
 
 - Fix apprarmor denied for sock_type=dgram in ubuntu dists.
