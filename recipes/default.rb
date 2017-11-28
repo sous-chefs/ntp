@@ -41,8 +41,10 @@ else
 
   node['ntp']['packages'].each do |ntppkg|
     package ntppkg do
-      source node['ntp']['pkg_source'] if platform_family?('solaris2') && node['platform_version'] < '5.11'
+      source node['ntp']['pkg_source']
       action :install
+      # Non-interactive package install fails on Solaris10 so we need to manually the ntp package
+      not_if { node['platform_family'] == 'solaris2' && node['platform_version'].to_f <= 5.10 }
     end
   end
 
