@@ -2,6 +2,10 @@
 
 This file is used to list changes made in each version of the ntp cookbook.
 
+## 3.5.4 (2017-11-27)
+
+- Update ntp.leapseconds (expires: 1 Dec 2017 → 28 June 2018)
+
 ## 3.5.3 (2017-11-27)
 
 - Fix failing non-interactive install on Solaris10
