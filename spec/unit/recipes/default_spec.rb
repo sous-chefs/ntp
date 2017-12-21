@@ -80,7 +80,7 @@ describe 'ntp::default' do
     cached(:chef_run) do
       runner = ChefSpec::SoloRunner.new(platform: 'ubuntu', version: '16.04')
       runner.node.normal['ntp']['pools'] = %w(0.pool.ntp.org 1.pool.ntp.org)
-      runner.node.normal['ntp']['servers'] = %w()
+      runner.node.normal['ntp']['use_cmos'] = false
       runner.converge('ntp::default')
     end
 
@@ -91,6 +91,8 @@ describe 'ntp::default' do
         .with_content('pool 0.pool.ntp.org')
       expect(chef_run).to render_file('/etc/ntp.conf')
         .with_content('pool 1.pool.ntp.org')
+      expect(chef_run).not_to render_file('/etc/ntp.conf')
+        .with_content(/server/)
     end
   end
 
