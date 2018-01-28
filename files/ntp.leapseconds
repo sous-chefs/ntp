@@ -15,17 +15,12 @@
 #	are transmitted by almost all time services.
 #
 #	The first column shows an epoch as a number of seconds
-#	since 1 January 1900, 00:00:00 (1900.0 is also used to
-#	indicate the same epoch.) Both of these time stamp formats
-#	ignore the complexities of the time scales that were
-#	used before the current definition of UTC at the start
-#	of 1972. (See note 3 below.)
-#	The second column shows the number of seconds that
-#	must be added to UTC to compute TAI for any timestamp
-#	at or after that epoch. The value on each line is
-#	valid from the indicated initial instant until the
-#	epoch given on the next one or indefinitely into the
-#	future if there is no next line.
+#	since 1900.0 and the second column shows the number of
+#	seconds that must be added to UTC to compute TAI for
+#	any timestamp at or after that epoch. The value on
+#	each line is valid from the indicated initial instant
+#	until the epoch given on the next one or indefinitely
+#	into the future if there is no next line.
 #	(The comment on each line shows the representation of
 #	the corresponding initial epoch in the usual
 #	day-month-year format. The epoch always begins at
@@ -47,11 +42,11 @@
 #	and can be ignored for many purposes. These differences
 #	are tabulated in Circular T, which is published monthly
 #	by the International Bureau of Weights and Measures
-#	(BIPM). See www.bipm.org for more information.
+#	(BIPM). See www.bipm.fr for more information.
 #
-#	3. The current definition of the relationship between UTC
+#	3. The current defintion of the relationship between UTC
 #	and TAI dates from 1 January 1972. A number of different
-#	time scales were in use before that epoch, and it can be
+#	time scales were in use before than epoch, and it can be
 #	quite difficult to compute precise timestamps and time
 #	intervals in those "prehistoric" days. For more information,
 #	consult:
@@ -63,19 +58,21 @@
 #		of Time," Proc. of the IEEE, Vol. 79, pp. 894-905,
 #		July, 1991.
 #
-#	4. The decision to insert a leap second into UTC is currently
-#	the responsibility of the International Earth Rotation and
-#	Reference Systems Service. (The name was changed from the
-#	International Earth Rotation Service, but the acronym IERS
-#	is still used.)
+#	4.  The insertion of leap seconds into UTC is currently the
+#	responsibility of the International Earth Rotation Service,
+#	which is located at the Paris Observatory:
 #
-#	Leap seconds are announced by the IERS in its Bulletin C.
+#	Central Bureau of IERS
+#	61, Avenue de l'Observatoire
+#	75014 Paris, France.
 #
-#	See www.iers.org for more details.
+#	Leap seconds are announced by the IERS in its Bulletin C
 #
-#	Every national laboratory and timing center uses the
-#	data from the BIPM and the IERS to construct UTC(lab),
-#	their local realization of UTC.
+#	See hpiers.obspm.fr or www.iers.org for more details.
+#
+#	All national laboratories and timing centers use the
+#	data from the BIPM and the IERS to construct their
+#	local realizations of UTC.
 #
 #	Although the definition also includes the possibility
 #	of dropping seconds ("negative" leap seconds), this has
@@ -105,7 +102,7 @@
 #
 #	If your system realizes the leap second by repeating 00:00:00 UTC twice
 #	(this is possible but not usual), then the advance to the next entry
-#	in the table must occur the second time that a time equivalent to
+#	in the table must occur the second time that a time equivlent to
 #	00:00:00 UTC is used. Thus, using the same example as above:
 #
 #	...
@@ -115,35 +112,23 @@
 #	...
 #
 #	in both cases the use of timestamps based on TAI produces a smooth
-#	time scale with no discontinuity in the time interval. However,
-#	although the long-term behavior of the time scale is correct in both
-#	methods, the second method is technically not correct because it adds
-#	the extra second to the wrong day.
+#	time scale with no discontinuity in the time interval.
 #
 #	This complexity would not be needed for negative leap seconds (if they
 #	are ever used). The UTC time would skip 23:59:59 and advance from
-#	23:59:58 to 00:00:00 in that case. The TAI offset would decrease by
-#	1 second at the same instant. This is a much easier situation to deal
+#	23:59:58 to 00:00:00 in that case.  The TAI offset would decrease by
+#	1 second at the same instant.  This is a much easier situation to deal
 #	with, since the difficulty of unambiguously representing the epoch
 #	during the leap second does not arise.
 #
-#	Some systems implement leap seconds by amortizing the leap second
-#	over the last few minutes of the day. The frequency of the local
-#	clock is decreased (or increased) to realize the positive (or
-#	negative) leap second. This method removes the time step described
-#	above. Although the long-term behavior of the time scale is correct
-#	in this case, this method introduces an error during the adjustment
-#	period both in time and in frequency with respect to the official
-#	definition of UTC.
-#
 #	Questions or comments to:
-#		Judah Levine
-#		Time and Frequency Division
-#		NIST
-#		Boulder, Colorado
-#		Judah.Levine@nist.gov
+#		Jeff Prillaman
+#		Time Service Department
+#		US Naval Observatory
+#		Washington, DC
+#		jeff.k.prillaman@navy.mil
 #
-#	Last Update of leap second values:   8 July 2016
+#	Last Update of leap second values:  10 Jan 2018
 #
 #	The following line shows this last update date in NTP timestamp
 #	format. This is the date on which the most recent change to
@@ -151,22 +136,7 @@
 #	be identified by the unique pair of characters in the first two
 #	columns as shown below.
 #
-#$	 3676924800
-#
-#	The NTP timestamps are in units of seconds since the NTP epoch,
-#	which is 1 January 1900, 00:00:00. The Modified Julian Day number
-#	corresponding to the NTP time stamp, X, can be computed as
-#
-#	X/86400 + 15020
-#
-#	where the first term converts seconds to days and the second
-#	term adds the MJD corresponding to the time origin defined above.
-#	The integer portion of the result is the integer MJD for that
-#	day, and any remainder is the time of day, expressed as the
-#	fraction of the day since 0 hours UTC. The conversion from day
-#	fraction to seconds or to hours, minutes, and seconds may involve
-#	rounding or truncation, depending on the method used in the
-#	computation.
+#$	3724531200
 #
 #	The data in this file will be updated periodically as new leap
 #	seconds are announced. In addition to being entered on the line
@@ -179,11 +149,10 @@
 #	is announced.
 #
 #	The following entry specifies the expiration date of the data
-#	in this file in units of seconds since the origin at the instant
-#	1 January 1900, 00:00:00. This expiration date will be changed
-#	at least twice per year whether or not a new leap second is
-#	announced. These semi-annual changes will be made no later
-#	than 1 June and 1 December of each year to indicate what
+#	in this file in units of seconds since 1900.0.  This expiration date
+#	will be changed at least twice per year whether or not a new leap
+#	second is announced. These semi-annual changes will be made no
+#	later than 1 June and 1 December of each year to indicate what
 #	action (if any) is to be taken on 30 June and 31 December,
 #	respectively. (These are the customary effective dates for new
 #	leap seconds.) This expiration date will be identified by a
@@ -199,10 +168,10 @@
 #	current -- the update time stamp, the data and the name of the file
 #	will not change.
 #
-#	Updated through IERS Bulletin C54
-#	File expires on:  28 June 2018
+#	Updated through IERS Bulletin C 55
+#	File expires on:   1 Dec 2018
 #
-#@	3739132800
+#@	3752611200
 #
 2272060800	10	# 1 Jan 1972
 2287785600	11	# 1 Jul 1972
@@ -236,7 +205,7 @@
 #	the following special comment contains the
 #	hash value of the data in this file computed
 #	use the secure hash algorithm as specified
-#	by FIPS 180-1. See the files in ~/pub/sha for
+#	by FIPS 180-1. See the files in ~/sha for
 #	the details of how this hash value is
 #	computed. Note that the hash computation
 #	ignores comments and whitespace characters
@@ -247,4 +216,5 @@
 #	the hash line is also ignored in the
 #	computation.
 #
-#h	5101445a 69948b51 9153e2b 2086e3d8 d54561a3
+#h	14d3226e 6a2d894c 72c6da1c f103ab4c b39105c2
+#
