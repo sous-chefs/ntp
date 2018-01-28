@@ -2,6 +2,10 @@
 
 This file is used to list changes made in each version of the ntp cookbook.
 
+## 3.5.5 (2018-01-28)
+
+- Update leap second file. Now expires Dec 2018
+
 ## 3.5.4 (2017-11-27)
 
 - Update ntp.leapseconds (expires: 1 Dec 2017 → 28 June 2018)
