@@ -70,6 +70,7 @@
   /var/log/ntpstats/clockstats* rwl,
   /var/log/ntpstats/loopstats*  rwl,
   /var/log/ntpstats/peerstats*  rwl,
+  /var/log/ntpstats/protostats* rwl,
   /var/log/ntpstats/rawstats*   rwl,
   /var/log/ntpstats/sysstats*   rwl,
 
