@@ -2,6 +2,10 @@
 
 This file is used to list changes made in each version of the ntp cookbook.
 
+## 3.5.6 (2018-01-28)
+
+- Add /var/log/ntpstats/protostats to Apparmor config
+
 ## 3.5.5 (2018-01-28)
 
 - Update leap second file. Now expires Dec 2018
