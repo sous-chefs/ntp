@@ -169,7 +169,7 @@ describe 'ntp attributes' do
   end
 
   describe 'on Debian-family platforms' do
-    let(:chef_run) { ChefSpec::SoloRunner.new(platform: 'debian', version: '8.8').converge('ntp::default') }
+    let(:chef_run) { ChefSpec::SoloRunner.new(platform: 'debian', version: '8.9').converge('ntp::default') }
 
     it 'sets the package list to ntp & ntpdate' do
       expect(ntp['packages']).to include('ntp')
