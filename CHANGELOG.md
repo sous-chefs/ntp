@@ -2,6 +2,10 @@
 
 This file is used to list changes made in each version of the ntp cookbook.
 
+## 3.6.0 (2018-07-24)
+
+- Don't add defaults if pools or peers are specified
+
 ## 3.5.6 (2018-01-28)
 
 - Add /var/log/ntpstats/protostats to Apparmor config
