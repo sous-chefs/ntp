@@ -20,7 +20,9 @@
 
 ::Chef::Resource.send(:include, Opscode::Ntp::Helper)
 
-if node['ntp']['servers'].empty?
+# If there are no specified servers, pools, or peers, set some defaults.
+# See COOK-1170 for why this isn't a default attribute
+if (node['ntp']['servers'] + node['ntp']['peers'] + node['ntp']['pools']).empty?
   node.default['ntp']['servers'] = [
     '0.pool.ntp.org',
     '1.pool.ntp.org',
