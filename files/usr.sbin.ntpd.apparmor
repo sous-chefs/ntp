@@ -16,7 +16,7 @@
 
 #include <tunables/global>
 #include <tunables/ntpd>
-/usr/sbin/ntpd {
+/usr/sbin/ntpd flags=(attach_disconnected) {
   #include <abstractions/base>
   #include <abstractions/nameservice>
   #include <abstractions/user-tmp>
