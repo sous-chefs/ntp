@@ -2,6 +2,10 @@
 
 This file is used to list changes made in each version of the ntp cookbook.
 
+## 3.6.1 (2018-11-24)
+
+- Add the attach_disconnected flag to the ntpd AppArmor config
+
 ## 3.6.0 (2018-07-24)
 
 - Don't add defaults if pools or peers are specified
