@@ -2,6 +2,10 @@
 
 This file is used to list changes made in each version of the ntp cookbook.
 
+## 3.6.2 (2019-01-21)
+
+- Update leap seconds file to the latest expiring 6/2019 - [@tas50](https://github.com/tas50)
+
 ## 3.6.1 (2018-11-24)
 
 - Add the attach_disconnected flag to the ntpd AppArmor config
