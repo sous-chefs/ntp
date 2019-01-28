@@ -75,6 +75,7 @@
   /var/log/ntpstats/sysstats*   rwl,
 
   /{,var/}run/ntpd.pid w,
+  /{,var/}run/ntp.conf.dhcp r,
 
   # samba4 ntp signing socket
   /{,var/}run/samba/ntp_signd/socket rw,
