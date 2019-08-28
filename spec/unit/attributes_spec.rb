@@ -194,7 +194,7 @@ describe 'ntp attributes' do
   end
 
   describe 'on the CentOS 6 platform' do
-    let(:chef_run) { ChefSpec::SoloRunner.new(platform: 'centos', version: '6.9').converge('ntp::default') }
+    let(:chef_run) { ChefSpec::SoloRunner.new(platform: 'centos', version: '6').converge('ntp::default') }
 
     it 'sets the package list to include only ntp' do
       expect(ntp['packages']).to include('ntp')
@@ -203,7 +203,7 @@ describe 'ntp attributes' do
   end
 
   describe 'on the CentOS 7 platform' do
-    let(:chef_run) { ChefSpec::SoloRunner.new(platform: 'centos', version: '7.3.1611').converge('ntp::default') }
+    let(:chef_run) { ChefSpec::SoloRunner.new(platform: 'centos', version: '7').converge('ntp::default') }
 
     it 'sets the package list to include ntp and ntpdate' do
       expect(ntp['packages']).to include('ntp')
@@ -240,7 +240,7 @@ describe 'ntp attributes' do
   end
 
   describe 'on the FreeBSD platform' do
-    let(:chef_run) { ChefSpec::SoloRunner.new(platform: 'freebsd', version: '10.3').converge('ntp::default') }
+    let(:chef_run) { ChefSpec::SoloRunner.new(platform: 'freebsd').converge('ntp::default') }
 
     it 'sets the package list to include only ntp' do
       expect(ntp['packages']).to include('ntp')

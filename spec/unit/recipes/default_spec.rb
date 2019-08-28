@@ -10,7 +10,7 @@ describe 'ntp::default' do
   context 'on a virtualized guest' do
     cached(:chef_run) do
       runner = ChefSpec::SoloRunner.new(platform: 'ubuntu', version: '16.04')
-      runner.node.normal['virtualization']['role'] = 'guest'
+      runner.node.override['virtualization']['role'] = 'guest'
       runner.converge('ntp::default')
     end
 
@@ -79,8 +79,8 @@ describe 'ntp::default' do
   context 'ntp["pools"] is used' do
     cached(:chef_run) do
       runner = ChefSpec::SoloRunner.new(platform: 'ubuntu', version: '16.04')
-      runner.node.normal['ntp']['pools'] = %w(0.pool.ntp.org 1.pool.ntp.org)
-      runner.node.normal['ntp']['use_cmos'] = false
+      runner.node.override['ntp']['pools'] = %w(0.pool.ntp.org 1.pool.ntp.org)
+      runner.node.override['ntp']['use_cmos'] = false
       runner.converge('ntp::default')
     end
 
@@ -146,7 +146,7 @@ restrict 0.pool.ntp.org nomodify notrap noquery'
   context 'the sync_clock attribute is set' do
     let(:chef_run) do
       runner = ChefSpec::SoloRunner.new(platform: 'ubuntu', version: '16.04')
-      runner.node.normal['ntp']['sync_clock'] = true
+      runner.node.override['ntp']['sync_clock'] = true
       runner.converge('ntp::default')
     end
 
@@ -158,7 +158,7 @@ restrict 0.pool.ntp.org nomodify notrap noquery'
   context 'the sync_hw_clock attribute is set on a non-Windows OS' do
     let(:chef_run) do
       runner = ChefSpec::SoloRunner.new(platform: 'ubuntu', version: '16.04')
-      runner.node.normal['ntp']['sync_hw_clock'] = true
+      runner.node.override['ntp']['sync_hw_clock'] = true
       runner.converge('ntp::default')
     end
 
@@ -170,7 +170,7 @@ restrict 0.pool.ntp.org nomodify notrap noquery'
   context 'ntp["listen_network"] is set to "primary"' do
     cached(:chef_run) do
       runner = ChefSpec::SoloRunner.new(platform: 'ubuntu', version: '16.04')
-      runner.node.normal['ntp']['listen_network'] = 'primary'
+      runner.node.override['ntp']['listen_network'] = 'primary'
       runner.converge('ntp::default')
     end
 
@@ -182,12 +182,12 @@ restrict 0.pool.ntp.org nomodify notrap noquery'
   context 'ntp["listen_network"] is set to a CIDR' do
     cached(:chef_run) do
       runner = ChefSpec::SoloRunner.new(platform: 'ubuntu', version: '16.04')
-      runner.node.normal['network']['interfaces']['eth0']['addresses']['192.168.253.254'] = {
+      runner.node.override['network']['interfaces']['eth0']['addresses']['192.168.253.254'] = {
         'netmask' => '255.255.255.0',
         'broadcast' => '192.168.253.255',
         'family' => 'inet',
       }
-      runner.node.normal['ntp']['listen_network'] = '192.168.253.0/24'
+      runner.node.override['ntp']['listen_network'] = '192.168.253.0/24'
       runner.converge('ntp::default')
     end
 
@@ -199,7 +199,7 @@ restrict 0.pool.ntp.org nomodify notrap noquery'
   context 'ntp["listen"] is set to a specific address' do
     let(:chef_run) do
       runner = ChefSpec::SoloRunner.new(platform: 'ubuntu', version: '16.04')
-      runner.node.normal['ntp']['listen'] = '192.168.254.254'
+      runner.node.override['ntp']['listen'] = '192.168.254.254'
       runner.converge('ntp::default')
     end
 
@@ -211,19 +211,19 @@ restrict 0.pool.ntp.org nomodify notrap noquery'
   context 'ntp["listen"] and ntp["listen_network"] are both set (primary test)' do
     let(:chef_run) do
       runner = ChefSpec::SoloRunner.new(platform: 'ubuntu', version: '16.04')
-      runner.node.normal['network']['interfaces']['eth0']['addresses']['192.168.253.254'] = {
+      runner.node.override['network']['interfaces']['eth0']['addresses']['192.168.253.254'] = {
         'netmask' => '255.255.255.0',
         'broadcast' => '192.168.253.255',
         'family' => 'inet',
       }
-      runner.node.normal['network']['interfaces']['eth1']['addresses']['192.168.254.254'] = {
+      runner.node.override['network']['interfaces']['eth1']['addresses']['192.168.254.254'] = {
         'netmask' => '255.255.255.0',
         'broadcast' => '192.168.254.255',
         'family' => 'inet',
       }
-      runner.node.normal['network']['default_gateway'] = '192.168.253.1'
-      runner.node.normal['ntp']['listen_network'] = 'primary'
-      runner.node.normal['ntp']['listen'] = '192.168.254.254'
+      runner.node.override['network']['default_gateway'] = '192.168.253.1'
+      runner.node.override['ntp']['listen_network'] = 'primary'
+      runner.node.override['ntp']['listen'] = '192.168.254.254'
       runner.converge('ntp::default')
     end
 
@@ -235,18 +235,18 @@ restrict 0.pool.ntp.org nomodify notrap noquery'
   context 'ntp["listen"] and ntp["listen_network"] are both set (CIDR test)' do
     let(:chef_run) do
       runner = ChefSpec::SoloRunner.new(platform: 'ubuntu', version: '16.04')
-      runner.node.normal['network']['interfaces']['eth0']['addresses']['192.168.253.254'] = {
+      runner.node.override['network']['interfaces']['eth0']['addresses']['192.168.253.254'] = {
         'netmask' => '255.255.255.0',
         'broadcast' => '192.168.253.255',
         'family' => 'inet',
       }
-      runner.node.normal['network']['interfaces']['eth1']['addresses']['192.168.254.254'] = {
+      runner.node.override['network']['interfaces']['eth1']['addresses']['192.168.254.254'] = {
         'netmask' => '255.255.255.0',
         'broadcast' => '192.168.254.255',
         'family' => 'inet',
       }
-      runner.node.normal['ntp']['listen_network'] = '192.168.253.0/24'
-      runner.node.normal['ntp']['listen'] = '192.168.254.254'
+      runner.node.override['ntp']['listen_network'] = '192.168.253.0/24'
+      runner.node.override['ntp']['listen'] = '192.168.254.254'
       runner.converge('ntp::default')
     end
 
@@ -258,7 +258,7 @@ restrict 0.pool.ntp.org nomodify notrap noquery'
   context 'the sync_hw_clock attribute is set on a Windows OS' do
     let(:chef_run) do
       runner = ChefSpec::SoloRunner.new(platform: 'windows', version: '2012R2')
-      runner.node.normal['ntp']['sync_hw_clock'] = true
+      runner.node.override['ntp']['sync_hw_clock'] = true
       runner.converge('ntp::default')
     end
 
@@ -305,7 +305,7 @@ restrict 0.pool.ntp.org nomodify notrap noquery'
     context 'with apparmor enabled' do
       let(:chef_run) do
         runner = ChefSpec::SoloRunner.new(platform: 'ubuntu', version: '16.04')
-        runner.node.normal['ntp']['apparmor_enabled'] = true
+        runner.node.override['ntp']['apparmor_enabled'] = true
         runner.converge('ntp::default')
       end
 
@@ -332,7 +332,7 @@ restrict 0.pool.ntp.org nomodify notrap noquery'
   end
 
   context 'freebsd' do
-    let(:chef_run) { ChefSpec::SoloRunner.new(platform: 'freebsd', version: '10.3').converge('ntp::default') }
+    let(:chef_run) { ChefSpec::SoloRunner.new(platform: 'freebsd').converge('ntp::default') }
 
     it 'installs the ntp package' do
       expect(chef_run).to install_package('ntp')
@@ -371,8 +371,8 @@ restrict 0.pool.ntp.org nomodify notrap noquery'
     end
   end
 
-  context 'solaris2 version 5.10' do
-    let(:chef_run) { ChefSpec::SoloRunner.new(platform: 'solaris2', version: '5.10').converge('ntp::default') }
+  context 'solaris2' do
+    let(:chef_run) { ChefSpec::SoloRunner.new(platform: 'solaris2').converge('ntp::default') }
 
     it 'does not install the ntp package' do
       expect(chef_run).to_not install_package('ntp')
