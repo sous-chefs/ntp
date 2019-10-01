@@ -98,7 +98,7 @@ when 'windows'
   default['ntp']['conffile'] = 'C:\\NTP\\etc\\ntp.conf'
   default['ntp']['conf_owner'] = 'Administrators'
   default['ntp']['conf_group'] = 'Administrators'
-  default['ntp']['package_url'] = 'https://www.meinbergglobal.com/download/ntp/windows/ntp-4.2.8p10-win32-setup.exe'
+  default['ntp']['package_url'] = 'https://www.meinbergglobal.com/download/ntp/windows/ntp-4.2.8p13-win32-setup.exe'
   default['ntp']['statistics'] = false
 when 'freebsd'
   default['ntp']['varlibdir'] = '/var/db'
