@@ -9,10 +9,10 @@ Installs and configures ntp. On Windows systems it uses the Meinberg port of the
 ### Platforms
 
 - Debian-family Linux Distributions
-- RedHat-family Linux Distributions
+- RedHat-family Linux Distributions 5-7 (8 does not contain NTP client)
 - Fedora
 - Gentoo Linux
-- openSUSE
+- openSUSE / SLES 12+
 - FreeBSD
 - Windows 2008 R2+
 - macOS 10.11+
