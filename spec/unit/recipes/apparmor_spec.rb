@@ -8,6 +8,8 @@ describe 'ntp::apparmor' do
     expect(cr).to create_cookbook_file('/etc/apparmor.d/usr.sbin.ntpd')
     expect(cr).to render_file('/etc/apparmor.d/usr.sbin.ntpd')
       .with_content(%r{^/usr/sbin/ntpd flags=\(attach_disconnected\)})
+    expect(cr).to render_file('/etc/apparmor.d/usr.sbin.ntpd')
+      .with_content(/ntp.conf.dhcp r/)
     file = cr.cookbook_file('/etc/apparmor.d/usr.sbin.ntpd')
     expect(file.owner).to eq('root')
     expect(file.group).to eq('root')
