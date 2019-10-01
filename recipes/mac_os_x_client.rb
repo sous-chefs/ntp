@@ -18,7 +18,7 @@
 # limitations under the License.
 
 # Do not continue if trying to run the Mac OS X recipe on non-OS X platform
-return 'The ntp::mac_os_x_client recipe only supports Mac OS X' unless platform_family?('mac_os_x')
+return 'The ntp::mac_os_x_client recipe only supports macOS' unless platform_family?('mac_os_x')
 
 # Mac OS X 10.11+ does not allow for many NTP settings
 execute 'set_ntp_server' do
