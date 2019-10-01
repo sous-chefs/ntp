@@ -2,6 +2,18 @@
 
 This file is used to list changes made in each version of the ntp cookbook.
 
+## 3.7.0 (2019-10-01)
+
+- Resolve multiple AppArmor failures on Ubuntu systems - [@caarlos0](https://github.com/caarlos0)
+- Rename Mac OS X references to be macOS - [@tas50](https://github.com/tas50)
+- Resolve multiple cookstyle warnings - [@tas50](https://github.com/tas50)
+- Added RHEL 8, Debian 10, and openSUSE 15 testing - [@tas50](https://github.com/tas50)
+- Update the Windows NTP client to the latest version - [@tas50](https://github.com/tas50)
+- Remove support for EOL SLES 11 - [@tas50](https://github.com/tas50)
+- Gracefully fail on RHEL 8 and later - [@tas50](https://github.com/tas50)
+- Update the supported platforms to include opensuse - [@tas50](https://github.com/tas50)
+- Update to the latest ntp.leapseconds file - [@tas50](https://github.com/tas50)
+
 ## 3.6.2 (2019-01-21)
 
 - Update leap seconds file to the latest expiring 6/2019 - [@tas50](https://github.com/tas50)
