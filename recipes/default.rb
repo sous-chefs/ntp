@@ -23,7 +23,8 @@ if platform_family?('rhel') && node['platform_version'].to_i >= 8
   return
 end
 
-::Chef::DSL::Resource.include Opscode::Ntp::Helper
+::Chef::DSL::Resources.include Opscode::Ntp::Helper
+::Chef::Resource::Template.include Opscode::Ntp::Helper
 
 # If there are no specified servers, pools, or peers, set some defaults.
 # See COOK-1170 for why this isn't a default attribute

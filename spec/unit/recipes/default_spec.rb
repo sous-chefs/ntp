@@ -3,6 +3,12 @@ require 'spec_helper'
 describe 'ntp::default' do
   cached(:chef_run) { ChefSpec::SoloRunner.new(platform: 'ubuntu', version: '16.04').converge('ntp::default') }
 
+  before do
+    stubs_for_resource('template[/etc/ntp.conf]') do |resource|
+      allow(resource).to receive_shell_out('ntpd --version 2>&1')
+    end
+  end
+
   it 'installs the ntp package' do
     expect(chef_run).to install_package('ntp')
   end

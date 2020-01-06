@@ -235,7 +235,7 @@ describe 'ntp attributes' do
     end
 
     it 'sets the package_url correctly' do
-      expect(ntp['package_url']).to eq('https://www.meinbergglobal.com/download/ntp/windows/ntp-4.2.8p10-win32-setup.exe')
+      expect(ntp['package_url']).to eq('https://www.meinbergglobal.com/download/ntp/windows/ntp-4.2.8p13-win32-setup.exe')
     end
   end
 
