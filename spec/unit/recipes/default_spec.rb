@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe 'ntp::default' do
-  cached(:chef_run) { ChefSpec::SoloRunner.new(platform: 'ubuntu', version: '16.04').converge('ntp::default') }
+  let(:chef_run) { ChefSpec::SoloRunner.new(platform: 'ubuntu', version: '16.04').converge('ntp::default') }
 
   before do
     stubs_for_resource('template[/etc/ntp.conf]') do |resource|
@@ -381,7 +381,7 @@ restrict 0.pool.ntp.org nomodify notrap noquery'
     let(:chef_run) { ChefSpec::SoloRunner.new(platform: 'solaris2').converge('ntp::default') }
 
     it 'does not install the ntp package' do
-      expect(chef_run).to_not install_package('ntp')
+      expect(chef_run).to_not install_ips_package('ntp')
     end
   end
 end
