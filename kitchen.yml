@@ -1,3 +1,4 @@
+---
 driver:
   name: vagrant
 
@@ -13,42 +14,33 @@ platforms:
   - name: amazonlinux
     driver_config:
       box: mvbcoding/awslinux
+  - name: amazonlinux-2
   - name: centos-6
   - name: centos-7
-  - name: debian-10
+  - name: centos-8
+  - name: debian-9
     run_list: apt::default
   - name: debian-10
     run_list: apt::default
-  - name: fedora-29
-  - name: freebsd-11
-  - name: opensuse-leap-42
-  - name: sles-11.2
-    driver_config:
-      box: chef/sles-11-sp2-x86_64
-  - name: ubuntu-14.04
-    run_list: apt::default
+  - name: fedora-latest
+  - name: freebsd-12
+  - name: opensuse-leap-15
+  - name: sles-12-sp1
+    driver:
+      box: chef/sles-12-sp1-x86_64 # private box
   - name: ubuntu-16.04
     run_list: apt::default
-  - name: windows-2008r2
-    driver_config:
-      box: tas50/windows_2008r2
+  - name: ubuntu-18.04
+    run_list: apt::default
   - name: windows-2012r2
     driver_config:
       box: tas50/windows_2012r2
-# Solaris 10 requires the release directory from the  OS ISO to be in `/var/spool/pkg`
-# in order for the converge to succeed.
-  - name: solaris-10.11
-    driver_config:
-      box: chef/solaris-10.11
   - name: solaris-11.3
     driver_config:
       box: chef/solaris-11.3
-  - name: macosx-10.11
+  - name: macosx-10.13
     driver_config:
-      box: chef/macosx-10.10
-  - name: macosx-10.12
-    driver_config:
-      box: chef/macosx-10.10
+      box: chef/macosx-10.13
 
 suites:
   - name: default

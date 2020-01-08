@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe 'ntp::mac_os_x_client' do
   cached(:chef_run) do
-    ChefSpec::SoloRunner.new(platform: 'mac_os_x', version: '10.12') do |node|
+    ChefSpec::SoloRunner.new(platform: 'mac_os_x') do |node|
       node.normal['ntp']['servers'] = %w(one two three)
     end.converge(described_recipe)
   end

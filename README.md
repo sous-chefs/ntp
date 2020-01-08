@@ -1,6 +1,7 @@
 # NTP Cookbook
 
-[![Build Status](https://travis-ci.org/chef-cookbooks/ntp.svg?branch=master)](http://travis-ci.org/chef-cookbooks/ntp) [![Cookbook Version](https://img.shields.io/cookbook/v/ntp.svg)](https://supermarket.chef.io/cookbooks/ntp)
+[![CI State](https://github.com/chef-cookbooks/ntp/workflows/ci/badge.svg)](https://github.com/chef-cookbooks/ntp/actions?query=workflow%3Aci)
+[![Cookbook Version](https://img.shields.io/cookbook/v/ntp.svg)](https://supermarket.chef.io/cookbooks/ntp)
 
 Installs and configures ntp. On Windows systems it uses the Meinberg port of the standard NTPd client to Windows.
 
