@@ -24,7 +24,7 @@
 require 'spec_helper'
 
 describe 'ntp attributes' do
-  let(:chef_run) { ChefSpec::SoloRunner.new(platform: 'aix', version: '6.1').converge('ntp::default') }
+  let(:chef_run) { ChefSpec::SoloRunner.new(platform: 'aix', version: '6').converge('ntp::default') }
   let(:ntp) { chef_run.node['ntp'] }
 
   describe 'on an unknown platform' do
@@ -169,7 +169,7 @@ describe 'ntp attributes' do
   end
 
   describe 'on Debian-family platforms' do
-    let(:chef_run) { ChefSpec::SoloRunner.new(platform: 'debian', version: '8.9').converge('ntp::default') }
+    let(:chef_run) { ChefSpec::SoloRunner.new(platform: 'debian', version: '8').converge('ntp::default') }
 
     it 'sets the package list to ntp & ntpdate' do
       expect(ntp['packages']).to include('ntp')
