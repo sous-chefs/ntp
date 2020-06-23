@@ -2,6 +2,10 @@
 
 This file is used to list changes made in each version of the ntp cookbook.
 
+## 3.7.1 (2020-06-23)
+- Changed installing ntp.leapseconds file dynamicaly from https://www.ietf.org/timezones/data/leap-seconds.list (or other). 
+    Use node['ntp']['leapfile_url'] to override - [@mnosenko](https://github.com/mnosenko)
+
 ## 3.7.0 (2019-10-01)
 
 - Resolve multiple AppArmor failures on Ubuntu systems - [@caarlos0](https://github.com/caarlos0)

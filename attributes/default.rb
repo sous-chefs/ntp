@@ -132,3 +132,4 @@ when 'pld'
 end
 
 default['ntp']['use_cmos'] = !node['virtualization'] || node['virtualization']['role'] != 'guest' ? true : false
+default['ntp']['leapfile_url'] = 'https://www.ietf.org/timezones/data/leap-seconds.list'
