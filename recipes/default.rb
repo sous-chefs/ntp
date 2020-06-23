@@ -70,11 +70,11 @@ else
     end
   end
 
-  cookbook_file node['ntp']['leapfile'] do
+  remote_file node['ntp']['leapfile'] do
     owner node['ntp']['conf_owner']
     group node['ntp']['conf_group']
     mode '0644'
-    source 'ntp.leapseconds'
+    source node['ntp']['leapfile_url']
     notifies :restart, "service[#{node['ntp']['service']}]"
   end
 
