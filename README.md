@@ -244,6 +244,11 @@ These attributes are set based on platform / system information provided by Ohai
   - String, device/path to Solaris packages.
   - Defaults to `/var/spool/pkg`
 
+- `ntp['leapfile_url']`
+  - Remote file location of ntp.leapseconds
+  - String, URL
+  - Defaults to `https://www.ietf.org/timezones/data/leap-seconds.list`
+
 ## Usage
 
 ### default recipe
