@@ -70,12 +70,23 @@ else
     end
   end
 
+  cookbook_file node['ntp']['leapfile'] do
+    owner node['ntp']['conf_owner']
+    group node['ntp']['conf_group']
+    mode '0644'
+    source 'ntp.leapseconds'
+    source node['ntp']['leapfile_url']
+    notifies :restart, "service[#{node['ntp']['service']}]"
+    not_if node['ntp']['leapfile_from_mirror']
+  end
+
   remote_file node['ntp']['leapfile'] do
     owner node['ntp']['conf_owner']
     group node['ntp']['conf_group']
     mode '0644'
     source node['ntp']['leapfile_url']
     notifies :restart, "service[#{node['ntp']['service']}]"
+    only_if node['ntp']['leapfile_from_mirror']
   end
 
   include_recipe 'ntp::apparmor' if node['ntp']['apparmor_enabled']
