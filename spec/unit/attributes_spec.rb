@@ -24,7 +24,7 @@
 require 'spec_helper'
 
 describe 'ntp attributes' do
-  let(:chef_run) { ChefSpec::SoloRunner.new(platform: 'aix', version: '6').converge('ntp::default') }
+  let(:chef_run) { ChefSpec::SoloRunner.new(platform: 'aix').converge('ntp::default') }
   let(:ntp) { chef_run.node['ntp'] }
 
   describe 'on an unknown platform' do
