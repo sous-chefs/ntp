@@ -11,11 +11,7 @@ verifier:
   name: inspec
 
 platforms:
-  - name: amazonlinux
-    driver_config:
-      box: mvbcoding/awslinux
   - name: amazonlinux-2
-  - name: centos-6
   - name: centos-7
   - name: centos-8
   - name: debian-9
@@ -25,9 +21,6 @@ platforms:
   - name: fedora-latest
   - name: freebsd-12
   - name: opensuse-leap-15
-  - name: sles-12-sp1
-    driver:
-      box: chef/sles-12-sp1-x86_64 # private box
   - name: ubuntu-16.04
     run_list: apt::default
   - name: ubuntu-18.04
@@ -38,9 +31,9 @@ platforms:
   - name: solaris-11.3
     driver_config:
       box: chef/solaris-11.3
-  - name: macosx-10.13
+  - name: macosx-10.15
     driver_config:
-      box: chef/macosx-10.13
+      box: tas50/macos_10.15
 
 suites:
   - name: default
