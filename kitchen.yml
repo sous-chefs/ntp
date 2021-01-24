@@ -4,6 +4,7 @@ driver:
 
 provisioner:
   name: chef_zero
+  product_name: chef
   deprecations_as_errors: true
   chef_license: accept-no-persist
 
@@ -15,16 +16,12 @@ platforms:
   - name: centos-7
   - name: centos-8
   - name: debian-9
-    run_list: apt::default
   - name: debian-10
-    run_list: apt::default
   - name: fedora-latest
   - name: freebsd-12
   - name: opensuse-leap-15
-  - name: ubuntu-16.04
-    run_list: apt::default
   - name: ubuntu-18.04
-    run_list: apt::default
+  - name: ubuntu-20.04
   - name: windows-2012r2
     driver_config:
       box: tas50/windows_2012r2

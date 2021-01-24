@@ -1,9 +1,16 @@
 # NTP Cookbook
 
-[![CI State](https://github.com/chef-cookbooks/ntp/workflows/ci/badge.svg)](https://github.com/chef-cookbooks/ntp/actions?query=workflow%3Aci)
 [![Cookbook Version](https://img.shields.io/cookbook/v/ntp.svg)](https://supermarket.chef.io/cookbooks/ntp)
+[![CI State](https://github.com/sous-chefs/ntp/workflows/ci/badge.svg)](https://github.com/sous-chefs/ntp/actions?query=workflow%3Aci)
+[![OpenCollective](https://opencollective.com/sous-chefs/backers/badge.svg)](#backers)
+[![OpenCollective](https://opencollective.com/sous-chefs/sponsors/badge.svg)](#sponsors)
+[![License](https://img.shields.io/badge/License-Apache%202.0-green.svg)](https://opensource.org/licenses/Apache-2.0)
 
 Installs and configures ntp. On Windows systems it uses the Meinberg port of the standard NTPd client to Windows.
+
+## Maintainers
+
+This cookbook is maintained by the Sous Chefs. The Sous Chefs are a community of Chef cookbook maintainers working together to maintain important cookbooks. If you’d like to know more please visit [sous-chefs.org](https://sous-chefs.org/) or come chat with us on the Chef Community Slack in [#sous-chefs](https://chefcommunity.slack.com/messages/C2V7B88SF).
 
 ## Requirements
 
@@ -56,7 +63,7 @@ Installs and configures ntp. On Windows systems it uses the Meinberg port of the
 
 - `ntp['sync_hw_clock']` (applies to NTP Servers and Clients)
 
-  - Boolean. Defaults to false. On *nix-based systems, forces the 'hwclock --systohc' command to be issued on every Chef-client run. This will sync the hardware clock to the system clock.
+  - Boolean. Defaults to false. On \*nix-based systems, forces the 'hwclock --systohc' command to be issued on every Chef-client run. This will sync the hardware clock to the system clock.
   - Not available on Windows.
 
 - `ntp['restrict_default']`
@@ -293,33 +300,27 @@ Windows only. Apply on a Windows host to install the Meinberg NTPd client.
 
 macOS only. Apply on a macOS host to configure NTP.
 
-## License & Authors
+## Contributors
 
-- Author:: Joshua Timberman ([joshua@chef.io](mailto:joshua@chef.io))
-- Contributor:: Eric G. Wolfe ([wolfe21@marshall.edu](mailto:wolfe21@marshall.edu))
-- Contributor:: Fletcher Nichol ([fletcher@nichol.ca](mailto:fletcher@nichol.ca))
-- Contributor:: Tim Smith ([tsmith@chef.io](mailto:tsmith@chef.io))
-- Contributor:: Charles Johnson ([charles@chef.io](mailto:charles@chef.io))
-- Contributor:: Brad Knowles ([bknowles@momentumsi.com](mailto:bknowles@momentumsi.com))
+This project exists thanks to all the people who [contribute.](https://opencollective.com/sous-chefs/contributors.svg?width=890&button=false)
 
-```text
-Copyright 2009-2016, Chef Software, Inc.
-Copyright 2012, Eric G. Wolfe
-Copyright 2012, Fletcher Nichol
-Copyright 2012, Webtrends, Inc.
-Copyright 2013, Limelight Networks, Inc.
-Copyright 2013, Brad Knowles
-Copyright 2013, Brad Beam
+### Backers
 
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
+Thank you to all our backers!
 
-    http://www.apache.org/licenses/LICENSE-2.0
+![https://opencollective.com/sous-chefs#backers](https://opencollective.com/sous-chefs/backers.svg?width=600&avatarHeight=40)
 
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
-```
+### Sponsors
+
+Support this project by becoming a sponsor. Your logo will show up here with a link to your website.
+
+![https://opencollective.com/sous-chefs/sponsor/0/website](https://opencollective.com/sous-chefs/sponsor/0/avatar.svg?avatarHeight=100)
+![https://opencollective.com/sous-chefs/sponsor/1/website](https://opencollective.com/sous-chefs/sponsor/1/avatar.svg?avatarHeight=100)
+![https://opencollective.com/sous-chefs/sponsor/2/website](https://opencollective.com/sous-chefs/sponsor/2/avatar.svg?avatarHeight=100)
+![https://opencollective.com/sous-chefs/sponsor/3/website](https://opencollective.com/sous-chefs/sponsor/3/avatar.svg?avatarHeight=100)
+![https://opencollective.com/sous-chefs/sponsor/4/website](https://opencollective.com/sous-chefs/sponsor/4/avatar.svg?avatarHeight=100)
+![https://opencollective.com/sous-chefs/sponsor/5/website](https://opencollective.com/sous-chefs/sponsor/5/avatar.svg?avatarHeight=100)
+![https://opencollective.com/sous-chefs/sponsor/6/website](https://opencollective.com/sous-chefs/sponsor/6/avatar.svg?avatarHeight=100)
+![https://opencollective.com/sous-chefs/sponsor/7/website](https://opencollective.com/sous-chefs/sponsor/7/avatar.svg?avatarHeight=100)
+![https://opencollective.com/sous-chefs/sponsor/8/website](https://opencollective.com/sous-chefs/sponsor/8/avatar.svg?avatarHeight=100)
+![https://opencollective.com/sous-chefs/sponsor/9/website](https://opencollective.com/sous-chefs/sponsor/9/avatar.svg?avatarHeight=100)

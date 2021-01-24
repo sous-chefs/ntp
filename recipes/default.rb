@@ -19,7 +19,7 @@
 # limitations under the License.
 
 if platform_family?('rhel') && node['platform_version'].to_i >= 8
-  Chef::Log.warn('The NTP cookbook is not suupported on RHEL 8+ as NTP no longer ships in the OS')
+  Chef::Log.warn('The NTP cookbook is not supported on RHEL 8+ as NTP no longer ships in the OS')
   return
 end
 
@@ -94,7 +94,7 @@ end
 
 if node['ntp']['listen'].nil? && !node['ntp']['listen_network'].nil?
   if node['ntp']['listen_network'] == 'primary'
-    node.normal['ntp']['listen'] = node['ipaddress']
+    node.default['ntp']['listen'] = node['ipaddress']
   else
     require 'ipaddr'
     net = IPAddr.new(node['ntp']['listen_network'])
@@ -102,7 +102,7 @@ if node['ntp']['listen'].nil? && !node['ntp']['listen_network'].nil?
     node['network']['interfaces'].each do |_iface, addrs|
       addrs['addresses'].each do |ip, params|
         addr = IPAddr.new(ip) if params['family'].eql?('inet') || params['family'].eql?('inet6')
-        node.normal['ntp']['listen'] = addr if net.include?(addr)
+        node.default['ntp']['listen'] = addr if net.include?(addr)
       end
     end
   end
