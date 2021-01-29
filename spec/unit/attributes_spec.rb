@@ -24,7 +24,7 @@
 require 'spec_helper'
 
 describe 'ntp attributes' do
-  let(:chef_run) { ChefSpec::SoloRunner.new(platform: 'aix').converge('ntp::default') }
+  cached(:chef_run) { ChefSpec::SoloRunner.new(platform: 'aix').converge('ntp::default') }
   let(:ntp) { chef_run.node['ntp'] }
 
   describe 'on an unknown platform' do
@@ -169,7 +169,7 @@ describe 'ntp attributes' do
   end
 
   describe 'on Debian-family platforms' do
-    let(:chef_run) { ChefSpec::SoloRunner.new(platform: 'debian', version: '8').converge('ntp::default') }
+    cached(:chef_run) { ChefSpec::SoloRunner.new(platform: 'debian', version: '10').converge('ntp::default') }
 
     it 'sets the package list to ntp & ntpdate' do
       expect(ntp['packages']).to include('ntp')
@@ -178,7 +178,7 @@ describe 'ntp attributes' do
   end
 
   describe 'on Ubuntu' do
-    let(:chef_run) { ChefSpec::SoloRunner.new(platform: 'ubuntu', version: '16.04').converge('ntp::default') }
+    let(:chef_run) { ChefSpec::SoloRunner.new(platform: 'ubuntu', version: '20.04').converge('ntp::default') }
 
     it 'sets the apparmor_enabled attribute to true when /etc/init.d/apparmor exists' do
       allow(File).to receive(:exist?).and_call_original
@@ -193,17 +193,8 @@ describe 'ntp attributes' do
     end
   end
 
-  describe 'on the CentOS 6 platform' do
-    let(:chef_run) { ChefSpec::SoloRunner.new(platform: 'centos', version: '6').converge('ntp::default') }
-
-    it 'sets the package list to include only ntp' do
-      expect(ntp['packages']).to include('ntp')
-      expect(ntp['packages']).to_not include('ntpdate')
-    end
-  end
-
   describe 'on the CentOS 7 platform' do
-    let(:chef_run) { ChefSpec::SoloRunner.new(platform: 'centos', version: '7').converge('ntp::default') }
+    cached(:chef_run) { ChefSpec::SoloRunner.new(platform: 'centos', version: '7').converge('ntp::default') }
 
     it 'sets the package list to include ntp and ntpdate' do
       expect(ntp['packages']).to include('ntp')
@@ -212,7 +203,7 @@ describe 'ntp attributes' do
   end
 
   describe 'on the Windows platform' do
-    let(:chef_run) { ChefSpec::SoloRunner.new(platform: 'windows', version: '2012R2').converge('ntp::default') }
+    cached(:chef_run) { ChefSpec::SoloRunner.new(platform: 'windows', version: '2012R2').converge('ntp::default') }
 
     it 'sets the service name to NTP' do
       expect(ntp['service']).to eq('NTP')
@@ -240,7 +231,7 @@ describe 'ntp attributes' do
   end
 
   describe 'on the FreeBSD platform' do
-    let(:chef_run) { ChefSpec::SoloRunner.new(platform: 'freebsd').converge('ntp::default') }
+    cached(:chef_run) { ChefSpec::SoloRunner.new(platform: 'freebsd').converge('ntp::default') }
 
     it 'sets the package list to include only ntp' do
       expect(ntp['packages']).to include('ntp')

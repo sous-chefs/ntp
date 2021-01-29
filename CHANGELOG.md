@@ -2,9 +2,16 @@
 
 This file is used to list changes made in each version of the ntp cookbook.
 
+## Unreleased
+
+- Sous Chefs Adoption
+- Cookstyle fixes
+- Standardise files with files in sous-chefs/repo-management
+- Add testing for Windows and MacOS
+
 ## 3.8.0 (2020-12-04)
 
-- Changed installing ntp.leapseconds file dynamicaly from https://www.ietf.org/timezones/data/leap-seconds.list (or other). Use node['ntp']['leapfile_url'] to override - [@mnosenko](https://github.com/mnosenko)
+- Changed installing ntp.leapseconds file dynamicaly [from](https://www.ietf.org/timezones/data/leap-seconds.list) (or other). Use `node['ntp']['leapfile_url']` to override - [@mnosenko](https://github.com/mnosenko)
 - Improve how we inject the helper libraries - [@tas50](https://github.com/tas50)
 - Require Chef 12.15+ - [@tas50](https://github.com/tas50)
 - Add testing in Github actions - [@tas50](https://github.com/tas50)
