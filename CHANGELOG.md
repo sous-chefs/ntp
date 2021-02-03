@@ -4,6 +4,8 @@ This file is used to list changes made in each version of the ntp cookbook.
 
 ## Unreleased
 
+- Remove duplicated source attributes in cookbook_file for leapfile_url
+
 ## 3.9.0 - *2021-01-29*
 
 - Sous Chefs Adoption
