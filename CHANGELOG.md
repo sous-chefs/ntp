@@ -2,6 +2,8 @@
 
 This file is used to list changes made in each version of the ntp cookbook.
 
+## Unreleased
+
 ## 3.9.1 - *2021-02-03*
 
 - Remove duplicated source attributes in cookbook_file for leapfile_url
