@@ -4,7 +4,7 @@
 # Author:: Joshua Timberman (<joshua@chef.io>)
 # Author:: Tim Smith (<tsmith@chef.io>)
 #
-# Copyright:: 2009-2019, Chef Software, Inc.
+# Copyright:: Copyright (c) Chef Software Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -20,6 +20,11 @@
 
 if platform_family?('rhel') && node['platform_version'].to_i >= 8
   Chef::Log.warn('The NTP cookbook is not supported on RHEL 8+ as NTP no longer ships in the OS')
+  return
+end
+
+if platform_family?('fedora') && node['platform_version'].to_i >= 34
+  Chef::Log.warn('The NTP cookbook is not supported on Fedora 34+ as NTP no longer ships in the OS')
   return
 end
 
