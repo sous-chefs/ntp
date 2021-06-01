@@ -2,7 +2,7 @@
 
 This file is used to list changes made in each version of the ntp cookbook.
 
-## Unreleased
+## 3.10.1 - *2021-06-01*
 
 ## 3.10.0 - *2021-05-26*
 
