@@ -4,9 +4,15 @@ This file is used to list changes made in each version of the ntp cookbook.
 
 ## Unreleased
 
+- Standardise files with files in sous-chefs/repo-management
+
 ## 3.10.1 - *2021-06-01*
 
+- Standardise files with files in sous-chefs/repo-management
+
 ## 3.10.0 - *2021-05-26*
+
+- Fix fedora tests by omitting the latest distro version
 
 ## 3.9.1 - *2021-02-03*
 
