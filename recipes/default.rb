@@ -124,7 +124,7 @@ template node['ntp']['conffile'] do
   notifies :restart, "service[#{node['ntp']['service']}]" unless node['ntp']['conf_restart_immediate']
   notifies :restart, "service[#{node['ntp']['service']}]", :immediately if node['ntp']['conf_restart_immediate']
   variables(
-    lazy { { ntpd_supports_native_leapfiles: ntpd_supports_native_leapfiles } }
+    lazy { { ntpd_supports_native_leapfiles: ntpd_supports_native_leapfiles, tos_maxdist: node['ntp']['tos']['maxdist'] } }
   )
 end
 

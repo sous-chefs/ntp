@@ -27,6 +27,7 @@ default['ntp']['peers'] = []
 default['ntp']['pools'] = []
 default['ntp']['restrictions'] = []
 default['ntp']['tinker'] = { 'panic' => 0 }
+default['ntp']['tos']['maxdist'] = 1
 
 # set `restrict default` for IPv4 and IPv6
 default['ntp']['restrict_default'] = 'kod notrap nomodify nopeer noquery'

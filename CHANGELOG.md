@@ -3,6 +3,8 @@
 This file is used to list changes made in each version of the ntp cookbook.
 
 ## Unreleased
+- Updates the ntp.conf template to allow setting `tos maxdist` value; helpful when ntpd uses a remote Windows server as a time source
+- Sets the default `tos maxdist` value to `1` to stay conformed to ntpd's default value; can be set to 30 when remote ntp server is a Windows domain controller, for example.
 
 ## 3.10.2 - *2021-08-30*
 

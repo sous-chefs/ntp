@@ -8,6 +8,9 @@
 <%   if @ntpd_supports_native_leapfiles -%>
 <%-%>leapfile <%= node['ntp']['leapfile'] %>
 <%   end -%>
+<%# When the remote ntp server is a Windows domain controller, set `tos maxdist 30` %>
+<%# By default, an unsynced Windows server chooses a 10-second dispersion and adds to the dispersion on each poll interval that it remains in sync. A Linux ntpd, by default, does not accept any NTP reply with a root dispersion greater than 1.5 seconds. %>
+tos maxdist <%= @tos_maxdist %>
 <% end -%>
 driftfile <%= node['ntp']['driftfile'] %>
 <% if node['ntp']['logfile'] -%>
