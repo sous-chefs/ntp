@@ -41,6 +41,10 @@ else
     it { should be_file }
   end
 
+  describe ntp_conf do
+    its('tos') { should eq 'maxdist 1' }
+  end
+
   describe file '/etc/ntp.leapseconds' do
     it { should be_file }
   end
