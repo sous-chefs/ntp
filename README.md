@@ -154,9 +154,9 @@ This cookbook is maintained by the Sous Chefs. The Sous Chefs are a community of
 
   - Boolean. Defaults to false. Set to true if using ntp < 4.2.8 or any unpatched ntp version to mitigate CVE-2014-9293 / CVE-2014-9294 / CVE-2014-9295
 
-- ntp['tos']['maxdrift']
+- ntp['tos']['maxdist']
 
-  - Number. Defaults to 1 (ntp default). Specifies the tos maxdrift value in seconds. Where the remote ntp server is a Windows domain controller, this value can be set to 30.
+  - Number. Defaults to 1 (ntp default). Specifies the tos maxdist value in seconds. Where the remote ntp server is a Windows domain controller, this value can be set to 30.
 
 - `ntp['orphan']['enabled']`
 
