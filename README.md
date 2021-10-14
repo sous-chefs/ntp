@@ -132,7 +132,7 @@ This cookbook is maintained by the Sous Chefs. The Sous Chefs are a community of
 
 - `ntp['tinker']['allan']`
 
-  - Number. Defaults to 1500 (ntp default). Spedifies the Allan intercept, which is a parameter of the PLL/FLL clock discipline algorithm, in seconds.
+  - Number. Defaults to 1500 (ntp default). Specifies the Allan intercept, which is a parameter of the PLL/FLL clock discipline algorithm, in seconds.
 
 - `ntp['tinker']['dispersion']`
 
@@ -140,11 +140,11 @@ This cookbook is maintained by the Sous Chefs. The Sous Chefs are a community of
 
 - `ntp['tinker']['panic']`
 
-  - Number. Defaults to 1000 (ntp default). Spedifies the panic threshold in seconds. If set to zero, the panic sanity check is disabled and a clock offset of any value will be accepted.
+  - Number. Defaults to 1000 (ntp default). Specifies the panic threshold in seconds. If set to zero, the panic sanity check is disabled and a clock offset of any value will be accepted.
 
 - `ntp['tinker']['step']`
 
-  - Number. Defaults to 0.128 (ntp default). Spedifies the step threshold in seconds. If set to zero, step adjustments will never occur. Note: The kernel time discipline is disabled if the step threshold is set to zero or greater than 0.5 s.
+  - Number. Defaults to 0.128 (ntp default). Specifies the step threshold in seconds. If set to zero, step adjustments will never occur. Note: The kernel time discipline is disabled if the step threshold is set to zero or greater than 0.5 s.
 
 - `ntp['tinker']['stepout']`
 
@@ -153,6 +153,10 @@ This cookbook is maintained by the Sous Chefs. The Sous Chefs are a community of
 - `ntp['localhost']['noquery']` (applies to NTP Servers and Clients)
 
   - Boolean. Defaults to false. Set to true if using ntp < 4.2.8 or any unpatched ntp version to mitigate CVE-2014-9293 / CVE-2014-9294 / CVE-2014-9295
+
+- ntp['tos']['maxdist']
+
+  - Number. Defaults to 1 (ntp default). Specifies the tos maxdist value in seconds. Where the remote ntp server is a Windows domain controller, this value can be set to 30.
 
 - `ntp['orphan']['enabled']`
 
