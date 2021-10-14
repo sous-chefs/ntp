@@ -2,6 +2,8 @@
 
 This file is used to list changes made in each version of the ntp cookbook.
 
+## Unreleased
+
 ## 3.11.0 - *2021-10-14*
 
 - Updates the ntp.conf template to allow setting `tos maxdist` value; helpful when ntpd uses a remote Windows server as a time source
