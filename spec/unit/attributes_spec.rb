@@ -101,6 +101,10 @@ describe 'ntp attributes' do
       expect(ntp['trustedkey']).to be nil
     end
 
+    it 'sets the aci_support to nil' do
+      expect(ntp['aci_support']).to be nil
+    end
+
     it 'sets conf_restart_immediate to false' do
       expect(ntp['conf_restart_immediate']).to eq(false)
     end
