@@ -168,7 +168,7 @@ This cookbook is maintained by the Sous Chefs. The Sous Chefs are a community of
 
 - `ntp['dscp']`
 
-  - Number. Default is set to `nil`, as not all networks are running `ACI` recommended value is `46` as per `RedHat`. Check with your vendor `Cisco` to be sure.
+  - Number. Default is set to `nil`, This option specifies the Differentiated Services Control Point (DSCP) value, a 6-bit code. The default value is 46, signifying Expedited Forwarding.
 
 ### Automatically Set Attributes
 
