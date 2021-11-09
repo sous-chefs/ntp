@@ -169,6 +169,7 @@ This cookbook is maintained by the Sous Chefs. The Sous Chefs are a community of
 - `ntp['dscp']`
 
   - Number. Default is set to `nil`, This option specifies the Differentiated Services Control Point (DSCP) value, a 6-bit code. The default value is 46, signifying Expedited Forwarding.
+  - This is to support Cisco Application Centric Infrastructure (ACI).
 
 ### Automatically Set Attributes
 
