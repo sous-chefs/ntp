@@ -166,6 +166,11 @@ This cookbook is maintained by the Sous Chefs. The Sous Chefs are a community of
 
   - Number. Defaults to 5, recommended value for stratum is 2 more than the worst-case externally-reachable source of time
 
+- `ntp['dscp']`
+
+  - Number. Default is set to `nil`, This option specifies the Differentiated Services Control Point (DSCP) value, a 6-bit code. The default value is 46, signifying Expedited Forwarding.
+  - This is to support Cisco Application Centric Infrastructure (ACI).
+
 ### Automatically Set Attributes
 
 These attributes are set based on platform / system information provided by Ohai

@@ -101,6 +101,10 @@ describe 'ntp attributes' do
       expect(ntp['trustedkey']).to be nil
     end
 
+    it 'sets the dscp to nil' do
+      expect(ntp['dscp']).to be nil
+    end
+
     it 'sets conf_restart_immediate to false' do
       expect(ntp['conf_restart_immediate']).to eq(false)
     end

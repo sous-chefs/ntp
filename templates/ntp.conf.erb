@@ -110,3 +110,6 @@ trustedkey <%= node['ntp']['trustedkey'] %>
 <% if node['ntp']['requestkey'] -%>
 requestkey <%= node['ntp']['requestkey'] %>
 <% end -%>
+<% if node['ntp']['dscp'] -%>
+dscp <%= node['ntp']['dscp'] %>
+<% end -%>
