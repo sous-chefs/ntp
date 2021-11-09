@@ -2,7 +2,7 @@
 
 This file is used to list changes made in each version of the ntp cookbook.
 
-## Unreleased
+## 3.12.0 - *2021-11-09*
 
 - Updates the ntp.conf template to allow setting `dscp` value; This is to support Cisco Application Centric Infrastructure (ACI) for RedHat.
 - Value is set to `nil`, as this will only be set if you require Differentiated Services Control Point (DSCP).
