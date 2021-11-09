@@ -166,7 +166,7 @@ This cookbook is maintained by the Sous Chefs. The Sous Chefs are a community of
 
   - Number. Defaults to 5, recommended value for stratum is 2 more than the worst-case externally-reachable source of time
 
-- `ntp['aci_support']`
+- `ntp['dscp']`
 
   - Number. Default is set to `nil`, as not all networks are running `ACI` recommended value is `46` as per `RedHat`. Check with your vendor `Cisco` to be sure.
 
