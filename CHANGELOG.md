@@ -2,6 +2,8 @@
 
 This file is used to list changes made in each version of the ntp cookbook.
 
+## Unreleased
+
 ## 3.12.3 - *2022-12-11*
 
 Standardise files with files in sous-chefs/repo-management
