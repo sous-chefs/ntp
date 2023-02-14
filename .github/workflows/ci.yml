@@ -40,28 +40,28 @@ jobs:
     strategy:
       matrix:
         os:
-          - 'amazonlinux-2'
-          - 'centos-7'
-          - 'centos-8'
-          - 'debian-9'
-          - 'debian-10'
-          - 'fedora-latest'
-          - 'opensuse-leap-15'
-          - 'oraclelinux-7'
-          - 'oraclelinux-8'
-          - 'ubuntu-1804'
-          - 'ubuntu-2004'
+          - "amazonlinux-2"
+          - "centos-7"
+          - "centos-8"
+          - "debian-9"
+          - "debian-10"
+          - "fedora-latest"
+          - "opensuse-leap-15"
+          - "oraclelinux-7"
+          - "oraclelinux-8"
+          - "ubuntu-1804"
+          - "ubuntu-2004"
         suite:
-          - 'default'
+          - "default"
       fail-fast: false
 
     steps:
       - name: Check out code
         uses: actions/checkout@v2
       - name: Install Chef
-        uses: actionshub/chef-install@main
+        uses: actionshub/chef-install@2.0.4
       - name: Dokken
-        uses: actionshub/test-kitchen@main
+        uses: actionshub/test-kitchen@2.1.0
         env:
           CHEF_LICENSE: accept-no-persist
           KITCHEN_LOCAL_YAML: kitchen.dokken.yml
@@ -75,18 +75,18 @@ jobs:
     strategy:
       matrix:
         os:
-          - 'windows-latest'
+          - "windows-latest"
         suite:
-          - 'default'
+          - "default"
       fail-fast: false
 
     steps:
       - name: Check out code
         uses: actions/checkout@v2
       - name: Install Chef
-        uses: actionshub/chef-install@main
+        uses: actionshub/chef-install@2.0.4
       - name: test-kitchen
-        uses: actionshub/test-kitchen@main
+        uses: actionshub/test-kitchen@2.1.0
         env:
           CHEF_LICENSE: accept-no-persist
           KITCHEN_LOCAL_YAML: kitchen.exec.yml
@@ -100,18 +100,18 @@ jobs:
     strategy:
       matrix:
         os:
-          - 'macos-latest'
+          - "macos-latest"
         suite:
-          - 'default'
+          - "default"
       fail-fast: false
 
     steps:
       - name: Check out code
         uses: actions/checkout@v2
       - name: Install Chef
-        uses: actionshub/chef-install@main
+        uses: actionshub/chef-install@2.0.4
       - name: test-kitchen
-        uses: actionshub/test-kitchen@main
+        uses: actionshub/test-kitchen@2.1.0
         env:
           CHEF_LICENSE: accept-no-persist
           KITCHEN_LOCAL_YAML: kitchen.exec.yml
