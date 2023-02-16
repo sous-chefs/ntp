@@ -4,6 +4,8 @@ This file is used to list changes made in each version of the ntp cookbook.
 
 ## Unreleased
 
+- Fix 'restrict default' syntax
+
 ## 5.0.0 - *2023-02-16*
 
 - Remove local clock feature, this is no longer recommended
