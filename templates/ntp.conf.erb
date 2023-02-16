@@ -90,13 +90,6 @@ restrict -6 ::1<%if node['ntp']['localhost']['noquery'] -%> noquery<% end -%>
 <%   end -%>
 <% end -%>
 
-<%# It is best practice to use a high stratum undisciplined clock, if you have a real CMOS clock %>
-<%# Except cases where you have a low stratum server, or a virtualized system without a real CMOS clock %>
-<% if node['ntp']['use_cmos'] -%>
-<%  -%>server  127.127.1.0 # local clock
-<%  -%>fudge   127.127.1.0 stratum 10
-<% end -%>
-
 <% if node['ntp']['orphan']['enabled'] -%>
 tos orphan <%= node['ntp']['orphan']['stratum'] %>
 <% end -%>

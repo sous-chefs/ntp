@@ -6,6 +6,18 @@ This file is used to list changes made in each version of the ntp cookbook.
 
 - Fix 'restrict default' syntax
 
+## 5.0.0 - *2023-02-16*
+
+- Remove local clock feature, this is no longer recommended
+
+## 4.0.0 - *2023-02-16*
+
+Remove Delivery
+
+## 3.12.5 - *2023-02-16*
+
+Standardise files with files in sous-chefs/repo-management
+
 ## 3.12.4 - *2023-02-15*
 
 Standardise files with files in sous-chefs/repo-management

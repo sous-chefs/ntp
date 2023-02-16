@@ -133,6 +133,5 @@ when 'pld'
   default['ntp']['var_owner'] = 'root'
 end
 
-default['ntp']['use_cmos'] = !node['virtualization'] || node['virtualization']['role'] != 'guest' ? true : false
 default['ntp']['leapfile_url'] = 'ntp.leapseconds'
 default['ntp']['leapfile_from_mirror'] = false
