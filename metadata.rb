@@ -6,7 +6,7 @@ description       'Installs and configures ntp as a client or server'
 version           '3.12.5'
 source_url        'https://github.com/sous-chefs/ntp'
 issues_url        'https://github.com/sous-chefs/ntp/issues'
-chef_version      '>= 12.15'
+chef_version      '>= 15.5'
 
 supports 'amazon'
 supports 'centos'
