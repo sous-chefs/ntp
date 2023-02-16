@@ -4,6 +4,8 @@ This file is used to list changes made in each version of the ntp cookbook.
 
 ## Unreleased
 
+- Fix 'restrict default' syntax
+
 ## 3.12.4 - *2023-02-15*
 
 Standardise files with files in sous-chefs/repo-management
