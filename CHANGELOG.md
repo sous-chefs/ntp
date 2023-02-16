@@ -2,7 +2,7 @@
 
 This file is used to list changes made in each version of the ntp cookbook.
 
-## Unreleased
+## 5.0.0 - *2023-02-16*
 
 - Remove local clock feature, this is no longer recommended
 
