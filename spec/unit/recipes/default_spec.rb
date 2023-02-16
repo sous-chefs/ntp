@@ -86,7 +86,6 @@ describe 'ntp::default' do
     cached(:chef_run) do
       runner = ChefSpec::SoloRunner.new(platform: 'ubuntu', version: '16.04')
       runner.node.override['ntp']['pools'] = %w(0.pool.ntp.org 1.pool.ntp.org)
-      runner.node.override['ntp']['use_cmos'] = false
       runner.converge('ntp::default')
     end
 

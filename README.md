@@ -250,11 +250,6 @@ These attributes are set based on platform / system information provided by Ohai
   - Defaults to false and will make no provisions for apparmor.
   - If a platform has apparmor enabled (currently Ubuntu) default will become true.
 
-- `ntp['use_cmos']`
-
-  - Boolean, uses a high stratum undisciplined clock for machines with real CMOS clock.
-  - Defaults to true unless a platform appears to be virtualized according to Ohai.
-
 - `ntp['pkg_source']`
   - _Only applicable to Solaris 10_
   - String, device/path to Solaris packages.

@@ -4,6 +4,8 @@ This file is used to list changes made in each version of the ntp cookbook.
 
 ## Unreleased
 
+- Remove local clock feature, this is no longer recommended
+
 ## 4.0.0 - *2023-02-16*
 
 Remove Delivery
