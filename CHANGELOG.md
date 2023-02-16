@@ -2,6 +2,8 @@
 
 This file is used to list changes made in each version of the ntp cookbook.
 
+## Unreleased
+
 ## 4.0.0 - *2023-02-16*
 
 Remove Delivery
