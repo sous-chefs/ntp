@@ -4,6 +4,8 @@ This file is used to list changes made in each version of the ntp cookbook.
 
 ## Unreleased
 
+Standardise files with files in sous-chefs/repo-management
+
 ## 5.0.2 - *2023-02-16*
 
 ## 5.0.1 - *2023-02-16*
