@@ -8,6 +8,18 @@ Standardise files with files in sous-chefs/repo-management
 
 Standardise files with files in sous-chefs/repo-management
 
+## 5.0.14 - *2023-10-31*
+
+## 5.0.13 - *2023-09-28*
+
+## 5.0.12 - *2023-09-04*
+
+## 5.0.11 - *2023-07-10*
+
+## 5.0.10 - *2023-05-16*
+
+## 5.0.9 - *2023-05-03*
+
 ## 5.0.8 - *2023-04-01*
 
 ## 5.0.7 - *2023-04-01*
