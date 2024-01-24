@@ -95,7 +95,7 @@ default['ntp']['localhost']['noquery'] = false
 
 # overrides on a platform-by-platform basis
 case node['platform_family']
-when 'debian'
+when 'debian', 'ubuntu'
   default['ntp']['service'] = 'ntp'
   default['ntp']['apparmor_enabled'] = true if File.exist? '/etc/init.d/apparmor'
   default['ntp']['leapfile'] = '/usr/share/zoneinfo/leap-seconds.list'
