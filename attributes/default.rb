@@ -42,8 +42,15 @@ default['ntp']['conffile'] = '/etc/ntp.conf'
 default['ntp']['statsdir'] = '/var/log/ntpstats/'
 default['ntp']['conf_owner'] = 'root'
 default['ntp']['conf_group'] = 'root'
-default['ntp']['var_owner'] = 'ntp'
-default['ntp']['var_group'] = 'ntp'
+
+if platform?('debian') && node['platform_version'].to_i <= 12
+  default['ntp']['var_owner'] = 'ntpsec'
+  default['ntp']['var_group'] = 'ntpsec'
+else
+  default['ntp']['var_owner'] = 'ntp'
+  default['ntp']['var_group'] = 'ntp'
+end
+
 default['ntp']['leapfile'] = '/etc/ntp.leapseconds'
 default['ntp']['sync_clock'] = false
 default['ntp']['sync_hw_clock'] = false
