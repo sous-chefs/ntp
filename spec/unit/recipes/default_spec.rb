@@ -60,10 +60,10 @@ describe 'ntp::default' do
   end
 
   context 'the leapfile' do
-    cached(:cookbook_file) { chef_run.cookbook_file('/etc/ntp.leapseconds') }
+    cached(:cookbook_file) { chef_run.cookbook_file('/usr/share/zoneinfo/leap-seconds.list') }
 
     it 'creates the cookbook_file' do
-      expect(chef_run).to create_cookbook_file('/etc/ntp.leapseconds')
+      expect(chef_run).to create_cookbook_file('/usr/share/zoneinfo/leap-seconds.list')
     end
 
     it 'is owned by ntp:ntp' do

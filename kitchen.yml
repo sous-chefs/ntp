@@ -17,6 +17,7 @@ platforms:
   - name: centos-8
   - name: debian-9
   - name: debian-10
+  - name: debian-12
   - name: fedora-latest
   - name: freebsd-12
   - name: opensuse-leap-15
