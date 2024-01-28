@@ -304,7 +304,7 @@ Standardise files with files in sous-chefs/repo-management
 
 ## v1.8.6 (2015-05-14)
 
-- **PR [#102](102)** - Update leapseconds file to 3660249600 (through C49)
+- **PR [#102]** - Update leapseconds file to 3660249600 (through C49)
 - Gemfile parity with ChefDK 0.5.1
 - .kitchen.yml platform updates to current bento boxes
 
