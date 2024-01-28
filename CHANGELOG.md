@@ -8,6 +8,8 @@ This file is used to list changes made in each version of the ntp cookbook.
 
 ## 5.0.16 - *2024-02-02*
 
+updated changelog file, removed links to tickets.opscode.com as the markdown link check failed
+
 ## 5.0.15 - *2023-11-01*
 
 Standardise files with files in sous-chefs/repo-management
@@ -117,7 +119,7 @@ Standardise files with files in sous-chefs/repo-management
 
 ## 3.8.0 (2020-12-04)
 
-- Changed installing ntp.leapseconds file dynamicaly [from](https://www.ietf.org/timezones/data/leap-seconds.list) (or other). Use `node['ntp']['leapfile_url']` to override - [@mnosenko](https://github.com/mnosenko)
+- Changed installing ntp.leapseconds file dynamicaly [from](https://data.iana.org/time-zones/data/leap-seconds.list) (or other). Use `node['ntp']['leapfile_url']` to override - [@mnosenko](https://github.com/mnosenko)
 - Improve how we inject the helper libraries - [@tas50](https://github.com/tas50)
 - Require Chef 12.15+ - [@tas50](https://github.com/tas50)
 - Add testing in Github actions - [@tas50](https://github.com/tas50)
@@ -359,8 +361,8 @@ Standardise files with files in sous-chefs/repo-management
 ## v1.6.4 (2014-07-02)
 
 - Leapseconds File Expired, update to 3626380800
-- **[COOK-3887](https://tickets.opscode.com/browse/COOK-3887)** - Trivial changes to achieve Gentoo support
-- **[COOK-1876](https://tickets.opscode.com/browse/COOK-1876)** - ntp leapfile assumes ntpd >= 4.2.6 syntax
+- **[COOK-3887]** - Trivial changes to achieve Gentoo support
+- **[COOK-1876]** - ntp leapfile assumes ntpd >= 4.2.6 syntax
 
 ## v1.6.2 (2014-03-19)
 
@@ -370,16 +372,16 @@ Standardise files with files in sous-chefs/repo-management
 
 ### Improvement
 
-- **[COOK-4346](https://tickets.opscode.com/browse/COOK-4346)** - Solaris 11 support for ntp
-- **[COOK-4339](https://tickets.opscode.com/browse/COOK-4339)** - Disable Monitoring by Default
-- **[COOK-3604](https://tickets.opscode.com/browse/COOK-3604)** - Enable listening on specific interfaces
+- **[COOK-4346]** - Solaris 11 support for ntp
+- **[COOK-4339]** - Disable Monitoring by Default
+- **[COOK-3604]** - Enable listening on specific interfaces
 
 ### Bug
 
-- **[COOK-4106](https://tickets.opscode.com/browse/COOK-4106)** - Check for default content in ntp.conf
-- **[COOK-4087](https://tickets.opscode.com/browse/COOK-4087)** - quote option in readme
-- **[COOK-3797](https://tickets.opscode.com/browse/COOK-3797)** - Cookbook fails to upload due to 1.9.x syntax
-- **[COOK-3023](https://tickets.opscode.com/browse/COOK-3023)** - NTP leapseconds file denied by Ubuntu apparmor profile
+- **[COOK-4106]** - Check for default content in ntp.conf
+- **[COOK-4087]** - quote option in readme
+- **[COOK-3797]** - Cookbook fails to upload due to 1.9.x syntax
+- **[COOK-3023]** - NTP leapseconds file denied by Ubuntu apparmor profile
 
 ## v1.5.4 (2013-12-29)
 
@@ -389,31 +391,31 @@ Standardise files with files in sous-chefs/repo-management
 
 ### Bug
 
-- **[COOK-3797](https://tickets.opscode.com/browse/COOK-3797)** - Add /spec to Chefignore
+- **[COOK-3797]** - Add /spec to Chefignore
 
 ## v1.5.0
 
-### Improvement
+### Improvemen
 
-- **[COOK-3651](https://tickets.opscode.com/browse/COOK-3651)** - Refactor and clean up
-- **[COOK-3630](https://tickets.opscode.com/browse/COOK-3630)** - Switch NTP cookbook linting from Tailor to Rubocop
-- **[COOK-3273](https://tickets.opscode.com/browse/COOK-3273)** - Add tests
+- **[COOK-3651]** - Refactor and clean up
+- **[COOK-3630]** - Switch NTP cookbook linting from Tailor to Rubocop
+- **[COOK-3273]** - Add tests
 
-### New Feature
+### New Featur
 
-- **[COOK-3636](https://tickets.opscode.com/browse/COOK-3636)** - Allow ntp cookbook to update clock to ntp servers
+- **[COOK-3636]** - Allow ntp cookbook to update clock to ntp servers
 
 ### Bug
 
-- **[COOK-3410](https://tickets.opscode.com/browse/COOK-3410)** - Remove redundant ntpdate/disable recipes
-- **[COOK-1170](https://tickets.opscode.com/browse/COOK-1170)** - Allow redefining NTP servers in a role
+- **[COOK-3410]** - Remove redundant ntpdate/disable recipes
+- **[COOK-1170]** - Allow redefining NTP servers in a role
 
 ## v1.4.0
 
-### Improvement
+### Improvemen
 
-- **[COOK-3365](https://tickets.opscode.com/browse/COOK-3365)** - Update ntp leapseconds file to version 3597177600
-- **[COOK-1674](https://tickets.opscode.com/browse/COOK-1674)** - Add Windows support
+- **[COOK-3365]** - Update ntp leapseconds file to version 3597177600
+- **[COOK-1674]** - Add Windows support
 
 ## v1.3.2
 
