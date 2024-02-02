@@ -16,7 +16,7 @@ platforms:
   - name: centos-7
   - name: centos-8
   - name: debian-9
-  - name: debian-10
+  - name: debian-11
   - name: debian-12
   - name: fedora-latest
   - name: freebsd-12
