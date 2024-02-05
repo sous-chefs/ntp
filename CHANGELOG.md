@@ -4,11 +4,22 @@ This file is used to list changes made in each version of the ntp cookbook.
 
 ## Unreleased
 
+## 5.0.18 - *2024-01-24*
+
+Updated readme this cookbook only support chef 15.5+
+
+Remove support for debian-8 / debian-9 / debian-10.
+Adds support for debian-11 / debian-12
+
+since debian bookworm the ntp user is ntpsec (i expect debian will continue to use this in all later versions)
+
+for debian / redhat based os'es there is a leap-second file, prefer to use this.
+
+updated changelog file, removed links to tickets.opscode.com as the markdown link check failed
+
 ## 5.0.17 - *2024-02-02*
 
 ## 5.0.16 - *2024-02-02*
-
-updated changelog file, removed links to tickets.opscode.com as the markdown link check failed
 
 ## 5.0.15 - *2023-11-01*
 
