@@ -44,11 +44,11 @@ default['ntp']['conf_owner'] = 'root'
 default['ntp']['conf_group'] = 'root'
 
 if platform?('debian') && node['platform_version'].to_i < 12
-  default['ntp']['var_owner'] = 'ntpsec'
-  default['ntp']['var_group'] = 'ntpsec'
-else
   default['ntp']['var_owner'] = 'ntp'
   default['ntp']['var_group'] = 'ntp'
+else
+  default['ntp']['var_owner'] = 'ntpsec'
+  default['ntp']['var_group'] = 'ntpsec'
 end
 
 default['ntp']['leapfile'] = '/etc/ntp.leapseconds'
