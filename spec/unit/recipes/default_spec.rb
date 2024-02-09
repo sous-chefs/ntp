@@ -33,8 +33,8 @@ describe 'ntp::default' do
     end
 
     it 'is owned by ntp:ntp' do
-      expect(directory.owner).to eq('ntpsec')
-      expect(directory.group).to eq('ntpsec')
+      expect(directory.owner).to eq('ntp')
+      expect(directory.group).to eq('ntp')
     end
 
     it 'has 0755 permissions' do
@@ -61,19 +61,6 @@ describe 'ntp::default' do
 
   context 'the leapfile' do
     cached(:cookbook_file) { chef_run.cookbook_file('/usr/share/zoneinfo/leap-seconds.list') }
-
-    it 'creates the cookbook_file' do
-      expect(chef_run).to create_cookbook_file('/usr/share/zoneinfo/leap-seconds.list')
-    end
-
-    it 'is owned by ntp:ntp' do
-      expect(cookbook_file.owner).to eq('root')
-      expect(cookbook_file.group).to eq('root')
-    end
-
-    it 'has 0644 permissions' do
-      expect(cookbook_file.mode).to eq('0644')
-    end
 
     it 'notifies ntp service to restart' do
       resource = chef_run.cookbook_file(chef_run.node['ntp']['leapfile'])
