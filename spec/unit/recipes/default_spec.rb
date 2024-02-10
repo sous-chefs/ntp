@@ -32,9 +32,9 @@ describe 'ntp::default' do
       expect(chef_run).to create_directory('/var/lib/ntp')
     end
 
-    it 'is owned by ntp:ntp' do
-      expect(directory.owner).to eq('ntp')
-      expect(directory.group).to eq('ntp')
+    it 'is owned by ntpsec:ntpsec' do
+      expect(directory.owner).to eq('ntpsec')
+      expect(directory.group).to eq('ntpsec')
     end
 
     it 'has 0755 permissions' do
