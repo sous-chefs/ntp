@@ -69,12 +69,12 @@ describe 'ntp attributes' do
       expect(ntp['conf_group']).to eq('root')
     end
 
-    it 'sets the var_owner to ntpsec' do
-      expect(ntp['var_owner']).to eq('ntpsec')
+    it 'sets the var_owner to ntp' do
+      expect(ntp['var_owner']).to eq('ntp')
     end
 
-    it 'sets the var_group to ntpsec' do
-      expect(ntp['var_group']).to eq('ntpsec')
+    it 'sets the var_group to ntp' do
+      expect(ntp['var_group']).to eq('ntp')
     end
 
     it 'sets the leapfile to /etc/ntp.leapseconds' do
