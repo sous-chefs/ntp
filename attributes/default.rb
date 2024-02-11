@@ -43,7 +43,7 @@ default['ntp']['statsdir'] = '/var/log/ntpstats/'
 default['ntp']['conf_owner'] = 'root'
 default['ntp']['conf_group'] = 'root'
 
-if (platform?('debian') && node['platform_version'].to_i < 12)
+if platform?('debian') && node['platform_version'].to_i < 12
   default['ntp']['var_owner'] = 'ntp'
   default['ntp']['var_group'] = 'ntp'
 else
@@ -95,7 +95,7 @@ default['ntp']['localhost']['noquery'] = false
 
 # overrides on a platform-by-platform basis
 case node['platform_family']
-when 'debian', 'ubuntu'
+when 'debian'
   default['ntp']['service'] = 'ntp'
   default['ntp']['apparmor_enabled'] = true if File.exist? '/etc/init.d/apparmor'
   default['ntp']['leapfile'] = '/usr/share/zoneinfo/leap-seconds.list'
