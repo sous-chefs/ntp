@@ -6,7 +6,7 @@ service_name =
     'ntp'
   end
 
-if (os.family == 'redhat') || (inspec.os.name == 'fedora')
+if (os.family == 'redhat' && os.release.to_i >= 8) || (inspec.os.name == 'fedora' && os.release.to_i >= 34)
   describe file '/etc/ntp.conf' do
     it { should_not be_file }
   end
@@ -19,10 +19,28 @@ if (os.family == 'redhat') || (inspec.os.name == 'fedora')
     it { should_not be_enabled }
     it { should_not be_running }
   end
+elseif (os.family == 'redhat' && os.release.to_i >= 8)
+  describe file '/usr/share/zoneinfo/leapseconds' do
+    it { should be_file }
+  end
 elsif os.family == 'debian'
+  describe file '/etc/ntp.conf' do
+    it { should be_file }
+  end
+
+  describe ntp_conf do
+    its('tos') { should eq 'maxdist 1' }
+  end
+
   describe file '/usr/share/zoneinfo/leap-seconds.list' do
     it { should be_file }
   end
+
+  describe service service_name do
+    it { should be_enabled }
+    it { should be_running }
+  end
+
 elsif os.windows?
   describe file 'C:\NTP\etc\ntp.conf' do
     it { should be_file }
