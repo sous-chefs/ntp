@@ -92,6 +92,9 @@ platforms:
     driver:
       image: dokken/ubuntu-22.04
       pid_one_command: /bin/systemd
+    attributes:
+      ntp:
+        apparmor_enabled: false
 
   - name: ubuntu-23.04
     driver:
