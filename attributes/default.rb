@@ -99,6 +99,7 @@ case node['platform_family']
 when 'debian'
   default['ntp']['leapfile_managed_by_os'] = true
   default['ntp']['service'] = 'ntp'
+  default['ntp']['apparmor_enabled'] = true if File.exist? '/etc/init.d/apparmor' && !(platform?('ubuntu') && node['platform_version'].to_i == '22.04')
   default['ntp']['leapfile'] = '/usr/share/zoneinfo/leap-seconds.list'
 when 'rhel', 'fedora', 'amazon'
   default['ntp']['leapfile_managed_by_os'] = true
