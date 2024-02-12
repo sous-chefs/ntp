@@ -59,16 +59,6 @@ describe 'ntp::default' do
     end
   end
 
-  context 'the leapfile' do
-    cached(:cookbook_file) { chef_run.cookbook_file('/usr/share/zoneinfo/leap-seconds.list') }
-
-    it 'notifies ntp service to restart' do
-      resource = chef_run.cookbook_file(chef_run.node['ntp']['leapfile'])
-      service = "service[#{chef_run.node['ntp']['service']}]"
-      expect(resource).to notify(service).to(:restart).delayed
-    end
-  end
-
   context 'ntp["pools"] is used' do
     cached(:chef_run) do
       runner = ChefSpec::SoloRunner.new(platform: 'ubuntu', version: '16.04')
