@@ -19,7 +19,7 @@ if (os.family == 'redhat' && os.release.to_i >= 8) || (inspec.os.name == 'fedora
     it { should_not be_enabled }
     it { should_not be_running }
   end
-elseif (os.family == 'redhat' && os.release.to_i >= 8)
+elsif (os.family == 'redhat' && os.release.to_i < 8)
   describe file '/usr/share/zoneinfo/leapseconds' do
     it { should be_file }
   end
