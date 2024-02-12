@@ -92,13 +92,16 @@ default['ntp']['orphan']['stratum'] = 5 # ntp recommends 2 more than the worst-c
 
 # Set to true if using ntp < 4.2.8 or any unpatched ntp version to mitigate CVE-2014-9293 / CVE-2014-9294 / CVE-2014-9295
 default['ntp']['localhost']['noquery'] = false
+default['ntp']['leapfile_managed_by_os'] = false
 
 # overrides on a platform-by-platform basis
 case node['platform_family']
 when 'debian'
+  default['ntp']['leapfile_managed_by_os'] = true
   default['ntp']['service'] = 'ntp'
   default['ntp']['leapfile'] = '/usr/share/zoneinfo/leap-seconds.list'
 when 'rhel', 'fedora', 'amazon'
+  default['ntp']['leapfile_managed_by_os'] = true
   default['ntp']['packages'] = %w(ntp ntpdate) if node['platform_version'].to_i >= 7
   default['ntp']['driftfile'] = "#{node['ntp']['varlibdir']}/drift"
   default['ntp']['leapfile'] = '/usr/share/zoneinfo/leapseconds'

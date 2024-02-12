@@ -83,7 +83,7 @@ else
       source node['ntp']['leapfile_url']
       notifies :restart, "service[#{node['ntp']['service']}]"
     end
-  else
+  elsif !node['ntp']['leapfile_managed_by_os']
     cookbook_file node['ntp']['leapfile'] do
       owner node['ntp']['conf_owner']
       group node['ntp']['conf_group']
