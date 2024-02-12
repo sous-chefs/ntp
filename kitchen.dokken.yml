@@ -52,12 +52,6 @@ platforms:
       image: dokken/fedora-latest
       pid_one_command: /usr/lib/systemd/systemd
 
-  - name: oraclelinux-7
-    driver:
-      image: dokken/oraclelinux-7
-      privileged: false
-      pid_one_command: /usr/lib/systemd/systemd
-
   - name: oraclelinux-8
     driver:
       image: dokken/oraclelinux-8
