@@ -20,7 +20,6 @@ This cookbook is maintained by the Sous Chefs. The Sous Chefs are a community of
 - RedHat-family Linux Distributions 5-7 (8 does not contain NTP client)
 - Fedora
 - Gentoo Linux
-- openSUSE / SLES 12+
 - FreeBSD
 - Windows 2008 R2+
 - macOS 10.11+
