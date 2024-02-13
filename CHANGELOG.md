@@ -11,13 +11,15 @@ Updated readme this cookbook only support chef 15.5+
 Remove support for debian-8 / debian-9 / debian-10 / oraclelinux-7 / opensuse-leap-15
 Adds support for debian-11 / debian-12
 
+Redhat removed support for ntp in favor of chrony: (<https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html-single/considerations_in_adopting_rhel_8/index#time-synchronization_infrastructure-services>)
+
 since debian bookworm the ntp user is ntpsec (i expect debian will continue to use this in all later versions)
 
 for debian / redhat based os'es there is a leap-second file, prefer to use this.
 
 updated changelog file, removed links to tickets.opscode.com as the markdown link check failed
 
-https://chefcommunity.slack.com/archives/C2V7B88SF/p1706892623188809
+<https://chefcommunity.slack.com/archives/C2V7B88SF/p1706892623188809>
 
 ## 5.0.17 - *2024-02-02*
 
