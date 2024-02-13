@@ -214,11 +214,14 @@ These attributes are set based on platform / system information provided by Ohai
   - String, the owner and group of the /var/lib directory files, such as /var/lib/ntp.
   - Default, platform-specific ntp:ntp or root:wheel. Not applicable for Windows nodes
 
+- `['ntp']['leapfile_managed_by_os']`
+  - Boolean. Defaults to false. This uses leapfile provided by the cookbook, when combined with leapfile you can use the leapfile provided by your OS.
+
 - `ntp['leapfile']`
 
   - String, the path to the ntp leapfile.
-  - Default: `/etc/ntp.leapseconds` 
-  - Debian default: `/usr/share/zoneinfo/leap-seconds.list`, 
+  - Default: `/etc/ntp.leapseconds`
+  - Debian default: `/usr/share/zoneinfo/leap-seconds.list`,
   - RedHat default: `/usr/share/zoneinfo/leapseconds`
 
 - `ntp['package_url']`
