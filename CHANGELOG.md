@@ -8,7 +8,7 @@ This file is used to list changes made in each version of the ntp cookbook.
 
 Updated readme this cookbook only support chef 15.5+
 
-Remove support for debian-8 / debian-9 / debian-10.
+Remove support for debian-8 / debian-9 / debian-10 / oraclelinux-7 / opensuse-leap-15
 Adds support for debian-11 / debian-12
 
 since debian bookworm the ntp user is ntpsec (i expect debian will continue to use this in all later versions)
@@ -16,6 +16,8 @@ since debian bookworm the ntp user is ntpsec (i expect debian will continue to u
 for debian / redhat based os'es there is a leap-second file, prefer to use this.
 
 updated changelog file, removed links to tickets.opscode.com as the markdown link check failed
+
+https://chefcommunity.slack.com/archives/C2V7B88SF/p1706892623188809
 
 ## 5.0.17 - *2024-02-02*
 
