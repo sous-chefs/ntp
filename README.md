@@ -217,7 +217,9 @@ These attributes are set based on platform / system information provided by Ohai
 - `ntp['leapfile']`
 
   - String, the path to the ntp leapfile.
-  - Default, /etc/ntp.leapseconds. Default for debian: /usr/share/zoneinfo/leap-seconds.list, for redhat: /usr/share/zoneinfo/leapseconds
+  - Default: `/etc/ntp.leapseconds` 
+  - Debian default: `/usr/share/zoneinfo/leap-seconds.list`, 
+  - RedHat default: `/usr/share/zoneinfo/leapseconds`
 
 - `ntp['package_url']`
 
