@@ -42,8 +42,15 @@ default['ntp']['conffile'] = '/etc/ntp.conf'
 default['ntp']['statsdir'] = '/var/log/ntpstats/'
 default['ntp']['conf_owner'] = 'root'
 default['ntp']['conf_group'] = 'root'
-default['ntp']['var_owner'] = 'ntp'
-default['ntp']['var_group'] = 'ntp'
+
+if platform?('debian') && node['platform_version'].to_i >= 12
+  default['ntp']['var_owner'] = 'ntpsec'
+  default['ntp']['var_group'] = 'ntpsec'
+else
+  default['ntp']['var_owner'] = 'ntp'
+  default['ntp']['var_group'] = 'ntp'
+end
+
 default['ntp']['leapfile'] = '/etc/ntp.leapseconds'
 default['ntp']['sync_clock'] = false
 default['ntp']['sync_hw_clock'] = false
@@ -85,15 +92,20 @@ default['ntp']['orphan']['stratum'] = 5 # ntp recommends 2 more than the worst-c
 
 # Set to true if using ntp < 4.2.8 or any unpatched ntp version to mitigate CVE-2014-9293 / CVE-2014-9294 / CVE-2014-9295
 default['ntp']['localhost']['noquery'] = false
+default['ntp']['leapfile_managed_by_os'] = false
 
 # overrides on a platform-by-platform basis
 case node['platform_family']
 when 'debian'
+  default['ntp']['leapfile_managed_by_os'] = true
   default['ntp']['service'] = 'ntp'
-  default['ntp']['apparmor_enabled'] = true if File.exist? '/etc/init.d/apparmor'
+  default['ntp']['apparmor_enabled'] = true if File.exist?('/etc/init.d/apparmor')
+  default['ntp']['leapfile'] = '/usr/share/zoneinfo/leap-seconds.list'
 when 'rhel', 'fedora', 'amazon'
+  default['ntp']['leapfile_managed_by_os'] = true
   default['ntp']['packages'] = %w(ntp ntpdate) if node['platform_version'].to_i >= 7
   default['ntp']['driftfile'] = "#{node['ntp']['varlibdir']}/drift"
+  default['ntp']['leapfile'] = '/usr/share/zoneinfo/leapseconds'
 when 'windows'
   default['ntp']['service'] = 'NTP'
   default['ntp']['driftfile'] = 'C:\\NTP\\ntp.drift'

@@ -69,11 +69,11 @@ describe 'ntp attributes' do
       expect(ntp['conf_group']).to eq('root')
     end
 
-    it 'sets the var_owner to root' do
+    it 'sets the var_owner to ntp' do
       expect(ntp['var_owner']).to eq('ntp')
     end
 
-    it 'sets the var_group to root' do
+    it 'sets the var_group to ntp' do
       expect(ntp['var_group']).to eq('ntp')
     end
 
@@ -173,11 +173,19 @@ describe 'ntp attributes' do
   end
 
   describe 'on Debian-family platforms' do
-    cached(:chef_run) { ChefSpec::SoloRunner.new(platform: 'debian', version: '10').converge('ntp::default') }
+    cached(:chef_run) { ChefSpec::SoloRunner.new(platform: 'debian', version: '12').converge('ntp::default') }
 
     it 'sets the package list to ntp & ntpdate' do
       expect(ntp['packages']).to include('ntp')
       expect(ntp['packages']).to_not include('ntpdate')
+    end
+
+    it 'sets the var_owner to ntpsec' do
+      expect(ntp['var_owner']).to eq('ntpsec')
+    end
+
+    it 'sets the var_group to ntpsec' do
+      expect(ntp['var_group']).to eq('ntpsec')
     end
   end
 

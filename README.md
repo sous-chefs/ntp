@@ -20,14 +20,13 @@ This cookbook is maintained by the Sous Chefs. The Sous Chefs are a community of
 - RedHat-family Linux Distributions 5-7 (8 does not contain NTP client)
 - Fedora
 - Gentoo Linux
-- openSUSE / SLES 12+
 - FreeBSD
 - Windows 2008 R2+
 - macOS 10.11+
 
 ### Chef
 
-- Chef 12.1+
+- Chef 15.5+
 
 ### Cookbooks
 
@@ -215,10 +214,15 @@ These attributes are set based on platform / system information provided by Ohai
   - String, the owner and group of the /var/lib directory files, such as /var/lib/ntp.
   - Default, platform-specific ntp:ntp or root:wheel. Not applicable for Windows nodes
 
+- `['ntp']['leapfile_managed_by_os']`
+  - Boolean. Defaults to false. This uses leapfile provided by the cookbook, when combined with leapfile you can use the leapfile provided by your OS.
+
 - `ntp['leapfile']`
 
   - String, the path to the ntp leapfile.
-  - Default, /etc/ntp.leapseconds.
+  - Default: `/etc/ntp.leapseconds`
+  - Debian default: `/usr/share/zoneinfo/leap-seconds.list`,
+  - RedHat default: `/usr/share/zoneinfo/leapseconds`
 
 - `ntp['package_url']`
 
