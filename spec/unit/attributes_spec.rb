@@ -49,6 +49,10 @@ describe 'ntp attributes' do
       expect(ntp['logfile']).to be nil
     end
 
+    it 'sets the logconfig to all' do
+      expect(ntp['logconfig']).to eq('all')
+    end
+
     it 'sets the conf file to /etc/ntp.conf' do
       expect(ntp['conffile']).to eq('/etc/ntp.conf')
     end
