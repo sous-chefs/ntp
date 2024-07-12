@@ -104,6 +104,7 @@ when 'debian'
 when 'rhel', 'fedora', 'amazon'
   default['ntp']['leapfile_managed_by_os'] = true
   default['ntp']['packages'] = %w(ntp ntpdate) if node['platform_version'].to_i >= 7
+  default['ntp']['packages'] = %w(ntpsec)      if node['platform_version'].to_i >= 9
   default['ntp']['driftfile'] = "#{node['ntp']['varlibdir']}/drift"
   default['ntp']['leapfile'] = '/usr/share/zoneinfo/leapseconds'
 when 'windows'
