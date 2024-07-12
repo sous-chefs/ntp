@@ -8,6 +8,8 @@ Standardise files with files in sous-chefs/repo-management
 
 Standardise files with files in sous-chefs/repo-management
 
+Update ntpd package for Enterprise Linux 9 (ie Oracle, Rocky, Alma)
+
 ## 5.1.2 - *2024-05-02*
 
 ## 5.1.1 - *2024-05-02*
