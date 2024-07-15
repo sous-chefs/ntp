@@ -249,15 +249,15 @@ restrict 0.pool.ntp.org nomodify notrap noquery'
     end
   end
 
-  context 'on CentOS 6' do
-    let(:chef_run) { ChefSpec::SoloRunner.new(platform: 'centos', version: '6').converge('ntp::default') }
+  context 'on CentOS 8' do
+    let(:chef_run) { ChefSpec::SoloRunner.new(platform: 'centos', version: '8').converge('ntp::default') }
 
     it 'installs the ntp package' do
       expect(chef_run).to install_package('ntp')
     end
 
-    it 'does not install the ntpdate package' do
-      expect(chef_run).to_not install_package('ntpdate')
+    it 'installs the ntpdate package' do
+      expect(chef_run).to install_package('ntpdate')
     end
 
     it 'starts the ntpd service' do
