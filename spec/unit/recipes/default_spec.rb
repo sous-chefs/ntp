@@ -249,8 +249,8 @@ restrict 0.pool.ntp.org nomodify notrap noquery'
     end
   end
 
-  context 'on CentOS 8' do
-    let(:chef_run) { ChefSpec::SoloRunner.new(platform: 'centos', version: '8').converge('ntp::default') }
+  context 'on CentOS 6' do
+    let(:chef_run) { ChefSpec::SoloRunner.new(platform: 'centos', version: '6').converge('ntp::default') }
 
     it 'installs the ntp package' do
       expect(chef_run).to install_package('ntp')
