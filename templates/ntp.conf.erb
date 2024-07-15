@@ -43,6 +43,10 @@ interface listen 127.0.0.1
 <%   end -%>
 <% end -%>
 
+<% unless node['ntp']['logconfig'].nil? -%>
+logconfig =<%= node['ntp']['logconfig'] %>
+<% end -%>
+
 <% if node['ntp']['monitor'] -%>
 enable monitor
 <% else -%>
