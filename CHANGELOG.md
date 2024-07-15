@@ -8,8 +8,6 @@ This file is used to list changes made in each version of the ntp cookbook.
 
 Standardise files with files in sous-chefs/repo-management
 
-Standardise files with files in sous-chefs/repo-management
-
 Added capability to set logconfig using an attribute
 
 ## 5.1.2 - *2024-05-02*
