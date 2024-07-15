@@ -4,11 +4,13 @@ This file is used to list changes made in each version of the ntp cookbook.
 
 ## Unreleased
 
+Update ntpd package for Enterprise Linux 9 (ie Oracle, Rocky, Alma)
+
 ## 5.2.1 - *2024-07-15*
 
-## 5.2.0 - *2024-07-15*
-
 Standardise files with files in sous-chefs/repo-management
+
+## 5.2.0 - *2024-07-15*
 
 Added capability to set logconfig using an attribute
 

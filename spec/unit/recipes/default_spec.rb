@@ -256,8 +256,8 @@ restrict 0.pool.ntp.org nomodify notrap noquery'
       expect(chef_run).to install_package('ntp')
     end
 
-    it 'does not install the ntpdate package' do
-      expect(chef_run).to_not install_package('ntpdate')
+    it 'installs the ntpdate package' do
+      expect(chef_run).to install_package('ntpdate')
     end
 
     it 'starts the ntpd service' do

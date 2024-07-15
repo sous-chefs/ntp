@@ -104,7 +104,11 @@ when 'debian'
   default['ntp']['leapfile'] = '/usr/share/zoneinfo/leap-seconds.list'
 when 'rhel', 'fedora', 'amazon'
   default['ntp']['leapfile_managed_by_os'] = true
-  default['ntp']['packages'] = %w(ntp ntpdate) if node['platform_version'].to_i >= 7
+  default['ntp']['packages'] = if node['platform_version'].to_i >= 9
+                                 %w(ntpsec) # RPM found in Epel Repo
+                               else
+                                 %w(ntp ntpdate)
+                               end
   default['ntp']['driftfile'] = "#{node['ntp']['varlibdir']}/drift"
   default['ntp']['leapfile'] = '/usr/share/zoneinfo/leapseconds'
 when 'windows'
