@@ -210,7 +210,7 @@ describe 'ntp attributes' do
   end
 
   describe 'on Ubuntu >= 23.10' do
-    let(:chef_run) { ChefSpec::SoloRunner.new(platform: 'ubuntu', version: '23.10').converge('ntp::default') }
+    let(:chef_run) { ChefSpec::SoloRunner.new(platform: 'ubuntu', version: '24.04').converge('ntp::default') }
 
     it 'sets the var_owner to ntpsec' do
       expect(ntp['var_owner']).to eq('ntpsec')
