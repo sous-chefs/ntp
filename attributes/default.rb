@@ -47,6 +47,9 @@ default['ntp']['conf_group'] = 'root'
 if platform?('debian') && node['platform_version'].to_i >= 12
   default['ntp']['var_owner'] = 'ntpsec'
   default['ntp']['var_group'] = 'ntpsec'
+elsif platform?('ubuntu') && Gem::Version.new(node['platform_version']) >= Gem::Version.new('23.10')
+  default['ntp']['var_owner'] = 'ntpsec'
+  default['ntp']['var_group'] = 'ntpsec'
 else
   default['ntp']['var_owner'] = 'ntp'
   default['ntp']['var_group'] = 'ntp'
