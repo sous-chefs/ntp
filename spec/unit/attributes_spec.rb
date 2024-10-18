@@ -209,6 +209,18 @@ describe 'ntp attributes' do
     end
   end
 
+  describe 'on Ubuntu >= 23.10' do
+    let(:chef_run) { ChefSpec::SoloRunner.new(platform: 'ubuntu', version: '24.04').converge('ntp::default') }
+
+    it 'sets the var_owner to ntpsec' do
+      expect(ntp['var_owner']).to eq('ntpsec')
+    end
+
+    it 'sets the var_group to ntpsec' do
+      expect(ntp['var_group']).to eq('ntpsec')
+    end
+  end
+
   describe 'on the CentOS 7 platform' do
     cached(:chef_run) { ChefSpec::SoloRunner.new(platform: 'centos', version: '7').converge('ntp::default') }
 

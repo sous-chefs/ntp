@@ -4,6 +4,8 @@ This file is used to list changes made in each version of the ntp cookbook.
 
 ## Unreleased
 
+Since ubuntu 23.10[Mantic Minotaur] the ntp user is ntpsec
+
 ## 5.2.2 - *2024-07-15*
 
 Update ntpd package for Enterprise Linux 9 (ie Oracle, Rocky, Alma)
