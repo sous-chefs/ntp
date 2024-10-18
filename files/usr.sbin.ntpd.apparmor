@@ -58,6 +58,8 @@
   /etc/ntp.keys r,
   /etc/ntp/** r,
 
+  /etc/ntpsec/** r,
+
   /etc/ntp.drift rwl,
   /etc/ntp.drift.TEMP rwl,
   /etc/ntp/drift* rwl,
