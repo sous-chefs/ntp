@@ -4,6 +4,10 @@ This file is used to list changes made in each version of the ntp cookbook.
 
 ## Unreleased
 
+Standardise files with files in sous-chefs/repo-management
+
+Standardise files with files in sous-chefs/repo-management
+
 ## 5.2.2 - *2024-07-15*
 
 Update ntpd package for Enterprise Linux 9 (ie Oracle, Rocky, Alma)
