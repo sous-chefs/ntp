@@ -44,9 +44,11 @@ default['ntp']['statsdir'] = '/var/log/ntpstats/'
 default['ntp']['conf_owner'] = 'root'
 default['ntp']['conf_group'] = 'root'
 
-if platform?('debian') && node['platform_version'].to_i >= 12
+if (platform?('debian') && node['platform_version'].to_i >= 12) || (platform?('ubuntu') && node['platform_version'].gsub('.', '').to_i >= 2310)
   default['ntp']['var_owner'] = 'ntpsec'
   default['ntp']['var_group'] = 'ntpsec'
+  default['ntp']['conffile'] = '/etc/ntpsec/ntp.conf'
+  default['ntp']['statsdir'] = '/var/log/ntpsec/'
 else
   default['ntp']['var_owner'] = 'ntp'
   default['ntp']['var_group'] = 'ntp'

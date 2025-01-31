@@ -23,8 +23,20 @@ elsif os.family == 'redhat' && os.release.to_i < 8
   describe file '/usr/share/zoneinfo/leapseconds' do
     it { should be_file }
   end
-elsif os.family == 'debian'
+elsif os.name == 'debian' && os.release.to_i <= 11
   describe file '/etc/ntp.conf' do
+    it { should be_file }
+  end
+elsif os.name == 'debian' && os.release.to_i >= 12
+  describe file '/etc/ntpsec/ntp.conf' do
+    it { should be_file }
+  end
+elsif os.name == 'ubuntu' && os.release.gsub('.', '').to_i < 2310
+  describe file '/etc/ntp.conf' do
+    it { should be_file }
+  end
+elsif os.name == 'ubuntu' && os.release.gsub('.', '').to_i >= 23.10
+  describe file '/etc/ntpsec/ntp.conf' do
     it { should be_file }
   end
 

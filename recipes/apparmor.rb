@@ -21,8 +21,14 @@ service 'apparmor' do
   action :nothing
 end
 
+apparmor_source = if node['ntp']['var_owner'] == 'ntpsec'
+                    'usr.sbin.ntpsec.apparmor'
+                  else
+                    'usr.sbin.ntpd.apparmor'
+                  end
+
 cookbook_file '/etc/apparmor.d/usr.sbin.ntpd' do
-  source 'usr.sbin.ntpd.apparmor'
+  source apparmor_source
   owner 'root'
   group 'root'
   mode '0644'
