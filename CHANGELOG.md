@@ -5,6 +5,13 @@ This file is used to list changes made in each version of the ntp cookbook.
 Standardise files with files in sous-chefs/repo-management
 Standardise files with files in sous-chefs/repo-management
 
+## [5.2.6](https://github.com/sous-chefs/ntp/compare/5.2.5...v5.2.6) (2025-10-15)
+
+
+### Bug Fixes
+
+* **ci:** Update workflows to use release pipeline ([#272](https://github.com/sous-chefs/ntp/issues/272)) ([e0aa6f1](https://github.com/sous-chefs/ntp/commit/e0aa6f1bece61453d49594aeb95d031525df7133))
+
 ## 5.2.3 - *2024-11-18*
 
 Standardise files with files in sous-chefs/repo-management
