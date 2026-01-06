@@ -2,6 +2,8 @@ driver:
   name: dokken
   privileged: true
   chef_version: <%= ENV['CHEF_VERSION'] || 'current' %>
+  volumes:
+    - /sys/kernel/security:/sys/kernel/security:rw
 
 transport: { name: dokken }
 provisioner: { name: dokken }
