@@ -5,6 +5,27 @@ This file is used to list changes made in each version of the ntp cookbook.
 Standardise files with files in sous-chefs/repo-management
 Standardise files with files in sous-chefs/repo-management
 
+## [7.0.0](https://github.com/sous-chefs/ntp/compare/v6.0.0...v7.0.0) (2026-04-20)
+
+
+### ⚠ BREAKING CHANGES
+
+* migrate NTP to custom resources ([#276](https://github.com/sous-chefs/ntp/issues/276))
+
+### Features
+
+* migrate NTP to custom resources ([#276](https://github.com/sous-chefs/ntp/issues/276)) ([52a9eaa](https://github.com/sous-chefs/ntp/commit/52a9eaab0d48621bbff907aefbcd4d060053fc97))
+
+
+### Bug Fixes
+
+* apparmor ([8aadb54](https://github.com/sous-chefs/ntp/commit/8aadb54f4c5e6026708e2c7da274b565ea52d702))
+* apparmor warnings ([354a326](https://github.com/sous-chefs/ntp/commit/354a3265eabab3d5e79b69bcb771d7f9a217cead))
+* **apparmor:** dev-log ([3ec6b43](https://github.com/sous-chefs/ntp/commit/3ec6b43ab601dbbb0b835d9ab416066ca9ff38be))
+* **ci:** Update workflows to use release pipeline ([#272](https://github.com/sous-chefs/ntp/issues/272)) ([e0aa6f1](https://github.com/sous-chefs/ntp/commit/e0aa6f1bece61453d49594aeb95d031525df7133))
+* pass slack secrets to release workflow ([34594dc](https://github.com/sous-chefs/ntp/commit/34594dcc537d7c22b9318fe401be417f3faff96b))
+* pin release workflow to 5.0.3 ([d0dafa4](https://github.com/sous-chefs/ntp/commit/d0dafa42f1e7582f82f8ad196a04b0462305a470))
+
 ## [5.2.6](https://github.com/sous-chefs/ntp/compare/5.2.5...v5.2.6) (2025-10-15)
 
 
