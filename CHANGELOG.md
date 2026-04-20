@@ -5,6 +5,13 @@ This file is used to list changes made in each version of the ntp cookbook.
 Standardise files with files in sous-chefs/repo-management
 Standardise files with files in sous-chefs/repo-management
 
+## [7.0.1](https://github.com/sous-chefs/ntp/compare/v7.0.0...v7.0.1) (2026-04-20)
+
+
+### Bug Fixes
+
+* suppress implicit default servers for pool-only configs ([#278](https://github.com/sous-chefs/ntp/issues/278)) ([fe710a6](https://github.com/sous-chefs/ntp/commit/fe710a60bc5f4102c3f68e50a9f13706549d10d0))
+
 ## [7.0.0](https://github.com/sous-chefs/ntp/compare/v6.0.0...v7.0.0) (2026-04-20)
 
 
