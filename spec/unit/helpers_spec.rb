@@ -5,6 +5,19 @@ require_relative '../../libraries/helpers'
 require 'ostruct'
 
 describe NtpCookbook::Helpers do
+  let(:resource_class) do
+    Class.new(OpenStruct) do
+      def initialize(properties = {}, property_states = {})
+        super(properties)
+        @property_states = property_states
+      end
+
+      def property_is_set?(property)
+        @property_states.fetch(property, false)
+      end
+    end
+  end
+
   let(:helper_class) do
     Class.new do
       include NtpCookbook::Helpers
@@ -80,7 +93,7 @@ describe NtpCookbook::Helpers do
     end
 
     let(:resource) do
-      OpenStruct.new(
+      resource_class.new(
         driftfile: '/var/lib/ntpsec/ntp.drift',
         statsdir: '/var/log/ntpsec',
         leapfile: '/usr/share/zoneinfo/leap-seconds.list',
@@ -119,6 +132,58 @@ describe NtpCookbook::Helpers do
     end
   end
 
+  context 'with pools set and servers left at the implicit defaults' do
+    let(:node) do
+      Chef::Node.new.tap do |n|
+        n.automatic['platform'] = 'ubuntu'
+        n.automatic['platform_version'] = '24.04'
+        n.automatic['ipaddress'] = '192.0.2.40'
+        n.automatic['fqdn'] = 'pool-only.example.test'
+      end
+    end
+
+    let(:resource) do
+      resource_class.new(
+        {
+          driftfile: '/var/lib/ntpsec/ntp.drift',
+          statsdir: '/var/log/ntpsec',
+          leapfile: '/usr/share/zoneinfo/leap-seconds.list',
+          logfile: nil,
+          logconfig: 'all',
+          statistics: true,
+          ignore: nil,
+          listen: nil,
+          listen_network: nil,
+          peers: [],
+          servers: %w(0.pool.ntp.org 1.pool.ntp.org 2.pool.ntp.org 3.pool.ntp.org),
+          pools: ['pool.ntp.org'],
+          restrict_default: 'limited kod notrap nomodify nopeer noquery',
+          restrictions: [],
+          monitor: false,
+          localhost: { noquery: false },
+          orphan: { enabled: false, stratum: 5 },
+          peer: { key: nil, use_iburst: true, use_burst: false, minpoll: 6, maxpoll: 10 },
+          server: { prefer: '', use_iburst: true, use_burst: false, minpoll: 6, maxpoll: 10 },
+          tinker: { allan: 1500, dispersion: 15, panic: 1000, step: 0.128, stepout: 900 },
+          tos: { maxdist: 1 },
+          keys: nil,
+          trustedkey: nil,
+          requestkey: nil,
+          dscp: nil,
+          disable_tinker_panic_on_virtualization_guest: true,
+        },
+        { servers: false }
+      )
+    end
+
+    it 'does not include the implicit default servers in the rendered config' do
+      config = helper_class.new(node).config_hash(resource)
+
+      expect(config[:servers]).to eq([])
+      expect(config[:pools]).to eq(['pool.ntp.org'])
+    end
+  end
+
   context 'with sync command on enterprise linux' do
     let(:node) do
       Chef::Node.new.tap do |n|
@@ -129,7 +194,7 @@ describe NtpCookbook::Helpers do
     end
 
     let(:resource) do
-      OpenStruct.new(
+      resource_class.new(
         state_user: 'ntp',
         sync_clock_source: 'time.example.com',
         servers: ['time.example.com'],
@@ -139,6 +204,31 @@ describe NtpCookbook::Helpers do
 
     it 'uses ntpd for one-shot sync' do
       expect(helper_class.new(node).sync_command(resource)).to eq('ntpd -q -u ntp')
+    end
+  end
+
+  context 'with sync command on debian and only pools configured' do
+    let(:node) do
+      Chef::Node.new.tap do |n|
+        n.automatic['platform'] = 'debian'
+        n.automatic['platform_version'] = '12'
+      end
+    end
+
+    let(:resource) do
+      resource_class.new(
+        {
+          sync_clock_source: nil,
+          servers: %w(0.pool.ntp.org 1.pool.ntp.org 2.pool.ntp.org 3.pool.ntp.org),
+          pools: ['pool.ntp.org'],
+          peers: [],
+        },
+        { servers: false }
+      )
+    end
+
+    it 'uses the configured pool instead of the implicit default servers' do
+      expect(helper_class.new(node).sync_command(resource)).to eq('ntpdate -u pool.ntp.org')
     end
   end
 end
