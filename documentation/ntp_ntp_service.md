@@ -30,7 +30,7 @@ packaged config file, and manages the packaged systemd service.
 | `config_group` | String | `'root'` | Group of the rendered config |
 | `state_user` | String | platform default | Owner for state and stats directories |
 | `state_group` | String | platform default | Group for state and stats directories |
-| `servers` | `String`, `Array` | `['0.pool.ntp.org', '1.pool.ntp.org', '2.pool.ntp.org', '3.pool.ntp.org']` | Upstream NTP servers |
+| `servers` | `String`, `Array` | `['0.pool.ntp.org', '1.pool.ntp.org', '2.pool.ntp.org', '3.pool.ntp.org']` | Upstream NTP servers; the implicit default is suppressed when only `peers` or `pools` are configured |
 | `peers` | `String`, `Array` | `[]` | Peer hosts to configure |
 | `pools` | `String`, `Array` | `[]` | Upstream NTP pools |
 | `restrictions` | `String`, `Array` | `[]` | Extra `restrict` lines |

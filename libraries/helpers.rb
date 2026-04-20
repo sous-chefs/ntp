@@ -120,7 +120,7 @@ module NtpCookbook
         return "ntpd -q -u #{new_resource.state_user}"
       end
 
-      source = new_resource.sync_clock_source || new_resource.servers.first || new_resource.pools.first
+      source = new_resource.sync_clock_source || effective_servers(new_resource).first || Array(new_resource.pools).first
       raise Chef::Exceptions::ValidationFailed, 'sync_clock requires at least one server, pool, or explicit sync_clock_source.' if source.nil?
 
       "ntpdate -u #{source}"
@@ -144,7 +144,7 @@ module NtpCookbook
         ignore: Array(new_resource.ignore).compact,
         listen: resolved_listen_addresses(new_resource.listen, new_resource.listen_network),
         peers: new_resource.peers.sort,
-        servers: (new_resource.servers - new_resource.peers).sort,
+        servers: (effective_servers(new_resource) - new_resource.peers).sort,
         pools: new_resource.pools.sort,
         restrict_default: new_resource.restrict_default,
         restrictions: new_resource.restrictions,
@@ -164,7 +164,20 @@ module NtpCookbook
       }
     end
 
+    def effective_servers(new_resource)
+      return [] if implicit_default_servers?(new_resource)
+
+      Array(new_resource.servers)
+    end
+
     private
+
+    def implicit_default_servers?(new_resource)
+      return false unless new_resource.respond_to?(:property_is_set?)
+      return false if new_resource.property_is_set?(:servers)
+
+      Array(new_resource.peers).any? || Array(new_resource.pools).any?
+    end
 
     def el9_plus?
       return false unless node['platform_family'] == 'rhel'
