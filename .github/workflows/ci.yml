@@ -4,11 +4,12 @@ name: ci
 "on":
   pull_request:
   push:
-    branches: [main]
+    branches:
+      - main
 
 jobs:
   lint-unit:
-    uses: sous-chefs/.github/.github/workflows/lint-unit.yml@5.0.8
+    uses: sous-chefs/.github/.github/workflows/lint-unit.yml@5.0.3
     permissions:
       actions: write
       checks: write
@@ -22,19 +23,8 @@ jobs:
     strategy:
       matrix:
         os:
-          - "almalinux-8"
-          - "almalinux-9"
-          - "amazonlinux-2"
-          - "amazonlinux-2023"
-          - "centos-stream-9"
-          - "debian-11"
           - "debian-12"
-          - "fedora-latest"
-          - "oraclelinux-8"
-          - "oraclelinux-9"
-          - "rockylinux-8"
-          - "rockylinux-9"
-          - "ubuntu-2004"
+          - "debian-13"
           - "ubuntu-2204"
           - "ubuntu-2404"
         suite:
@@ -44,63 +34,13 @@ jobs:
     steps:
       - name: Check out code
         uses: actions/checkout@v6
-      - name: Install Chef
-        uses: actionshub/chef-install@6.0.0
+      - name: Install Cinc Workstation
+        uses: sous-chefs/.github/.github/actions/install-workstation@main
       - name: Dokken
-        uses: actionshub/test-kitchen@3.0.0
+        uses: actionshub/test-kitchen@main
         env:
           CHEF_LICENSE: accept-no-persist
           KITCHEN_LOCAL_YAML: kitchen.dokken.yml
-        with:
-          suite: ${{ matrix.suite }}
-          os: ${{ matrix.os }}
-
-  integration-windows:
-    needs: lint-unit
-    runs-on: windows-latest
-    strategy:
-      matrix:
-        os:
-          - "windows-latest"
-        suite:
-          - "default"
-      fail-fast: false
-
-    steps:
-      - name: Check out code
-        uses: actions/checkout@v6
-      - name: Install Chef
-        uses: actionshub/chef-install@6.0.0
-      - name: test-kitchen
-        uses: actionshub/test-kitchen@3.0.0
-        env:
-          CHEF_LICENSE: accept-no-persist
-          KITCHEN_LOCAL_YAML: kitchen.exec.yml
-        with:
-          suite: ${{ matrix.suite }}
-          os: ${{ matrix.os }}
-
-  integration-macos:
-    needs: lint-unit
-    runs-on: macos-latest
-    strategy:
-      matrix:
-        os:
-          - "macos-latest"
-        suite:
-          - "default"
-      fail-fast: false
-
-    steps:
-      - name: Check out code
-        uses: actions/checkout@v6
-      - name: Install Chef
-        uses: actionshub/chef-install@6.0.0
-      - name: test-kitchen
-        uses: actionshub/test-kitchen@3.0.0
-        env:
-          CHEF_LICENSE: accept-no-persist
-          KITCHEN_LOCAL_YAML: kitchen.exec.yml
         with:
           suite: ${{ matrix.suite }}
           os: ${{ matrix.os }}
