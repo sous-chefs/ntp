@@ -3,8 +3,8 @@
 ## Package Availability
 
 This cookbook now targets Linux distributions that provide `ntpsec` from their
-normal distribution package archives. It does not configure third-party
-repositories automatically.
+distribution package archives. It does not configure third-party repositories
+automatically.
 
 ### APT (Debian/Ubuntu)
 
@@ -20,8 +20,9 @@ repositories automatically.
 
 ### DNF/YUM (RHEL family)
 
-- RHEL 9 / Rocky Linux 9: `ntpsec` is available from EPEL 9, not from the base
-  operating system repositories.
+- Enterprise Linux 9+: `ntpsec` is expected to come from EPEL 9 or an
+  equivalent repository. This cookbook supports the packaged service once that
+  repository is already configured.
 - Amazon Linux 2023: the published package list does not include `ntp` or
   `ntpsec`.
 
@@ -43,7 +44,7 @@ This cookbook does not build NTP from source. It manages the distro-packaged
 
 - Ubuntu ships `ntpsec` in `universe`, so package availability follows Ubuntu's
   community-supported repository rather than the `main` archive.
-- RHEL-family support requires additional repository management for EPEL, which
-  is outside the scope of this cookbook migration.
+- RHEL-family support requires repository management for EPEL or an equivalent
+  source, which remains outside the scope of this cookbook.
 - Amazon Linux 2023 is intentionally excluded because the base distribution does
   not publish a supported `ntp` or `ntpsec` package.

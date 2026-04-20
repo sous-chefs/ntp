@@ -5,12 +5,13 @@
 [![License](https://img.shields.io/badge/License-Apache%202.0-green.svg)](https://opensource.org/licenses/Apache-2.0)
 
 The `ntp` cookbook now provides a single custom resource, `ntp_service`, for
-managing the distro-packaged `ntpsec` service on current Debian and Ubuntu
-releases.
+managing the distro-packaged NTP service on current Debian, Ubuntu, and
+Enterprise Linux 9+ releases.
 
 ## Supported Platforms
 
 - Debian 12+
+- Enterprise Linux 9+
 - Ubuntu 22.04+
 
 Additional platform constraints are documented in
@@ -20,8 +21,8 @@ Additional platform constraints are documented in
 
 ### `ntp_service`
 
-Use `ntp_service` to install `ntpsec`, render `/etc/ntpsec/ntp.conf`, and
-enable the packaged systemd service.
+Use `ntp_service` to install the platform-appropriate NTP package, render the
+packaged config file, and enable the packaged systemd service.
 
 ```ruby
 ntp_service 'default' do
@@ -37,5 +38,5 @@ the full property reference.
 ```text
 cookstyle
 chef exec rspec
-KITCHEN_LOCAL_YAML=kitchen.dokken.yml kitchen test default-ubuntu-2404 --destroy=always
+KITCHEN_LOCAL_YAML=kitchen.dokken.yml kitchen test default-ubuntu-2404 default-rockylinux-9 --destroy=always
 ```

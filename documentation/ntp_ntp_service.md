@@ -1,16 +1,16 @@
 # ntp_ntp_service
 
-Installs distro-packaged `ntpsec`, renders `/etc/ntpsec/ntp.conf`, and manages
-the packaged systemd service.
+Installs the platform-appropriate distro-packaged NTP daemon, renders the
+packaged config file, and manages the packaged systemd service.
 
 ## Actions
 
 | Action | Description |
 |---|---|
-| `:create` | Installs and configures `ntpsec` and starts the service (default) |
-| `:start` | Starts the `ntpsec` service |
-| `:stop` | Stops the `ntpsec` service |
-| `:restart` | Restarts the `ntpsec` service |
+| `:create` | Installs and configures the platform NTP service and starts it (default) |
+| `:start` | Starts the platform NTP service |
+| `:stop` | Stops the platform NTP service |
+| `:restart` | Restarts the platform NTP service |
 | `:delete` | Stops the service, removes the managed config, and removes the packages |
 
 ## Properties
@@ -18,18 +18,18 @@ the packaged systemd service.
 | Property | Type | Default | Description |
 |---|---|---|---|
 | `instance_name` | String | `name property` | Resource instance name |
-| `package_name` | String | `'ntpsec'` | Main package to install |
-| `sync_package_name` | String | `'ntpsec-ntpdate'` | Optional package used for `sync_clock` |
-| `service_name` | String | `'ntpsec'` | Systemd service name |
-| `config_path` | String | `'/etc/ntpsec/ntp.conf'` | Path to the generated config file |
-| `varlibdir` | String | `'/var/lib/ntpsec'` | State directory for drift data |
-| `statsdir` | String | `'/var/log/ntpsec'` | Statistics directory |
-| `driftfile` | String | `'/var/lib/ntpsec/ntp.drift'` | Drift file path |
-| `leapfile` | String | `'/usr/share/zoneinfo/leap-seconds.list'` | Leap seconds file path |
+| `package_name` | String | platform default | Main package to install |
+| `sync_package_name` | `String`, `nil` | platform default | Optional package used for `sync_clock` when the platform requires one |
+| `service_name` | String | platform default | Systemd service name |
+| `config_path` | String | platform default | Path to the generated config file |
+| `varlibdir` | String | platform default | State directory for drift data |
+| `statsdir` | String | platform default | Statistics directory |
+| `driftfile` | String | platform default | Drift file path |
+| `leapfile` | String | platform default | Leap seconds file path |
 | `config_owner` | String | `'root'` | Owner of the rendered config |
 | `config_group` | String | `'root'` | Group of the rendered config |
-| `state_user` | String | `'ntpsec'` | Owner for state and stats directories |
-| `state_group` | String | `'ntpsec'` | Group for state and stats directories |
+| `state_user` | String | platform default | Owner for state and stats directories |
+| `state_group` | String | platform default | Group for state and stats directories |
 | `servers` | `String`, `Array` | `['0.pool.ntp.org', '1.pool.ntp.org', '2.pool.ntp.org', '3.pool.ntp.org']` | Upstream NTP servers |
 | `peers` | `String`, `Array` | `[]` | Peer hosts to configure |
 | `pools` | `String`, `Array` | `[]` | Upstream NTP pools |
@@ -40,8 +40,8 @@ the packaged systemd service.
 | `restrict_default` | String | `'limited kod notrap nomodify nopeer noquery'` | Default `restrict` policy |
 | `statistics` | Boolean | `true` | Enables loop, peer, and clock statistics |
 | `monitor` | Boolean | `false` | Enables or disables monitor support |
-| `sync_clock` | Boolean | `false` | Runs a one-time `ntpdate` sync during convergence |
-| `sync_clock_source` | `String`, `nil` | `nil` | Explicit source used for `sync_clock` |
+| `sync_clock` | Boolean | `false` | Runs a one-time platform-appropriate clock sync during convergence |
+| `sync_clock_source` | `String`, `nil` | `nil` | Explicit source used for `sync_clock` on platforms that use `ntpdate` |
 | `sync_hw_clock` | Boolean | `false` | Runs `hwclock --systohc` after convergence |
 | `conf_restart_immediate` | Boolean | `false` | Restarts the service immediately on config changes |
 | `disable_tinker_panic_on_virtualization_guest` | Boolean | `true` | Forces `tinker panic 0` for guests |
@@ -59,6 +59,11 @@ the packaged systemd service.
 | `dscp` | `Integer`, `nil` | `nil` | Optional DSCP value |
 
 ## Examples
+
+Platform defaults:
+
+- Debian 12+ and Ubuntu 22.04+ use `ntpsec`, `/etc/ntpsec/ntp.conf`, and the `ntpsec` service.
+- Enterprise Linux 9+ uses `ntpsec`, `/etc/ntp.conf`, and the `ntpd` service. EPEL must already be enabled.
 
 ### Basic usage
 

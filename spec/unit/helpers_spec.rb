@@ -31,6 +31,30 @@ describe NtpCookbook::Helpers do
     end
   end
 
+  context 'on rockylinux 9' do
+    let(:node) do
+      Chef::Node.new.tap do |n|
+        n.automatic['platform'] = 'rocky'
+        n.automatic['platform_family'] = 'rhel'
+        n.automatic['platform_version'] = '9.4'
+      end
+    end
+
+    it 'reports the platform as supported' do
+      expect(helper_class.new(node).supported_platform?).to be true
+    end
+
+    it 'returns el-specific defaults' do
+      helper = helper_class.new(node)
+
+      expect(helper.default_service_name).to eq('ntpd')
+      expect(helper.default_config_path).to eq('/etc/ntp.conf')
+      expect(helper.default_driftfile).to eq('/var/lib/ntp/drift')
+      expect(helper.default_leapfile).to eq('/usr/share/zoneinfo/leapseconds')
+      expect(helper.default_sync_package_name).to be_nil
+    end
+  end
+
   context 'with a primary listen network' do
     let(:node) do
       Chef::Node.new.tap do |n|
@@ -92,6 +116,29 @@ describe NtpCookbook::Helpers do
       expect(config[:servers]).to eq(%w(0.pool.ntp.org 1.pool.ntp.org 2.pool.ntp.org 3.pool.ntp.org))
       expect(config[:tos_maxdist]).to eq(1)
       expect(config[:tinker][:panic]).to eq(1000)
+    end
+  end
+
+  context 'with sync command on enterprise linux' do
+    let(:node) do
+      Chef::Node.new.tap do |n|
+        n.automatic['platform'] = 'redhat'
+        n.automatic['platform_family'] = 'rhel'
+        n.automatic['platform_version'] = '9.4'
+      end
+    end
+
+    let(:resource) do
+      OpenStruct.new(
+        state_user: 'ntp',
+        sync_clock_source: 'time.example.com',
+        servers: ['time.example.com'],
+        pools: []
+      )
+    end
+
+    it 'uses ntpd for one-shot sync' do
+      expect(helper_class.new(node).sync_command(resource)).to eq('ntpd -q -u ntp')
     end
   end
 end

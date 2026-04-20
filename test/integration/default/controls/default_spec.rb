@@ -6,7 +6,7 @@ control 'ntp-default-package-01' do
   impact 1.0
   title 'The ntpsec package is installed'
 
-  describe package('ntpsec') do
+  describe package(ntp_package_name) do
     it { should be_installed }
   end
 end
@@ -25,7 +25,7 @@ end
 
 control 'ntp-default-service-01' do
   impact 0.5
-  title 'The ntpsec service is enabled and running'
+  title 'The ntp service is enabled and running'
 
   describe service(ntp_service_name) do
     it { should be_enabled }

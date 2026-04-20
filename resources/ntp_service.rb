@@ -8,7 +8,7 @@ include NtpCookbook::Helpers
 
 property :instance_name, String, name_property: true
 property :package_name, String, default: lazy { default_package_name }, desired_state: false
-property :sync_package_name, String, default: lazy { default_sync_package_name }, desired_state: false
+property :sync_package_name, [String, nil], default: lazy { default_sync_package_name }, desired_state: false
 property :service_name, String, default: lazy { default_service_name }, desired_state: false
 property :config_path, String, default: lazy { default_config_path }
 property :varlibdir, String, default: lazy { default_varlibdir }
@@ -17,8 +17,8 @@ property :driftfile, String, default: lazy { default_driftfile }
 property :leapfile, String, default: lazy { default_leapfile }
 property :config_owner, String, default: 'root'
 property :config_group, String, default: 'root'
-property :state_user, String, default: 'ntpsec'
-property :state_group, String, default: 'ntpsec'
+property :state_user, String, default: lazy { default_state_user }
+property :state_group, String, default: lazy { default_state_group }
 property :servers, [String, Array], coerce: proc { |value| Array(value) }, default: lazy { default_servers }
 property :peers, [String, Array], coerce: proc { |value| Array(value) }, default: []
 property :pools, [String, Array], coerce: proc { |value| Array(value) }, default: []
@@ -58,9 +58,11 @@ action :create do
     action :install
   end
 
-  package new_resource.sync_package_name do
-    action :install
-    only_if { new_resource.sync_clock }
+  unless new_resource.sync_package_name.nil?
+    package new_resource.sync_package_name do
+      action :install
+      only_if { new_resource.sync_clock }
+    end
   end
 
   [new_resource.varlibdir, new_resource.statsdir].each do |path|
@@ -145,8 +147,10 @@ action :delete do
     action :delete
   end
 
-  package new_resource.sync_package_name do
-    action :remove
+  unless new_resource.sync_package_name.nil?
+    package new_resource.sync_package_name do
+      action :remove
+    end
   end
 
   package new_resource.package_name do

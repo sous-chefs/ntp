@@ -9,9 +9,37 @@ module NtpCookbook
       'ubuntu' => Gem::Requirement.new('>= 22.04'),
     }.freeze
 
+    EL9_PLATFORM_DEFAULTS = {
+      package_name: 'ntpsec',
+      sync_package_name: nil,
+      service_name: 'ntpd',
+      config_path: '/etc/ntp.conf',
+      varlibdir: '/var/lib/ntp',
+      statsdir: '/var/log/ntpstats',
+      driftfile: '/var/lib/ntp/drift',
+      leapfile: '/usr/share/zoneinfo/leapseconds',
+      state_user: 'ntp',
+      state_group: 'ntp',
+    }.freeze
+
+    DEB_NTPSEC_PLATFORM_DEFAULTS = {
+      package_name: 'ntpsec',
+      sync_package_name: 'ntpsec-ntpdate',
+      service_name: 'ntpsec',
+      config_path: '/etc/ntpsec/ntp.conf',
+      varlibdir: '/var/lib/ntpsec',
+      statsdir: '/var/log/ntpsec',
+      driftfile: '/var/lib/ntpsec/ntp.drift',
+      leapfile: '/usr/share/zoneinfo/leap-seconds.list',
+      state_user: 'ntpsec',
+      state_group: 'ntpsec',
+    }.freeze
+
     def supported_platform?
+      return true if el9_plus?
+
       requirement = SUPPORTED_PLATFORMS[node['platform']]
-      return false unless requirement
+      return false if requirement.nil?
 
       requirement.satisfied_by?(Gem::Version.new(node['platform_version']))
     end
@@ -20,7 +48,7 @@ module NtpCookbook
       return if supported_platform?
 
       raise Chef::Exceptions::UnsupportedPlatform,
-            "ntp_service supports Debian 12+ and Ubuntu 22.04+. Found #{node['platform']} #{node['platform_version']}."
+            "ntp_service supports Debian 12+, Ubuntu 22.04+, and Enterprise Linux 9+. Found #{node['platform']} #{node['platform_version']}."
     end
 
     def default_servers
@@ -28,35 +56,43 @@ module NtpCookbook
     end
 
     def default_package_name
-      'ntpsec'
+      platform_defaults.fetch(:package_name)
     end
 
     def default_sync_package_name
-      'ntpsec-ntpdate'
+      platform_defaults.fetch(:sync_package_name)
     end
 
     def default_service_name
-      'ntpsec'
+      platform_defaults.fetch(:service_name)
     end
 
     def default_config_path
-      '/etc/ntpsec/ntp.conf'
+      platform_defaults.fetch(:config_path)
     end
 
     def default_varlibdir
-      '/var/lib/ntpsec'
+      platform_defaults.fetch(:varlibdir)
     end
 
     def default_statsdir
-      '/var/log/ntpsec'
+      platform_defaults.fetch(:statsdir)
     end
 
     def default_driftfile
-      "#{default_varlibdir}/ntp.drift"
+      platform_defaults.fetch(:driftfile)
     end
 
     def default_leapfile
-      '/usr/share/zoneinfo/leap-seconds.list'
+      platform_defaults.fetch(:leapfile)
+    end
+
+    def default_state_user
+      platform_defaults.fetch(:state_user)
+    end
+
+    def default_state_group
+      platform_defaults.fetch(:state_group)
     end
 
     def resolved_listen_addresses(listen, listen_network)
@@ -80,8 +116,12 @@ module NtpCookbook
     end
 
     def sync_command(new_resource)
+      if el9_plus?
+        return "ntpd -q -u #{new_resource.state_user}"
+      end
+
       source = new_resource.sync_clock_source || new_resource.servers.first || new_resource.pools.first
-      raise Chef::Exceptions::ValidationFailed, 'sync_clock requires at least one server, pool, or explicit sync_clock_source.' unless source
+      raise Chef::Exceptions::ValidationFailed, 'sync_clock requires at least one server, pool, or explicit sync_clock_source.' if source.nil?
 
       "ntpdate -u #{source}"
     end
@@ -122,6 +162,21 @@ module NtpCookbook
         ipaddress: node['ipaddress'],
         fqdn: node['fqdn'],
       }
+    end
+
+    private
+
+    def el9_plus?
+      return false unless node['platform_family'] == 'rhel'
+      return false if node['platform'] == 'amazon'
+
+      Gem::Requirement.new('>= 9').satisfied_by?(Gem::Version.new(node['platform_version']))
+    end
+
+    def platform_defaults
+      return EL9_PLATFORM_DEFAULTS if el9_plus?
+
+      DEB_NTPSEC_PLATFORM_DEFAULTS
     end
   end
 end
