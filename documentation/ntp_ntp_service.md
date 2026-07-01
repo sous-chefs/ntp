@@ -6,7 +6,7 @@ packaged config file, and manages the packaged systemd service.
 ## Actions
 
 | Action | Description |
-|---|---|
+| --- | --- |
 | `:create` | Installs and configures the platform NTP service and starts it (default) |
 | `:start` | Starts the platform NTP service |
 | `:stop` | Stops the platform NTP service |
@@ -16,7 +16,7 @@ packaged config file, and manages the packaged systemd service.
 ## Properties
 
 | Property | Type | Default | Description |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | `instance_name` | String | `name property` | Resource instance name |
 | `package_name` | String | platform default | Main package to install |
 | `sync_package_name` | `String`, `nil` | platform default | Optional package used for `sync_clock` when the platform requires one |
